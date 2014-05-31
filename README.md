@@ -1,12 +1,6 @@
 **DPMbox**
 ======
-
-
-----------
-
-
 An interactive user-friendly web interface for a disk-based grid storage system.
-
 
 ----------
 
