@@ -31,30 +31,39 @@ References:
 <a name="WLCG"></a>
 [1] WLCG data management stats
 http://gstat-wlcg.cern.ch/apps/gt/dm/
+
 <a name="DPM"></a>
 [2] DPM
 https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm
+
 <a name="DPM-http"></a>
 [3] DPM HTTP/WebDAV interface
 https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV
+
 <a name="DPM-FPS"></a>
 [4] DPM: Future Proof Storage
 http://iopscience.iop.org/1742-6596/396/3/032015
+
 <a name="DPM-LFC"></a>
 [5] Web enabled data management with DPM & LFC
 http://iopscience.iop.org/1742-6596/396/5/052006
+
 <a name="LCG"></a>
 [6] CERN LCG File Catalog
 http://prod-lfc-shared-central.cern.ch/grid/
+
 <a name="W3-html"></a>
 [7] W3 Consortium HTML specifications
 http://www.w3.org/TR/html51/
+
 <a name="W3-css"></a>
 [8] W3 Consortium CSS specifications
 http://www.w3.org/TR/css-2010/
+
 <a name="MozillaDN-JS"></a>
 [9] Mozilla Developer Network JavaScript Documentation
 https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
 <a name="ApacheLicense"></a>
 [10] Apache License 2.0
 http://www.apache.org/licenses/LICENSE-2.0.html
