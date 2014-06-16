@@ -1,0 +1,13 @@
+***********************************************
+Plantilla: plantillaLyX-PFC-ITIG-ITIS-II-UCA.lyx
+Autor: Juan Boubeta Puig <juan.boubeta@uca.es>
+Fecha: 27 de julio de 2012 (versión 1)
+       30 de enero de 2014 (versión 2)
+***********************************************
+
+Esta plantilla para el procesador de documentos LyX (http://www.lyx.org) está preparada 
+para la redacción de una memoria de Proyecto Fin de Carrera de las titulaciones de 
+Ingeniería Técnica en Informática de Gestión (ITIG), Ingeniería Técnica en Informática 
+de Sistemas e Ingeniería en Informática (II) de la Universidad de Cádiz.
+
+Para descargar el procesador de documentos LyX, consúltese: http://www.lyx.org/Download

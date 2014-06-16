@@ -1,0 +1,2269 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass scrbook
+\begin_preamble
+% DO NOT ALTER THIS PREAMBLE!!!
+%
+% This preamble is designed to ensure that the User's Guide prints
+% out as advertised. If you mess with this preamble,
+% parts of the User's Guide may not print out as expected.  If you
+% have problems LaTeXing this file, please contact 
+% the documentation team
+% email: lyx-docs@lists.lyx.org
+
+%\usepackage[utf8]{inputenc}
+
+\usepackage{ifpdf} % part of the hyperref bundle
+\ifpdf % if pdflatex is used
+
+ % set fonts for nicer pdf view
+ \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+\fi % end if pdflatex is used
+
+% for correct jump positions whe clicking on a link to a float
+\usepackage[figure]{hypcap}
+%\usepackage[printonlyused]{acronym-custom}
+\usepackage{acronym-custom}
+
+% the pages of the TOC is numbered roman
+% and a pdf-bookmark for the TOC is added
+\let\myTOC\tableofcontents
+\renewcommand\tableofcontents{%
+  \frontmatter
+  \pdfbookmark[1]{\contentsname}{}
+  \myTOC
+  \mainmatter }
+
+% redefine the \LyX macro for PDF bookmarks
+\def\LyX{\texorpdfstring{%
+  L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+
+% define a short command for \textvisiblespace
+\newcommand{\spce}{\textvisiblespace}
+
+% macro for italic page numbers in the index
+\newcommand{\IndexDef}[1]{\textit{#1}}
+
+% redefine the greyed out note
+%\renewenvironment{lyxgreyedout}
+ %{\textcolor{blue}\bgroup}{\egroup}
+
+% workaround for a makeindex bug, 
+% see sec. "Index Entry Order"
+% only uncomment this when you are using makindex
+%\let\OrgIndex\index 
+%\renewcommand*{\index}[1]{\OrgIndex{#1}}
+
+\usepackage{listings}
+\renewcommand{\lstlistlistingname}{Listados}
+\renewcommand{\lstlistingname}{Listado}
+
+\usepackage{hyphenat}
+\usepackage{verbatim}
+
+\AtBeginDocument{
+   \renewcommand{\tablename}{Tabla}
+   \renewcommand{\listtablename}{Índice de tablas}
+}
+
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+\newenvironment{nota}{
+  \begin{changemargin}{2em}{2em}
+    \textbf{\textsc{Nota: }}
+}{
+  \end{changemargin}
+}
+\end_preamble
+\options intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue,pdfpagelayout=OneColumn, pdfnewwindow=true,pdfstartview=XYZ, plainpages=false, pdfpagelabels,pdftex"
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\branch Pregunta
+\selected 1
+\filename_suffix 0
+\color #00ff00
+\end_branch
+\branch Respuesta
+\selected 0
+\filename_suffix 0
+\color #aa55ff
+\end_branch
+\index Índice
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3.5cm
+\rightmargin 2.5cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+****************************************************
+\end_layout
+
+\begin_layout Plain Layout
+Plantilla: plantillaLyX-PFC-ITIG-ITIS-II-UCA.lyx
+\end_layout
+
+\begin_layout Plain Layout
+Autor: Juan Boubeta Puig <juan.boubeta@uca.es>
+\end_layout
+
+\begin_layout Plain Layout
+Fecha: 27 de julio de 2012 (versión 1)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+30 de enero de 2014 (versión 2)
+\end_layout
+
+\begin_layout Plain Layout
+****************************************************
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+includegraphics[width=.25
+\backslash
+textwidth]{logo_uca}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{changemargin}{3em}{3em}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+LARGE 
+\backslash
+textsc{
+\backslash
+nohyphens{Escuela Superior de Ingeniería}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+LARGE 
+\backslash
+nohyphens{Titulación}}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+LARGE 
+\backslash
+nohyphens{Título del Proyecto Fin de Carrera}}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+large Curso 20xx-20yy}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{changemargin}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+Large Nombre-autor Apellido1 Apellido2 
+\backslash
+
+\backslash
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip 
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+large Cádiz, xx de yy de zzzz}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage{
+\backslash
+pagestyle{empty}
+\backslash
+cleardoublepage}  
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+thispagestyle{empty} 
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+includegraphics[width=.2
+\backslash
+textwidth]{logo_uca}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{changemargin}{3em}{3em}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+      {
+\backslash
+LARGE 
+\backslash
+textsc{
+\backslash
+nohyphens{Escuela Superior de Ingeniería}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+      {
+\backslash
+LARGE 
+\backslash
+nohyphens{Titulación}}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+      {
+\backslash
+LARGE 
+\backslash
+nohyphens{Título del Proyecto Fin de Carrera}}
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{changemargin}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{flushleft}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+Large
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{Departamento}: 
+\backslash
+nohyphens{Ingeniería Informática.} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{Director del proyecto}: 
+\backslash
+nohyphens{Nombre-director Apellido1 Apellido2.} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{Autor del Proyecto}: 
+\backslash
+nohyphens{Nombre-autor Apellido1 Apellido2}.
+ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{flushleft}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+large
+\end_layout
+
+\begin_layout Plain Layout
+
+    Cádiz, xx de yy de zzzz
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip    
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+    Fdo.: Nombre-autor Apellido1 Apellido2
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{flushright}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+clearpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage{
+\backslash
+pagestyle{empty}
+\backslash
+cleardoublepage}  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introducción
+\begin_inset CommandInset label
+LatexCommand label
+name "cap:introducción"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esta plantilla para el procesador de documentos LyX (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.lyx.org}
+\end_layout
+
+\end_inset
+
+) está preparada para la redacción de una memoria de 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{PFC}
+\end_layout
+
+\end_inset
+
+ de las titulaciones de Ingeniería Técnica en Informática de Gestión (ITIG),
+ Ingeniería Técnica en Informática de Sistemas e Ingeniería en Informática
+ (II) de la 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{UCA}
+\end_layout
+
+\end_inset
+
+.
+ Téngase en cuenta que el contenido de dicha memoria podrá variar según
+ la temática y el tutor del 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{PFC}
+\end_layout
+
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Juan: para ver la configuración de este documento ir a 
+\emph on
+Documento>Configuración
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los acrónimos aparecen dentro de un recuadro porque los hemos insertado
+ como código LaTeX.
+ Para insertar código LaTeX en un fichero .lyx debe pulsarse Control+L.
+ Como puede verse en el párrafo anterior, cada vez que utilicemos un acrónimo
+ podemos especificarlo como código LaTeX.
+ De este modo, LaTeX se encargará de definirlo automáticamente la primera
+ vez que aparezca en el texto.
+ Para ello, debe definirse su acrónimo en la sección correspondiente dentro
+ de este capítulo.
+ 
+\end_layout
+
+\begin_layout Section*
+Formato y Estilo
+\end_layout
+
+\begin_layout Standard
+Los tres iconos de formato que presenta el procesador LyX son 
+\begin_inset Quotes fld
+\end_inset
+
+cambiar énfasis
+\begin_inset Quotes frd
+\end_inset
+
+ (sería equivalente a cursiva), 
+\begin_inset Quotes fld
+\end_inset
+
+cambiar versalitas
+\begin_inset Quotes frd
+\end_inset
+
+ y 
+\begin_inset Quotes fld
+\end_inset
+
+aplicar último
+\begin_inset Quotes frd
+\end_inset
+
+ (último formato).
+ Si se desean 
+\series bold
+otros formatos
+\series default
+: 
+\emph on
+seleccionar la palabra > botón derecho > Estilo del texto > Personalizado
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Section*
+Etiquetas
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:etiquetas"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cada vez que se añada un capítulo, sección, tabla, figura, etc.
+ debería asociársele una etiqueta para que pueda ser referenciado posteriormente.
+ 
+\end_layout
+
+\begin_layout Standard
+Para insertar una etiqueta: 
+\emph on
+Insertar>Etiqueta
+\emph default
+.
+ Podría seguirse algún tipo de nomenclatura para los nombres de las etiquetas.
+ Por ejemplo, las etiquetas de figuras comenzarán por 
+\begin_inset Quotes fld
+\end_inset
+
+fig:
+\begin_inset Quotes frd
+\end_inset
+
+, los capítulos por 
+\begin_inset Quotes fld
+\end_inset
+
+cap:
+\begin_inset Quotes frd
+\end_inset
+
+, etc.
+\end_layout
+
+\begin_layout Standard
+Para referenciar una etiqueta en el texto: 
+\emph on
+Insertar>Referencia Cruzada
+\emph default
+.
+\end_layout
+
+\begin_layout Section*
+Referencias
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:referencias"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El autor de esta plantilla, Prof.
+ Juan Boubeta Puig, es miembro del Grupo UCASE de Ingeniería del Software
+ (TIC-025)
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UCASE-2012"
+
+\end_inset
+
+.
+ En Boubeta-Puig et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "boubeta_puig_procesamiento_2011"
+
+\end_inset
+
+ se presenta una de sus publicaciones en congresos españoles
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Juan: esto es un comentario que no aparecerá en el documento y que se inserta
+ como 
+\emph on
+Insertar>Nota
+\emph default
+.
+ La referencia UCASE-2012 es una referencia web mientras que boubeta_puig_proces
+amiento_2011 es una referencia de artículo en actas de congreso.
+\end_layout
+
+\end_inset
+
+.
+ Nótese que las referencias deben ser guardadas en el fichero 
+\begin_inset Quotes fld
+\end_inset
+
+referencias.bib
+\begin_inset Quotes frd
+\end_inset
+
+ y deben ser incluidas en el documento .lyx con 
+\emph on
+Insertar>Cita
+\emph default
+.
+ Además, para evitar que la referencia sea separada de la palabra anterior,
+ debe incluirse un espacio protegido (
+\begin_inset space ~
+\end_inset
+
+) pulsando Control+Espacio.
+ Todas las referencias deben tener fecha, incluidas las referencias web.
+ 
+\end_layout
+
+\begin_layout Section*
+Figuras
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:figuras"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Toda figura debe estar referenciada en el texto, es decir, no debería existir
+ una figura a la que no se haga mención en el texto.
+ Un ejemplo de esto puede verse en la Figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:logotipo-uca"
+
+\end_inset
+
+.
+ Nótese que se ha incluido una referencia a la figura correspondiente con
+ 
+\emph on
+Insertar>Referencia Cruzada
+\emph default
+ y se ha utilizado un espacio protegido entre la palabra 
+\begin_inset Quotes fld
+\end_inset
+
+Figura
+\begin_inset Quotes frd
+\end_inset
+
+ y su referencia.
+\end_layout
+
+\begin_layout Standard
+Para más opciones de tamaño...
+ de la figura, botón derecho sobre la figura insertada.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename logo_uca.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Logotipo de la Universidad de Cádiz
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:logotipo-uca"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Listados
+\end_layout
+
+\begin_layout Standard
+Una opción es incluir directamente el código en el documento utilizando
+ 
+\emph on
+verbatim
+\emph default
+: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+epService.getEPRuntime().sendEvent(evento);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+LaTeX también permite incluir listados desde ficheros de texto, ajustando
+ automáticamente las líneas de código a la configuración especificada.
+ Puede verse un ejemplo en el Listado
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{lst:enviarEvento}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{basicstyle=
+\backslash
+footnotesize, frame=single, breaklines=true, tabsize=3}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[caption=Envío de un evento a Esper, label=lst:enviarEvento]{envi
+arEvento.txt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Tablas
+\end_layout
+
+\begin_layout Standard
+A continuación, se presenta un ejemplo sobre cómo insertar y referenciar
+ una tabla (véase la Tabla
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:diferenciasSOA-EDA"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diferencias entre SOA y EDA
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:diferenciasSOA-EDA"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="2">
+<features rotate="0" booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{SOA}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{EDA}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basada en servicios demandados, 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basada en eventos en tiempo real, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+normalmente síncronos.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+normalmente asíncronos e impredecibles.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Clientes y servidores débilmente acoplados.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Clientes y servidores desacoplados.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Petición/respuesta 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Publicación/suscripción 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+uno-a-uno (
+\emph on
+pull
+\emph default
+).
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+muchos-a-muchos (
+\emph on
+push
+\emph default
+).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bidireccional,
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unidireccional,
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+pero no garantiza la entrega.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ entrega de evento garantizada.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ideal para procesamiento secuencial y 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ideal para procesos paralelos, eventos 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+aplicaciones compuestas en las que 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(disparadores y uniones) y 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+están disponibles todos los 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+manejo de excepciones entre
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sistemas asociados y servicios.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sistemas desconectados.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Usa metadatos de interfaces.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Usa metadatos de descriptores de eventos.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+El cliente dirige flujos.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+El receptor determina el flujo.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cerrado a una entrada imprevista una 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Puede reaccionar a nuevas entradas
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+vez que el flujo ha comenzado.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+externas mientras el proceso esté activo.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Más información
+\end_layout
+
+\begin_layout Standard
+Para más información consúltese la ayuda de LyX en el menú 
+\emph on
+Ayuda
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Motivación
+\end_layout
+
+\begin_layout Section
+Objetivos
+\end_layout
+
+\begin_layout Section
+Alcance
+\end_layout
+
+\begin_layout Section
+Visión general
+\end_layout
+
+\begin_layout Section
+Glosario
+\end_layout
+
+\begin_layout Subsection
+Acrónimos
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{acronym}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{PFC}{Proyecto Fin de Carrera}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{UCA}{Universidad de Cádiz}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{acronym}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Definiciones
+\end_layout
+
+\begin_layout Standard
+Para incluir definiciones en la memoria se puede utilizar el tipo 
+\begin_inset Quotes fld
+\end_inset
+
+descripción
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Nótese que si el concepto a definir está compuesto por más de una palabra,
+ estas palabras deben ser separadas por un espacio protegido (Control+Espacio).
+\end_layout
+
+\begin_layout Description
+Evento
+\begin_inset space ~
+\end_inset
+
+complejo Un evento que es una abstracción de otros eventos.
+\end_layout
+
+\begin_layout Chapter
+Estado del arte
+\end_layout
+
+\begin_layout Chapter
+Desarrollo del calendario
+\end_layout
+
+\begin_layout Section
+Fases
+\end_layout
+
+\begin_layout Section
+Diagrama de Gantt
+\end_layout
+
+\begin_layout Chapter
+Descripción general del proyecto
+\end_layout
+
+\begin_layout Section
+Perspectiva del producto
+\end_layout
+
+\begin_layout Subsection
+Entorno del producto
+\end_layout
+
+\begin_layout Subsection
+Interfaz de usuario
+\end_layout
+
+\begin_layout Section
+Funciones
+\end_layout
+
+\begin_layout Section
+Características del usuario
+\end_layout
+
+\begin_layout Section
+Restricciones generales
+\end_layout
+
+\begin_layout Subsection
+Control de versiones
+\end_layout
+
+\begin_layout Subsection
+Lenguajes de programación y tecnologías
+\end_layout
+
+\begin_layout Subsection
+Herramientas
+\end_layout
+
+\begin_layout Subsection
+Sistemas operativos y hardware
+\end_layout
+
+\begin_layout Chapter
+Desarrollo del proyecto
+\end_layout
+
+\begin_layout Section
+Modelo de ciclo de vida
+\end_layout
+
+\begin_layout Section
+Requisitos
+\end_layout
+
+\begin_layout Subsection
+Funcionales
+\end_layout
+
+\begin_layout Subsection
+De información
+\end_layout
+
+\begin_layout Subsection
+Reglas de negocio
+\end_layout
+
+\begin_layout Subsection
+Interfaz
+\end_layout
+
+\begin_layout Subsection
+No funcionales
+\end_layout
+
+\begin_layout Section
+Análisis del sistema
+\end_layout
+
+\begin_layout Subsection
+Casos de uso
+\end_layout
+
+\begin_layout Subsection
+Modelo conceptual de datos del dominio
+\end_layout
+
+\begin_layout Subsection
+Diagramas de secuencia
+\end_layout
+
+\begin_layout Section
+Diseño del sistema
+\end_layout
+
+\begin_layout Section
+Implementación
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Juan: inclúyase en esta sección únicamente el código necesario para una
+ mejor comprensión de las explicaciones dadas sobre la implementación del
+ proyecto.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Pruebas y validación
+\end_layout
+
+\begin_layout Chapter
+Resumen
+\end_layout
+
+\begin_layout Chapter
+Conclusiones y trabajo futuro
+\end_layout
+
+\begin_layout Section
+Conclusiones
+\end_layout
+
+\begin_layout Section
+Trabajo futuro
+\end_layout
+
+\begin_layout Chapter
+Agradecimientos
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+appendix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Manual de instalación
+\end_layout
+
+\begin_layout Chapter
+Manual de usuario
+\end_layout
+
+\begin_layout Chapter
+Manual del desarrollador
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "referencias"
+options "splncs03"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

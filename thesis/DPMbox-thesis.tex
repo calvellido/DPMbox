@@ -1,0 +1,544 @@
+%% LyX 2.1.0 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,spanish,intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove]{scrbook}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,lmargin=3.5cm,rmargin=2.5cm}
+\usepackage{color}
+\usepackage{babel}
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\hypersetup{
+ linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue,pdfpagelayout=OneColumn, pdfnewwindow=true,pdfstartview=XYZ, plainpages=false, pdfpagelabels,pdftex}
+\usepackage{breakurl}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{\texorpdfstring%
+  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% DO NOT ALTER THIS PREAMBLE!!!
+%
+% This preamble is designed to ensure that the User's Guide prints
+% out as advertised. If you mess with this preamble,
+% parts of the User's Guide may not print out as expected.  If you
+% have problems LaTeXing this file, please contact 
+% the documentation team
+% email: lyx-docs@lists.lyx.org
+
+%\usepackage[utf8]{inputenc}
+
+\usepackage{ifpdf} % part of the hyperref bundle
+\ifpdf % if pdflatex is used
+
+ % set fonts for nicer pdf view
+ \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+\fi % end if pdflatex is used
+
+% for correct jump positions whe clicking on a link to a float
+\usepackage[figure]{hypcap}
+%\usepackage[printonlyused]{acronym-custom}
+\usepackage{acronym-custom}
+
+% the pages of the TOC is numbered roman
+% and a pdf-bookmark for the TOC is added
+\let\myTOC\tableofcontents
+\renewcommand\tableofcontents{%
+  \frontmatter
+  \pdfbookmark[1]{\contentsname}{}
+  \myTOC
+  \mainmatter }
+
+% redefine the \LyX macro for PDF bookmarks
+\def\LyX{\texorpdfstring{%
+  L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+
+% define a short command for \textvisiblespace
+\newcommand{\spce}{\textvisiblespace}
+
+% macro for italic page numbers in the index
+\newcommand{\IndexDef}[1]{\textit{#1}}
+
+% redefine the greyed out note
+%\renewenvironment{lyxgreyedout}
+ %{\textcolor{blue}\bgroup}{\egroup}
+
+% workaround for a makeindex bug, 
+% see sec. "Index Entry Order"
+% only uncomment this when you are using makindex
+%\let\OrgIndex\index 
+%\renewcommand*{\index}[1]{\OrgIndex{#1}}
+
+\usepackage{listings}
+\renewcommand{\lstlistlistingname}{Listados}
+\renewcommand{\lstlistingname}{Listado}
+
+\usepackage{hyphenat}
+\usepackage{verbatim}
+
+\AtBeginDocument{
+   \renewcommand{\tablename}{Tabla}
+   \renewcommand{\listtablename}{Índice de tablas}
+}
+
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+\newenvironment{nota}{
+  \begin{changemargin}{2em}{2em}
+    \textbf{\textsc{Nota: }}
+}{
+  \end{changemargin}
+}
+
+\makeatother
+
+\begin{document}
+\begin{titlepage}
+  \centering
+  \includegraphics[width=.25\textwidth]{logo_uca}
+
+  \bigskip
+  \bigskip
+  \bigskip
+  
+  \begin{changemargin}{3em}{3em}
+    \centering
+
+    {\LARGE \textsc{\nohyphens{Escuela Superior de Ingeniería}}}
+    
+    \bigskip
+    \bigskip
+    \bigskip
+
+    {\LARGE \nohyphens{Titulación}}
+
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+
+    {\LARGE \nohyphens{Título del Proyecto Fin de Carrera}}
+
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+
+    {\large Curso 20xx-20yy}
+
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+      
+    \end{changemargin}
+
+    {\Large Nombre-autor Apellido1 Apellido2 \\}
+    \bigskip
+    \bigskip 
+    \bigskip 
+    {\large Cádiz, xx de yy de zzzz}
+
+\end{titlepage}
+\newpage{\pagestyle{empty}\cleardoublepage}  
+{
+  \thispagestyle{empty} 
+  \centering
+  \includegraphics[width=.2\textwidth]{logo_uca}
+
+  \bigskip
+  \bigskip
+  \bigskip
+  
+  \begin{changemargin}{3em}{3em}
+
+    \begin{center}
+      {\LARGE \textsc{\nohyphens{Escuela Superior de Ingeniería}}}
+      
+      \bigskip
+      \bigskip
+      
+      {\LARGE \nohyphens{Titulación}}
+      
+      \bigskip
+      \bigskip
+      \bigskip
+      \bigskip
+      
+      {\LARGE \nohyphens{Título del Proyecto Fin de Carrera}}
+      
+      \bigskip
+      \bigskip
+      \bigskip
+      \bigskip
+      
+    \end{center}
+  \end{changemargin}
+
+  \begin{flushleft}
+    \Large
+
+    \textsc{Departamento}: \nohyphens{Ingeniería Informática.} \\
+    \textsc{Director del proyecto}: \nohyphens{Nombre-director Apellido1 Apellido2.} \\
+    \textsc{Autor del Proyecto}: \nohyphens{Nombre-autor Apellido1 Apellido2}. \\
+  \end{flushleft}
+  
+  \bigskip
+  \bigskip
+  \bigskip
+  
+  \begin{flushright}
+    \large
+    Cádiz, xx de yy de zzzz
+
+    \bigskip    
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    Fdo.: Nombre-autor Apellido1 Apellido2
+    
+  \end{flushright}
+
+}
+
+\clearpage
+\newpage{\pagestyle{empty}\cleardoublepage}  
+
+\tableofcontents{}
+
+\listoffigures
+
+
+\listoftables
+
+
+
+\chapter{Introducción\label{cap:introducci=0000F3n}}
+
+Esta plantilla para el procesador de documentos \LyX{} (\url{http://www.lyx.org})
+está preparada para la redacción de una memoria de \ac{PFC} de las
+titulaciones de Ingeniería Técnica en Informática de Gestión (ITIG),
+Ingeniería Técnica en Informática de Sistemas e Ingeniería en Informática
+(II) de la \ac{UCA}. Téngase en cuenta que el contenido de dicha
+memoria podrá variar según la temática y el tutor del \ac{PFC}. 
+
+Los acrónimos aparecen dentro de un recuadro porque los hemos insertado
+como código \LaTeX{}. Para insertar código \LaTeX{} en un fichero
+.lyx debe pulsarse Control+L. Como puede verse en el párrafo anterior,
+cada vez que utilicemos un acrónimo podemos especificarlo como código
+\LaTeX{}. De este modo, \LaTeX{} se encargará de definirlo automáticamente
+la primera vez que aparezca en el texto. Para ello, debe definirse
+su acrónimo en la sección correspondiente dentro de este capítulo. 
+
+
+\section*{Formato y Estilo}
+
+Los tres iconos de formato que presenta el procesador \LyX{} son <<cambiar
+énfasis>> (sería equivalente a cursiva), <<cambiar versalitas>>
+y <<aplicar último>> (último formato). Si se desean \textbf{otros
+formatos}: \emph{seleccionar la palabra > botón derecho > Estilo del
+texto > Personalizado}. 
+
+
+\section*{Etiquetas\label{sec:etiquetas}}
+
+Cada vez que se añada un capítulo, sección, tabla, figura, etc. debería
+asociársele una etiqueta para que pueda ser referenciado posteriormente. 
+
+Para insertar una etiqueta: \emph{Insertar>Etiqueta}. Podría seguirse
+algún tipo de nomenclatura para los nombres de las etiquetas. Por
+ejemplo, las etiquetas de figuras comenzarán por <<fig:>>, los capítulos
+por <<cap:>>, etc.
+
+Para referenciar una etiqueta en el texto: \emph{Insertar>Referencia
+Cruzada}.
+
+
+\section*{Referencias\label{sec:referencias}}
+
+El autor de esta plantilla, Prof. Juan Boubeta Puig, es miembro del
+Grupo UCASE de Ingeniería del Software (TIC-025)~\cite{UCASE-2012}.
+En Boubeta-Puig et al.~\cite{boubeta_puig_procesamiento_2011} se
+presenta una de sus publicaciones en congresos españoles. Nótese
+que las referencias deben ser guardadas en el fichero <<referencias.bib>>
+y deben ser incluidas en el documento .lyx con \emph{Insertar>Cita}.
+Además, para evitar que la referencia sea separada de la palabra anterior,
+debe incluirse un espacio protegido (~) pulsando Control+Espacio.
+Todas las referencias deben tener fecha, incluidas las referencias
+web. 
+
+
+\section*{Figuras\label{sec:figuras}}
+
+Toda figura debe estar referenciada en el texto, es decir, no debería
+existir una figura a la que no se haga mención en el texto. Un ejemplo
+de esto puede verse en la Figura~\ref{fig:logotipo-uca}. Nótese
+que se ha incluido una referencia a la figura correspondiente con
+\emph{Insertar>Referencia Cruzada} y se ha utilizado un espacio protegido
+entre la palabra <<Figura>> y su referencia.
+
+Para más opciones de tamaño... de la figura, botón derecho sobre la
+figura insertada.
+
+\begin{figure}
+\begin{centering}
+
+\includegraphics[scale=0.4]{logo_uca}
+
+\end{centering}
+
+\protect\caption{Logotipo de la Universidad de Cádiz}
+
+
+\label{fig:logotipo-uca}
+\end{figure}
+
+
+
+\section*{Listados}
+
+Una opción es incluir directamente el código en el documento utilizando
+\emph{verbatim}: \begin{verbatim}
+epService.getEPRuntime().sendEvent(evento);
+\end{verbatim}
+
+\LaTeX{} también permite incluir listados desde ficheros de texto,
+ajustando automáticamente las líneas de código a la configuración
+especificada. Puede verse un ejemplo en el Listado~\ref{lst:enviarEvento}.
+
+\lstset{basicstyle=\footnotesize, frame=single, breaklines=true, tabsize=3}
+\lstinputlisting[caption=Envío de un evento a Esper, label=lst:enviarEvento]{enviarEvento.txt}
+
+
+\section*{Tablas}
+
+A continuación, se presenta un ejemplo sobre cómo insertar y referenciar
+una tabla (véase la Tabla~\ref{tab:diferenciasSOA-EDA}).
+
+\begin{table}
+\protect\caption{Diferencias entre SOA y EDA}
+\label{tab:diferenciasSOA-EDA}
+
+\begin{longtable}{cc}
+\toprule 
+\textbf{SOA} & \textbf{EDA}\tabularnewline
+\midrule
+\midrule 
+Basada en servicios demandados,  & Basada en eventos en tiempo real, \tabularnewline
+normalmente síncronos. & normalmente asíncronos e impredecibles.\tabularnewline
+\midrule 
+Clientes y servidores débilmente acoplados. & Clientes y servidores desacoplados.\tabularnewline
+\midrule 
+Petición/respuesta  & Publicación/suscripción \tabularnewline
+uno-a-uno (\emph{pull}). & muchos-a-muchos (\emph{push}).\tabularnewline
+\midrule 
+Bidireccional, & Unidireccional,\tabularnewline
+pero no garantiza la entrega. &  entrega de evento garantizada.\tabularnewline
+\midrule 
+Ideal para procesamiento secuencial y  & Ideal para procesos paralelos, eventos \tabularnewline
+aplicaciones compuestas en las que  & (disparadores y uniones) y \tabularnewline
+están disponibles todos los  & manejo de excepciones entre\tabularnewline
+sistemas asociados y servicios. & sistemas desconectados.\tabularnewline
+\midrule 
+Usa metadatos de interfaces. & Usa metadatos de descriptores de eventos.\tabularnewline
+\midrule 
+El cliente dirige flujos. & El receptor determina el flujo.\tabularnewline
+\midrule 
+Cerrado a una entrada imprevista una  & Puede reaccionar a nuevas entradas\tabularnewline
+vez que el flujo ha comenzado. & externas mientras el proceso esté activo.\tabularnewline
+\bottomrule
+\end{longtable}
+\end{table}
+
+
+
+\section*{Más información}
+
+Para más información consúltese la ayuda de \LyX{} en el menú \emph{Ayuda}.
+
+
+\section{Motivación}
+
+
+\section{Objetivos}
+
+
+\section{Alcance}
+
+
+\section{Visión general}
+
+
+\section{Glosario}
+
+
+\subsection{Acrónimos}
+
+\begin{acronym}
+  \acro{PFC}{Proyecto Fin de Carrera}
+  \acro{UCA}{Universidad de Cádiz}
+\end{acronym}
+
+
+\subsection{Definiciones}
+
+Para incluir definiciones en la memoria se puede utilizar el tipo
+<<descripción>>. Nótese que si el concepto a definir está compuesto
+por más de una palabra, estas palabras deben ser separadas por un
+espacio protegido (Control+Espacio).
+\begin{description}
+\item [{Evento~complejo}] Un evento que es una abstracción de otros eventos.
+\end{description}
+
+\chapter{Estado del arte}
+
+
+\chapter{Desarrollo del calendario}
+
+
+\section{Fases}
+
+
+\section{Diagrama de Gantt}
+
+
+\chapter{Descripción general del proyecto}
+
+
+\section{Perspectiva del producto}
+
+
+\subsection{Entorno del producto}
+
+
+\subsection{Interfaz de usuario}
+
+
+\section{Funciones}
+
+
+\section{Características del usuario}
+
+
+\section{Restricciones generales}
+
+
+\subsection{Control de versiones}
+
+
+\subsection{Lenguajes de programación y tecnologías}
+
+
+\subsection{Herramientas}
+
+
+\subsection{Sistemas operativos y hardware}
+
+
+\chapter{Desarrollo del proyecto}
+
+
+\section{Modelo de ciclo de vida}
+
+
+\section{Requisitos}
+
+
+\subsection{Funcionales}
+
+
+\subsection{De información}
+
+
+\subsection{Reglas de negocio}
+
+
+\subsection{Interfaz}
+
+
+\subsection{No funcionales}
+
+
+\section{Análisis del sistema}
+
+
+\subsection{Casos de uso}
+
+
+\subsection{Modelo conceptual de datos del dominio}
+
+
+\subsection{Diagramas de secuencia}
+
+
+\section{Diseño del sistema}
+
+
+\section{Implementación}
+
+
+\section{Pruebas y validación}
+
+
+\chapter{Resumen}
+
+
+\chapter{Conclusiones y trabajo futuro}
+
+
+\section{Conclusiones}
+
+
+\section{Trabajo futuro}
+
+
+\chapter{Agradecimientos}
+
+\appendix
+
+
+\chapter{Manual de instalación}
+
+
+\chapter{Manual de usuario}
+
+
+\chapter{Manual del desarrollador}
+
+\bibliographystyle{splncs03}
+\bibliography{referencias}
+
+\end{document}
