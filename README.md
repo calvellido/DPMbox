@@ -22,42 +22,42 @@ As the rest of the software involved in DPM the project will be developed under 
 References:
 ----------
 
-<a name="WLCG" target="_blank"></a>
+<a name="WLCG"></a>
 [1] WLCG data management stats
-http://gstat-wlcg.cern.ch/apps/gt/dm/
+<a href="http://gstat-wlcg.cern.ch/apps/gt/dm/" target="_blank">
 
-<a name="DPM" target="_blank"></a>
+<a name="DPM"></a>
 [2] DPM
-https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm
+<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm" target="_blank">
 
-<a name="DPM-http" target="_blank"></a>
+<a name="DPM-http"></a>
 [3] DPM HTTP/WebDAV interface
-https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV
+<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV" target="_blank">
 
-<a name="DPM-FPS" target="_blank"></a>
+<a name="DPM-FPS"></a>
 [4] DPM: Future Proof Storage
-http://iopscience.iop.org/1742-6596/396/3/032015
+<a href="http://iopscience.iop.org/1742-6596/396/3/032015" target="_blank">
 
-<a name="DPM-LFC" target="_blank"></a>
+<a name="DPM-LFC"></a>
 [5] Web enabled data management with DPM & LFC
-http://iopscience.iop.org/1742-6596/396/5/052006
+<a href="http://iopscience.iop.org/1742-6596/396/5/052006" target="_blank">
 
-<a name="LCG" target="_blank"></a>
+<a name="LCG"></a>
 [6] CERN LCG File Catalog
-http://prod-lfc-shared-central.cern.ch/grid/
+<a href="http://prod-lfc-shared-central.cern.ch/grid/" target="_blank">
 
-<a name="W3-html" target="_blank"></a>
+<a name="W3-html"></a>
 [7] W3 Consortium HTML specifications
-http://www.w3.org/TR/html51/
+<a href="http://www.w3.org/TR/html51/" target="_blank">
 
-<a name="W3-css" target="_blank"></a>
+<a name="W3-css"></a>
 [8] W3 Consortium CSS specifications
-http://www.w3.org/TR/css-2010/
+<a href="http://www.w3.org/TR/css-2010/" target="_blank">
 
-<a name="MozillaDN-JS" target="_blank"></a>
+<a name="MozillaDN-JS"></a>
 [9] Mozilla Developer Network JavaScript Documentation
-https://developer.mozilla.org/en-US/docs/Web/JavaScript
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
 
-<a name="ApacheLicense" target="_blank"></a>
+<a name="ApacheLicense"></a>
 [10] Apache License 2.0
-http://www.apache.org/licenses/LICENSE-2.0.html
+<a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
