@@ -44,7 +44,7 @@ References:
 
 <a name="LCG"></a>
 [6] CERN LCG File Catalog
-<a href="http://prod-lfc-shared-central.cern.ch/grid/" target="_blank">prod-lfc-shared-central.cern.ch/grid</a>
+<a href="http://indico.cern.ch/event/a052961/contribution/s1t7/material/0/1.pdf" target="_blank">indico.cern.ch/event/a052961/contribution/s1t7/material/0/1.pdf</a>
 
 <a name="W3-html"></a>
 [7] W3 Consortium HTML specifications
