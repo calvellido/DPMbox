@@ -24,40 +24,40 @@ References:
 
 <a name="WLCG"></a>
 [1] WLCG data management stats
-<a href="http://gstat-wlcg.cern.ch/apps/gt/dm/" target="_blank">
+<a href="http://gstat-wlcg.cern.ch/apps/gt/dm/" target="_blank">gstat-wlcg.cern.ch/apps/gt/dm</a>
 
 <a name="DPM"></a>
 [2] DPM
-<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm" target="_blank">
+<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm" target="_blank">svnweb.cern.ch/trac/lcgdm/wiki/Dpm</a>
 
 <a name="DPM-http"></a>
 [3] DPM HTTP/WebDAV interface
-<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV" target="_blank">
+<a href="https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV" target="_blank">svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV</a>
 
 <a name="DPM-FPS"></a>
 [4] DPM: Future Proof Storage
-<a href="http://iopscience.iop.org/1742-6596/396/3/032015" target="_blank">
+<a href="http://iopscience.iop.org/1742-6596/396/3/032015" target="_blank">iopscience.iop.org/1742-6596/396/3/032015</a>
 
 <a name="DPM-LFC"></a>
 [5] Web enabled data management with DPM & LFC
-<a href="http://iopscience.iop.org/1742-6596/396/5/052006" target="_blank">
+<a href="http://iopscience.iop.org/1742-6596/396/5/052006" target="_blank">iopscience.iop.org/1742-6596/396/5/052006</a>
 
 <a name="LCG"></a>
 [6] CERN LCG File Catalog
-<a href="http://prod-lfc-shared-central.cern.ch/grid/" target="_blank">
+<a href="http://prod-lfc-shared-central.cern.ch/grid/" target="_blank">prod-lfc-shared-central.cern.ch/grid</a>
 
 <a name="W3-html"></a>
 [7] W3 Consortium HTML specifications
-<a href="http://www.w3.org/TR/html51/" target="_blank">
+<a href="http://www.w3.org/TR/html51/" target="_blank">w3.org/TR/html51</a>
 
 <a name="W3-css"></a>
 [8] W3 Consortium CSS specifications
-<a href="http://www.w3.org/TR/css-2010/" target="_blank">
+<a href="http://www.w3.org/TR/css-2010/" target="_blank">w3.org/TR/css-2010</a>
 
 <a name="MozillaDN-JS"></a>
 [9] Mozilla Developer Network JavaScript Documentation
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">developer.mozilla.org/en-US/docs/Web/JavaScript</a>
 
 <a name="ApacheLicense"></a>
 [10] Apache License 2.0
-<a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">
+<a href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank">apache.org/licenses/LICENSE-2.0.html</a>
