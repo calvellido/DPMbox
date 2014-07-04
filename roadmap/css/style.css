@@ -210,7 +210,15 @@ header h1 {
 }
 .cd-timeline-img.cd-7 {
   /*background: #f0ca45;*/
+  background: #7b2dc6;
+}
+.cd-timeline-img.cd-8 {
+  /*background: #f0ca45;*/
   background: #8324c6;
+}
+.cd-timeline-img.cd-9 {
+  /*background: #f0ca45;*/
+  background: #8b1cc7;
 }
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
