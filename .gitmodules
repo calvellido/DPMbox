@@ -1,0 +1,3 @@
+[submodule "jquery.dav"]
+	path = jquery.dav
+	url = https://github.com/sandro-pasquali/jquery.dav.git
