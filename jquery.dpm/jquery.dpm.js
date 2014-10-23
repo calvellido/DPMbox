@@ -1,6 +1,6 @@
 /* ============================================================
  *
- * jquery.dpm.js v1.0.0
+ * jquery.dpm.js v0.5.0
  * https://github.com/calvellido/DPMbox/jquery.dpm
  * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
@@ -167,7 +167,7 @@
      * @returns                      A Dav Api.
      * @type      {Object}
      */
-    Dav: function(res) {
+    dpm: function(res) {
 
       /**
        * Stores the last request object.

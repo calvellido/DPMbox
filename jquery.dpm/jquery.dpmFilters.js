@@ -1,6 +1,6 @@
 /* ============================================================
  *
- * jqueryfilters.dpm.js v1.0.0
+ * jquery.dpmFilters.js v0.5.0
  * https://github.com/calvellido/DPMbox/jquery.dpm
  * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
@@ -28,7 +28,7 @@
 
 (function($) {
   $.fn.extend($,{
-    DavFilters: {
+    dpmFilters: {
 
       /**
        * Will assemble a list of responses into a Javascript data structure,
@@ -36,7 +36,7 @@
        */
       folder: function(dat) {
         var i, curN;
-        $.Dav(dat).seekToNode('response').eachNode(function(node, i) {
+        $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
         });
 
         return dat;
@@ -47,7 +47,7 @@
 
         $.Dav(dat).seekToNode('response').eachNode(function(node, i) {
           console.log(node);
-          console.log('href: ' + $.Dav(node).seekToNode('href').nodeText());
+          console.log('href: ' + $.dpm(node).seekToNode('href').nodeText());
         });
 
         return dat;
