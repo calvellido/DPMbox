@@ -1,7 +1,7 @@
 /* ============================================================
  *
  * tests.js
- * https://github.com/calvellido/DPMbox/jquery.dpm
+ * https://github.com/calvellido/DPMbox
  * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
  * ============================================================
