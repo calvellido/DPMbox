@@ -13,6 +13,12 @@
     position: relative;
 }
 
+.header-info{
+	color:  grey;
+	margin-top: -10px;
+	margin-bottom: 40px;
+}
+
 .site-title {
     font-size: 36px;
     line-height: 56px;
@@ -96,8 +102,9 @@
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
+    border-top: 1px solid $grey-color-footer;
     padding: $spacing-unit 0;
+	margin-top: 15px;
 }
 
 .footer-heading {
@@ -170,7 +177,7 @@
 }
 
 .page-heading {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .post-list {
@@ -189,7 +196,7 @@
 
 .post-link {
     display: block;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 

@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Welcome to the DPMbox blog!"
+date:   2014-09-01 17:19:07
+categories: DPMbox
+---
+Hi there! My name is Juan Valencia Calvellido and this is the first post of the DPMbox development blog, where I'll try to explain the development of DPMbox, with its ups and downs. I am a Bachelor of Information Technology student at Universidad de Cádiz, you can read more about me in my [personal webpage][calvellido].
+
+Basically DPMbox aims to create a friendly web interface for Disk Pool Manager, the most widely adopted storage management system in the [WLCG (Worldwide LHC Computing Grid)][wlcg] infrastructure. To read a more detailed explanation about what type of development DPMbox is, you can check the [About]({{site.baseurl}}/about/) page. The development will be based strongly on JavaScript, using some well known libraries such as jQuery or jQuery UI.
+
+This project is my final Bachelor Thesis and is currently participating in the [Concurso Universitario de Software Libre 2014/2015][cusl]. 
+
+Here's hoping you all find the information in this blog useful, cheers! =)
+
+[calvellido]:	http://www.calvellido.es
+[wlcg]:			http://wlcg.web.cern.ch/
+[cusl]: 		http://www.concursosoftwarelibre.org/1415/
