@@ -4,7 +4,7 @@ title:  "WebDAV connection"
 date:   2014-11-20 17:19:07
 categories: DPMbox
 ---
-Hello! Today I want to talk you about a key thing in the development.
+<!--Hello! Today I want to talk you about a key thing in the development.
 
 Taking the present HTTP/WebDAV frontend implementation the current work is to build an API in the jQuery JavaScript library that can interact with it. This way it is possible to translate WebDAV standard methods like PROPFIND or MKCOL and use the information provided by them in an HTML document via jQuery. The API uses ajax calls to perform the HTTP/WebDAV requests and receive the data in an XHR object.
 
@@ -25,4 +25,4 @@ The headers, that will include for example authorization info, are set by the Se
 In the API there are also other methods developed in order to work properly with the data. For example to traverse the nodes received in a PROPFIND, or to select a specific property... (picture)
 
 Actually the developed WebDAV module is the one that deals with the DPM head or DPM disk. Just using these basic methods could be possible to have a functional interface, but once we have
-support for these then we aim to have a deeper specific DPM/LFC support like metalink or replicas...
+support for these then we aim to have a deeper specific DPM/LFC support like metalink or replicas...-->

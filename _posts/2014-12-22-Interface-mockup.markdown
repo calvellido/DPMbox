@@ -1,10 +1,10 @@
 ---
 layout: post
 title:  "Interface mockup"
-date:   2014-11-20 17:19:07
+date:   2014-12-22 17:19:07
 categories: DPMbox
 ---
-Hello! Today I want to talk you about a key thing in the development.
+<!--Hello! Today I want to talk you about a key thing in the development.
 
 While I work on the Using jQuery UI a GUI will be designed and this interface will use the data provided by the WebDAV API previously created. Since we are using jQuery and jQuery UI and these are widely known libraries  the interface could be very customizable and could be easily adapted for other uses or modified for extended support in the future.
 
@@ -21,4 +21,4 @@ Very deep collections could be problematic on loading, so a lazy loading techniq
 
 This is the first initial sketch design: you can see the nodes tree, a data section, an information column... (picture)
 
-The translation of the sketch to jQuery UI, still not functional and subject to changes (link).
+The translation of the sketch to jQuery UI, still not functional and subject to changes (link).-->
