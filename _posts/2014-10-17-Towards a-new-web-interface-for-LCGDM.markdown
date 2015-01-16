@@ -6,7 +6,7 @@ categories: DPMbox
 ---
 Hello! Well the DPM workshop was held in Naples last Thursday and Friday and it was really interesting. There were a lot of contributors and I gather some helpful information for the development of DPMbox. By the way you can check the slides of my presentation [here]({{ site.baseurl }}/assets/DPMWorkshop.pdf), though I will extend that information in this blog.
 
-Today I want to show you the state of the art in the DPM. Right now there is already web access implemented in the Disk Pool Manager infrastructure. This has been developed as part of the HTTP/WebDAV frontend and is built getting advantage of the Apache WebDAV modules, `mod_dav` and `mod_gridsite`.
+Today I want to show you the state of the art in the DPM. Right now there is already web access implemented in the Disk Pool Manager infrastructure. This has been developed as part of the HTTP/WebDAV frontend and is built getting advantage of the Apache WebDAV modules, `mod_dav` and `mod_gridsite`. To get a deeper understanding of how it works you can check the paper from his authors: [Web enabled data management with DPM & LFC][paper].
 
 {: .imagen_sm}
 ![Web access scheme 1]({{ site.baseurl }}/assets/webaccess-2.png)
@@ -19,9 +19,11 @@ In the current web visualization you can explore a collection, download the data
 
 We are aiming to improve the actual web access by adding more functionality, creating a web interface integrated with the rest of the DPM software stack, offering an easy tool to manage the data from and into the grid. This is the current view accesing through a web browser:
 
+{: .imagen_sm}
 ![Actual WebDAV access view]({{ site.baseurl }}/assets/webaccess-3.png)
 
-[webdav]:	[http://www.webdav.org/specs/rfc4918.html]
+[webdav]:	http://www.webdav.org/specs/rfc4918.html
+[paper]:	http://iopscience.iop.org/1742-6596/396/5/052006
 
 
 
