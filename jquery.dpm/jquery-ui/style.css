@@ -1,0 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+body{
+	font-family: 'PT Sans', sans-serif;
+	margin: 0;
+	color: #555;
+}
+
+.strip{
+	height:50px; 
+	max-width: 100%; 
+	background: #555;
+}
+
+#canvas{
+	margin-top: 10px; 
+	margin-left: 10%;
+	margin-right:10%;
+}
+
+#label-main{
+	font-size: 20px;
+}
+
+#wrapper{
+	text-align: center;
+}
+
+#c1{
+    width: 25%;
+    display:inline-block;
+}
+
+#c2 {
+    width: 49%;
+    display:inline-block;
+}
+
+#c3 {
+	width: 25%;
+    display:inline-block;
+}
+
+.label-section{
+	background: #3861AA;
+	color: #FFF;
+}
