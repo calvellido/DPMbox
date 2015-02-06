@@ -30,28 +30,69 @@
   $.fn.extend($,{
     dpmFilters: {
 
-      /**
-       * Will assemble a list of responses into a Javascript data structure,
-       * returning an array that can then be manipulated.
-       */
-      folder: function(dat) {
-        var i, curN;
-        $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
-        });
 
-        return dat;
-      },
+        /**
+        * Will assemble a list of responses into a Javascript data structure,
+        * returning an array that can then be manipulated.
+        */
+        folder: function(dat) {
 
-      versionReport: function(dat) {
-        console.log('now a davfilter');
+            $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
+            });
 
-        $.Dav(dat).seekToNode('response').eachNode(function(node, i) {
-          console.log(node);
-          console.log('href: ' + $.dpm(node).seekToNode('href').nodeText());
-        });
+            return dat;
+        },
 
-        return dat;
-      }
+        /**
+        * Similar to folder filter but will follow the JSON data structure
+        * for the DPMbox UI, specifically the grid.
+        */
+        folderDPM: function(dat) {
+            var davTree = [];
+            $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
+                //if ($.dpm(node_response).isCollection())
+                    davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': $.dpm(node_response).seekToNode('href').nodeText(), 'size': decodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'mdate': decodeURI($.dpm(node_response).seekToNode('href').nodeText())});
+            });
+            return davTree;
+        },
+
+
+        versionReport: function(dat) {
+            console.log('now a davfilter');
+
+            $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
+                console.log(node);
+                console.log('href: ' + $.dpm(node).seekToNode('href').nodeText());
+            });
+
+            return dat;
+        },
+
+        /**
+         * Returns an array of the contained nodes that are collections
+         */
+        tree: function(dat) {
+            var davTree = [];
+            $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
+                if ($.dpm(node_response).isCollection())
+                    davTree.push(node_response);
+            });
+            return davTree;
+        },
+
+        /**
+         * Similar to the folderTree filter but it will build an array filled
+         * with objects following the notation for the DPMbox interface:
+         * {'id': nodeID, 'text': nodeName, icon: 'icon HTML class'};
+         */
+        treeDPM: function(dat) {
+            var davTree = [];
+            $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
+                if ($.dpm(node_response).isCollection())
+                    davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': decodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
+            });
+            return davTree;
+        }
 
     }
   });

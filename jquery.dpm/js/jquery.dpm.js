@@ -727,6 +727,33 @@
           }
         };
 
+        /**
+         * Check if a <response> node is a collection.
+         * Basically it checks if there is a collection XML element inside
+         * a resourcetype property.
+         *
+         * @type      {Bool}
+         *
+         * @url     http://www.webdav.org/specs/rfc4918.html#PROPERTY_resourcetype
+         *
+         */
+        this.isCollection = function() {
+            var is_collection = false;
+            if(lastNodeMatch.length > 0) {
+                this.seekToNode('resourcetype').eachNode(function(node) {
+                    if (node.childNodes.length != 0){
+                        var n = '';
+                        for(var v=0; v < node.childNodes.length; v++) {
+                            n = resource.childNodes[v];
+                            if (n.nodeName.replace('D:', '') == 'collection');
+                                is_collection = true;
+                        }
+                    }
+                });
+            }
+            return is_collection;
+        };
+
         /**************************************
          *
          * Resource Http query methods
@@ -795,7 +822,7 @@
         };
 
         /**
-         * Does the actual Http send.
+         * Does the actual HTTP send.
          *
          * @param   {Object}    cob     jQuery call object.
          */
@@ -831,8 +858,8 @@
 
         /**
          * Simply a depth (1) #getAllProperties -- an alias that should
-         * make it easier to follow what is going on, Dav.readFolder()
-         * instead of Dav.getAllProperties({ depth: 1 });
+         * make it easier to follow what is going on, dpm.readFolder()
+         * instead of dpm.getAllProperties({ depth: 1 });
          */
         this.readFolder = function(cob) {
           /**

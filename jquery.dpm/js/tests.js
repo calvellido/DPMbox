@@ -75,7 +75,6 @@ function tests()
 		dataFilter: jQuery.dpmFilters.folder
     });
 
-    //$('body').append('<div>');
 
     /**
      * Initial tests
