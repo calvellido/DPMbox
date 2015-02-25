@@ -2,7 +2,7 @@
 layout: post
 title:  "Towards a new web interface for LCGDM"
 date:   2014-10-17 17:19:07
-categories: DPMbox
+categories:
 ---
 Hello! Well the DPM workshop was held in Naples last Thursday and Friday and it was really interesting. There were a lot of contributors and I gather some helpful information for the development of DPMbox. By the way you can check the slides of my presentation [here]({{ site.baseurl }}/assets/DPMWorkshop.pdf), though I will extend that information in this blog.
 

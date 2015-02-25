@@ -2,7 +2,7 @@
 layout: post
 title:  "Building the interface, and a library change"
 date:   2015-02-15 17:19:07
-categories: DPMbox, interface
+categories:
 ---
 Hello again!! It's been a while but in this period I've been busy finally starting to build the actual interface and connecting it to the DPMbox API methods. 
 

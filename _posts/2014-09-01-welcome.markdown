@@ -2,7 +2,7 @@
 layout: post
 title:  "Welcome to the DPMbox blog!"
 date:   2014-09-01 17:19:07
-categories: DPMbox
+categories:
 ---
 Hi there! My name is Juan Valencia Calvellido and this is the first post of the DPMbox development blog, where I'll try to explain the development of DPMbox, with its ups and downs. I am a Bachelor of Information Technology student at Universidad de Cádiz, you can read more about me in my [personal webpage][calvellido].
 

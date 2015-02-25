@@ -2,7 +2,7 @@
 layout: post
 title:  "WebDAV connection"
 date:   2014-11-20 17:19:07
-categories: DPMbox
+categories:
 ---
 Hello! In this post I want to talk you about a key thing in the development, and that is the way to *talk* with the current DPM software stack.
 

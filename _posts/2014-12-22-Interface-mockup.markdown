@@ -2,7 +2,7 @@
 layout: post
 title:  "Interface mockup"
 date:   2014-12-22 17:19:07
-categories: DPMbox
+categories:
 ---
 Hello again! While the work on the API continues I want to show you an advance of what it will be the next step. Using the data provided by this WebDAV API the user interface design will take advantage of jQuery UI potential. Since jQuery and jQuery UI are widely known libraries this interface will be hopefully easy to understand and maintain, and could also be easily adapted for other uses or modified for extended support in the future. 
 

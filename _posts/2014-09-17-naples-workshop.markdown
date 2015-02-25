@@ -2,7 +2,7 @@
 layout: post
 title:  "Naples DPM workshop"
 date:   2014-09-17 17:19:07
-categories: DPMbox update
+categories:
 ---
 Every year the DPM group holds a meeting to discuss the development status and future of the Disk Pool Manager environment. This year it will be held at Naples on October 9th and 10th, you can check all the info from the event [here][workshop], basically the scientific programme is:
 
