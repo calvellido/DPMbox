@@ -828,6 +828,7 @@
          */
         this.send = function(cob) {
           lastRequest = $.ajax(cob);
+          console.log(cob);
           return lastRequest;
         };
 

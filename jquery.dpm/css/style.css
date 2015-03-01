@@ -12,6 +12,7 @@ html{
 body{
 	height: 100%;
 	font-family: 'PTSans', sans-serif;
+	font-size: 12px;
 	margin: 0;
 	color: #555;
 	line-height: 20px;
