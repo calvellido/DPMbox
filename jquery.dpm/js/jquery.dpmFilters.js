@@ -26,6 +26,12 @@
  *
  * ============================================================ */
 
+ /*
+  * There are two ways of using this...
+  * as a filter is necessary to return xml
+  *
+  */
+
 (function($) {
   $.fn.extend($,{
     dpmFilters: {
@@ -33,7 +39,7 @@
         versionReport: function(dat) {
             console.log('now a davfilter');
 
-            $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
+            $.dpm(dat).seekToNode('response').eachNode(function(node) {
                 console.log(node);
                 console.log('href: ' + $.dpm(node).seekToNode('href').nodeText());
             });
@@ -47,7 +53,7 @@
         */
         folder: function(dat) {
 
-            $.dpm(dat).seekToNode('response').eachNode(function(node, i) {
+            $.dpm(dat).seekToNode('response').eachNode(function() {
             });
 
             return dat;
@@ -58,6 +64,7 @@
         * for the DPMbox UI, specifically the grid.
         */
         folderDPM: function(dat) {
+
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': decodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'size': $.dpm(node_response).seekToNode('getcontentlength').nodeText(), 'mdate': $.dpm(node_response).seekToNode('getlastmodified').nodeText()});
@@ -82,12 +89,42 @@
          * with objects following the notation for the DPMbox interface:
          * {'id': nodeID, 'text': nodeName, 'icon': icon HTML class};
          */
-        treeDPM: function(dat) {
+        treeDPM1: function(dat, datatype) {
+            console.log("datatype: " + datatype);
+            console.log("dat on treeDPM");
+            console.log(dat);
+            //var xmlDoc = $.parseXML( dat );
+            //console.log("datXML");
+            //console.log(xmlDoc);
+            //var xmldoc = new XMLDocument(xmlString, true);
+            //var xmldat = new XMLDocument(dat, true);
+            //console.log(xmldat);
+            var davTree = [];
+            var dat_object = $.parseXML(dat);
+            $.dpm(dat_object).seekToNode('response').eachNode(function(node_response) {
+                if ($.dpm(node_response).isCollection())
+                    davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': (decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1], 'icon': 'fa fa-folder'});
+            });
+            //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
+            return davTree;
+        },
+
+        treeDPM2: function(dat, datatype) {
+            console.log("datatype: " + datatype);
+            console.log("dat on treeDPM");
+            console.log(dat);
+            //var xmlDoc = $.parseXML( dat );
+            //console.log("datXML");
+            //console.log(xmlDoc);
+            //var xmldoc = new XMLDocument(xmlString, true);
+            //var xmldat = new XMLDocument(dat, true);
+            //console.log(xmldat);
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollection())
                     davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': (decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1], 'icon': 'fa fa-folder'});
             });
+            //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
             return davTree;
         },
 
