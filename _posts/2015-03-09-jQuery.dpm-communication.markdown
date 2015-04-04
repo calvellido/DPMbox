@@ -1,0 +1,118 @@
+---
+layout: post
+title:  "jQuery.dpm communication"
+date:   2015-03-09 22:05:34
+categories:
+---
+Hi! Today I'd like to show you how the jQuery.dpm library works and how it communicates with the user interface.
+
+The library is responsible af all communication between DPMbox and the DPM server through its WebDAV interface. So basically it acts as an API exposing the needed WebDAV methods, lying on the JavaScript XMLHttpRequest object through the jQuery Ajax method.
+
+Besides taking care of global data as XML headers or defining some additional functions, what the library offers is (method with correspoding WebDAV call in brackets):
+
+### Main methods
+
+- get (`GET`)
+- post (`POST`)
+- head (`HEAD`)
+- mkcol, createFolder (`MKCOL`)
+- put, createFile (`PUT`)
+- remove (`DELETE`)
+- report (`REPORT`)
+- getVersionTreeReport (`REPORT`)
+- checkout (`CHECKOUT`)
+- uncheckout (`UNCHEKCOUT`)
+- checkin (`CHECKIN`)
+- versionControl (`VERSION-CONTROL`)
+- lock (`LOCK`)
+- unlock (`UNLOCK`)
+- propfind, getProperty (`PROPFIND`)
+- proppatch, setProperty, removeProperty (`PROPPATCH`)
+
+
+And here's a diagram represeting how a jquery.dpm method works. As you see by the `prepare` function we configurate accordingly an XHR that then is sent to the server:
+
+![DPMbox interface [15-02-2015]]({{ site.baseurl }}/assets/jquery.dpm.gif)
+
+
+
+### Additional methods
+
+- isCollection: Returns whether an element is a collection or not by looking for a collection XML tag inside a *resourcetype* property. For a DPM server there's no need to use it since a DPM response includes a specific property *iscollection* to check this, but the method is needed for standard WebDAV server support.
+
+- getNodesByTag: Works exactly like the standard *getElementsByTagName*, however introduces the ability to filter those results by namespace, which is important for handling WebDAV results.
+
+- seekToNode: Sets *resource* variable to first node matched via *getNodesByTag*, and returns *this*, allowing further processing.
+
+- eachNode: Executes a function on each element.
+
+- nodeText: Get the text contained by a node.
+
+- nodeName: Returns the name of a node (the tag name, essentially).
+
+- extendbeforesend: jQuery ajax option *beforeSend* may be set to a function reference, and this function will fire prior to the request being sent. It gets the XHR object, so this is the point you will want to do things like set headers, for example.
+
+- prepare: Prepares the WebDAV call. Here we want to ensure integrity of call object, verify WebDAV method requested, set any authorization information (if necesssary), and return the modified call object. WebDAV servers usually respond in XML but some WebDAV methods will not return anything at all, or return an empty response. This matters to jQuery in that the success method of a jQuery.ajax options object won't fire if the reponse could not be parsed (although the complete method will). Is needed to be aware of what *dataType* of your ajax response will be, and set it appropriately.
+
+An XML response of the DPM server looks like this:
+
+{% highlight xml %}
+<D:multistatus xmlns:D="DAV:" xmlns:ns0="DAV:">
+	<D:response xmlns:lcgdm="LCGDM:" xmlns:lp3="LCGDM:" xmlns:lp1="DAV:" xmlns:lp2="http://apache.org/dav/props/">
+		<D:href>/dpm/cern.ch/home/dteam/aalvarez/public/test_collection/</D:href>
+		<D:propstat>
+			<D:prop>
+				<lcgdm:type>0</lcgdm:type>
+				<lp1:resourcetype>
+					<D:collection></D:collection>
+				</lp1:resourcetype>
+				<lp1:creationdate>2015-04-04T09:51:59Z</lp1:creationdate>
+				<lp1:getlastmodified>Fri, 27 Feb 2015 18:57:50 GMT</lp1:getlastmodified>
+				<lp3:lastaccessed>Sat, 04 Apr 2015 09:51:59 GMT</lp3:lastaccessed>
+				<lp1:getetag>5c317-54f0be2e</lp1:getetag>
+				<lp1:getcontentlength>0</lp1:getcontentlength>
+				<lp1:displayname>test_collection</lp1:displayname>
+				<lp1:iscollection>1</lp1:iscollection>
+				<lp3:guid></lp3:guid>
+				<lp3:mode>040775</lp3:mode>
+				<lp3:sumtype></lp3:sumtype>
+				<lp3:sumvalue></lp3:sumvalue>
+				<lp3:fileid>377623</lp3:fileid>
+				<lp3:status>-</lp3:status>
+				<lp3:xattr>{"type": 0, "normPath": "\/dpm\/cern.ch\/home\/dteam\/aalvarez\/public\/test_collection"}</lp3:xattr>
+				<lp1:owner>3</lp1:owner>
+				<lp1:group>102</lp1:group>
+			</D:prop>
+			<D:status>HTTP/1.1 200 OK</D:status>
+		</D:propstat>
+	</D:response>
+</D:multistatus>
+{% endhighlight xml %}
+
+
+Depending on the context in the interface and the w2ui library, the XML data is parsed in JSON format and adapted with a specific dpmFilters method. And considering that is a petition on the network, the way to use it is by taking advantage of jQuery ajax callbacks, like for example *success*. 
+
+
+{% highlight js %}
+/*
+ * A function to refresh the grid content
+ */
+function refreshContent(directory_route){
+    $.dpm(server + directory_route).readFolder({
+        success:    function(dat) {
+            w2ui.grid.clear();
+            w2ui.grid.add(dat);
+        },
+        dataFilter: $.dpmFilters.filesDPM
+    });
+}
+{% endhighlight js %}
+
+
+
+And that's all. I hope that with this post you have now a clear vision of how DPMbox communicates with a DPM server.
+
+
+[dpmdemo]: http://www.calvellido.es/dpm
+[ztree]: http://www.ztree.me
+[w2ui]: http://w2ui.com
