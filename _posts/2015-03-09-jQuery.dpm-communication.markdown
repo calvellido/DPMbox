@@ -32,7 +32,7 @@ Besides taking care of global data as XML headers or defining some additional fu
 
 And here's a diagram represeting how a jquery.dpm method works. As you see by the `prepare` function we configurate accordingly an XHR that then is sent to the server:
 
-![DPMbox interface [15-02-2015]]({{ site.baseurl }}/assets/jquery.dpm.gif)
+![jQuery.dpm communication]({{ site.baseurl }}/assets/jquery.dpm.gif)
 
 
 
