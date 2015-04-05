@@ -4,9 +4,9 @@ title:  "XMLHttpRequest and Cross-Origin Resource Sharing"
 date:   2015-03-26 20:35:14
 categories:
 ---
-Hello there!
+Hello there! I'll write today a brief review of how DPMbox manage the file uploads, and how we solved a small problem that had complicated this feature.
 
-The steps to upload a file to the Disk Pool Manager is as folllows:
+So, the steps to upload a file to the Disk Pool Manager would be as folllows:
 
 {: .imagen_sm}
 ![DPM uploads [15-02-2015]]({{ site.baseurl }}/assets/uploads.png)
