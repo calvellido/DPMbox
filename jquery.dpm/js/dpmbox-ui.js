@@ -22,10 +22,11 @@
 
 
 //An anonymous function to keep things outside the global scope
-(function (window, document, undefined) {
+// (function (window, document, undefined) {
 
     //Activate an exhaustive mode in JavaScript code 'hinters' like JSHint or JSLint
     'use strict';
+    /* jshint browser: true, devel: true, jquery: true, eqeqeq: true, maxerr: 1000, quotmark: single */
 
   // /**
    // * Selectors
@@ -62,394 +63,379 @@
 //
 //
 
-// var url = 'http://lxfsra10a01.cern.ch/dpm/cern.ch/home/dteam/aalvarez/public/';
-// var url = 'http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/public/';
-var server = 'http://localhost';
-var root = '/webdav/';
-// var server = 'http://lxfsra04a04.cern.ch';
-// var root = '/dpm/cern.ch/home/dteam/aalvarez/public/';
-var url = server + root;
-
-//Location where DPMbox is hosted
-var dpmbox_pathname = location.pathname.slice(0, -1);
+    //Location where DPMbox is hosted
+    var dpmbox_pathname = location.pathname.slice(0, -1);
 
 
 
-// Check for the various File API support.
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-    // Great success! All the File APIs are supported.
-} else {
-    alert('The File APIs are not fully supported in this browser. File upload won\'t be possible.');
-}
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+    }
+    else {
+        alert('The File APIs are not fully supported in this browser. File upload won\'t be possible.');
+    }
 
 
-/*
- * Refresh function definition
- */
-//$(function( refresh ) {
-	//setGrid();
-    //refresh();
-//});
+    /*
+     * Functions to be executed at start (DOM ready)
+     */
+    $(function() {
+        setLayout();
+        setSidebar();
+        refreshSidebar();
+        setGrid();
+        setToolbar();
+    });
 
 
-/*
- * A function to update the sidebar content
- */
-//function refresh(){
-$(function() {
-    $.dpm(url).readFolder({
-        success:    function(dat, stat, xhr) {
-            console.log("dat on success:");
-            console.log(dat);
-            console.log("xhr on success:");
-            console.log(xhr);
-            // w2ui.sidebar.add(dat);
-            w2ui.sidebar.add($.dpmFilters.treeDPM2(dat));
-            //w2ui.sidebar.add([{'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'},{'id': 3, 'text': '3', 'icon': 'fa fa-folder'},{'id': 4, 'text': '4', 'icon': 'fa fa-folder'}]);
+    /*
+     * Files download
+     */
+
+    var fileSelector = document.createElement('input');
+    fileSelector.setAttribute('type', 'file');
+    fileSelector.setAttribute('multiple', 'multiple');
+
+    var selectDialogueLink = document.createElement('a');
+    selectDialogueLink.setAttribute('href', '');
+    selectDialogueLink.innerText = 'Select File';
+
+    selectDialogueLink.onclick = function () {
+        fileSelector.click();
+        return false;
+    };
+
+    function handleFileSelect(evt) {
+
+        var files = evt.target.files; // FileList object
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        //var req = {};
+        for (var i = 0, f = files[i]; i < files.length; i++) {
+            // output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '</li>');
+            output.push(encodeURI(f.name), '(', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '\n');
+
+            w2ui.grid.lock('Uploading' + encodeURI(f.name), true);
+
+            /* We create a first PUT request
+             * The server will answer with the Location
+             */
+            var req = new XMLHttpRequest();
+            req.open('PUT', config.server + w2ui.sidebar.selected + f.name, false);
+            req.setRequestHeader('X-No-Redirect', 1);
+            req.send(f);
+
+            //Put to the Location received, actual upload will be done now
+            $.dpm(req.getResponseHeader('Location')).put({
+                complete:  function(dat, stat) {
+                    w2ui.grid.unlock();
+                    alert(output.join(''));
+                    refreshContent(w2ui.sidebar.selected);
+                },
+                data: f,
+                contentType: false,
+                processData: false
+            });
+
+            /*$.dpm(config.server + w2ui.sidebar.selected + f.name).put({
+                complete:  function(dat, stat) {
+                    /*$.dpm(config.server + w2ui.sidebar.selected + this.data.name + '?metalink').get({
+                        success: function(dat){
+                            console.log(this.file.name);
+                            var metalink = dat.getElementsByTagName('url')[0].textContent;
+                            console.log(metalink);
+                            $.dpm(metalink).put({
+                                complete:  function(dat, stat) {
+                                    //console.log(this.data.name);
+                                    //console.log(this.this.data.name);
+                                },
+                                data: this.file,
+                                contentType: false,
+                                processData: false
+                            });
+                        },
+                        file: this.data
+                    });*/
+                    /*alert(output.join(''));
+                    refreshContent(w2ui.sidebar.selected);
+                },
+                actual_data: f,
+                headers: {'X-No-Redirect': 1},
+                data: " ",
+                contentType: false,
+                processData: false
+            });*/
         }
-        // dataType: "text",
-        // dataFilter: $.dpmFilters.treeDPM1
-    });
-});
+    }
+
+    document.body.appendChild(selectDialogueLink);
+    fileSelector.addEventListener('change', handleFileSelect, false);
 
 
-/*
- * A function to refresh the grid content
- */
-function refreshContent(directory_route){
-    $.dpm(server + directory_route).readFolder({
-        success:    function(dat) {
-            w2ui.grid.clear();
-            w2ui.grid.add(dat);
-        },
-        dataFilter: $.dpmFilters.filesDPM
-    });
-}
+    /*
+     * ! DownloadJS v0.5.2
+     * Denis Radin aka PixelsCommander
+     * Article about: http://pixelscommander.com/en/javascript/javascript-file-download-ignore-content-type/
+     */
+    var downloadFile = function (sUrl) {
+        //iOS devices do not support downloading. We have to inform user about this.
+        if (/(iP)/g.test(navigator.userAgent)) {
+            alert('Your device does not support files downloading. Please try again in desktop browser.');
+            return false;
+        }
+        //If in Chrome or Safari - download via virtual link click
+        if (downloadFile.isChrome || downloadFile.isSafari) {
+            //Creating new link node.
+            var link = document.createElement('a');
+            link.href = sUrl;
+
+            if (link.download !== undefined) {
+                //Set HTML5 download attribute. This will prevent file from opening if supported.
+                var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
+                link.download = fileName;
+            }
+            //Dispatching click event.
+            if (document.createEvent) {
+                var e = document.createEvent('MouseEvents');
+                e.initEvent('click', true, true);
+                link.dispatchEvent(e);
+                return true;
+            }
+        }
+        // Force file download (whether supported by server).
+        //if (sUrl.indexOf('?') === -1) {
+        //    sUrl += '?download';
+        //}
+        window.open(sUrl, '_self');
+        return true;
+    };
+
+    downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
 
 
-/*
- * Layout definition
- */
-$(function() {
-    var pstyle_borderless = 'background-color: #FFF; padding: 5px; overflow-y:hidden;';
-    var pstyle_borderleft = 'background-color: #FFF; border-left: 1px solid #CCC; padding: 5px; height: 95%; text-align: center;';
-    var pstyle_borderright = 'background-color: #FFF; border-right: 1px solid #CCC; padding: 5px; height: 95%;';
-
-    $('#layout').w2layout({
-        name: 'layout',
-        panels: [
-            { type: 'top',  size: 60, resizable: false, style: pstyle_borderless, content: '<div id="label-main"><b>Disk Pool Manager</b></div><div id="breadcrumb">'+ server.slice(7) + root.replace(/\//g,'</a> > <a href="">') + '</div>' },
-            { type: 'left', size: '20%', resizable: true, style: pstyle_borderright, content: '<div class="label-section">Workspace</div><div id="sidebar" style="height: 90%; width: 100%;"></div>' },
-            { type: 'main', size: '60%', resizable: true, style: pstyle_borderless, content: '<div class="label-section">Data</div><div id="toolbar" style="padding: 4px; border-radius: 3px"></div><div id="grid"; style="width: 100%; height: 85%;"></div>' },
-            { type: 'right', size: '20%', resizable: true, style: pstyle_borderleft, content: '<div class="label-section">Properties</div>' }
-        ]
-    });
-});
+    /*
+     * A function to update the sidebar content
+     */
+    function refreshSidebar(){
+        $.dpm(config.url()).readFolder({
+            success:    function(dat, stat, xhr) {
+                // w2ui.sidebar.add(dat);
+                w2ui.sidebar.add($.dpmFilters.treeDPM2(dat));
+                //w2ui.sidebar.add([{'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'},{'id': 3, 'text': '3', 'icon': 'fa fa-folder'},{'id': 4, 'text': '4', 'icon': 'fa fa-folder'}]);
+            }
+            // dataType: "text",
+            // dataFilter: $.dpmFilters.treeDPM1
+        });
+    }
 
 
-/*
- * Grid definition
- */
-//function setGrid() {
-$(function() {
-    $('#grid').w2grid({
-        name: 'grid',
-        show:{"footer":true,
-            "toolbar":true,
-            "header":false,
-            toolbarReload   : true,
-            toolbarColumns  : true,
-            toolbarSearch   : true,
-            toolbarAdd      : true,
-            toolbarDelete   : true
-        },
-        header: 'List of Names',
-        /*toolbar: {
+    /*
+     * A function to refresh the grid content
+     */
+    function refreshContent(directory_route){
+        console.log(config.server + directory_route);
+        $.dpm(config.server + directory_route).readFolder({
+            success:    function(dat) {
+                w2ui.grid.clear();
+                w2ui.grid.add($.dpmFilters.filesDPM(dat));
+            }
+        });
+    }
+
+
+    /*
+     * Layout definition
+     */
+    function setLayout(){
+        var pstyle_borderless = 'background-color: #FFF; padding: 5px; overflow-y:hidden;';
+        var pstyle_borderleft = 'background-color: #FFF; border-left: 1px solid #CCC; padding: 5px; height: 95%; text-align: center;';
+        var pstyle_borderright = 'background-color: #FFF; border-right: 1px solid #CCC; padding: 5px; height: 95%;';
+
+        $('#layout').w2layout({
+            name: 'layout',
+            panels: [
+                { type: 'top',  size: 60, resizable: false, style: pstyle_borderless, content: '<div id="label-main"><b>Disk Pool Manager</b></div><div id="breadcrumb">'+ config.server.slice(7) + config.root.replace(/\//g,'</a> > <a href="">') + '</div>' },
+                { type: 'left', size: '20%', resizable: true, style: pstyle_borderright, content: '<div class="label-section">Workspace</div><div id="sidebar" style="height: 90%; width: 100%;"></div>' },
+                { type: 'main', size: '60%', resizable: true, style: pstyle_borderless, content: '<div class="label-section">Data</div><div id="toolbar" style="padding: 4px; border-radius: 3px"></div><div id="grid"; style="width: 100%; height: 85%;"></div>' },
+                { type: 'right', size: '20%', resizable: true, style: pstyle_borderleft, content: '<div class="label-section">Properties</div>' }
+            ]
+        });
+    }
+
+
+    /*
+     * Grid definition
+     */
+    function setGrid() {
+        $('#grid').w2grid({
+            name: 'grid',
+            show:{'footer': true,
+                'toolbar': true,
+                'header': false,
+                toolbarReload   : true,
+                toolbarColumns  : true,
+                toolbarSearch   : true,
+                toolbarDelete   : true
+            },
+            header: 'List of Names',
+            /*toolbar: {
+                items: [
+                    { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
+                    { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
+                ]
+            },*/
+            columns: [
+                {'caption':'Filename','field':'filename','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.filename).split('/').pop();}},
+                {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
+                //{'caption':'Size (KB)','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': 'number:2'},
+                {'caption':'Modified','field':'mdate','size':'40%','min':'15','max':'','sortable':true,'resizable':true}
+            ],
+            records: [
+            ],
+            /*menu: [
+                { id: 1, text: 'Download', icon: 'fa fa-download' },
+                { id: 2, text: 'Delete Item', icon: 'fa fa-times' }
+            ],*/
+            onClick: function (event) {
+                /*w2ui['grid2'].clear();
+                var record = this.get(event.recid);
+                w2ui['grid2'].add([
+                    { recid: 0, name: 'ID:', value: record.recid },
+                    { recid: 1, name: 'First Name:', value: record.fname },
+                    { recid: 2, name: 'Last Name:', value: record.lname },
+                    { recid: 3, name: 'Email:', value: record.email },
+                    { recid: 4, name: 'Date:', value: record.sdate }
+                ]);*/
+                //var record = this.get(event.recid);
+                //console.log(event);
+                //w2ui['layout'].content('right', '<div class='label-section'>Properties</div>' + record.filename + '<br>' + record.size + '<br>' + record.mdate + '<br>');
+            },
+            onDelete: function (event) {
+                console.log(w2ui.grid.getSelection());
+                $.dpm(config.server + w2ui.grid.getSelection()).remove({
+                    //success: refreshContent(w2ui.sidebar.selected)
+                });
+            }
+        });
+    }
+
+
+    /*
+     * Toolbar definition
+     */
+    function setToolbar(){
+        $('#toolbar').w2toolbar({
+            name: 'toolbar',
             items: [
+                { type: 'button',  id: 'col_new',  caption: 'New directory', icon: 'fa fa-plus-square' },
+                { type: 'button',  id: 'col_delete',  caption: 'Delete directory', icon: 'fa fa-minus-square' },
+                //{ type: 'break',  id: 'break0' },
+                //{ type: 'button',  id: 'delete',  caption: 'Delete', icon: 'fa fa-times' },
+                { type: 'spacer' },
                 { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
                 { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
-            ]
-        },*/
-        columns: [
-			{"caption":"Filename","field":"filename","size":"40%","min":"15","max":"","sortable":true,"resizable":true, "render": function (record) {return (record.filename).split('/').pop();}},
-			{"caption":"Size","field":"size","size":"20","min":"15","max":"","sortable":true,"resizable":true, "render": function (record) {return (Number(record.size)/1024).toFixed(2) + " KB";}},
-			//{"caption":"Size (KB)","field":"size","size":"20","min":"15","max":"","sortable":true,"resizable":true, "render": 'number:2'},
-			{"caption":"Modified","field":"mdate","size":"40%","min":"15","max":"","sortable":true,"resizable":true}
-        ],
-        records: [
-        ],
-        onClick: function (event) {
-            /*w2ui['grid2'].clear();
-            var record = this.get(event.recid);
-            w2ui['grid2'].add([
-                { recid: 0, name: 'ID:', value: record.recid },
-                { recid: 1, name: 'First Name:', value: record.fname },
-                { recid: 2, name: 'Last Name:', value: record.lname },
-                { recid: 3, name: 'Email:', value: record.email },
-                { recid: 4, name: 'Date:', value: record.sdate }
-            ]);*/
-            //var record = this.get(event.recid);
-            //console.log(event);
-            //w2ui['layout'].content('right', '<div class="label-section">Properties</div>' + record.filename + '<br>' + record.size + '<br>' + record.mdate + '<br>');
-        },
-        onDelete: function (event) {
-            console.log('#delete');
-            console.log(w2ui.grid.getSelection());
-            $.dpm(server + w2ui.grid.getSelection()).remove({
-                //success: refreshContent(w2ui.sidebar.selected)
-            });
-        }
-    });
-});
-
-
-/*
- * Toolbar definition
- */
-// $(function () {
-    // $('#toolbar').w2toolbar({
-        // name: 'toolbar',
-        // items: [
-            // { type: 'button',  id: 'copy',  caption: 'Copy', icon: 'fa fa-copy' },
-            // { type: 'button',  id: 'cut',  caption: 'Cut', icon: 'fa fa-cut' },
-            // { type: 'button',  id: 'paste',  caption: 'Paste', icon: 'fa fa-paste' },
-            // { type: 'break',  id: 'break0' },
-            // { type: 'button',  id: 'delete',  caption: 'Delete', icon: 'fa fa-times' },
-            // { type: 'spacer' },
-            // { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
-            // { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
-            // /*{ type: 'check',  id: 'item1', caption: 'Check', icon: 'fa fa-check', checked: true },
-            // { type: 'break',  id: 'break0' },
-            // { type: 'menu',   id: 'item2', caption: 'Menu', icon: 'fa fa-table', count: 17, items: [
-                // { text: 'Item 1', icon: 'fa fa-camera', count: 5 },
-                // { text: 'Item 2', icon: 'fa fa-picture', disabled: true },
-                // { text: 'Item 3', icon: 'fa fa-glass', count: 12 }
-            // ]},
-            // { type: 'break', id: 'break1' },
-            // { type: 'radio',  id: 'item3',  group: '1', caption: 'Radio 1', icon: 'fa fa-star', checked: true },
-            // { type: 'radio',  id: 'item4',  group: '1', caption: 'Radio 2', icon: 'fa fa-heart' },
-            // { type: 'break', id: 'break2' },
-            // { type: 'drop',  id: 'item5', caption: 'Drop Down', icon: 'fa fa-plus', html: '<div style="padding: 10px">Drop down</div>' },
-            // { type: 'break', id: 'break3' },
-            // { type: 'html',  id: 'item6',
-                // html: '<div style="padding: 3px 10px;">'+
-                      // ' Input:'+
-                      // '    <input size="10" style="padding: 3px; border-radius: 2px; border: 1px solid silver"/>'+
-                      // '</div>'
-            // },
-            // { type: 'spacer' },
-            // { type: 'button',  id: 'item7',  caption: 'Item 5', icon: 'fa fa-flag' }*/
-        // ],
-        // onClick: function (event) {
-            // var button = this.get(event.target);
-            // if (button.id == 'upload'){
-                // selectDialogueLink.click();
-            // }
-            // else if (button.id == 'delete'){
-                // w2ui.grid.delete();
-            // }
-            // else if (button.id == 'download'){
-                // console.log('#download');
-                // downloadFile(server + w2ui.grid.getSelection());
-            // }
-        // }
-    // });
-// });
-
-
-/*
- * Sidebar definition
- */
-$(function () {
-    // //var item_selected = ''; //For the onClick behaviour control
-    $('#sidebar').w2sidebar({
-        name: 'sidebar',
-        nodes: [
-        ],
-        // //onCollapse: function (event) { event.preventDefault() },
-        onClick: function (event) {
-            var record = this.get(event.target);
-            $.dpm(server + event.target).readFolder({
-                success:    function(dat) {
-                    w2ui.sidebar.add(event.target, $.dpmFilters.treeDPM2(dat));
-                    // w2ui.sidebar.add(event.target, dat);
-                    /* Estudiar el mejor comportamiento de expansión de nodos */
-                    /*if (item_selected == event.target){
-                        console.log(item_selected);
-                        console.log(event.target);
-                        w2ui.sidebar.toggle(event.target);
-                    }
-                    else{
-                    }
-                    */
+            ],
+            onClick: function (event) {
+                var button = this.get(event.target);
+                if (button.id === 'upload'){
+                    selectDialogueLink.click();
                 }
-                // dataType: "text",
-                // dataFilter: $.dpmFilters.treeDPM1
-            });
-            $.dpm(server + event.target).readFolder({
-                success:    function(dat) {
-                    w2ui.grid.clear();
-                    w2ui.grid.add($.dpmFilters.filesDPM(dat));
-                    w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + record.id + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                else if (button.id === 'download'){
+                    downloadFile(config.server + w2ui.grid.getSelection());
                 }
-            });
-            item_selected = w2ui.sidebar.selected;
-            console.log(dpmbox_pathname);
-            var route = dpmbox_pathname + event.target;
-            history.pushState(null, null, route);
-            $('#breadcrumb').html(server.slice(7) + route.replace(/\//g,'</a> > <a href="">'));
-        },
-        // /*onDblClick: function(event) {
-            // $.dpm(event.target).readFolder({
-                // success:    function(dat) {
-                // },
-                // dataFilter: $.dpmFilters.treeDPM
-            // });
-            // event.onComplete = function () {
-                // w2ui['sidebar'].expand(event.target);
-            // }
-        // },*/
-        // menu: ["Menu1", "Menu2"]
-    });
-    // /*w2ui.sidebar.on('*', function (event) {
-        // console.log('Event: ' + event.type + ' Target: ' + event.target);
-        // console.log(event);
-    // });*/
-});
-
-
-var fileSelector = document.createElement('input');
-fileSelector.setAttribute('type', 'file');
-fileSelector.setAttribute('multiple', 'multiple');
-
-var selectDialogueLink = document.createElement('a');
-selectDialogueLink.setAttribute('href', '');
-selectDialogueLink.innerText = "Select File";
-
-selectDialogueLink.onclick = function () {
-    fileSelector.click();
-    return false;
-};
-
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-        // output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '</li>');
-        output.push(escape(f.name), '(', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '\n');
-
-        var req = new XMLHttpRequest();
-        req.open('PUT', server + w2ui.sidebar.selected + f.name, false);
-        req.setRequestHeader('X-No-Redirect', 1);
-        req.send(f);
-        /*console.log(req.getAllResponseHeaders());
-        console.log(req.getResponseHeader('Cache-Control'));
-        console.log(req.getResponseHeader('Content-Language'));
-        console.log(req.getResponseHeader('Content-Type'));
-        console.log(req.getResponseHeader('Expires'));
-        console.log(req.getResponseHeader('Last-Modified'));
-        console.log(req.getResponseHeader('DAV'));
-        console.log(req.getResponseHeader('Content-Length'));
-        console.log(req.getResponseHeader('Allow'));*/
-        console.log(req.getResponseHeader('Location'));
-
-        $.dpm(req.getResponseHeader('Location')).put({
-            complete:  function(dat, stat) {
-                console.log('#put');
-                console.log(dat);
-                console.log(stat);
-                alert(output.join(''));
-                refreshContent(w2ui.sidebar.selected);
-            },
-            data: f,
-            contentType: false,
-            processData: false
+                else if (button.id === 'col_new'){
+                    var collection_name = "new_collection";
+                    alert("Name of the new collection: " + collection_name);
+                    $.dpm(config.server + w2ui.sidebar.selected + collection_name).mkcol({
+                        success: function() {
+                            alert("Collection " + collection_name + " created");
+                            $.dpm(config.server + w2ui.sidebar.selected + collection_name).readFolder({
+                                success:    function(dat) {
+                                    w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeDPM2(dat));
+                                }
+                            });
+                        }
+                    });
+                }
+                else if (button.id === 'col_delete'){
+                    alert(config.server + w2ui.sidebar.selected + " will be deleted\n\nAre you sure?");
+                    $.dpm(config.server + w2ui.sidebar.selected).remove({
+                        success: function() {
+                            alert("Collection deleted");
+                            w2ui.sidebar.remove(w2ui.sidebar.selected);
+                            refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).parent['id']);
+                        }
+                    });
+                }
+            }
         });
+    }
 
-        /*$.dpm(server + w2ui.sidebar.selected + f.name).put({
-            complete:  function(dat, stat) {
-                console.log('#put');
-                console.log(dat);
-                console.log(stat);
-                console.log(dat.getAllResponseHeaders());
-                /*$.dpm(server + w2ui.sidebar.selected + this.data.name + '?metalink').get({
-                    success: function(dat){
-                        console.log(this.file.name);
-                        var metalink = dat.getElementsByTagName('url')[0].textContent;
-                        console.log(metalink);
-                        $.dpm(metalink).put({
-                            complete:  function(dat, stat) {
-                                console.log('#put2');
-                                //console.log(this.data.name);
-                                //console.log(this.this.data.name);
-                            },
-                            data: this.file,
-                            contentType: false,
-                            processData: false
-                        });
-                    },
-                    file: this.data
-                });*/
-                /*alert(output.join(''));
-                refreshContent(w2ui.sidebar.selected);
+
+    /*
+     * Sidebar definition
+     */
+    function setSidebar() {
+        // //var item_selected = ''; //For the onClick behaviour control
+        $('#sidebar').w2sidebar({
+            name: 'sidebar',
+            nodes: [
+            ],
+            // //onCollapse: function (event) { event.preventDefault() },
+            onClick: function (event) {
+                var record = this.get(event.target);
+                $.dpm(config.server + event.target).readFolder({
+                    success:    function(dat) {
+                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPM2(dat));
+                        // w2ui.sidebar.add(event.target, dat);
+                        /* Estudiar el mejor comportamiento de expansión de nodos */
+                        /*if (item_selected == event.target){
+                            console.log(item_selected);
+                            console.log(event.target);
+                            w2ui.sidebar.toggle(event.target);
+                        }
+                        else{
+                        }
+                        */
+                    }
+                    // dataType: 'text',
+                    // dataFilter: $.dpmFilters.treeDPM1
+                });
+                $.dpm(config.server + event.target).readFolder({
+                    success:    function(dat) {
+                        w2ui.grid.clear();
+                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + record.id + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                    }
+                });
+                // item_selected = w2ui.sidebar.selected;
+                console.log(dpmbox_pathname);
+                var route = dpmbox_pathname + event.target;
+                history.pushState(null, null, route);
+                $('#breadcrumb').html(config.server.slice(7) + route.replace(/\//g,'</a> > <a href="">'));
             },
-            actual_data: f,
-            headers: {'X-No-Redirect': 1},
-            data: " ",
-            contentType: false,
-            processData: false
-        });*/
+            // /*onDblClick: function(event) {
+                // $.dpm(event.target).readFolder({
+                    // success:    function(dat) {
+                    // },
+                    // dataFilter: $.dpmFilters.treeDPM
+                // });
+                // event.onComplete = function () {
+                    // w2ui['sidebar'].expand(event.target);
+                // }
+            // },*/
+            // menu: ["Menu1", "Menu2"]
+        });
+        // /*w2ui.sidebar.on('*', function (event) {
+            // console.log('Event: ' + event.type + ' Target: ' + event.target);
+            // console.log(event);
+        // });*/
     }
-}
-
-document.body.appendChild(selectDialogueLink);
-fileSelector.addEventListener('change', handleFileSelect, false);
 
 
-
-/*
- * ! DownloadJS v0.5.2
- * Denis Radin aka PixelsCommander
- * Article about: http://pixelscommander.com/javascript/javascript-file-download-ignore-content-type
- */
-window.downloadFile = function (sUrl) {
-    //iOS devices do not support downloading. We have to inform user about this.
-    if (/(iP)/g.test(navigator.userAgent)) {
-        alert('Your device does not support files downloading. Please try again in desktop browser.');
-        return false;
-    }
-    //If in Chrome or Safari - download via virtual link click
-    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
-        //Creating new link node.
-        var link = document.createElement('a');
-        link.href = sUrl;
-
-        if (link.download !== undefined) {
-            //Set HTML5 download attribute. This will prevent file from opening if supported.
-            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
-            link.download = fileName;
-        }
-        //Dispatching click event.
-        if (document.createEvent) {
-            var e = document.createEvent('MouseEvents');
-            e.initEvent('click', true, true);
-            link.dispatchEvent(e);
-            return true;
-        }
-    }
-    // Force file download (whether supported by server).
-    //if (sUrl.indexOf('?') === -1) {
-    //    sUrl += '?download';
-    //}
-    window.open(sUrl, '_self');
-    return true;
-};
-
-window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
-
-})(window, document);
+// })(window, document); //End of anonymous function to keep things outside the global scope
 
 

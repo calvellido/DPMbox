@@ -27,12 +27,12 @@
  * ============================================================ */
 
 
+//Some directives for JSHint (JS code analyzer)
 /* jshint multistr: true */
+"use strict";
 
 
 (function ($) {
-
-    "use strict";
 
     /*
      * The DAV methods you want to provide support for.
@@ -40,30 +40,30 @@
      * @see #methodSupported
      */
     var supportedMethods = {
-        GET: 1,
-        POST: 1,
-        HEAD: 2,
-        PUT: 2,
-        DELETE: 2,
-        PROPFIND: 3,
-        PROPPATCH: 3,
-        MKCOL: 3,
-        LOCK: 3,
-        UNLOCK: 3,
-        COPY: 3,
-        MOVE: 3,
-        REPORT: 3,
-        SEARCH: 3,
-        CHECKIN: 3,
-        CHECKOUT: 3,
-        UNCHECKOUT: 3,
-        'VERSION-CONTROL': 3,
-        TRACE: 3,
-        BIND: 3,
-        UNBIND: 3,
-        REBIND: 3,
-        MKREDIRECTREF: 3,
-        OPTIONS: 3
+        GET:                1,
+        POST:               1,
+        HEAD:               2,
+        PUT:                2,
+        DELETE:             2,
+        PROPFIND:           3,
+        PROPPATCH:          3,
+        MKCOL:              3,
+        LOCK:               3,
+        UNLOCK:             3,
+        COPY:               3,
+        MOVE:               3,
+        REPORT:             3,
+        SEARCH:             3,
+        CHECKIN:            3,
+        CHECKOUT:           3,
+        UNCHECKOUT:         3,
+        'VERSION-CONTROL':  3,
+        TRACE:              3,
+        BIND:               3,
+        UNBIND:             3,
+        REBIND:             3,
+        MKREDIRECTREF:      3,
+        OPTIONS:            3
     };
 
     /**
@@ -175,7 +175,7 @@
             /*
              * Stores the last request object.
              */
-            lastRequest = {};
+            var lastRequest = {};
 
             /*
              * Stores the last requested resourceUrl.
@@ -205,9 +205,7 @@
                 } catch (err) {
                     //Was not an XML document definitely
                     resource        = {};
-                }
-                console.log("resource");
-                console.log(resource);*/
+                }*/
                 resource = {};
             }
             else {
@@ -648,7 +646,6 @@
                          * For IE mostly.
                          * setProperty is broken in IE < 8
                          */
-                        console.log('PROB');
                         resource.setProperty("SelectionLanguage", "XPath");
                         resource.setProperty("SelectionNamespaces", "xmlns:pref='" + ns + "'");
 
@@ -757,6 +754,44 @@
                     return is_collection;
                 };
 
+                /*
+                 * Check if a <response> node is a collection in a DPM server.
+                 * It just checks for the node text of the iscollection tag
+                 *
+                 * @type    {Bool}
+                 *
+                 */
+                this.isCollectionDPM = function() {
+                    var is_collection = false;
+                    if (lastNodeMatch.length > 0) {
+                        this.seekToNode('iscollection');
+                        is_collection = (resource.textContent == 1);
+                    }
+                    return is_collection;
+                };
+
+
+                /*
+                 * Returns all the DPM defined properties
+                 *
+                 * @type    {JSON}
+                 *
+                 */
+                this.getProperties = function() {
+                    if (lastNodeMatch.length > 0) {
+                        this.seekToNode('prop').eachNode(function(node) {
+                            // if (node.childNodes.length !== 0) {
+                                // console.log(node.childNodes[3].textContent);
+                            // }
+                            var x = node.childNodes;
+                            for (var i=0; i<x.length; i++){
+                                console.log(x[i].nodeName);
+                                console.log(x[i][0].textContent);
+                            }
+                        });
+                    }
+                };
+
                 /**************************************
                  *
                  * Resource Http query methods
@@ -828,8 +863,6 @@
                  */
                 this.send = function(cob) {
                     lastRequest = $.ajax(cob);
-                    console.log("lastRequest");
-                    console.log(lastRequest);
                     return lastRequest;
                 };
 
