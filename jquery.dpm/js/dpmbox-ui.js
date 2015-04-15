@@ -67,7 +67,6 @@
     var dpmbox_pathname = location.pathname.slice(0, -1);
 
 
-
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
         // Great success! All the File APIs are supported.
@@ -280,7 +279,13 @@
                 toolbarSearch   : true,
                 toolbarDelete   : true
             },
-            header: 'List of Names',
+            multiSearch: true,
+            searches: [
+                { field: 'filename', caption: 'Filename ', type: 'text' },
+                { field: 'size', caption: 'Size', type: 'float' },
+                { field: 'mdate', caption: 'Modified', type: 'date' }
+            ],
+            sortData: [{ field: 'filename', direction: 'ASC' }],
             /*toolbar: {
                 items: [
                     { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
@@ -289,8 +294,9 @@
             },*/
             columns: [
                 {'caption':'Filename','field':'filename','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.filename).split('/').pop();}},
-                {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
-                //{'caption':'Size (KB)','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': 'number:2'},
+                // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
+                {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.size + ' KB');}},
+                // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true},
                 {'caption':'Modified','field':'mdate','size':'40%','min':'15','max':'','sortable':true,'resizable':true}
             ],
             records: [
@@ -314,10 +320,12 @@
                 //w2ui['layout'].content('right', '<div class='label-section'>Properties</div>' + record.filename + '<br>' + record.size + '<br>' + record.mdate + '<br>');
             },
             onDelete: function (event) {
-                console.log(w2ui.grid.getSelection());
-                $.dpm(config.server + w2ui.grid.getSelection()).remove({
-                    //success: refreshContent(w2ui.sidebar.selected)
-                });
+                var deleteArray = w2ui.grid.getSelection();
+                for (var i = 0; i < deleteArray.length; i++) {
+                    $.dpm(config.server + deleteArray[i]).remove({
+                        // success: alert(config.server + deleteArray[i] + " has been deleted")
+                    });
+                }
             }
         });
     }
@@ -408,14 +416,14 @@
                     success:    function(dat) {
                         w2ui.grid.clear();
                         w2ui.grid.add($.dpmFilters.filesDPM(dat));
-                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + record.id + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.id)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
                     }
                 });
                 // item_selected = w2ui.sidebar.selected;
-                console.log(dpmbox_pathname);
                 var route = dpmbox_pathname + event.target;
                 history.pushState(null, null, route);
-                $('#breadcrumb').html(config.server.slice(7) + route.replace(/\//g,'</a> > <a href="">'));
+                console.log(decodeURI(route));
+                $('#breadcrumb').html(config.server.slice(7) + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
             },
             // /*onDblClick: function(event) {
                 // $.dpm(event.target).readFolder({

@@ -1,0 +1,14 @@
+.DS_Store
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.lof
+*.log
+*.lot
+*.out
+*.pdf
+*.swp
+*.toc
+*.*~
+*.gitignore
