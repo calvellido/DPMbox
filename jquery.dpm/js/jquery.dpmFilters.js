@@ -83,7 +83,7 @@
 
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
-                davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': $.dpm(node_response).seekToNode('getcontentlength').nodeText(), 'mdate': $.dpm(node_response).seekToNode('getlastmodified').nodeText()});
+                davTree.push({'recid': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': $.dpm(node_response).seekToNode('getcontentlength').nodeText(), 'mdate': $.dpm(node_response).seekToNode('getlastmodified').nodeText()});
             });
             return davTree;
         },
@@ -113,7 +113,7 @@
             var dat_object = $.parseXML(dat);
             $.dpm(dat_object).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollection())
-                    davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
+                    davTree.push({'id': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
             });
             //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
             return davTree;
@@ -126,7 +126,8 @@
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollection())
-                    davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
+                    // davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
+                    davTree.push({'id': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': $.dpm(node_response).seekToNode('href').nodeText(), 'icon': 'fa fa-folder'});
             });
             //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
             return davTree;
@@ -155,7 +156,8 @@
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if (!$.dpm(node_response).isCollection())
                     // davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': decodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'size': Number($.dpm(node_response).seekToNode('getcontentlength').nodeText()), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
-                    davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': Number((Number($.dpm(node_response).seekToNode('getcontentlength').nodeText())/1024).toFixed(2)), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
+                    // davTree.push({'recid': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': Number((Number($.dpm(node_response).seekToNode('getcontentlength').nodeText())/1024).toFixed(2)), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
+                    davTree.push({'recid': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': Number($.dpm(node_response).seekToNode('getcontentlength').nodeText()), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
             });
             return davTree;
         },
