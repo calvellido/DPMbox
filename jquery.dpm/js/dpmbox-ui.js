@@ -438,6 +438,7 @@
                 // ]
             // },
             columns: [
+                {'caption':'Metalink','field':'metalink','size':'10','min':'15','max':'', 'resizable':true, 'render': function (record) {return '<img src="/static/icons/metalink16.png" alt="[Metalink]" title="Metalink">'}, style: 'text-align: center'},
                 {'caption':'Filename','field':'filename','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.filename).split('/').pop();}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.size + ' KB');}},
@@ -470,6 +471,8 @@
                 });
             },
             onClick: function (event) {
+                if (event.column == 0)
+                    window.location = (config.server + event.recid + '?metalink');
                 // w2ui['grid2'].clear();
                 // var record = this.get(event.recid);
                 // w2ui['grid2'].add([
