@@ -101,3 +101,15 @@ body{
     border-top: 0;
     padding: 0;*/
 }
+
+.w2ui-popup {
+    font-family: 'PTSans',Arial,sans-serif;
+}
+
+.w2ui-popup .w2ui-msg-body {
+    color: #444;
+}
+
+.w2ui-expand {
+	font-size: 20px;
+} 

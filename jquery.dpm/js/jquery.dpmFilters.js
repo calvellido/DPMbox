@@ -26,10 +26,14 @@
  *
  * ============================================================ */
 
- /*
-  * There are two ways of using this...
-  * If as a filter is necessary to return xml data
-  *
+
+ /* There are two ways of using this jquery.dpmFilters.
+  * If as a proper ajax data filter is necessary to return xml data. This
+  * way you can use it and manipulate it via the dataFilter paramenter
+  * in ajax calls.
+  * The other way and more common in DPMbox is to have it as functions
+  * that transforms received xml data that are manipulated into other
+  * structures like JSON objects adapted to DPMbox UI notation.
   */
 
     // Use the browser's built-in functionality to quickly and safely escape the string
@@ -63,10 +67,9 @@
             return dat;
         },
 
-        /**
-        * Will assemble a list of responses into a Javascript data structure,
-        * returning an array that can then be manipulated.
-        */
+        /* It will assemble a list of responses into a Javascript data structure,
+         * returning an array that can then be manipulated.
+         */
         folder: function(dat) {
 
             $.dpm(dat).seekToNode('response').eachNode(function() {
@@ -75,10 +78,9 @@
             return dat;
         },
 
-        /**
-        * Similar to folder filter but will follow the JSON data structure
-        * for the DPMbox UI, specifically the grid.
-        */
+        /* Similar to folder filter but will follow the JSON data structure
+         * for the DPMbox UI, specifically the grid.
+         */
         folderDPM: function(dat) {
 
             var davTree = [];
@@ -88,8 +90,7 @@
             return davTree;
         },
 
-        /**
-         * Returns an array of the contained nodes that are collections
+        /* Returns an array of the contained nodes that are collections
          */
         tree: function(dat) {
             var davTree = [];
@@ -100,41 +101,57 @@
             return davTree;
         },
 
-        /**
-         * Similar to the tree filter but it will build an array filled
+        /* Similar to the tree filter but it will build an array filled
          * with objects following the notation for the DPMbox interface:
          * {'id': nodeID, 'text': nodeName, 'icon': icon HTML class};
          */
-        treeDPM1: function(dat, datatype) {
-            //var xmlDoc = $.parseXML( dat );
-            //var xmldoc = new XMLDocument(xmlString, true);
-            //var xmldat = new XMLDocument(dat, true);
+        treeDPM: function(dat, datatype) {
+            // var xmlDoc = $.parseXML( dat );
+            // var xmldoc = new XMLDocument(xmlString, true);
+            // var xmldat = new XMLDocument(dat, true);
             var davTree = [];
             var dat_object = $.parseXML(dat);
             $.dpm(dat_object).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollection())
-                    davTree.push({'id': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
+                    davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder-o'});
             });
-            //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
             return davTree;
         },
 
-        treeDPM2: function(dat, datatype) {
-            //var xmlDoc = $.parseXML( dat );
-            //var xmldoc = new XMLDocument(xmlString, true);
-            //var xmldat = new XMLDocument(dat, true);
+        /* Similar as treeDPM, but it will return a tree structure with the main node above its children
+         * collections (the main node with the children in its 'nodes' parameter).
+         */
+        treeDPMparent: function(dat, datatype) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollection())
                     // davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
-                    davTree.push({'id': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': $.dpm(node_response).seekToNode('href').nodeText(), 'icon': 'fa fa-folder'});
+                    davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
             });
-            //davTree.push({'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'});
+            // The WebDAV/DPM server responds with the root collection first. Now we pop that first collection off the list and make it parent of the others collections
+            var davRoot = davTree.shift();
+            davRoot.nodes = davTree; //Set the other nodes as children of the parent
+            davRoot.icon = 'fa fa-folder'; //This indicates that this node has already been readed
+            davRoot.expanded = true; //To show it already open in sidebar
+            return davRoot;
+        },
+
+        /* Again, similar as treeDPM, but this time it will return a structure with just
+         * the children nodes of the given location.
+         */
+        treeDPMchildren: function(dat, datatype) {
+            var davTree = [];
+            $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
+                if ($.dpm(node_response).isCollection())
+                    // davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
+                    davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
+            });
+            // The WebDAV/DPM server responds with the root collection first. Now we pop that first collection off the list to have only the children
+            davTree.shift();
             return davTree;
         },
 
-        /**
-         * Returns an array of the contained nodes that are NOT collections
+        /* Returns an array of the contained nodes that are NOT collections
          */
         files: function(dat) {
             var davTree = [];
@@ -145,8 +162,7 @@
             return davTree;
         },
 
-        /**
-         * Similar to the files filter but it will build an array filled
+        /* Similar to the files filter but it will build an array filled
          * with objects following the JSON data structure for the
          * DPMbox UI, specifically the grid:
          * {'recid': href, 'filename': href, 'size': getcontentlength, 'mdate': getlastmodified };
@@ -162,8 +178,7 @@
             return davTree;
         },
 
-        /**
-         * It will parse the properties
+        /* It will parse the properties of a node in a DPM server
          * {'recid': href, 'filename': href, 'size': getcontentlength, 'mdate': getlastmodified };
          */
         properties: function(dat) {

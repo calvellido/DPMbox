@@ -61,10 +61,6 @@
   // signout.addEventListener('click', signout, false);
   // showUsers(users);
 //
-//
-
-    //Location where DPMbox is hosted
-    var dpmbox_pathname = location.pathname.slice(0, -1);
 
 
     // Check for the various File API support.
@@ -76,8 +72,7 @@
     }
 
 
-    /*
-     * Functions to be executed at start (DOM ready)
+    /* Functions to be executed at start (DOM ready)
      */
     $(function() {
         setLayout();
@@ -88,113 +83,225 @@
     });
 
 
-    /*
-     * Files upload
+    /* The next two functions operate over a route (http://arioch.cern.ch/dpm/cern.ch/home/dteam/) and compose different structures of data
+     * that are needed for some DPMbox operations. It would be ideal not to recalculate continuosly this data, and have it permanently at the system
+     * and change it appropiately while running... That would be studied. Anyway working this way the performance is not bad so we can live with it by now.
      */
 
+    //A function that constructs a breadcrumb from a route setting the links incrementally
+    function breadcrumbConstruct(route){
+        route = decodeURI(route); //DPM servers responds with encoded locations
+        var route_array = route.split('/');
+        var incremental_route = route_array[0] + '//' + route_array[2];
+        for(var i=3, len=route_array.length; i < len; i++){
+            incremental_route = incremental_route + '/' + route_array[i];
+            route_array[i] = '<a href="' + encodeURI(incremental_route) + '">' + escapeHtml(route_array[i]) + '</a>';
+        }
+        route_array.shift();
+        route_array.shift();
+        return (route_array.join(' > '));
+    }
+
+    //A function that constructs a tree going through the location
+    function uppertreeConstruct(route){
+        route = decodeURI(route); //DPM servers responds with encoded locations
+        var tree_array = route.split('/');
+        tree_array.pop(); //route should include a final backslash, so we get rid of it
+        tree_array.pop(); //The last element now is the collection we're in, but we're interested in its parents
+        var route_array = route.split('/');
+        route_array.shift(); //The fisrt element is the protocol
+        route_array.shift(); //The second element is empty
+        route_array.shift(); //The third element is the server
+        route_array.pop(); //route should include a final backslash, so we get rid of this element
+        route_array.pop(); //The last element now is the collection we're in, but we're interested in its parents, so off we go too
+        route_array[0] = '/' + route_array[0] + '/';
+        for(var i=1, len=route_array.length; i < len; i++){
+            route_array[i] = route_array[i-1] + route_array[i] + '/'; //The final backslash is needed
+        }
+        route_array.unshift('root');
+
+        tree_array[tree_array.length-1] = { id: w2utils.base64encode(route_array[route_array.length-1]), text: escapeHtml(decodeURI(tree_array[tree_array.length-1])), path: encodeURI(route_array[route_array.length-1]), icon: 'fa fa-folder-o', expanded: true, first_parent: true };
+        for(var i=tree_array.length-2; i > 1; i--){
+            tree_array[i] = { id: w2utils.base64encode(route_array[i-2]), text: escapeHtml(decodeURI(tree_array[i])), path: encodeURI(route_array[i-2]), icon: 'fa fa-folder-o', expanded: true, nodes: [tree_array[i+1]] };
+        }
+
+        tree_array.shift();
+        tree_array.shift();
+        tree_array[0].group = true;
+        return (tree_array[0]);
+    }
+
+    /* A general error popup that get the message received by the server
+     * and presents it on screen.
+     *
+     * @xhr: the xhr object where to read the error parameters
+     * @func: function to execute on close of the popup
+     */
+    function errorPopup(xhr, func){
+        w2popup.open({
+            title: xhr.statusText[0].toUpperCase() + xhr.statusText.substring(1)  + ' ('+ xhr.status + ')',
+            body: xhr.responseText,
+            modal: false,
+            showClose: true,
+            onClose: func,
+            width: 600,
+            height: 400,
+            buttons: '<button class="btn" onclick="w2popup.close();">Accept</button>'
+        });
+    }
+
+    /* A summary popup that prints the files that have been processed or not.
+     *
+     * @title: the title for the popup
+     * @files: the files array
+     * @results: the results array
+     * @func: function to execute on close of the popup
+     */
+    function summaryPopup(title, files, results, func){
+
+        function composeHtml(){
+            var html;
+            if (files.length == 1) //Just one file
+                html = results[0].responseText;
+            else{
+                // html = 'There have been problems deleting some of the selected files:<ul>';
+                html = '<ul>';
+                for (var i = 0; i < files.length; i++) {
+                    if (results[i].status == 204 || results[i].status == 202){
+                        results[i].status = 'OK';
+                        results[i].statusText = 'Processed';
+                    }
+                    html += '<li>' + config.server + files[i] + ': ' + results[i].statusText + ' (' + results[i].status + ')</li>';
+                }
+                html += '</ul>';
+            }
+            return html;
+        };
+
+        w2popup.open({
+            title: title,
+            body: composeHtml(),
+            modal: false,
+            showClose: true,
+            onClose: func,
+            width: 600,
+            height: 400,
+            buttons: '<button class="btn" onclick="w2popup.close();">Accept</button>'
+        });
+    }
+
+    /* Files upload
+     */
     var fileSelector = document.createElement('input');
     fileSelector.setAttribute('type', 'file');
     fileSelector.setAttribute('multiple', 'multiple');
 
     var selectDialogueLink = document.createElement('a');
     selectDialogueLink.setAttribute('href', '');
-    selectDialogueLink.innerText = 'Select File';
+    //selectDialogueLink.innerText = 'Select File';
 
     selectDialogueLink.onclick = function () {
         fileSelector.click();
         return false;
     };
 
-    function handleFileSelect(evt) {
+    var oldUILink = document.createElement('a');
+    oldUILink.setAttribute('href', '#');
+    oldUILink.innerText = 'Switch back to old UI';
+    oldUILink.text = 'Switch back to old UI';
+    oldUILink.onclick = function() {
+    	document.cookie = "lcgdm_dav.ui=old; path=/; expires=Thu, 1 January 1970 00:00:00 GMT;";
+    	location.reload(true);
+    }
+
+    function handleFileSelect(evt) { //This is kind of a mess now
 
         var files = evt.target.files; // files is a FileList of File objects.
+        // var upload_array = new Array(files.length); //A FileList of File objects.
+        // var upload_results = new Array(upload_array.length);
+        // var upload_count = upload_array.length;
+        // var processed_count = upload_array.length;
+
+        w2ui.grid.lock('Uploading...');
 
         for (var i = 0; i < files.length; i++) {
+            // (function(i) { //With this closure I can play with the i value
+                /* Though they work differently, this upload method works for WebDAV and DPM servers.
+                 * Anyway, maybe a better differentiation of the differents situations can be done.
+                 * TODO
+                 */
 
-            w2ui.grid.lock('Uploading...');
+                /* We create a first PUT request
+                 * The server will answer with the Location
+                 */
+                // var req = new XMLHttpRequest();
+                // req.open('PUT', config.server + w2ui.sidebar.selected + f.name, false);
+                // req.setRequestHeader('X-No-Redirect', 1);
+                // req.send(f);
 
-            // output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes, last modified: ', f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a', '</li>');
-            //output.push(encodeURI(files[i].name), '(', files[i].type || 'n/a', ') - ', files[i].size, ' bytes, last modified: ', files[i].lastModifiedDate ? files[i].lastModifiedDate.toLocaleDateString() : 'n/a', '\n');
+                // upload_array[i] = location.pathname + files[i].name;
 
-            /* We create a first PUT request
-             * The server will answer with the Location
-             */
-            //var req = new XMLHttpRequest();
-            //req.open('PUT', config.server + w2ui.sidebar.selected + f.name, false);
-            //req.setRequestHeader('X-No-Redirect', 1);
-            //req.send(f);
+                $.ajax({
+                    method: 'PUT',
+                    // url: config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + files[i].name,
+                    url: config.server + location.pathname + files[i].name,
+                    headers: {
+                        'X-No-Redirect': 1
+                    },
+                    data: " ",
+                    actual_data: files[i],
+                    async: true,
+                    complete: function(xhr) {
+                        switch(xhr.status){
+                            case 201: //Almost uploaded (WebDAV),
+                            case 202: //Accepted by the server (DPM)
+                                $.dpm(xhr.getResponseHeader('Location')).put({
+                                    complete:  function(xhr) {
+                                        switch(xhr.status){
+                                            case 204: //Uploaded (WebDAV)
+                                            case 201: //Uploaded (DPM)
+                                                w2ui.grid.unlock();
+                                                w2alert('Uploaded ' + escapeHtml(this.data.name) + '(' + (this.data.type || 'n/a') + ') - ' + this.data.size + ' bytes', 'Upload complete');
+                                                // refreshContent(location.pathname);
+                                                break;
+                                                // upload_count--;
+                                            default:
+                                        }
+                                    },
+                                    async: true,
+                                    data: this.actual_data,
+                                    contentType: false,
+                                    processData: false
+                                });
+                                break;
+                            default: //Unknown error (permissions, network...)
+                                // upload_results[i] = xhr;
+                                // processed_count--;
+                                // if (processed_count == 0){
+                                    // w2ui.grid.unlock();
+                                    // if (upload_count == 0){
+                                        // w2alert('All files uploaded');
+                                        // refreshContent(location.pathname);
+                                    // }
+                                    // else
+                                        // summaryPopup('Problems uploading', upload_array, upload_results, refreshContent(location.pathname));
+                                // }
+                                errorPopup(xhr, w2ui.grid.unlock());
 
-            $.ajax({
-                method: 'PUT',
-                url: config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + files[i].name,
-                headers: {
-                    'X-No-Redirect': 1
-                },
-                data: " ",
-                actual_data: files[i],
-                success: function(data, textStatus, jqXHR) {
-                    $.dpm(jqXHR.getResponseHeader('Location')).put({
-                        complete:  function(dat, stat) {
-                            w2alert('Uploaded ' + escapeHtml(this.data.name) + '(' + (this.data.type || 'n/a') + ') - ' + this.data.size + ' bytes', "Upload complete", function () {
-                                w2ui.grid.unlock();
-                            });
-                            refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).path);
-                        },
-                        data: this.actual_data,
-                        contentType: false,
-                        processData: false
-                    });
-                }
-            });
-
-            //Put to the Location received, actual upload will be done now
-            /*$.dpm(req.getResponseHeader('Location')).put({
-                complete:  function(dat, stat) {
-                    w2ui.grid.unlock();
-                    alert(output.join(''));
-                    refreshContent(w2ui.sidebar.selected);
-                },
-                data: f,
-                contentType: false,
-                processData: false
-            });*/
-
-            /*$.dpm(config.server + w2ui.sidebar.selected + f.name).put({
-                complete:  function(dat, stat) {
-                    /*$.dpm(config.server + w2ui.sidebar.selected + this.data.name + '?metalink').get({
-                        success: function(dat){
-                            console.log(this.file.name);
-                            var metalink = dat.getElementsByTagName('url')[0].textContent;
-                            console.log(metalink);
-                            $.dpm(metalink).put({
-                                complete:  function(dat, stat) {
-                                    //console.log(this.data.name);
-                                    //console.log(this.this.data.name);
-                                },
-                                data: this.file,
-                                contentType: false,
-                                processData: false
-                            });
-                        },
-                        file: this.data
-                    });*/
-                    /*alert(output.join(''));
-                    refreshContent(w2ui.sidebar.selected);
-                },
-                actual_data: f,
-                headers: {'X-No-Redirect': 1},
-                data: " ",
-                contentType: false,
-                processData: false
-            });*/
+                        }
+                    }
+                });
+            // })(i); //End of closure
         }
+
     }
 
     document.body.appendChild(selectDialogueLink);
+    document.body.appendChild(oldUILink);
     fileSelector.addEventListener('change', handleFileSelect, false);
 
 
-    /*
+    /* Files download
      * ! DownloadJS v0.5.2
      * Denis Radin aka PixelsCommander
      * Article about: http://pixelscommander.com/en/javascript/javascript-file-download-ignore-content-type/
@@ -224,10 +331,10 @@
                 return true;
             }
         }
-        // Force file download (whether supported by server).
-        //if (sUrl.indexOf('?') === -1) {
-        //    sUrl += '?download';
-        //}
+        //Force file download (whether supported by server).
+        // if (sUrl.indexOf('?') === -1) {
+           // sUrl += '?download';
+        // }
         window.open(sUrl, '_self');
         return true;
     };
@@ -236,37 +343,54 @@
     downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
 
 
-    /*
-     * A function to update the sidebar content
+    /* A function to update the sidebar content
      */
     function refreshSidebar(){
         $.dpm(config.url()).readFolder({
             success:    function(dat, stat, xhr) {
-                // w2ui.sidebar.add(dat);
-                w2ui.sidebar.add($.dpmFilters.treeDPM2(dat));
-                //w2ui.sidebar.add([{'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'},{'id': 3, 'text': '3', 'icon': 'fa fa-folder'},{'id': 4, 'text': '4', 'icon': 'fa fa-folder'}]);
+                //w2ui.sidebar.add(upper_tree);
+                // var first_parent = w2ui.sidebar.find({ first_parent: true });
+                w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeDPMparent(dat));
+                w2ui.sidebar.select(w2utils.base64encode(location.pathname));
+                // w2ui.sidebar.expand(location.pathname);
+                // w2ui.sidebar.insert(location.pathname,upper_tree);
+                // w2ui.sidebar.add([{'id': 1, 'text': '1', 'icon': 'fa fa-folder'},{'id': 2, 'text': '2', 'icon': 'fa fa-folder'},{'id': 3, 'text': '3', 'icon': 'fa fa-folder'},{'id': 4, 'text': '4', 'icon': 'fa fa-folder'}]);
+            },
+            complete: function(xhr){
+                switch(xhr.status){
+                    case 207: //Success case
+                        break;
+                    default: //Unknown error (permissions, network...)
+                        errorPopup(xhr);
+                }
             }
-            // dataType: "text",
-            // dataFilter: $.dpmFilters.treeDPM1
         });
     }
 
 
-    /*
-     * A function to refresh the grid content
+    /* A function to refresh the grid content
      */
     function refreshContent(directory_route){
+        w2ui.grid.lock('Loading...');
         $.dpm(config.server + directory_route).readFolder({
             success:    function(dat) {
                 w2ui.grid.clear();
                 w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                w2ui.grid.unlock();
+            },
+            complete: function(xhr){
+                switch(xhr.status){
+                    case 207: //Success case
+                        break;
+                    default: //Unknown error (permissions, network...)
+                        errorPopup(xhr, w2ui.grid.unlock());
+                }
             }
         });
     }
 
 
-    /*
-     * Layout definition
+    /* Layout definition
      */
     function setLayout(){
         var pstyle_borderless = 'background-color: #FFF; padding: 5px; overflow-y:hidden;';
@@ -276,7 +400,7 @@
         $('#layout').w2layout({
             name: 'layout',
             panels: [
-                { type: 'top',  size: 60, resizable: false, style: pstyle_borderless, content: '<div id="label-main"><b>Disk Pool Manager</b></div><div id="breadcrumb">'+ config.server.slice(7) + config.root.replace(/\//g,'</a> > <a href="">') + '</div>' },
+                { type: 'top',  size: 60, resizable: false, style: pstyle_borderless, content: '<div id="label-main"><b>'+ config.display_name +'</b></div><div id="breadcrumb">'+ breadcrumbConstruct(config.url()) + '</div>' },
                 { type: 'left', size: '20%', resizable: true, style: pstyle_borderright, content: '<div class="label-section">Workspace</div><div id="sidebar_div" style="height: 90%; width: 100%;"></div>' },
                 { type: 'main', size: '60%', resizable: true, style: pstyle_borderless, content: '<div class="label-section">Data</div><div id="toolbar_div" style="padding: 4px; border-radius: 3px"></div><div id="grid"; style="width: 100%; height: 85%;"></div>' },
                 { type: 'right', size: '20%', resizable: true, style: pstyle_borderleft, content: '<div class="label-section">Properties</div>' }
@@ -285,8 +409,7 @@
     }
 
 
-    /*
-     * Grid definition
+    /* Grid definition
      */
     function setGrid() {
         $('#grid').w2grid({
@@ -305,13 +428,15 @@
                 { field: 'size', caption: 'Size', type: 'float' },
                 { field: 'mdate', caption: 'Modified', type: 'date' }
             ],
-            sortData: [{ field: 'filename', direction: 'ASC' }],
-            /*toolbar: {
-                items: [
-                    { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
-                    { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
-                ]
-            },*/
+            sortData: [
+                { 'field': 'filename', 'direction': 'asc' }
+            ],
+            // toolbar: {
+                // items: [
+                    // { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
+                    // { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
+                // ]
+            // },
             columns: [
                 {'caption':'Filename','field':'filename','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.filename).split('/').pop();}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
@@ -323,166 +448,320 @@
             ],
             records: [
             ],
-            /*menu: [
-                { id: 1, text: 'Download', icon: 'fa fa-download' },
-                { id: 2, text: 'Delete Item', icon: 'fa fa-times' }
-            ],*/
+            // menu: [
+                // { id: 1, text: 'Download', icon: 'fa fa-download' },
+                // { id: 2, text: 'Delete Item', icon: 'fa fa-times' }
+            // ],
+            onRender: function(){
+                $.dpm(config.url()).readFolder({
+                    success:    function(dat) {
+                        var record = w2ui.sidebar.get(w2utils.base64encode(decodeURI(location.pathname)));
+                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                    },
+                    complete: function(xhr){
+                        switch(xhr.status){
+                            case 207: //Success case
+                                break;
+                            default: //Unknown error (permissions, network...)
+                                errorPopup(xhr);
+                        }
+                    }
+                });
+            },
             onClick: function (event) {
-                /*w2ui['grid2'].clear();
-                var record = this.get(event.recid);
-                w2ui['grid2'].add([
-                    { recid: 0, name: 'ID:', value: record.recid },
-                    { recid: 1, name: 'First Name:', value: record.fname },
-                    { recid: 2, name: 'Last Name:', value: record.lname },
-                    { recid: 3, name: 'Email:', value: record.email },
-                    { recid: 4, name: 'Date:', value: record.sdate }
-                ]);*/
-                //var record = this.get(event.recid);
-                //console.log(event);
-                //w2ui['layout'].content('right', '<div class='label-section'>Properties</div>' + record.filename + '<br>' + record.size + '<br>' + record.mdate + '<br>');
+                // w2ui['grid2'].clear();
+                // var record = this.get(event.recid);
+                // w2ui['grid2'].add([
+                    // { recid: 0, name: 'ID:', value: record.recid },
+                    // { recid: 1, name: 'First Name:', value: record.fname },
+                    // { recid: 2, name: 'Last Name:', value: record.lname },
+                    // { recid: 3, name: 'Email:', value: record.email },
+                    // { recid: 4, name: 'Date:', value: record.sdate }
+                // ]);
+                // var record = this.get(event.recid);
+                // console.log(event);
+                // w2ui['layout'].content('right', '<div class='label-section'>Properties</div>' + record.filename + '<br>' + record.size + '<br>' + record.mdate + '<br>');
+            },
+            onDblClick: function(event){
+                w2ui.toolbar.click('download');
             },
             onDelete: function (event) {
-                var deleteArray = w2ui.grid.getSelection();
-                for (var i = 0; i < deleteArray.length; i++) {
-                    $.dpm(decodeURI(config.server + deleteArray[i])).remove({
-                        // success: alert(config.server + deleteArray[i] + " has been deleted")
-                    });
-                }
+                event.preventDefault(); //Needed by the (weird) way w2ui works... When false the deletion will be executed 2 times (¿?)
+
+                w2confirm({
+                        // msg          : 'The following collection (including all its content) will be deleted:<br><br>' + config.server + escapeHtml(decodeURI(w2ui.sidebar.get(w2ui.sidebar.selected).path)),
+                        msg          : 'Are you sure you want to delete selected elements?',
+                        title        : 'Delete confirmation',
+                        yes_text     : 'Accept',     // text for yes button
+                        no_text      : 'Cancel',      // text for no button
+                    })
+                        .yes(function () {
+                            w2ui.grid.lock('Deleting...');
+                            var delete_array = w2ui.grid.getSelection();
+                            var delete_results = new Array(delete_array.length);
+                            var delete_count = delete_array.length;
+                            var processed_count = delete_array.length;
+                            for (var i = 0; i < delete_array.length; i++) {
+                                (function(i) { //With this closure I can play with the i value
+                                    $.dpm(decodeURI(config.server + delete_array[i])).remove({
+                                        complete: function(xhr) {
+                                            switch(xhr.status){
+                                                case 204:
+                                                    delete_count--;
+                                                default: //Error 403 forbidden, or other unknow error
+                                                    delete_results[i] = xhr;
+                                                    processed_count--;
+                                                    if (processed_count == 0){
+                                                        w2ui.grid.unlock('Deleting...');
+                                                        if (delete_count == 0)
+                                                            refreshContent(location.pathname); //If all went right there's no need to summary
+                                                            // summaryPopup('All correct', delete_array, delete_results, refreshContent(location.pathname));
+                                                        else
+                                                            summaryPopup('Problems deleting', delete_array, delete_results, refreshContent(location.pathname));
+                                                    }
+                                                }
+                                        }
+                                    });
+                                })(i); //End of closure
+                            }
+                        })
+                        .no(function () {
+                        });
+            },
+            onReload: function() {
+                refreshContent(location.pathname);
             }
         });
     }
 
 
-    /*
-     * Toolbar definition
+    /* Toolbar definition
      */
     function setToolbar(){
         $('#toolbar_div').w2toolbar({
             name: 'toolbar',
             items: [
-                { type: 'button',  id: '0',  caption: 'New directory', icon: 'fa fa-plus-square' },
-                { type: 'button',  id: '1',  caption: 'Delete directory', icon: 'fa fa-minus-square' },
+                { type: 'button',  id: 'new_col',  caption: 'New directory', icon: 'fa fa-plus-square' },
+                { type: 'button',  id: 'del_col',  caption: 'Delete directory', icon: 'fa fa-minus-square' },
                 { type: 'spacer' },
-                { type: 'button',  id: '2',  caption: 'Upload', icon: 'fa fa-upload' },
-                { type: 'button',  id: '3',  caption: 'Download', icon: 'fa fa-download' }
+                { type: 'button',  id: 'upload',  caption: 'Upload', icon: 'fa fa-upload' },
+                { type: 'button',  id: 'download',  caption: 'Download', icon: 'fa fa-download' }
             ],
             onClick: function (event) {
                 var button = this.get(event.target);
-                console.log(button.id);
                 switch(button.id) {
-                    case '0': //New collection
-                        var collection_name = "new_collection";
-                        var route = config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + collection_name;
-                        w2alert("Name of the new collection: " + collection_name);
-                        $.dpm(route).mkcol({
-                            success: function() {
-                                w2alert("Collection " + collection_name + " created");
-                                /*$.dpm(route).readFolder({
-                                    success:    function(dat) {
-                                        w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeDPM2(dat));
+                    case 'new_col': //New collection
+
+                        w2confirm({
+                            msg          : '<label>Name: </label>' +
+                                            '<input id="col_name_input" name="name" type="text" style="width: 80%"/>',
+                            title        : 'New collection',
+                            height       : 200,       //height of the dialog
+                            yes_text     : 'Accept',     //text for yes button
+                            no_text      : 'Cancel',      //text for no button
+                        })
+                            .yes(function () {
+                                w2ui.grid.lock('Creating...');
+                                var collection_name = $(col_name_input).val();
+                                // var route = config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + collection_name;
+                                var route = config.server + location.pathname + collection_name;
+                                if (collection_name)
+                                    $.dpm(route).mkcol({
+                                        complete: function(xhr) {
+                                            switch(xhr.status){
+                                                case 201:
+                                                    // w2alert('Collection created at:<br><br>' + config.server + escapeHtml(decodeURI(location.pathname)) + escapeHtml(decodeURI(collection_name))); //This is maybe unnecesary
+                                                    w2ui.grid.unlock;
+                                                    w2ui.sidebar.click(w2ui.sidebar.selected);
+                                                    break;
+                                                default: //Error 403 forbidden, or other unknow error
+                                                    errorPopup(xhr, function () {
+                                                        w2ui.grid.unlock();
+                                                        w2ui.sidebar.click(w2ui.sidebar.selected);
+                                                    });
+                                                    break;
+                                            }
+                                        }
+                                    });
+                                else{
+                                    w2alert('Invalid collection name');
+                                    w2ui.toolbar.click('new_col'); //Reopen the name input dialog
+                                }
+                            })
+                            .no(function () {
+                            });
+                        break;
+
+                    case 'del_col': //Delete collection
+
+                        w2confirm({
+                            // msg          : 'The following collection (including all its content) will be deleted:<br><br>' + config.server + escapeHtml(decodeURI(w2ui.sidebar.get(w2ui.sidebar.selected).path)),
+                            msg          : 'The following collection (including all its content) will be deleted:<br><br>' + config.server + escapeHtml(decodeURI(location.pathname)),
+                            title        : 'Delete collection',
+                            yes_text     : 'Accept',     // text for yes button
+                            no_text      : 'Cancel',      // text for no button
+                        })
+                            .yes(function () {
+                                w2ui.grid.lock('Deleting...');
+                                // $.dpm(config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path).remove({
+                                $.dpm(config.server + location.pathname).remove({
+                                    complete: function(xhr) {
+                                        switch(xhr.status){
+                                            case 204:
+                                                // w2alert("Collection deleted");
+                                                // w2ui.sidebar.remove(location.pathname);
+                                                // refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).parent['path']);
+                                                // refreshContent(w2ui.sidebar.get(location.pathname).parent['path']);
+                                                // var parent_location = location.href.split('/');
+                                                // parent_location.pop();
+                                                // parent_location.pop();
+                                                // parent_location = parent_location.join('/');
+                                                // window.location = parent_location;
+                                                w2ui.grid.unlock();
+                                                var parent = w2ui.sidebar.get(w2ui.sidebar.selected).parent.id;
+                                                w2ui.sidebar.remove(w2ui.sidebar.selected);
+                                                w2ui.sidebar.select(parent);
+                                                w2ui.sidebar.click(parent);
+                                                break;
+                                            default: //Error 403 forbidden, or other unknow error
+                                                errorPopup(xhr, w2ui.grid.unlock());
+                                            }
                                     }
-                                });*/
-                            }
-                        });
+                                });
+                            })
+                            .no(function () {
+                            });
                         break;
-                    case '1': //Delete collection
-                        w2alert(config.server + decodeURI(w2ui.sidebar.get(w2ui.sidebar.selected).path) + " will be deleted<br><br>Are you sure?");
-                        $.dpm(config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path).remove({
-                            success: function() {
-                                //w2alert("Collection deleted");
-                                w2ui.sidebar.remove(w2ui.sidebar.selected);
-                                refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).parent['path']);
-                            }
-                        });
-                        break;
-                    case '2': //Upload
+
+                    case 'upload': //Upload
                         selectDialogueLink.click();
                         break;
-                    case '3': //Download
+
+                    case 'download': //Download
                         downloadFile(config.server + w2ui.grid.getSelection());
                         break;
                 }
 
-                /*if (button.id === 'upload'){
-                    selectDialogueLink.click();
-                }
-                else if (button.id === 'download'){
-                    downloadFile(config.server + w2ui.grid.getSelection());
-                }
-                else if (button.id === 'col_new'){
-                    var collection_name = "new_collection";
-                    var route = config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + collection_name;
-                    w2alert("Name of the new collection: " + collection_name);
-                    $.dpm(route).mkcol({
-                        success: function() {
-                            w2alert("Collection " + collection_name + " created");
+                // if (button.id === 'upload'){
+                    // selectDialogueLink.click();
+                // }
+                // else if (button.id === 'download'){
+                    // downloadFile(config.server + w2ui.grid.getSelection());
+                // }
+                // else if (button.id === 'col_new'){
+                    // var collection_name = "new_collection";
+                    // var route = config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path + collection_name;
+                    // w2alert("Name of the new collection: " + collection_name);
+                    // $.dpm(route).mkcol({
+                        // success: function() {
+                            // w2alert("Collection " + collection_name + " created");
                             // $.dpm(route).readFolder({
                                 // success:    function(dat) {
-                                    // w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeDPM2(dat));
+                                    // w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeDPMparent(dat));
                                 // }
                             // });
-                        }
-                    });
-                }
-                else if (button.id === 'col_delete'){
-                    w2alert(config.server + decodeURI(w2ui.sidebar.get(w2ui.sidebar.selected).path) + " will be deleted<br><br>Are you sure?");
-                    $.dpm(config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path).remove({
-                        success: function() {
-                            //w2alert("Collection deleted");
-                            w2ui.sidebar.remove(w2ui.sidebar.selected);
-                            refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).parent['id']);
-                        }
-                    });
-                }*/
+                        // }
+                    // });
+                // }
+                // else if (button.id === 'col_delete'){
+                    // w2alert(config.server + decodeURI(w2ui.sidebar.get(w2ui.sidebar.selected).path) + " will be deleted<br><br>Are you sure?");
+                    // $.dpm(config.server + w2ui.sidebar.get(w2ui.sidebar.selected).path).remove({
+                        // success: function() {
+                            // //w2alert("Collection deleted");
+                            // w2ui.sidebar.remove(w2ui.sidebar.selected);
+                            // refreshContent(w2ui.sidebar.get(w2ui.sidebar.selected).parent['id']);
+                        // }
+                    // });
+                // }
             }
         });
     }
 
 
-    /*
-     * Sidebar definition
+    /* Sidebar definition
      */
     function setSidebar() {
-        // //var item_selected = ''; //For the onClick behaviour control
+
+        window.onpopstate = function(event) {
+            /* It would be interesting to manipulate the history (as war winners do! :P)
+             * coordinated with the sidebar but it's not something simple,
+             * so by now we can live reloading the whole DPMbox to the
+             * location previously visited (not bad effect at all IMO)
+             */
+            // var node = w2utils.base64encode(location.pathname);
+            // if (w2ui.sidebar.get(node)){
+                // console.log(location.pathname);
+                // w2ui.sidebar.select(node);
+                // w2ui.sidebar.click(node);
+            // }
+            // else
+                window.location = document.location;
+        };
+
+        var upper_tree = uppertreeConstruct(config.server + location.pathname);
+
         $('#sidebar_div').w2sidebar({
             name: 'sidebar',
-            nodes: [
-            ],
-            // //onCollapse: function (event) { event.preventDefault() },
+            nodes: upper_tree,
+            // onCollapse: function (event) { event.preventDefault() },
             onClick: function (event) {
+                w2ui.grid.lock('Loading...');
                 var record = this.get(event.target);
-                console.log(record.path);
                 $.dpm(config.server + record.path).readFolder({
-                    success:    function(dat) {
-                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPM2(dat));
-                        // w2ui.sidebar.add(event.target, dat);
-                        /* Estudiar el mejor comportamiento de expansión de nodos */
-                        /*if (item_selected == event.target){
-                            console.log(item_selected);
-                            console.log(event.target);
-                            w2ui.sidebar.toggle(event.target);
-                        }
-                        else{
-                        }
-                        */
-                    }
-                    // dataType: 'text',
-                    // dataFilter: $.dpmFilters.treeDPM1
-                });
-                $.dpm(config.server + record.path).readFolder({
-                    success:    function(dat) {
+                    success: function(dat) {
                         w2ui.grid.clear();
                         w2ui.grid.add($.dpmFilters.filesDPM(dat));
-                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                        w2ui.grid.unlock();
+                    },
+                    complete: function(xhr){
+                        switch(xhr.status){
+                            case 207: //Success case
+                                break;
+                            default: //Unknown error (permissions, network...)
+                                errorPopup(xhr, w2ui.grid.unlock());
+                        }
                     }
                 });
-                // item_selected = w2ui.sidebar.selected;
-                var route = dpmbox_pathname + record.path;
-                history.pushState(null, null, route);
-                console.log(route);
-                $('#breadcrumb').html(config.server.slice(7) + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
+                $.dpm(config.server + record.path).readFolder({
+                    success:    function(dat) {
+                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPMchildren(dat));
+                        // w2ui.sidebar.add(event.target, dat);
+                        //Which way is better to expand nodes?
+                        // if (item_selected == event.target){
+                            // console.log(item_selected);
+                            // console.log(event.target);
+                            // w2ui.sidebar.toggle(event.target);
+                        // }
+                        // else{
+                        // }
+                        w2ui.sidebar.get(record.id).icon = 'fa fa-folder'; //In success we change the icon showing that the node has been read
+                        // w2ui.sidebar.get(record.id).count = w2ui.sidebar.get(record.id).nodes.length; //This information (number of children) could be useful but is very ugly
+                        // w2ui.sidebar.get(record.id).count = w2ui.grid.total; //This information (number of files of directory) could be useful but is very ugly
+                        w2ui.sidebar.refresh(record.id); //We need to refresh it to show the changes
+                        w2ui.sidebar.expand(w2ui.sidebar.selected);
+                    },
+                    complete: function(xhr){
+                        switch(xhr.status){
+                            case 207: //Success case
+                                break;
+                            default: //Unknown error (permissions, network...)
+                                errorPopup(xhr);
+                        }
+                    }
+                });
+                //For DPMbox and DPM node on the same server
+                var route = config.server + record.path;
+                history.pushState(null, null, route); //Won't reload the page at all
+                // window.location = route; //It will reload the page completely, not cool but functional
+
+                // $('#breadcrumb').html(config.server.(7) + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
+                // $('#breadcrumb').html(config.server + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
+                $('#breadcrumb').html(breadcrumbConstruct(route));
+
             },
-            // /*onDblClick: function(event) {
+            // onDblClick: function(event) {
                 // $.dpm(event.target).readFolder({
                     // success:    function(dat) {
                     // },
@@ -491,13 +770,13 @@
                 // event.onComplete = function () {
                     // w2ui['sidebar'].expand(event.target);
                 // }
-            // },*/
+            // },
             // menu: ["Menu1", "Menu2"]
         });
-        // /*w2ui.sidebar.on('*', function (event) {
+        // w2ui.sidebar.on('*', function (event) {
             // console.log('Event: ' + event.type + ' Target: ' + event.target);
             // console.log(event);
-        // });*/
+        // });
     }
 
 

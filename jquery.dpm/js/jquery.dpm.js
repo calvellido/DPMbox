@@ -34,8 +34,7 @@
 
 (function ($) {
 
-    /*
-     * The DAV methods you want to provide support for.
+    /* The DAV methods you want to provide support for.
      *
      * @see #methodSupported
      */
@@ -66,8 +65,7 @@
         OPTIONS:            3
     };
 
-    /**
-     * Locking default settings.
+    /* Locking default settings.
      *
      * @see     #lock
      */
@@ -76,20 +74,17 @@
     var defaultLockTimeout = 86400;
     var defaultLockDepth = 'infinity';
 
-    /**
-     * User home directory.
+    /* User home directory.
      *
      * @see     #lock
      */
     var userHomeDir = '/home/';
 
-    /**
-     * Xml header, used variously when making calls.
+    /* XML header, used variously when making calls.
      */
     var XmlHeader = '<?xml version="1.0" encoding="utf-8" ?>';
 
-    /*
-     * This is unfortunate, but I don't want to use the jquery browser detection
+    /* This is unfortunate, but I don't want to use the jquery browser detection
      * functions, as they are deprecated, and I don't know of a non-sniffing
      * way to determine whether or not this or that browser supports a given
      * method.  One dismissed consideration was to just support GET and POST,
@@ -105,8 +100,7 @@
     var isMoz = /mozilla/.test(uA) && !/(compatible|webkit)/.test(uA);
     var isGecko = /Gecko/.test(uA) && (/KHTML/.test(uA) === false);
 
-    /*
-     * Utility functions
+    /* Utility functions
      */
 
     var isObject = function (ob) {
@@ -121,8 +115,7 @@
         return !!ob && Object.prototype.toString.apply(ob) === '[object String]';
     };
 
-    /*
-     * Prior to making a call, check if the requested method is supported
+    /* Prior to making a call, check if the requested method is supported
      * by the current browser.
      *
      * @see #supportedMethods
@@ -138,8 +131,7 @@
         return false;
     };
 
-    /*
-     * jQuery#ajax option #beforeSend may be set to a function reference,
+    /* jQuery#ajax option #beforeSend may be set to a function reference,
      * and this function will fire prior to the request being sent.  It is
      * passed the Xhr object, so this is the point you will want to do
      * things like set headers, for example.
@@ -162,8 +154,7 @@
 
     $.fn.extend($, {
 
-        /*
-         * The 'setup' method, which establishes the resource to be
+        /* The 'setup' method, which establishes the resource to be
          * operated on.
          *
          * @param     {Mixed}     res    A resource Url string, or a DOM Collection.
@@ -172,25 +163,21 @@
          */
         dpm: function (res) {
 
-            /*
-             * Stores the last request object.
+            /* Stores the last request object.
              */
             var lastRequest = {};
 
-            /*
-             * Stores the last requested resourceUrl.
+            /* Stores the last requested resourceUrl.
              *
              * @see     #prepare
              */
             var resourceUrl;
 
-            /*
-             * Stores the last Dom Node.
+            /* Stores the last Dom Node.
              */
             var resource;
 
-            /*
-             * Stores last node searched for.
+            /* Stores last node searched for.
              *
              * @see     #getNodesByTag
              * @see     #seekToNode
@@ -200,12 +187,12 @@
 
             if (isString (res)) {
                 resourceUrl = res;
-                /*try { //Checking if the XML object is received as string/text
-                    resource = $.parseXML(res);
-                } catch (err) {
-                    //Was not an XML document definitely
-                    resource        = {};
-                }*/
+                // try { //Checking if the XML object is received as string/text
+                    // resource = $.parseXML(res);
+                // } catch (err) {
+                    // //Wasn't an XML document definitely
+                    // resource        = {};
+                // }
                 resource = {};
             }
             else {
@@ -219,8 +206,7 @@
                  * Core Dav Methods
                  ***************************************/
 
-                /*
-                 * GET
+                /* GET
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
                  * @url     http://www.webdav.org/specs/rfc2518.html#rfc.section.8.4
@@ -230,8 +216,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * POST
+                /* POST
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
                  * @url     http://www.webdav.org/specs/rfc2518.html#rfc.section.8.4
@@ -241,8 +226,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * HEAD
+                /* HEAD
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
                  * @url     http://www.webdav.org/specs/rfc2518.html#rfc.section.8.4
@@ -252,8 +236,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * MKCOL
+                /* MKCOL
                  * Make a collection (folder).
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -265,7 +248,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* PUT
                  * Puts a file (writes the content of the sent .body to a url)
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -277,8 +260,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * DELETE
+                /* DELETE
                  * Deletes a resource based on sent url.
                  * NOTE: using `remove` as `delete` is a protected JS word, and I don't
                  * want to uppercase method names just for this one.
@@ -291,8 +273,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * REPORT
+                /* REPORT
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
                  * @href    http://greenbytes.de/tech/webdav/rfc3253.html#METHOD_REPORT
@@ -303,7 +284,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* REPORT (*)
                  * @href http://greenbytes.de/tech/webdav/rfc3253.html#REPORT_version-tree
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -331,7 +312,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* CHECKOUT
                  * Checks out a VCR.
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -342,7 +323,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* UNCHECKOUT
                  * Un-checks-out a VCR -- like a checkin, but without creating a new
                  * version, which is the same as rolling back to the pre-checkout state.
                  *
@@ -354,7 +335,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* CHECKIN
                  * Checks in a VCR.
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -365,7 +346,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* VERSION-CONTROL
                  * Creates a VCR (Version Controlled Resource)
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -376,7 +357,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* PUT (*)
                  * An alias for PUT.  This allows users to create resources,
                  * optionally sending initial resource contents.
                  *
@@ -387,7 +368,7 @@
                     return this.put(cob);
                 };
 
-                /*
+                /* MKCOL (*)
                  * An alias for MKCOL.
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -397,7 +378,7 @@
                     return this.mkcol(cob);
                 };
 
-                /*
+                /* LOCK
                  * Locks a resource.
                  *
                  * @param   {Object}  cob     An object containing options for this call.
@@ -414,16 +395,14 @@
                     hdrs.Timeout = cob.lockTimeout || 'Second-' + defaultLockTimeout;
                     hdrs.Depth = cob.depth || defaultLockDepth;
 
-                    /*
-                     * If-Match * will stop a lock from being taken on an unmapped
+                    /* If-Match * will stop a lock from being taken on an unmapped
                      * url -- which would normally create an locked, empty, resource.
                      */
                     if (cob.ifExists) {
                         hdrs['If-Match'] = '*';
                     }
 
-                    /*
-                     * Create the <owner> block.  If the user is authenticated,
+                    /* Create the <owner> block.  If the user is authenticated,
                      * this becomes '/home/usernamehere'. NOTE: your Dav implementation
                      * may NOT use the /home/ protocol: it may not be a multiuser implementation,
                      * or uses a different directory, or something else.
@@ -445,7 +424,7 @@
                     }
                 };
 
-                /*
+                /* UNLOCK
                  * Attempts to unlock a resource
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -465,8 +444,7 @@
                     }
                 };
 
-                /*
-                 * PROPFIND
+                /* PROPFIND
                  * You can always call this method directly, being sure to pass the
                  * proper Xml request body in call object (#data).  However, the
                  * intention is to have this be the 'engine' that powers useful
@@ -475,14 +453,12 @@
                  * @param   {Object}    cob   A jQuery#ajax call object.
                  * @see     #getProperty
                  * @url     http://www.webdav.org/specs/rfc2518.html#METHOD_PROPFIND
-                 *
                  */
                 this.propFind = function(cob) {
                     this.prepare(cob, 'PROPFIND');
 
                     var depth = cob.headers.depth || 0;
-                    /*
-                     * Need to ensure that there is header information sent. Mainly,
+                    /* Need to ensure that there is header information sent. Mainly,
                      * for a PROPFIND there must be a depth property. Note that the
                      * default depth is zero(0).
                      */
@@ -494,8 +470,7 @@
                     return this.send(cob);
                 };
 
-                /*
-                 * PROPPATCH
+                /* PROPPATCH
                  * Allows the modification of live properties on resources.  You
                  * may pass a property to set, or a property to remove, or both.
                  * Namespacing is also permitted.
@@ -518,7 +493,6 @@
                  *
                  * @see     #setProperty
                  * @url     http://www.webdav.org/specs/rfc2518.html#METHOD_PROPPATCH
-                 *
                  */
                 this.propPatch = function(cob) {
                     this.prepare(cob, 'PROPPATCH');
@@ -551,7 +525,7 @@
                     return this.send(cob);
                 };
 
-                /*
+                /* PROPFIND (*)
                  * Fetches a property on a resource.
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -564,8 +538,7 @@
                     for (i = 0; i < props.length; i++) {
                         prop = props[i];
 
-                        /*
-                         * Also want to allow the sending of a simple property string
+                        /* Also want to allow the sending of a simple property string
                          * if only sending a property name. Instead of:
                          *   [{name: 'propname'}]
                          * send:
@@ -589,7 +562,7 @@
                     return this.propFind(cob);
                 };
 
-                /*
+                /* PROPPATCH (*)
                  * Shortcut method for propPatch (set property).
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -603,7 +576,7 @@
                     }
                 };
 
-                /*
+                /* PROPPATCH (*)
                  * Shortcut method for propPatch (remove property).
                  *
                  * @param   {Object}    cob   A jQuery#ajax call object.
@@ -619,13 +592,10 @@
 
 
                 /******************************************
-                 *
                  * Node traversal/manipulation methods
-                 *
                  ******************************************/
 
-                /*
-                 * Works exactly like getElementsByTagName, however introduces
+                /* Works exactly like getElementsByTagName, however introduces
                  * the ability to filter those results by namespace, which is
                  * important for handling DAV results.
                  *
@@ -641,23 +611,22 @@
                     if (typeof resource.getElementsByTagNameNS === 'function') {
                         lastNodeMatch = resource.getElementsByTagNameNS(ns, tag);
                     } else {
-                        /*
-                         * getElementsByTagNameNS is supported on IE 9 onwards
+                        /* getElementsByTagNameNS is supported on IE 9 onwards
                          * For IE mostly.
                          * setProperty is broken in IE < 8
                          */
                         resource.setProperty("SelectionLanguage", "XPath");
                         resource.setProperty("SelectionNamespaces", "xmlns:pref='" + ns + "'");
 
-                        /*Solution #1 setAttribute (merged for IE >= 8)
-                        resource.setAttribute("SelectionLanguage", "XPath");
-                        resource.setAttribute("SelectionNamespaces", "xmlns:pref='" + ns + "'");
+                        // //Solution #1 setAttribute (merged for IE >= 8)
+                        // resource.setAttribute("SelectionLanguage", "XPath");
+                        // resource.setAttribute("SelectionNamespaces", "xmlns:pref='" + ns + "'");
 
-                        Solution #2 jQuery prop()
-                        $(resource).prop({
-                            'SelectionLanguage':'XPath',
-                            'SelectionNamespaces': 'xmlns:pref="' + ns + '"'
-                        });*/
+                        // //Solution #2 jQuery prop()
+                        // $(resource).prop({
+                            // 'SelectionLanguage':'XPath',
+                            // 'SelectionNamespaces': 'xmlns:pref="' + ns + '"'
+                        // });
 
                         lastNodeMatch = resource.selectNodes("//pref:" + tag);
 
@@ -665,8 +634,7 @@
                     return lastNodeMatch;
                 };
 
-                /*
-                 * Sets `resource` to first node matched via #getNodesByTag, and
+                /* Sets `resource` to first node matched via #getNodesByTag, and
                  * returns `this`, allowing further processing.
                  *
                  * @param   {String}    tag     A tagName.
@@ -680,8 +648,7 @@
                     return this;
                 };
 
-                /*
-                 * Executes a function on each element of #lastNodeMatch
+                /* Executes a function on each element of #lastNodeMatch
                  */
                 this.eachNode = function(f) {
                     var i;
@@ -693,8 +660,7 @@
                     return this;
                 };
 
-                /*
-                 * Get the text contained by a node:
+                /* Get the text contained by a node:
                  * <tagname>foo</tagname> = 'foo'.
                  *
                  * @type      {String}
@@ -708,8 +674,7 @@
                     return t.replace(/[\n\r\t]/g, '');
                 };
 
-                /*
-                 * Returns the name of a node (the tag name, essentially). NOTE: result
+                /* Returns the name of a node (the tag name, essentially). NOTE: result
                  * returned by #getNodesByTag is an Array.  As such, even if the
                  * node you have sought (by tagName) is unique, the value of `resource`
                  * is an Array. Note as well that if you do not send an index argument, the
@@ -727,15 +692,13 @@
                     }
                 };
 
-                /*
-                 * Check if a <response> node is a collection.
+                /* Check if a <response> node is a collection.
                  * Basically it checks if there is a collection XML element inside
                  * a resourcetype property.
                  *
                  * @type    {Bool}
                  *
                  * @url     http://www.webdav.org/specs/rfc4918.html#PROPERTY_resourcetype
-                 *
                  */
                 this.isCollection = function() {
                     var is_collection = false;
@@ -754,12 +717,10 @@
                     return is_collection;
                 };
 
-                /*
-                 * Check if a <response> node is a collection in a DPM server.
+                /* Check if a <response> node is a collection in a DPM server.
                  * It just checks for the node text of the iscollection tag
                  *
                  * @type    {Bool}
-                 *
                  */
                 this.isCollectionDPM = function() {
                     var is_collection = false;
@@ -771,11 +732,9 @@
                 };
 
 
-                /*
-                 * Returns all the DPM defined properties
+                /* Returns all the WebDAV/DPM defined properties
                  *
                  * @type    {JSON}
-                 *
                  */
                 this.getProperties = function() {
                     if (lastNodeMatch.length > 0) {
@@ -793,13 +752,10 @@
                 };
 
                 /**************************************
-                 *
                  * Resource Http query methods
-                 *
                  **************************************/
 
-                /*
-                 * Prepares the DAV call.  Here we want to ensure integrity of
+                /* Prepares the DAV call.  Here we want to ensure integrity of
                  * call object, verify DAV method requested, set any authorization
                  * information (if necesssary), and return the modified call object.
                  * NOTE: This is called by the new jQuery extension #Dav; see below.
@@ -817,8 +773,7 @@
                     //Ensure that we have a method set, defaulting to GET.
                     cob.type = typ || 'GET';
 
-                    /*
-                     * WebDAV servers usually respond in XML.  Some Dav methods will
+                    /* WebDAV servers usually respond in XML.  Some Dav methods will
                      * not return anything at all, or return an empty response.  This
                      * matters to jQuery in that the #success method of a jQuery.ajax
                      * options object won't fire if the reponse could not be parsed
@@ -827,8 +782,7 @@
                      */
                     cob.dataType = cob.dataType || 'xml';
 
-                    /*
-                     * For Http methods not supported by the current browser, we use a
+                    /* For Http methods not supported by the current browser, we use a
                      * specialized PUT with query.  NOTE that this particular behaviour exists
                      * on the LimeBits server only.  If you do not extend the same support to
                      * your Dav server, it is simple to be optimistic and rewrite so that the
@@ -838,8 +792,7 @@
                      */
                     if (!methodSupported(cob.type)) {
 
-                        /*
-                         * Fetch authentication data, which is necessary for the execution of
+                        /* Fetch authentication data, which is necessary for the execution of
                          * any methods, by this user, which are DENY-d to 'unauthenticated' principal.
                          */
                         var auth = document.cookie.match(new RegExp('(^|;)\\s*' + escape("auth") + '=([^;\\s]*)'));
@@ -856,8 +809,7 @@
                     }
                 };
 
-                /*
-                 * Does the actual HTTP send.
+                /* Here the actual HTTP petition is sent via ajax.
                  *
                  * @param   {Object}    cob     jQuery call object.
                  */
@@ -867,9 +819,7 @@
                 };
 
                 /************************************************************
-                 *
                  * Some optional, additional methods you might want to use.
-                 *
                  ************************************************************/
 
                 this.getAllProperties = function(cob) {
@@ -891,14 +841,12 @@
                     return this.propFind(cob);
                 };
 
-                /*
-                 * Simply a depth (1) #getAllProperties -- an alias that should
+                /* Simply a depth (1) #getAllProperties -- an alias that should
                  * make it easier to follow what is going on, dpm.readFolder()
                  * instead of dpm.getAllProperties({ depth: 1 });
                  */
                 this.readFolder = function(cob) {
-                    /*
-                     * Since this ends up in a #propFind, we only need to
+                    /* Since this ends up in a #propFind, we only need to
                      * indicate the headers -- the extension of the headers
                      * will be done in the #propFind method.  We don't need
                      * to run #extendBeforeSend manually, in other words.
@@ -910,12 +858,12 @@
                     return this.getAllProperties(cob);
                 };
 
-            }; // End Api definition
+            }; //End of Api definition
 
             return new Api();
 
-        } // End dpm extension definition
+        } //End of dpm extension definition
 
-    }); // End jQuery.fn.extend
+    }); //End of jQuery.fn.extend
 
 })(jQuery);
