@@ -732,7 +732,8 @@
                 };
 
 
-                /* Returns all the WebDAV/DPM defined properties
+                /* Returns all the WebDAV/DPM defined properties of a
+                 * <response> node
                  *
                  * @type    {JSON}
                  */
@@ -741,12 +742,14 @@
                         this.seekToNode('prop').eachNode(function(node) {
                             // if (node.childNodes.length !== 0) {
                                 // console.log(node.childNodes[3].textContent);
+                                // console.log(node.childNodes);
                             // }
                             var x = node.childNodes;
                             for (var i=0; i<x.length; i++){
                                 console.log(x[i].nodeName);
-                                console.log(x[i][0].textContent);
+                                // console.log(x[i][0].textContent);
                             }
+                            // console.log(node);
                         });
                     }
                 };

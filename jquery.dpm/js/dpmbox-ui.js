@@ -28,40 +28,10 @@
     'use strict';
     /* jshint browser: true, devel: true, jquery: true, eqeqeq: true, maxerr: 1000, quotmark: single */
 
-  // /**
-   // * Selectors
-   // */
-  // var menu = document.querySelector('.menu');
-  // var users = document.querySelectorAll('.user');
-  // var signout = document.querySelector('.signout');
-//
-  // /**
-   // * Methods
-   // */
-  // function toggleMenu (event) {
-    // if (!this.classList.contains('active')) {
-      // this.classList.add('active');
-    // }
-    // event.preventDefault();
-  // }
-  // function showUsers (users) {
-    // for (var i = 0; i < users.length; i++) {
-      // var self = users[i];
-      // self.classList.add('visible');
-    // }
-  // }
-  // function signout (users) {
-    // var xhr = new XMLHttpRequest();
-  // }
-//
-  // /**
-   // * Events/APIs/init
-   // */
-  // menu.addEventListener('click', toggleMenu, false);
-  // signout.addEventListener('click', signout, false);
-  // showUsers(users);
-//
 
+    /*************************************************
+     * Initial checkings
+     *************************************************/
 
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -72,8 +42,10 @@
     }
 
 
-    /* Functions to be executed at start (DOM ready)
-     */
+    /*************************************************
+     * Functions to be executed at start (DOM ready)
+     *************************************************/
+
     $(function() {
         setLayout();
         setSidebar();
@@ -81,10 +53,15 @@
         setToolbar();
     });
 
+    /*************************************************
+     * Support functions
+     *************************************************/
 
-    /* The next two functions operate over a route (http://arioch.cern.ch/dpm/cern.ch/home/dteam/) and compose different structures of data
-     * that are needed for some DPMbox operations. It would be ideal not to recalculate continuosly this data, and have it permanently at the system
-     * and change it appropiately while running... That would be studied. Anyway working this way the performance is not bad so we can live with it by now.
+    /* The next two functions operate over a route (http://arioch.cern.ch/dpm/cern.ch/home/dteam/)
+     * and compose different structures of data that are needed for some DPMbox operations.
+     * It would be ideal not to recalculate continuosly this data, and have it permanently at the
+     * system and change it appropiately while running... That would be studied. Anyway working
+     * this way the performance is not bad so we can live with it by now.
      */
 
     //A function that constructs a breadcrumb from a route setting the links incrementally
@@ -189,8 +166,22 @@
         });
     }
 
-    /* Files upload
+    /* A function to format properly the size, it will show no suffix
+     * for bytes size and its appropiate suffix for bigger sizes.
      */
+    function sizeNotBt (sizeStr) {
+        if (!w2utils.isFloat(sizeStr) || sizeStr === '') return '';
+        sizeStr = parseFloat(sizeStr);
+        if (sizeStr === 0) return 0;
+        var sizes = ['', 'KB', 'MB', 'GB', 'TB'];
+        var i = parseInt( Math.floor( Math.log(sizeStr) / Math.log(1024) ) );
+        return (Math.floor(sizeStr / Math.pow(1024, i) * 10) / 10).toFixed(i === 0 ? 0 : 1) + ' ' + sizes[i];
+    }
+
+    /*************************************************
+     * Files upload
+     *************************************************/
+
     var fileSelector = document.createElement('input');
     fileSelector.setAttribute('type', 'file');
     fileSelector.setAttribute('multiple', 'multiple');
@@ -203,15 +194,6 @@
         fileSelector.click();
         return false;
     };
-
-    var oldUILink = document.createElement('a');
-    oldUILink.setAttribute('href', '#');
-    oldUILink.innerText = 'Switch back to old UI';
-    oldUILink.text = 'Switch back to old UI';
-    oldUILink.onclick = function() {
-    	document.cookie = "lcgdm_dav.ui=old; path=/; expires=Thu, 1 January 1970 00:00:00 GMT;";
-    	location.reload(true);
-    }
 
     function handleFileSelect(evt) { //This is kind of a mess now
 
@@ -261,7 +243,7 @@
                                             case 201: //Uploaded (DPM)
                                                 w2ui.grid.unlock();
                                                 w2alert('Uploaded ' + escapeHtml(this.data.name) + '(' + (this.data.type || 'n/a') + ') - ' + this.data.size + ' bytes', 'Upload complete');
-                                                // refreshContent(location.pathname);
+                                                refreshContent(location.pathname);
                                                 break;
                                                 // upload_count--;
                                             default:
@@ -285,6 +267,7 @@
                                     // else
                                         // summaryPopup('Problems uploading', upload_array, upload_results, refreshContent(location.pathname));
                                 // }
+                                w2ui.grid.unlock();
                                 errorPopup(xhr, w2ui.grid.unlock());
 
                         }
@@ -296,15 +279,16 @@
     }
 
     document.body.appendChild(selectDialogueLink);
-    document.body.appendChild(oldUILink);
     fileSelector.addEventListener('change', handleFileSelect, false);
 
 
-    /* Files download
+    /*************************************************
+     * Files download
      * ! DownloadJS v0.5.2
      * Denis Radin aka PixelsCommander
      * Article about: http://pixelscommander.com/en/javascript/javascript-file-download-ignore-content-type/
-     */
+     *************************************************/
+
     var downloadFile = function (sUrl) {
         //iOS devices do not support downloading. We have to inform user about this.
         if (/(iP)/g.test(navigator.userAgent)) {
@@ -342,6 +326,27 @@
     downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
 
 
+    /*************************************************
+     * Setting the link to the previous UI
+     * It basically just set a cookie on the browser
+     *************************************************/
+
+    var oldUILink = document.createElement('a');
+    oldUILink.setAttribute('href', '#');
+    oldUILink.innerText = 'Switch back to old UI';
+    oldUILink.text = 'Switch back to old UI';
+    oldUILink.onclick = function() {
+    	document.cookie = "lcgdm_dav.ui=old; path=/; expires=Thu, 1 January 1970 00:00:00 GMT;";
+    	location.reload(true);
+    }
+
+    document.body.appendChild(oldUILink);
+
+
+    /*************************************************
+     * w2ui components related functions
+     *************************************************/
+
     /* A function to update the sidebar content
      */
     function refreshSidebar(){
@@ -349,7 +354,7 @@
             success:    function(dat) {
                 //w2ui.sidebar.add(upper_tree);
                 // var first_parent = w2ui.sidebar.find({ first_parent: true });
-                w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeDPMparent(dat));
+                w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeJSONparent(dat));
                 w2ui.sidebar.select(w2utils.base64encode(location.pathname));
                 // w2ui.sidebar.expand(location.pathname);
                 // w2ui.sidebar.insert(location.pathname,upper_tree);
@@ -374,7 +379,7 @@
         $.dpm(config.server + directory_route).readFolder({
             success:    function(dat) {
                 w2ui.grid.clear();
-                w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                w2ui.grid.add($.dpmFilters.filesJSON(dat));
                 w2ui.grid.unlock();
             },
             complete: function(xhr){
@@ -442,25 +447,18 @@
                     success: function(dat) {
                         //Grid
                         w2ui.grid.clear();
-                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        w2ui.grid.add($.dpmFilters.filesJSON(dat));
                         w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
                         w2ui.grid.unlock();
                         //Sidebar
-                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPMchildren(dat));
-                        // w2ui.sidebar.add(event.target, dat);
-                        //Which way is better to expand nodes?
-                        // if (item_selected == event.target){
-                            // console.log(item_selected);
-                            // console.log(event.target);
-                            // w2ui.sidebar.toggle(event.target);
-                        // }
-                        // else{
-                        // }
+                        w2ui.sidebar.add(record.id, $.dpmFilters.treeJSONchildren(dat));
                         w2ui.sidebar.get(record.id).icon = 'fa fa-folder'; //In success we change the icon showing that the node has been read
                         // w2ui.sidebar.get(record.id).count = w2ui.sidebar.get(record.id).nodes.length; //This information (number of children) could be useful but is very ugly
                         // w2ui.sidebar.get(record.id).count = w2ui.grid.total; //This information (number of files of directory) could be useful but is very ugly
                         w2ui.sidebar.refresh(record.id); //We need to refresh it to show the changes
-                        w2ui.sidebar.expand(w2ui.sidebar.selected);
+                        // if (w2ui.sidebar.get(record.id).nodes)
+                        if (w2ui.sidebar.get(record.id).nodes.length) //We only expand a node if children have been added to it
+                            w2ui.sidebar.expand(record.id);
                     },
                     complete: function(xhr){
                         switch(xhr.status){
@@ -485,7 +483,7 @@
                 // $.dpm(event.target).readFolder({
                     // success:    function(dat) {
                     // },
-                    // dataFilter: $.dpmFilters.treeDPM
+                    // dataFilter: $.dpmFilters.treeJSON
                 // });
                 // event.onComplete = function () {
                     // w2ui['sidebar'].expand(event.target);
@@ -529,7 +527,7 @@
                 {'caption':'Filename','field':'filename','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.filename).split('/').pop();}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (Number(record.size)/1024).toFixed(2) + ' KB';}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return (record.size + ' KB');}},
-                {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return w2utils.size(record.size);}},
+                {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return sizeNotBt(record.size);}},
                 // {'caption':'Size','field':'size','size':'20','min':'15','max':'','sortable':true,'resizable':true},
                 {'caption':'Modified','field':'mdate','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': function (record) {return w2utils.formatDateTime(record.mdate, 'dd/mm/yyyy,| hh24:mm:ss');}},
                 {'caption':'Modified','field':'mdate','size':'40%','min':'15','max':'','sortable':true,'resizable':true, 'render': 'date', 'hidden': true}
@@ -550,10 +548,10 @@
                          * sidebar, grid and the properties right sidebar
                          */
                         //First the sidebar that already has the upper tree
-                        w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeDPMparent(dat));
+                        w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeJSONparent(dat));
                         w2ui.sidebar.select(w2utils.base64encode(location.pathname));
                         //Now we add the records to the grid
-                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        w2ui.grid.add($.dpmFilters.filesJSON(dat));
                         //And then the content for the right sidebar
                         var record = w2ui.sidebar.get(w2utils.base64encode(decodeURI(location.pathname)));
                         w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
@@ -759,7 +757,7 @@
                             // w2alert("Collection " + collection_name + " created");
                             // $.dpm(route).readFolder({
                                 // success:    function(dat) {
-                                    // w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeDPMparent(dat));
+                                    // w2ui.sidebar.add(w2ui.sidebar.selected, $.dpmFilters.treeJSONparent(dat));
                                 // }
                             // });
                         // }

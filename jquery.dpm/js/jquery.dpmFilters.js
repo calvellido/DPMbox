@@ -27,13 +27,13 @@
  * ============================================================ */
 
 
- /* There are two ways of using this jquery.dpmFilters.
-  * If as a proper ajax data filter is necessary to return xml data. This
-  * way you can use it and manipulate it via the dataFilter paramenter
-  * in ajax calls.
-  * The other way and more common in DPMbox is to have it as functions
-  * that transforms received xml data that are manipulated into other
-  * structures like JSON objects adapted to DPMbox UI notation.
+ /* There were two ways of approaching this jquery.dpmFilters functions.
+  * If as proper ajax data filters it was necessary to return xml data.
+  * This way it would be possible to use them and manipulate the data
+  * via the dataFilter parameter in ajax calls.
+  * The other way, that is the way that these functions are implemented
+  * in DPMbox, is to have it as functions that transforms the received XML
+  * data into other structures like JSON objects adapted to DPMbox UI notation.
   */
 
     // Use the browser's built-in functionality to quickly and safely escape the string
@@ -78,10 +78,10 @@
             return dat;
         },
 
-        /* Similar to folder filter but will follow the JSON data structure
-         * for the DPMbox UI, specifically the grid.
+        /* Similar to folder filter but it will follow the JSON data
+         * structure for the DPMbox UI, specifically the grid.
          */
-        folderDPM: function(dat) {
+        folderJSON: function(dat) {
 
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
@@ -104,14 +104,14 @@
         /* Similar to the tree filter but it will build an array filled
          * with objects following the notation for the DPMbox interface:
          * {'id': nodeID, 'text': nodeName, 'icon': icon HTML class};
+         * This
          */
-        treeDPM: function(dat, datatype) {
+        treeJSON: function(dat, datatype) {
             // var xmlDoc = $.parseXML( dat );
             // var xmldoc = new XMLDocument(xmlString, true);
             // var xmldat = new XMLDocument(dat, true);
             var davTree = [];
-            var dat_object = $.parseXML(dat);
-            $.dpm(dat_object).seekToNode('response').eachNode(function(node_response) {
+            $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollectionDPM())
                     davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder-o'});
             });
@@ -121,7 +121,7 @@
         /* Similar as treeDPM, but it will return a tree structure with the main node above its children
          * collections (the main node with the children in its 'nodes' parameter).
          */
-        treeDPMparent: function(dat, datatype) {
+        treeJSONparent: function(dat, datatype) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollectionDPM())
@@ -139,7 +139,7 @@
         /* Again, similar as treeDPM, but this time it will return a structure with just
          * the children nodes of the given location.
          */
-        treeDPMchildren: function(dat, datatype) {
+        treeJSONchildren: function(dat, datatype) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if ($.dpm(node_response).isCollectionDPM())
@@ -167,7 +167,7 @@
          * DPMbox UI, specifically the grid:
          * {'recid': href, 'filename': href, 'size': getcontentlength, 'mdate': getlastmodified };
          */
-        filesDPM: function(dat) {
+        filesJSON: function(dat) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
                 if (!$.dpm(node_response).isCollection())
@@ -178,15 +178,23 @@
             return davTree;
         },
 
-        /* It will parse the properties of a node in a DPM server
-         * {'recid': href, 'filename': href, 'size': getcontentlength, 'mdate': getlastmodified };
+        /* Again this will be similar to files but this time it will build
+         * the structure with all the information that is present in
+         * the XML document that a DPM server responds with.
          */
-        properties: function(dat) {
-            var davTree = [];
-            $.dpm(dat).getProperties();
-            return davTree;
+        filesJSONDPM: function(dat) {
+            // $.dpm(dat).seekToNode('response');
+            // $.dpm(dat).getProperties();
+            // var davTree = [];
+            // $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
+                // if (!$.dpm(node_response).isCollectionDPM())
+                    // davTree.push({'recid': $.dpm(node_response).seekToNode('href').nodeText(), 'filename': decodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'size': Number($.dpm(node_response).seekToNode('getcontentlength').nodeText()), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
+                    // davTree.push({'recid': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': Number((Number($.dpm(node_response).seekToNode('getcontentlength').nodeText())/1024).toFixed(2)), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
+                    // $.dpm(node_response).getProperties()
+                    // davTree.push({'recid': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'filename': escapeHtml(decodeURI($.dpm(node_response).seekToNode('href').nodeText())), 'size': Number($.dpm(node_response).seekToNode('getcontentlength').nodeText()), 'mdate': new Date($.dpm(node_response).seekToNode('getlastmodified').nodeText())});
+            // });
+            // return davTree;
         }
-
     }
   });
 })(jQuery);
