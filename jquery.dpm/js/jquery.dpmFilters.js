@@ -112,7 +112,7 @@
             var davTree = [];
             var dat_object = $.parseXML(dat);
             $.dpm(dat_object).seekToNode('response').eachNode(function(node_response) {
-                if ($.dpm(node_response).isCollection())
+                if ($.dpm(node_response).isCollectionDPM())
                     davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder-o'});
             });
             return davTree;
@@ -124,7 +124,7 @@
         treeDPMparent: function(dat, datatype) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
-                if ($.dpm(node_response).isCollection())
+                if ($.dpm(node_response).isCollectionDPM())
                     // davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
                     davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
             });
@@ -142,7 +142,7 @@
         treeDPMchildren: function(dat, datatype) {
             var davTree = [];
             $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
-                if ($.dpm(node_response).isCollection())
+                if ($.dpm(node_response).isCollectionDPM())
                     // davTree.push({'id': $.dpm(node_response).seekToNode('href').nodeText(), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'icon': 'fa fa-folder'});
                     davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
             });

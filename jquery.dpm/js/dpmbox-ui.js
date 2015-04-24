@@ -77,7 +77,6 @@
     $(function() {
         setLayout();
         setSidebar();
-        refreshSidebar();
         setGrid();
         setToolbar();
     });
@@ -347,7 +346,7 @@
      */
     function refreshSidebar(){
         $.dpm(config.url()).readFolder({
-            success:    function(dat, stat, xhr) {
+            success:    function(dat) {
                 //w2ui.sidebar.add(upper_tree);
                 // var first_parent = w2ui.sidebar.find({ first_parent: true });
                 w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeDPMparent(dat));
@@ -409,6 +408,94 @@
     }
 
 
+    /* Sidebar definition
+     */
+    function setSidebar() {
+
+        window.onpopstate = function(event) {
+            /* It would be interesting to manipulate the history (as war winners do! :P)
+             * coordinated with the sidebar but it's not something simple,
+             * so by now we can live reloading the whole DPMbox to the
+             * location previously visited (not bad effect at all IMO)
+             */
+            // var node = w2utils.base64encode(location.pathname);
+            // if (w2ui.sidebar.get(node)){
+                // console.log(location.pathname);
+                // w2ui.sidebar.select(node);
+                // w2ui.sidebar.click(node);
+            // }
+            // else
+                window.location = document.location;
+        };
+
+        //We build the upper tree just parsing the location
+        var upper_tree = uppertreeConstruct(config.server + location.pathname);
+
+        $('#sidebar_div').w2sidebar({
+            name: 'sidebar',
+            nodes: upper_tree,
+            // onCollapse: function (event) { event.preventDefault() },
+            onClick: function (event) {
+                w2ui.grid.lock('Loading...');
+                var record = this.get(event.target);
+                $.dpm(config.server + record.path).readFolder({
+                    success: function(dat) {
+                        //Grid
+                        w2ui.grid.clear();
+                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
+                        w2ui.grid.unlock();
+                        //Sidebar
+                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPMchildren(dat));
+                        // w2ui.sidebar.add(event.target, dat);
+                        //Which way is better to expand nodes?
+                        // if (item_selected == event.target){
+                            // console.log(item_selected);
+                            // console.log(event.target);
+                            // w2ui.sidebar.toggle(event.target);
+                        // }
+                        // else{
+                        // }
+                        w2ui.sidebar.get(record.id).icon = 'fa fa-folder'; //In success we change the icon showing that the node has been read
+                        // w2ui.sidebar.get(record.id).count = w2ui.sidebar.get(record.id).nodes.length; //This information (number of children) could be useful but is very ugly
+                        // w2ui.sidebar.get(record.id).count = w2ui.grid.total; //This information (number of files of directory) could be useful but is very ugly
+                        w2ui.sidebar.refresh(record.id); //We need to refresh it to show the changes
+                        w2ui.sidebar.expand(w2ui.sidebar.selected);
+                    },
+                    complete: function(xhr){
+                        switch(xhr.status){
+                            case 207: //Success case
+                                break;
+                            default: //Unknown error (permissions, network...)
+                                errorPopup(xhr, w2ui.grid.unlock());
+                        }
+                    }
+                });
+                //For DPMbox and DPM node on the same server
+                var route = config.server + record.path;
+                history.pushState(null, null, route); //Won't reload the page at all
+                // window.location = route; //It will reload the page completely, not cool but functional
+
+                // $('#breadcrumb').html(config.server.(7) + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
+                // $('#breadcrumb').html(config.server + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
+                $('#breadcrumb').html(breadcrumbConstruct(route));
+
+            },
+            // onDblClick: function(event) {
+                // $.dpm(event.target).readFolder({
+                    // success:    function(dat) {
+                    // },
+                    // dataFilter: $.dpmFilters.treeDPM
+                // });
+                // event.onComplete = function () {
+                    // w2ui['sidebar'].expand(event.target);
+                // }
+            // },
+        });
+
+    }
+
+
     /* Grid definition
      */
     function setGrid() {
@@ -456,8 +543,19 @@
             onRender: function(){
                 $.dpm(config.url()).readFolder({
                     success:    function(dat) {
-                        var record = w2ui.sidebar.get(w2utils.base64encode(decodeURI(location.pathname)));
+                        /* Till this moment it hasn't been necessary to make any
+                         * HTTP call. Now it is (to set the records on the grid),
+                         * so we take davantage of this PROPFIND call and update all
+                         * the components that can extract data from it:
+                         * sidebar, grid and the properties right sidebar
+                         */
+                        //First the sidebar that already has the upper tree
+                        w2ui.sidebar.add(w2ui.sidebar.find({ first_parent: true })[0].id, $.dpmFilters.treeDPMparent(dat));
+                        w2ui.sidebar.select(w2utils.base64encode(location.pathname));
+                        //Now we add the records to the grid
                         w2ui.grid.add($.dpmFilters.filesDPM(dat));
+                        //And then the content for the right sidebar
+                        var record = w2ui.sidebar.get(w2utils.base64encode(decodeURI(location.pathname)));
                         w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
                     },
                     complete: function(xhr){
@@ -679,107 +777,6 @@
                 // }
             }
         });
-    }
-
-
-    /* Sidebar definition
-     */
-    function setSidebar() {
-
-        window.onpopstate = function(event) {
-            /* It would be interesting to manipulate the history (as war winners do! :P)
-             * coordinated with the sidebar but it's not something simple,
-             * so by now we can live reloading the whole DPMbox to the
-             * location previously visited (not bad effect at all IMO)
-             */
-            // var node = w2utils.base64encode(location.pathname);
-            // if (w2ui.sidebar.get(node)){
-                // console.log(location.pathname);
-                // w2ui.sidebar.select(node);
-                // w2ui.sidebar.click(node);
-            // }
-            // else
-                window.location = document.location;
-        };
-
-        var upper_tree = uppertreeConstruct(config.server + location.pathname);
-
-        $('#sidebar_div').w2sidebar({
-            name: 'sidebar',
-            nodes: upper_tree,
-            // onCollapse: function (event) { event.preventDefault() },
-            onClick: function (event) {
-                w2ui.grid.lock('Loading...');
-                var record = this.get(event.target);
-                $.dpm(config.server + record.path).readFolder({
-                    success: function(dat) {
-                        w2ui.grid.clear();
-                        w2ui.grid.add($.dpmFilters.filesDPM(dat));
-                        w2ui.layout.content('right', '<div class="label-section">Properties</div><br><br><img width="100px" height="100px" alt="collection" src="/static/DPMbox/jquery.dpm/img/folder.png"><br><div style="margin-top:8px; font-size:14px;">Collection</div><br><b>Name: </b>' + record.text + '<br><br><b>Route: </b>' + escapeHtml(decodeURI(record.path)) + '<br><br><b>Children: </b>' + record.nodes.length + '<br><br><b>Files: </b>' + w2ui.grid.total);
-                        w2ui.grid.unlock();
-                    },
-                    complete: function(xhr){
-                        switch(xhr.status){
-                            case 207: //Success case
-                                break;
-                            default: //Unknown error (permissions, network...)
-                                errorPopup(xhr, w2ui.grid.unlock());
-                        }
-                    }
-                });
-                $.dpm(config.server + record.path).readFolder({
-                    success:    function(dat) {
-                        w2ui.sidebar.add(event.target, $.dpmFilters.treeDPMchildren(dat));
-                        // w2ui.sidebar.add(event.target, dat);
-                        //Which way is better to expand nodes?
-                        // if (item_selected == event.target){
-                            // console.log(item_selected);
-                            // console.log(event.target);
-                            // w2ui.sidebar.toggle(event.target);
-                        // }
-                        // else{
-                        // }
-                        w2ui.sidebar.get(record.id).icon = 'fa fa-folder'; //In success we change the icon showing that the node has been read
-                        // w2ui.sidebar.get(record.id).count = w2ui.sidebar.get(record.id).nodes.length; //This information (number of children) could be useful but is very ugly
-                        // w2ui.sidebar.get(record.id).count = w2ui.grid.total; //This information (number of files of directory) could be useful but is very ugly
-                        w2ui.sidebar.refresh(record.id); //We need to refresh it to show the changes
-                        w2ui.sidebar.expand(w2ui.sidebar.selected);
-                    },
-                    complete: function(xhr){
-                        switch(xhr.status){
-                            case 207: //Success case
-                                break;
-                            default: //Unknown error (permissions, network...)
-                                errorPopup(xhr);
-                        }
-                    }
-                });
-                //For DPMbox and DPM node on the same server
-                var route = config.server + record.path;
-                history.pushState(null, null, route); //Won't reload the page at all
-                // window.location = route; //It will reload the page completely, not cool but functional
-
-                // $('#breadcrumb').html(config.server.(7) + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
-                // $('#breadcrumb').html(config.server + escapeHtml(decodeURI(route)).replace(/\//g,'</a> > <a href="">'));
-                $('#breadcrumb').html(breadcrumbConstruct(route));
-
-            },
-            // onDblClick: function(event) {
-                // $.dpm(event.target).readFolder({
-                    // success:    function(dat) {
-                    // },
-                    // dataFilter: $.dpmFilters.treeDPM
-                // });
-                // event.onComplete = function () {
-                    // w2ui['sidebar'].expand(event.target);
-                // }
-            // },
-            // menu: ["Menu1", "Menu2"]
-        });
-        // w2ui.sidebar.on('*', function (event) {
-            // console.log('Event: ' + event.type + ' Target: ' + event.target);
-            // console.log(event);
-        // });
     }
 
 
