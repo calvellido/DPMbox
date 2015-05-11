@@ -15,7 +15,7 @@ In this edition DPMbox was considered the [Best Web Project][premios] by the [ev
 I want to thank the organization for its work on CUSL through all its nine editions, the selection committee for considering DPMbox the best web project, and the people from [Osluz][osluz] for giving us a charming stay in Zaragoza.
 
 {: .imagen_sm}
-![Foto de familia del IX CUSL]({{ site.baseurl }}/assets/home/juanmvcalvellido/Descargas/cusl9-foto-familia2.jpg)
+![Foto de familia del IX CUSL]({{ site.baseurl }}/assets/cusl9-foto-familia2.jpg)
 
 ¡¡Viva el software libre!!  =)
 
