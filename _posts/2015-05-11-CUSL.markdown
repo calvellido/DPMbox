@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "DPMbox awarded at CUSL"
+date:   2015-05-11 11:55:24
+categories:
+---
+Hi everybody! I'm delighted 'cause DPMbox received an award at the ninth edition of [*Concurso Universitario de Software Libre*][CUSL] whose closing event was held in Zaragoza last Thursday and Friday.
+
+The “Concurso Universitario de Software Libre” (CUSL, Free Software University Contest), is a contest of free software/hardware development and free technical documentation. It is an initiative similar to the [Google Summer of Code][gsoc], but specifically aimed to the spanish university and high school students, and organized by a group of free software university offices. 
+
+Its main objective is to encourage the creation and contribute to the consolidation of the free software community at university. After nine editions, more than 700 projects and a thousand students have took part through the years.
+
+In this edition DPMbox was considered the [Best Web Project][premios] by the [evaluation committee][comite], I'm really pleased!
+
+I want to thank the organization for its work on CUSL through all its nine editions, the selection committee for considering DPMbox the best web project, and the people from [Osluz][osluz] for giving us a charming stay in Zaragoza.
+
+{: .imagen_sm}
+![Foto de familia del IX CUSL]({{ site.baseurl }}/assets/home/juanmvcalvellido/Descargas/cusl9-foto-familia2.jpg)
+
+¡¡Viva el software libre!!  =)
+
+
+[CUSL]: http://www.concursosoftwarelibre.org/1415/portada
+[comite]: http://www.concursosoftwarelibre.org/1415/comite
+[gsoc]: http://www.google-melange.com/
+[fasefinal]: http://www.concursosoftwarelibre.org/1415/fase-final
+[premios]: http://www.concursosoftwarelibre.org/1415/node/34
+[osluz]: http://osluz.unizar.es/
