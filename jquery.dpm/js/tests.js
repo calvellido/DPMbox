@@ -26,99 +26,84 @@
  *
  * ============================================================ */
 
-function tests()
-  {
+/*************************************************
+ * Testing functions suite for jQuery.dpm.js
+ *************************************************/
 
-    var url = '/webdav/';
-    //var url = 'http://webdav.cloudme.com/calvellido/';
-    //var url = 'https://calvellido:valencia@webdav.cloudme.com/calvellido/';
+ /* Basically it will check if the server defined in config.js is a
+  * valid WebDAV server executing all the HTTP/WebDAV methods of jQuery.dpm.js.
+  * This way you can observe these calls seeing if the server works properly.
+  */
 
-    /*jQuery.dpm(url).readFolder({
-      success:    function(dat, stat) {
-        console.log(jQuery.dpm(dat).seekToNode('propstat').seekToNode('getlastmodified').nodeText());
-      }
-    });
+function tests(){
 
-    jQuery.dpm(url).readFolder({
-      success:    function(dat, stat) {
-        console.log(jQuery.dpm(dat).getNodesByTag('propstat'));
-      },
-      dataFilter: jQuery.dpmFilters.folder
-    });
-	*/
-    /*jQuery.dpm(url).readFolder({
-      success:    function(dat, stat) {
-        //jQuery.dpm(dat).getNodesByTag('href');
-        //console.log(jQuery.dpm(dat).nodeName(0));
-        //$('#content').append(jQuery.dpm(dat).getNodesByTag('href')[0].textContent);
-        //$('#content').append(jQuery.dpm(dat).getNodesByTag('href')[0].nodeText());
-        //$('#content').append(jQuery.dpm(dat).nodeText());
-        jQuery.dpm(dat).seekToNode('href').eachNode(function(node, i) {
-			$('#content').append(jQuery.dpm(node).nodeText() + '<br>');
-        });
-      },
-      dataFilter: jQuery.dpmFilters.folder
-    });
-    */
+    //Some directives for JSHint (JS code analyzer)
+    'use strict';
+    /* jshint browser: true, devel: true, jquery: true, eqeqeq: true, maxerr: 1000, quotmark: single, multistr: true*/
 
-    jQuery.dpm(url).readFolder({
-		success:    function(dat, stat) {
-			//jQuery.dpm(dat).getNodesByTag('href');
-			//console.log(jQuery.dpm(dat).nodeName(0));
-			//$('#content').append(jQuery.dpm(dat).getNodesByTag('href')[0].textContent);
-			//$('#content').append(jQuery.dpm(dat).getNodesByTag('href')[0].nodeText());
-			//$('#content').append(jQuery.dpm(dat).nodeText());
-			jQuery.dpm(dat).seekToNode('href').eachNode(function(node, i) {
-				$('#content').append(jQuery.dpm(node).nodeText() + '<br>');
-			});
-		},
-		dataFilter: jQuery.dpmFilters.folder
-    });
+    var url = config.url(); //Defined here to avoid calling the functions multiple times unnecessaryly
+
+    // $.dpm(url).readFolder({
+        // async: false, //Set synchronous to complete this test before the next one
+		// success:    function(dat, stat) {
+			// //$.dpm(dat).getNodesByTag('href');
+			// //console.log($.dpm(dat).nodeName(0));
+			// //$('#content').append($.dpm(dat).getNodesByTag('href')[0].textContent);
+			// //$('#content').append($.dpm(dat).getNodesByTag('href')[0].nodeText());
+			// //$('#content').append($.dpm(dat).nodeText());
+			// $.dpm(dat).seekToNode('href').eachNode(function(node, i) {
+				// $('#content').append($.dpm(node).nodeText() + '<br>');
+			// });
+		// },
+		// dataFilter: $.dpmFilters.folder
+    // });
 
 
-    /**
+    /****************************************************
      * Initial tests
-     */
+     ****************************************************/
 
-    // #get
-    jQuery.dpm(url + 'testxml.xml').get({
-      complete: function() {
-        console.log('#get');
-      },
-      success:  function(dat, stat) {
-        console.log(jQuery.dpm(dat).getNodesByTag('acl'));
-      }
+    //#get
+    $.dpm(url + 'testxml.xml').get({
+        async: false, //Set synchronous to complete this test before the next one
+        complete: function() {
+            console.log('#get');
+        },
+        success:  function(dat, stat) {
+            console.log($.dpm(dat).getNodesByTag('acl'));
+        }
     });
 
-    // #post
-    jQuery.dpm(url + 'file_0').post({
-      complete: function(dat, stat) {
-        console.log('#post');
-        console.log('post test status: ' + stat);
-      },
-      data: {
-        foo: 'bar',
-        bar: 'foo'
-      }
+    //#post
+    $.dpm(url + 'file_0').post({
+        async: false, //Set synchronous to complete this test before the next one
+        complete: function(dat, stat) {
+            console.log('#post');
+            console.log('post test status: ' + stat);
+        },
+        data: {
+            foo: 'bar',
+            bar: 'foo'
+        }
     });
 
-    // head
-    jQuery.dpm(url + 'file_0').head({
-      async: false, // want to make sure we do this prior to next test
-      complete:  function(dat, stat) {
-        console.log('#head');
-        console.log(dat);
-      }
+    //head
+    $.dpm(url + 'file_0').head({
+        async: false, //Set synchronous to complete this test before the next one
+        complete:  function(dat, stat) {
+            console.log('#head');
+            console.log(dat);
+        }
     });
 
-    // #propFind
-    jQuery.dpm(url + 'file_0').propFind({
-      async: false, // want to make sure we do this prior to next test
-      success:  function(dat, stat) {
-        console.log('#propFind > getcontentlength:');
-        console.log(jQuery.dpm(dat).seekToNode('getcontentlength').nodeText());
-      },
-      data: '<?xml version="1.0" encoding="utf-8" ?>\
+    //#propFind
+    $.dpm(url + 'file_0').propFind({
+        async: false, //Set synchronous to complete this test before the next one
+        success:  function(dat, stat) {
+            console.log('#propFind > getcontentlength:');
+            console.log($.dpm(dat).seekToNode('getcontentlength').nodeText());
+        },
+        data: '<?xml version="1.0" encoding="utf-8" ?>\
               <propfind xmlns="DAV:">\
                 <prop>\
                   <P:getcontentlength xmlns:P="DAV:"/>\
@@ -126,330 +111,320 @@ function tests()
               </propfind>'
     });
 
-
-    // #getAllProperties
-    jQuery.dpm(url + 'testxml.xml').getAllProperties({
-      async: false, // want to make sure we do this prior to next test
-      complete: function() {
-        console.log('#getAllProperties');
-      },
-      success:  function(dat, stat) {
-        console.log(jQuery.dpm(dat).seekToNode('propstat').nodeName());
-      }
+    //#getAllProperties
+    $.dpm(url + 'testxml.xml').getAllProperties({
+        async: false, //Set synchronous to complete this test before the next one
+        complete: function() {
+            console.log('#getAllProperties');
+        }
     });
+
 
     /****************************************************
-     *
-     * Test propPatch-ing, setting, removing, getting.
-     *
+     * Test propPatch-ing, setting, removing, getting
      ****************************************************/
 
-
-    // #propPatch > set
-    jQuery.dpm(url + 'testxml.xml').propPatch({
-      async: false, // want to make sure we do this prior to next test
-      complete:  function(dat, stat) {
-        console.log('#propPatch > set testingprop to `somevalue`');
-        console.log(stat);
-      },
-      setProperty: {
-        name: 'testingprop',
-        value: 'somevalue'
-      }
+    //#propPatch > set
+    $.dpm(url + 'testxml.xml').propPatch({
+        async: false, //Set synchronous to complete this test before the next one
+            complete:  function(dat, stat) {
+                console.log('#propPatch > set testingprop to `somevalue`');
+                console.log(stat);
+        },
+        setProperty: {
+            name: 'testingprop',
+            value: 'somevalue'
+        }
     });
 
-    // #getProperty
-    jQuery.dpm(url + 'testxml.xml').getProperty({
-      async: false, // want to make sure we do this prior to next test
-      property: [
-        'testingprop'
-      ],
-      success:  function(dat, stat) {
-        console.log('#getProperty > get testingprop, should be `somevalue`');
-        console.log(jQuery.dpm(dat).seekToNode('testingprop').nodeText());
-      }
+    //#getProperty
+    $.dpm(url + 'testxml.xml').getProperty({
+        async: false, //Set synchronous to complete this test before the next one
+        property: [
+            'testingprop'
+        ],
+        success:  function(dat, stat) {
+            console.log('#getProperty > get testingprop, should be `somevalue`');
+            console.log($.dpm(dat).seekToNode('testingprop').nodeText());
+        }
     });
 
-    // #propPatch > remove
-    jQuery.dpm(url + 'testxml.xml').propPatch({
-      complete:  function(dat, stat) {
-        console.log('#propPatch > remove testingprop');
-        console.log(stat);
-      },
-      async: false, // want to make sure we do this prior to next test
-      removeProperty: {
-        name: 'testingprop'
-      }
+    //#propPatch > remove
+    $.dpm(url + 'testxml.xml').propPatch({
+        complete:  function(dat, stat) {
+            console.log('#propPatch > remove testingprop');
+            console.log(stat);
+        },
+        async: false, //Set synchronous to complete this test before the next one
+        removeProperty: {
+            name: 'testingprop'
+        }
     });
 
-    // #getProperty to test if removed
-    jQuery.dpm(url + 'testxml.xml').getProperty({
-      async: false, // want to make sure we do this prior to next test
-      property: [
-        'testingprop'
-      ],
-      success:  function(dat, stat) {
-        console.log('#getProperty > get testingprop, `node:` should be blank');
-        console.log('node: ' + jQuery.dpm(dat).seekToNode('testingprop').nodeText())
-      }
+    //#getProperty to test if removed
+    $.dpm(url + 'testxml.xml').getProperty({
+        async: false, //Set synchronous to complete this test before the next one
+        property: [
+            'testingprop'
+        ],
+        success:  function(dat, stat) {
+            console.log('#getProperty > get testingprop, `node:` should be blank');
+            console.log('node: ' + $.dpm(dat).seekToNode('testingprop').nodeText())
+        }
     });
 
-    // #setProperty
-    jQuery.dpm(url + 'testxml.xml').setProperty({
-      async: false, // want to make sure we do this prior to next test
-      complete:  function(dat, stat) {
-        console.log('#setProperty > set testingprop to `somevalue`');
-        console.log(stat);
-      },
-      property: {
-        name: 'testingprop',
-        value: 'somevalue'
-      }
+    //#setProperty
+    $.dpm(url + 'testxml.xml').setProperty({
+        async: false, //Set synchronous to complete this test before the next one
+        complete:  function(dat, stat) {
+            console.log('#setProperty > set testingprop to `somevalue`');
+            console.log(stat);
+        },
+        property: {
+            name: 'testingprop',
+            value: 'somevalue'
+        }
     });
 
-    // #getProperty to test if set
-    jQuery.dpm(url + 'testxml.xml').getProperty({
-      async: false, // want to make sure we do this prior to next test
-      property: [
-        'testingprop'
-      ],
-      success:  function(dat, stat) {
-        console.log('#getProperty > get testingprop, should be `somevalue`');
-        console.log(jQuery.dpm(dat).seekToNode('testingprop').nodeText())
-      }
+    //#getProperty to test if set
+    $.dpm(url + 'testxml.xml').getProperty({
+        async: false, //Set synchronous to complete this test before the next one
+        property: [
+            'testingprop'
+        ],
+        success:  function(dat, stat) {
+            console.log('#getProperty > get testingprop, should be `somevalue`');
+            console.log($.dpm(dat).seekToNode('testingprop').nodeText())
+        }
     });
 
-    // #removeProperty
-    jQuery.dpm(url + 'testxml.xml').removeProperty({
-      complete:  function(dat, stat) {
-        console.log('#removeProperty > remove testingprop');
-        console.log(stat);
-      },
-      async: false, // want to make sure we do this prior to next test
-      property: {
-        name: 'testingprop'
-      }
+    //#removeProperty
+    $.dpm(url + 'testxml.xml').removeProperty({
+        complete:  function(dat, stat) {
+            console.log('#removeProperty > remove testingprop');
+            console.log(stat);
+        },
+        async: false, //Set synchronous to complete this test before the next one
+        property: {
+            name: 'testingprop'
+        }
     });
 
-    // #getProperty to test if removed
-    jQuery.dpm(url + 'testxml.xml').getProperty({
-      async: false, // want to make sure we do this prior to next test
-      property: [
-        'testingprop'
-      ],
-      success:  function(dat, stat) {
-        console.log('#getProperty > get testingprop, `node:` should be blank');
-        console.log('node: ' + jQuery.dpm(dat).seekToNode('testingprop').nodeText())
-      }
+    //#getProperty to test if removed
+    $.dpm(url + 'testxml.xml').getProperty({
+        async: false, //Set synchronous to complete this test before the next one
+        property: [
+            'testingprop'
+        ],
+        success:  function(dat, stat) {
+            console.log('#getProperty > get testingprop, `node:` should be blank');
+            console.log('node: ' + $.dpm(dat).seekToNode('testingprop').nodeText())
+        }
     });
+
 
     /**************************************************************
-     *
      * Test creating/deleting files, using MKCOL, DELETE, and PUT
-     *
      **************************************************************/
 
-    // #put
-    jQuery.dpm(url + 'testing.html').put({
-      complete:  function(dat, stat) {
-        console.log('#put');
-      },
-      data: 'testing creating file with put',
-      async: false // want to make sure we do this prior to next test
+    //#put
+    $.dpm(url + 'testing.html').put({
+        complete:  function(dat, stat) {
+            console.log('#put');
+        },
+        data: 'testing creating file with put',
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #remove
-    jQuery.dpm(url + 'testing.html').remove({
-      complete:  function(dat, stat) {
-        console.log('#remove');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#remove
+    $.dpm(url + 'testing.html').remove({
+        complete:  function(dat, stat) {
+            console.log('#remove');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #mkcol
-    jQuery.dpm(url + 'test').mkcol({
-      complete:  function(dat, stat) {
-        console.log('#mkcol');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#mkcol
+    $.dpm(url + 'test').mkcol({
+        complete:  function(dat, stat) {
+            console.log('#mkcol');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #remove
-    jQuery.dpm(url + 'test').remove({
-      complete:  function(dat, stat) {
-        console.log('#remove folder');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#remove
+    $.dpm(url + 'test').remove({
+        complete:  function(dat, stat) {
+            console.log('#remove folder');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #createFile
-    jQuery.dpm(url + 'testing.html').createFile({
-      complete:  function(dat, stat) {
-        console.log('#createFile');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#createFile
+    $.dpm(url + 'testing.html').createFile({
+        complete:  function(dat, stat) {
+            console.log('#createFile');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #remove
-    jQuery.dpm(url + 'testing.html').remove({
-      complete:  function(dat, stat) {
-        console.log('#remove file');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#remove
+    $.dpm(url + 'testing.html').remove({
+        complete:  function(dat, stat) {
+            console.log('#remove file');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #createFolder
-    jQuery.dpm(url + 'test').createFolder({
-      complete:  function(dat, stat) {
-        console.log('#createFolder');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#createFolder
+    $.dpm(url + 'test').createFolder({
+        complete:  function(dat, stat) {
+            console.log('#createFolder');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // #remove
-    jQuery.dpm(url + 'test').remove({
-      complete:  function(dat, stat) {
-        console.log('#remove folder');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#remove
+    $.dpm(url + 'test').remove({
+        complete:  function(dat, stat) {
+            console.log('#remove folder');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
+
 
     /******************************************
-     *
-     * LOCKING, UNLOCKING
-     *
-     ******************************************/
+    * Locking, unlocking
+    ******************************************/
 
-    // #put temp lock file
-    jQuery.dpm(url + 'testlock.html').put({
-      complete:  function(dat, stat) {
-        console.log('#put create lockable resource');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#put temp lock file
+    $.dpm(url + 'testlock.html').put({
+        complete:  function(dat, stat) {
+            console.log('#put create lockable resource');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
-    // storing...
+    //storing...
     var tempLockVar = '';
 
-    // #lock
-    jQuery.dpm(url + 'testlock.html').lock({
-      username: 'sandro',
-      success:  function(dat, stat) {
-        tempLockVar = jQuery.dpm(dat).seekToNode('href').nodeText();
-        console.log('#lock successful');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#lock
+    $.dpm(url + 'testlock.html').lock({
+        username: 'sandro',
+        success:  function(dat, stat) {
+            tempLockVar = $.dpm(dat).seekToNode('href').nodeText();
+            console.log('#lock successful');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
 
-    // #unlock
-    jQuery.dpm(url + 'testlock.html').unlock({
-      lockToken: tempLockVar,
-      complete:  function(dat, stat) {
-        console.log('#unlock resource');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#unlock
+    $.dpm(url + 'testlock.html').unlock({
+        lockToken: tempLockVar,
+        complete:  function(dat, stat) {
+            console.log('#unlock resource');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
 
-    // #remove locked file
-    jQuery.dpm(url + 'testlock.html').remove({
-      complete:  function(dat, stat) {
-        console.log('#remove locked resource');
-      },
-      async: false // want to make sure we do this prior to next test
+    //#remove locked file
+    $.dpm(url + 'testlock.html').remove({
+        complete:  function(dat, stat) {
+            console.log('#remove locked resource');
+        },
+        async: false //Set synchronous to complete this test before the next one
     });
 
 
 
     /******************************************
-     *
      * Test CHECKIN/CHECKOUT/UNCHECKOUT
-     *
      ******************************************/
 /*
-    // #put -- create a file
-    jQuery.dpm(url + 'testing.html').put({
+    //#put -- create a file
+    $.dpm(url + 'testing.html').put({
       complete:  function(dat, stat) {
         console.log('#put VCR');
       },
       data: 'checkingin and out',
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 
-    // #versionControl
-    jQuery.dpm(url + 'testing.html').versionControl({
+    //#versionControl
+    $.dpm(url + 'testing.html').versionControl({
       complete:  function(dat, stat) {
         console.log('#versionControl');
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 
-    // #checkout
-    jQuery.dpm(url + 'testing.html').checkout({
+    //#checkout
+    $.dpm(url + 'testing.html').checkout({
       complete:  function(dat, stat) {
         console.log('#checkout');
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 
-    // #checkin
-    jQuery.dpm(url + 'testing.html').checkin({
+    //#checkin
+    $.dpm(url + 'testing.html').checkin({
       complete:  function(dat, stat) {
         console.log('#checkin');
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 
-    // #checkout
-    jQuery.dpm(url + 'testing.html').checkout({
+    //#checkout
+    $.dpm(url + 'testing.html').checkout({
       complete:  function(dat, stat) {
         console.log('#checkout');
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 */
 /*
-    // #checkin
-    jQuery.dpm(url + 'testing.html').checkin({
+    //#checkin
+    $.dpm(url + 'testing.html').checkin({
       success:  function(dat, stat) {
         console.log('#checkin');
         console.log(stat);
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 */
 /*
-    // #uncheckout
-    jQuery.dpm(url + 'testing.html').uncheckout({
+    //#uncheckout
+    $.dpm(url + 'testing.html').uncheckout({
       success:  function(dat, stat) {
         console.log('#uncheckout');
         console.log(stat);
       },
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 */
 /*
-    // #put -- try to put
-    jQuery.dpm(url + 'testing.html').put({
+    //#put -- try to put
+    $.dpm(url + 'testing.html').put({
       complete:  function(dat, stat) {
         console.log('#put');
       },
       data: 'after checking inout',
-      async: false // want to make sure we do this prior to next test
+      async: false //Set synchronous to complete this test before the next one
     });
 
-    // #getVersionTreeReport
-    jQuery.dpm(url + 'testing.html').getVersionTreeReport({
-      async: false, // want to make sure we do this prior to next test
+    //#getVersionTreeReport
+    $.dpm(url + 'testing.html').getVersionTreeReport({
+      async: false, //Set synchronous to complete this test before the next one
       success:  function(dat, stat) {
         console.log('#getVersionTreeReport');
         console.log(dat);
       },
-      dataFilter: jQuery.dpmFilters.versionReport
+      dataFilter: $.dpmFilters.versionReport
     });
 
-    jQuery.dpm(url + 'jDav.html').propFind({
+    $.dpm(url + 'jDav.html').propFind({
       data: '<?xml version="1.0" encoding="UTF-8" ?>\
               <propfind xmlns="DAV:">\
                 <prop>\
@@ -458,9 +433,9 @@ function tests()
               </propfind>',
       success: function(dat,stat) {
         console.log('#methodset');
-        console.log(jQuery.dpm(dat).getNodesByTag('multistatus'));
+        console.log($.dpm(dat).getNodesByTag('multistatus'));
       },
       async: false
     });
 */
-  }
+}

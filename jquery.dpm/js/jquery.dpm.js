@@ -1,6 +1,6 @@
 /* ============================================================
  *
- * jquery.dpm.js v0.5.0
+ * jquery.dpm.js v0.6.0
  * https://github.com/calvellido/DPMbox
  * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
@@ -27,12 +27,11 @@
  * ============================================================ */
 
 
-//Some directives for JSHint (JS code analyzer)
-/* jshint multistr: true */
-"use strict";
-
-
 (function ($) {
+
+    //Some directives for JSHint (JS code analyzer)
+    'use strict';
+    /* jshint browser: true, devel: true, jquery: true, eqeqeq: true, maxerr: 1000, quotmark: single, multistr: true*/
 
     /* The DAV methods you want to provide support for.
      *
@@ -504,21 +503,21 @@
 
                     var grouper = function(nm) {
                         var prop;
-                        var props = cob[nm + "Property"];
+                        var props = cob[nm + 'Property'];
                         var block = '<D:' + nm + '><D:prop>';
 
                         for (var i = 0; i < props.length; i++) {
                             prop = props[i];
                             if (prop.name) {
-                                block += "<P:" + prop.name + " xmlns:P=\"" + (prop.ns || "DAV:") + "\">" + prop.value + "</P:" + prop.name + ">";
+                                block += '<P:' + prop.name + ' xmlns:P=\"' + (prop.ns || 'DAV:') + '\">' + prop.value + '</P:' + prop.name + '>';
                             }
                         }
                         block += '</D:prop></D:' + nm + '>';
                         return block;
                     };
 
-                    cob.data += grouper("set");
-                    cob.data += grouper("remove");
+                    cob.data += grouper('set');
+                    cob.data += grouper('remove');
 
                     cob.data += '</D:propertyupdate>';
 
@@ -549,7 +548,7 @@
                         };
                         prop.ns = prop.ns || 'DAV:';
 
-                        xml = "<P:" + prop.name + " xmlns:P='" + prop.ns + "'/>";
+                        xml = '<P:' + prop.name + ' xmlns:P="' + prop.ns + '"/>';
                     }
 
                     cob.data = XmlHeader + '\
@@ -615,8 +614,8 @@
                          * For IE mostly.
                          * setProperty is broken in IE < 8
                          */
-                        resource.setProperty("SelectionLanguage", "XPath");
-                        resource.setProperty("SelectionNamespaces", "xmlns:pref='" + ns + "'");
+                        resource.setProperty('SelectionLanguage', 'XPath');
+                        resource.setProperty('SelectionNamespaces', 'xmlns:pref="' + ns + '"');
 
                         // //Solution #1 setAttribute (merged for IE >= 8)
                         // resource.setAttribute("SelectionLanguage", "XPath");
@@ -628,7 +627,7 @@
                             // 'SelectionNamespaces': 'xmlns:pref="' + ns + '"'
                         // });
 
-                        lastNodeMatch = resource.selectNodes("//pref:" + tag);
+                        lastNodeMatch = resource.selectNodes('//pref:' + tag);
 
                     }
                     return lastNodeMatch;
@@ -708,7 +707,7 @@
                                 var n = '';
                                 for (var v = 0; v < node.childNodes.length; v++) {
                                     n = resource.childNodes[v];
-                                    if (n.nodeName.replace('D:', '') == 'collection');
+                                    if (n.nodeName.replace('D:', '') === 'collection');
                                     is_collection = true;
                                 }
                             }
@@ -726,7 +725,7 @@
                     var is_collection = false;
                     if (lastNodeMatch.length > 0) {
                         this.seekToNode('iscollection');
-                        is_collection = (resource.textContent == 1);
+                        is_collection = (resource.textContent === 1);
                     }
                     return is_collection;
                 };
@@ -798,16 +797,16 @@
                         /* Fetch authentication data, which is necessary for the execution of
                          * any methods, by this user, which are DENY-d to 'unauthenticated' principal.
                          */
-                        var auth = document.cookie.match(new RegExp('(^|;)\\s*' + escape("auth") + '=([^;\\s]*)'));
+                        var auth = document.cookie.match(new RegExp('(^|;)\\s*' + escape('auth') + '=([^;\\s]*)'));
                         auth = auth ? unescape(auth[2]) : null;
 
                         if (auth) {
-                            auth = "&auth=" + auth;
+                            auth = '&auth=' + auth;
                         } else {
-                            auth = "";
+                            auth = '';
                         }
 
-                        cob.url += "?webdav-method=" + cob.type.toUpperCase() + auth;
+                        cob.url += '?webdav-method=' + cob.type.toUpperCase() + auth;
                         cob.type = 'POST';
                     }
                 };

@@ -1,8 +1,8 @@
 /* ============================================================
  *
- * dpmbox-ui.js
+ * config.js
  * https://github.com/calvellido/DPMbox
- * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
+ * Copyright (c) 2015 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
  * ============================================================
  *
@@ -43,5 +43,5 @@ var config = {
     server: location.protocol + '//' + location.host, //Can't access via https (need to figure it out why)
     root: location.pathname, //The backslash at end is needed
 
-    url: function(){ return (config.server + config.root)}
-}
+    url: function(){ return (config.server + config.root);}
+};
