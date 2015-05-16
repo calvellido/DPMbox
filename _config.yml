@@ -5,7 +5,7 @@ description: > # this means to ignore newlines until "baseurl:"
   An interactive user-friendly web interface for a disk-based grid storage system.
 #baseurl: "/DPMbox" # the subpath of your site, e.g. /blog/
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://calvellido.github.io" # the base hostname & protocol for your site
+url: "http://calvellido.github.io/DPMbox" # the base hostname & protocol for your site
 twitter_username: calvellido
 github_username:  calvellido
 
