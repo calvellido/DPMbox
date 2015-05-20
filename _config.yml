@@ -11,3 +11,7 @@ github_username:  calvellido
 
 # Build settings
 markdown: kramdown
+
+# Redirection
+gems:
+  - jekyll-redirect-from
