@@ -8,5 +8,13 @@
 
     <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
     <!--link rel="stylesheet" href="{{ "/stylesheets/stylesheet.css" | prepend: site.baseurl }}"-->
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <!--link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"-->
+    <link rel="canonical" href="http://dpmbox.calvellido.es"/>
+    
+    <script>
+    if (window.location.href.indexOf('http://calvellido.github.io/DPMbox') === 0) {
+        window.location.href = 'http://dpmbox.calvellido.es';
+    }
+    </script>
+    
 </head>
