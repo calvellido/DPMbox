@@ -97,7 +97,7 @@
 \fontencoding global
 \font_roman default
 \font_sans default
-\font_typewriter default
+\font_typewriter courier
 \font_math auto
 \font_default_family default
 \use_non_tex_fonts false
@@ -168,6 +168,7 @@
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
+\listings_params "keywordstyle={\color{blue}}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -372,7 +373,7 @@ bigskip
 \backslash
 LARGE 
 \backslash
-nohyphens{Titulación}}
+nohyphens{Grado en Ingeniería Informática}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -431,7 +432,8 @@ bigskip
 \backslash
 LARGE 
 \backslash
-nohyphens{Título del Proyecto Fin de Carrera}}
+nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based
+ grid storage system}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -481,7 +483,7 @@ bigskip
 
     {
 \backslash
-large Curso 20xx-20yy}
+large Curso 2014-2015}
 \end_layout
 
 \begin_layout Plain Layout
@@ -550,7 +552,7 @@ end{changemargin}
 
     {
 \backslash
-Large Nombre-autor Apellido1 Apellido2 
+Large Juan Valencia Calvellido 
 \backslash
 
 \backslash
@@ -582,7 +584,7 @@ bigskip
 
     {
 \backslash
-large Cádiz, xx de yy de zzzz}
+large Cádiz, xx de julio de 2015}
 \end_layout
 
 \begin_layout Plain Layout
@@ -724,7 +726,7 @@ bigskip
 \backslash
 LARGE 
 \backslash
-nohyphens{Titulación}}
+nohyphens{Grado en Ingeniería Informática}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -771,7 +773,8 @@ bigskip
 \backslash
 LARGE 
 \backslash
-nohyphens{Título del Proyecto Fin de Carrera}}
+nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based
+ grid storage system }}
 \end_layout
 
 \begin_layout Plain Layout
@@ -867,7 +870,7 @@ nohyphens{Ingeniería Informática.}
 \backslash
 textsc{Director del proyecto}: 
 \backslash
-nohyphens{Nombre-director Apellido1 Apellido2.} 
+nohyphens{Manuel Palomo Duarte.} 
 \backslash
 
 \backslash
@@ -880,7 +883,7 @@ nohyphens{Nombre-director Apellido1 Apellido2.}
 \backslash
 textsc{Autor del Proyecto}: 
 \backslash
-nohyphens{Nombre-autor Apellido1 Apellido2}.
+nohyphens{Juan Valencia Calvellido}.
  
 \backslash
 
@@ -942,7 +945,7 @@ large
 
 \begin_layout Plain Layout
 
-    Cádiz, xx de yy de zzzz
+    Cádiz, xx de julio de 2015
 \end_layout
 
 \begin_layout Plain Layout
@@ -1007,7 +1010,7 @@ bigskip
 
 \begin_layout Plain Layout
 
-    Fdo.: Nombre-autor Apellido1 Apellido2
+    Fdo.: Juan Valencia Calvellido
 \end_layout
 
 \begin_layout Plain Layout
@@ -1991,16 +1994,46 @@ Ayuda
 Motivación
 \end_layout
 
+\begin_layout Standard
+This was really motivating...
+\end_layout
+
 \begin_layout Section
 Objetivos
+\end_layout
+
+\begin_layout Standard
+The main objective was...
 \end_layout
 
 \begin_layout Section
 Alcance
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Section
 Visión general
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2078,6 +2111,17 @@ complejo Un evento que es una abstracción de otros eventos.
 Estado del arte
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Chapter
 Desarrollo del calendario
 \end_layout
@@ -2086,8 +2130,16 @@ Desarrollo del calendario
 Fases
 \end_layout
 
+\begin_layout Standard
+Etnozoica y mesozoica.
+\end_layout
+
 \begin_layout Section
 Diagrama de Gantt
+\end_layout
+
+\begin_layout Standard
+Su peaso de diagrama aquí.
 \end_layout
 
 \begin_layout Chapter
@@ -2102,16 +2154,46 @@ Perspectiva del producto
 Entorno del producto
 \end_layout
 
+\begin_layout Standard
+You can take a look at DPMbox from front to back, oh yeah.
+\end_layout
+
 \begin_layout Subsection
 Interfaz de usuario
+\end_layout
+
+\begin_layout Standard
+You can take a look at DPMbox from front to back, oh yeah.
 \end_layout
 
 \begin_layout Section
 Funciones
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Section
 Características del usuario
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2122,24 +2204,72 @@ Restricciones generales
 Control de versiones
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 Lenguajes de programación y tecnologías
+\end_layout
+
+\begin_layout Standard
+JavaScript, jQuery, w2ui...
 \end_layout
 
 \begin_layout Subsection
 Herramientas
 \end_layout
 
+\begin_layout Standard
+Geany (JSHint...), SmartGit, Firefox, Firefox Developer Edition, Firebug...
+\end_layout
+
 \begin_layout Subsection
 Sistemas operativos y hardware
 \end_layout
 
+\begin_layout Standard
+GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
+\end_layout
+
+\begin_layout Itemize
+HP Pavilion DV6 3040ES with the following technical specification:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Processor: Intel Core i7 Q720 
+\end_layout
+
+\begin_layout Itemize
+Memory: 4GB RAM 
+\end_layout
+
+\end_deeper
 \begin_layout Chapter
 Desarrollo del proyecto
 \end_layout
 
 \begin_layout Section
 Modelo de ciclo de vida
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2150,20 +2280,75 @@ Requisitos
 Funcionales
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 De información
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Subsection
 Reglas de negocio
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 Interfaz
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 No funcionales
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2174,12 +2359,45 @@ Análisis del sistema
 Casos de uso
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 Modelo conceptual de datos del dominio
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Subsection
 Diagramas de secuencia
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2189,7 +2407,7 @@ Diseño del sistema
 \begin_layout Section
 Implementación
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Juan: inclúyase en esta sección únicamente el código necesario para una
@@ -2202,12 +2420,45 @@ Juan: inclúyase en esta sección únicamente el código necesario para una
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/juanmvcalvellido/Documentos/UCA2015/TFG/DPMbox/js/config.js"
+lstparams "keywordstyle={\\color{blue}}"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Pruebas y validación
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Chapter
 Resumen
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Chapter
@@ -2218,12 +2469,45 @@ Conclusiones y trabajo futuro
 Conclusiones
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Section
 Trabajo futuro
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Chapter
 Agradecimientos
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Standard
@@ -2246,12 +2530,45 @@ appendix
 Manual de instalación
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Chapter
 Manual de usuario
 \end_layout
 
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
 \begin_layout Chapter
 Manual del desarrollador
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Standard
