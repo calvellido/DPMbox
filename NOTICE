@@ -1,12 +1,12 @@
 /* ============================================================
  *
- * DPMbox
- * https://github.com/calvellido/DPMbox
+ * jquery.dpm.js v1.0.0
+ * https://github.com/calvellido/DPMbox/jquery.dpm
  * Copyright (c) 2014 Juan Valencia Calvellido (juanvalenciacalvellido@gmail.com)
  *
  * ============================================================
  *
- * This product includes work based on jquery.dav, licensed under the Apache License, Version 2.0.
+ * This library is based on jquery.dav, licensed under the Apache License, Version 2.0.
  * https://github.com/sandro-pasquali/jquery.dav
  * Copyright (c) 2011 Sandro Pasquali (spasquali@gmail.com)
  *
