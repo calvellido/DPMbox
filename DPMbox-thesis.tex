@@ -1,24 +1,26 @@
-%% LyX 2.1.0 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[12pt,spanish,intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove]{scrbook}
+\documentclass[11pt,english,intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove]{scrbook}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
 \usepackage[a4paper]{geometry}
 \geometry{verbose,lmargin=3.5cm,rmargin=2.5cm}
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
 \usepackage{color}
 \usepackage{babel}
-\addto\shorthandsspanish{\spanishdeactivate{~<>}}
-
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage[unicode=true,pdfusetitle,
+\usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
  breaklinks=true,pdfborder={0 0 1},backref=false,colorlinks=true]
  {hyperref}
-\hypersetup{
+\hypersetup{pdftitle={DPMbox},
+ pdfauthor={Juan Valencia Calvellido},
+ pdfsubject={DPMbox},
+ pdfkeywords={DPMbox CERN DPM},
  linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue,pdfpagelayout=OneColumn, pdfnewwindow=true,pdfstartview=XYZ, plainpages=false, pdfpagelabels,pdftex}
-\usepackage{breakurl}
 
 \makeatletter
 
@@ -85,15 +87,19 @@
 %\renewcommand*{\index}[1]{\OrgIndex{#1}}
 
 \usepackage{listings}
-\renewcommand{\lstlistlistingname}{Listados}
-\renewcommand{\lstlistingname}{Listado}
+\renewcommand{\lstlistlistingname}{Listings}
+\renewcommand{\lstlistingname}{Listing}
 
 \usepackage{hyphenat}
 \usepackage{verbatim}
 
+%indentation, including first paragraph
+\setlength{\parindent}{1.5em}
+\usepackage{indentfirst}
+
 \AtBeginDocument{
-   \renewcommand{\tablename}{Tabla}
-   \renewcommand{\listtablename}{Índice de tablas}
+   \renewcommand{\tablename}{Table}
+   \renewcommand{\listtablename}{List of tables}
 }
 
 \newenvironment{changemargin}[2]{%
@@ -107,15 +113,17 @@
   }%
   \item[]}{\end{list}}
 
-\newenvironment{nota}{
+\newenvironment{note}{
   \begin{changemargin}{2em}{2em}
-    \textbf{\textsc{Nota: }}
+    \textbf{\textsc{Note: }}
 }{
   \end{changemargin}
 }
 
 \makeatother
 
+\usepackage{listings}
+\lstset{keywordstyle={\color{blue}}}
 \begin{document}
 \begin{titlepage}
   \centering
@@ -134,7 +142,7 @@
     \bigskip
     \bigskip
 
-    {\LARGE \nohyphens{Titulación}}
+    {\LARGE \nohyphens{Grado en Ingeniería Informática}}
 
     \bigskip
     \bigskip
@@ -143,7 +151,7 @@
     \bigskip
     \bigskip
 
-    {\LARGE \nohyphens{Título del Proyecto Fin de Carrera}}
+    {\LARGE \nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based grid storage system}}
 
     \bigskip
     \bigskip
@@ -151,7 +159,7 @@
     \bigskip
     \bigskip
 
-    {\large Curso 20xx-20yy}
+    {\large Curso 2014-2015}
 
     \bigskip
     \bigskip
@@ -162,11 +170,11 @@
       
     \end{changemargin}
 
-    {\Large Nombre-autor Apellido1 Apellido2 \\}
+    {\Large Juan Valencia Calvellido \\}
     \bigskip
     \bigskip 
     \bigskip 
-    {\large Cádiz, xx de yy de zzzz}
+    {\large Cádiz, xx de julio de 2015}
 
 \end{titlepage}
 \newpage{\pagestyle{empty}\cleardoublepage}  
@@ -187,14 +195,14 @@
       \bigskip
       \bigskip
       
-      {\LARGE \nohyphens{Titulación}}
+      {\LARGE \nohyphens{Grado en Ingeniería Informática}}
       
       \bigskip
       \bigskip
       \bigskip
       \bigskip
       
-      {\LARGE \nohyphens{Título del Proyecto Fin de Carrera}}
+      {\LARGE \nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based grid storage system }}
       
       \bigskip
       \bigskip
@@ -208,8 +216,8 @@
     \Large
 
     \textsc{Departamento}: \nohyphens{Ingeniería Informática.} \\
-    \textsc{Director del proyecto}: \nohyphens{Nombre-director Apellido1 Apellido2.} \\
-    \textsc{Autor del Proyecto}: \nohyphens{Nombre-autor Apellido1 Apellido2}. \\
+    \textsc{Director del proyecto}: \nohyphens{Manuel Palomo Duarte.} \\
+    \textsc{Autor del Proyecto}: \nohyphens{Juan Valencia Calvellido}. \\
   \end{flushleft}
   
   \bigskip
@@ -218,7 +226,7 @@
   
   \begin{flushright}
     \large
-    Cádiz, xx de yy de zzzz
+    Cádiz, xx de julio de 2015
 
     \bigskip    
     \bigskip
@@ -228,14 +236,25 @@
     \bigskip
     \bigskip
     \bigskip
-    Fdo.: Nombre-autor Apellido1 Apellido2
+    Fdo.: Juan Valencia Calvellido
     
   \end{flushright}
 
 }
 
 \clearpage
-\newpage{\pagestyle{empty}\cleardoublepage}  
+
+
+\section*{Abstract}
+
+DPMbox is a project for a friendly web interface for Disk Pool Manager,
+the most widely adopted storage management system in the Worldwide
+LHC Computing Grid infrastructure.
+
+
+\section*{Tags}
+
+WebDAV JavaScript Interface LHC DPM Disk Pool Manager CERN
 
 \tableofcontents{}
 
@@ -246,7 +265,7 @@
 
 
 
-\chapter{Introducción\label{cap:introducci=0000F3n}}
+\chapter{Introduction\label{cap:introducci=0000F3n}}
 
 Esta plantilla para el procesador de documentos \LyX{} (\url{http://www.lyx.org})
 está preparada para la redacción de una memoria de \ac{PFC} de las
@@ -264,7 +283,7 @@ la primera vez que aparezca en el texto. Para ello, debe definirse
 su acrónimo en la sección correspondiente dentro de este capítulo. 
 
 
-\section*{Formato y Estilo}
+\section*{Format and style}
 
 Los tres iconos de formato que presenta el procesador \LyX{} son <<cambiar
 énfasis>> (sería equivalente a cursiva), <<cambiar versalitas>>
@@ -273,7 +292,7 @@ formatos}: \emph{seleccionar la palabra > botón derecho > Estilo del
 texto > Personalizado}. 
 
 
-\section*{Etiquetas\label{sec:etiquetas}}
+\section*{Tags\label{sec:etiquetas}}
 
 Cada vez que se añada un capítulo, sección, tabla, figura, etc. debería
 asociársele una etiqueta para que pueda ser referenciado posteriormente. 
@@ -287,7 +306,7 @@ Para referenciar una etiqueta en el texto: \emph{Insertar>Referencia
 Cruzada}.
 
 
-\section*{Referencias\label{sec:referencias}}
+\section*{References\label{sec:referencias}}
 
 El autor de esta plantilla, Prof. Juan Boubeta Puig, es miembro del
 Grupo UCASE de Ingeniería del Software (TIC-025)~\cite{UCASE-2012}.
@@ -301,7 +320,7 @@ Todas las referencias deben tener fecha, incluidas las referencias
 web. 
 
 
-\section*{Figuras\label{sec:figuras}}
+\section*{Figures\label{sec:figuras}}
 
 Toda figura debe estar referenciada en el texto, es decir, no debería
 existir una figura a la que no se haga mención en el texto. Un ejemplo
@@ -328,7 +347,7 @@ figura insertada.
 
 
 
-\section*{Listados}
+\section*{Listings}
 
 Una opción es incluir directamente el código en el documento utilizando
 \emph{verbatim}: \begin{verbatim}
@@ -337,13 +356,13 @@ epService.getEPRuntime().sendEvent(evento);
 
 \LaTeX{} también permite incluir listados desde ficheros de texto,
 ajustando automáticamente las líneas de código a la configuración
-especificada. Puede verse un ejemplo en el Listado~\ref{lst:enviarEvento}.
+especificada. Puede verse un ejemplo en el Listado~\ref{lst:sendEvent}.
 
 \lstset{basicstyle=\footnotesize, frame=single, breaklines=true, tabsize=3}
-\lstinputlisting[caption=Envío de un evento a Esper, label=lst:enviarEvento]{enviarEvento.txt}
+\lstinputlisting[caption=Envío de un evento a Esper, label=lst:sendEvent]{sendEvent.txt}
 
 
-\section*{Tablas}
+\section*{Tables}
 
 A continuación, se presenta un ejemplo sobre cómo insertar y referenciar
 una tabla (véase la Tabla~\ref{tab:diferenciasSOA-EDA}).
@@ -385,35 +404,107 @@ vez que el flujo ha comenzado. & externas mientras el proceso esté activo.\tabul
 
 
 
-\section*{Más información}
+\section*{Further information}
 
 Para más información consúltese la ayuda de \LyX{} en el menú \emph{Ayuda}.
 
 
-\section{Motivación}
+\section{Motivation}
+
+The Disk Pool Manager (DPM) is a lightweight storage solution for
+grid sites. It offers a simple way to create a disk-based grid storage
+element and supports relevant protocols (SRM, gridFTP, RFIO) for file
+management and access. It focus on manageability (ease of installation,
+configuration, low effort of maintenance), while providing all required
+functionality for a grid storage solution (support for multiple disk
+server nodes, different space types, multiple file replicas in disk
+pools). It is installed in 185 different sites, with more than 200
+instances running as of today {[}1{]}.
+
+As an effort to move towards standard protocols that removes the need
+of special client tools, DPM started offering a WebDAV/HTTP interface,
+facilitating the access to grid storage via easily available clients
+as web browsers, or WebDAV clients. However, the current pure HTTP
+implementation only offers a primitive read-only interface via browsers,
+which limits the use cases to the mere navigation of directories and
+download of files. Attracting less technical users from non HEP (High
+Energy Physics) communities has been an objective for the last years.
+Precisely this partially triggered the interest on the HTTP protocol,
+and now follows naturally with a more intuitive, easy to use and user
+appealing graphic user interface. This project will provide a web
+interface that will integrate with the rest of the software stack,
+providing an easy and intuitive tool to both technical and nontechnical
+users to manage their data from and into the grid. The purpose is
+not to create a cloud storage system copycat, but to get advantage
+of the features that DPM grid system already offers (performance,
+different accessing protocols, data replication, etc.) adding the
+ease of use of the increasingly widespread cloud storage systems like
+Dropbox, OneDrive or Google Drive.
+
+As a web development the project DPMbox will use standard web technologies
+as HTML5 {[}7{]}, CSS3 {[}8{]} or JavaScript {[}9{]} and the final
+product must allow users to browse and access their data stored in
+DPM grid elements that provide the HTTP protocol in a manner that
+is straight forward for inexperienced users. With this said, the focus
+will be held mainly on usability and ease of use but other requirements
+must also be taken into consideration, including, obviously, security
+constraints. This interface will allow uploading new data to the directory
+a user is currently viewing, either via web formularies or in a drag-and-drop
+fashion. It should also add the ability to perform other sort of basic
+namespace management, as renaming or deleting. A read-only mode would
+be of interest as well as any other additional features that may be
+deemed of interest during development. 
+
+As the rest of the software involved in DPM the project will be developed
+under the Apache License version 2.0 {[}10{]}.
 
 
-\section{Objetivos}
+\section{Objectives}
+
+The main objective was...
 
 
-\section{Alcance}
+\section{Scope}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\section{Visión general}
+\section{Overview}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\section{Glosario}
+\section{Glossary}
 
 
-\subsection{Acrónimos}
+\subsection{Acronyms}
 
 \begin{acronym}
   \acro{PFC}{Proyecto Fin de Carrera}
   \acro{UCA}{Universidad de Cádiz}
+  \acro{DPM}{Disk Pool Manager}
+  \acro{LHC}{Large Hadron Collider}
+  \acro{LCG}{LHC Computing Grid}
+  \acro{LFC}{LCG File Catalog}
+  \acro{LFN}{Logical File Name}
+  \acro{SFN}{Storage File Name}
+  \acro{PFN}{Physical File Name}
 \end{acronym}
 
 
-\subsection{Definiciones}
+\subsection{Definitions}
 
 Para incluir definiciones en la memoria se puede utilizar el tipo
 <<descripción>>. Nótese que si el concepto a definir está compuesto
@@ -423,122 +514,375 @@ espacio protegido (Control+Espacio).
 \item [{Evento~complejo}] Un evento que es una abstracción de otros eventos.
 \end{description}
 
-\chapter{Estado del arte}
+\chapter{State of the art}
 
 
-\chapter{Desarrollo del calendario}
+\section{DPM and LFC}
 
+The Disk Pool Manager (DPM) and LCG File Catalog (LFC) are two grid
+components with more than 240 endpoints available. 
 
-\section{Fases}
+The purpose of the LFC is to allow the access and retrieval of any
+file using just its Logical File Name (LFN), without the need of knowing
+where exactly it is replicated\textsuperscript{1}. When a user does
+a request to an LFC, it will return a list of \textquotedblleft Storage
+File Name\textquotedblright{} (SFN) where this file can be retrieved. 
 
+DPM is a lightweight storage system mostly targeted at Tier-2 and
+medium size sites, providing reliable and scalable storage while keeping
+configuration and management simple\textsuperscript{1}. It maps a
+SFN to a Transfer URL (TURL), which is the association between a Physical
+File Name (PFN) and an access protocol such as RFIO, HTTP or GridFTP\textsuperscript{2}.
 
-\section{Diagrama de Gantt}
 
+\section{HTTP and WebDAV}
 
-\chapter{Descripción general del proyecto}
+The Hypertext Transfer Protocol (HTTP)\textsuperscript{3} is a well
+known and widely implemented standard protocol based on a client-server
+stateless model. It can be used as a data transfer protocol, where
+users request a resource to a specific server, which then sends the
+response back. 
 
+Web Distributed Authoring and Versioning (WebDAV)\textsuperscript{4}
+is an extension of the HTTP protocol. It provides a framework to handle
+metadata through the web, so users can create and retrieve resources,
+and also modify its associated properties, as owner, description,
+permissions and any other information that can be expressed as text
+or XML.
 
-\section{Perspectiva del producto}
+WebDAV extends the HTTP protocol allowing clients to perform web authoring
+operations\textsuperscript{4}. That is, it provides a framework to
+handle namespaces, so users can perform operations such as create,
+rename, modify or remove files and directories through the Web. 
 
+For this, it defines new methods for manipulating properties and collections
+(i.e. directories), and the possibility of passing parameters through
+XML on a request body, instead of HTTP headers or queries, so they
+can be easily extended. 
 
-\subsection{Entorno del producto}
+It also uses XML to encode the answers, as the list of properties
+of a file, or the content of a folder. 
 
 
-\subsection{Interfaz de usuario}
+\section{Objectives}
 
+Currently, when a user wants to retrieve a file, a catalog must be
+queried for different replicas of that file. Then, the client will
+be redirected to the site hosting that replica, and finally to its
+actual physical location within that site. Generally this is done
+automatically, but specific tools are needed. 
 
-\section{Funciones}
+HTTP supports this kind of behavior as the response of a request can
+be a redirection to a different location than the one originally demanded.
+The functionality is the same, but as it is an extremely wide implemented
+standard, data could be accessed from almost any kind of platform,
+from servers to mobile devices. 
 
+WebDAV give us, in addition, metadata handling. It is also a popular
+protocol, with clients available for a wide variety of operating systems. 
 
-\section{Características del usuario}
+Giving support to these standards we allow users to access their data
+easily and transparently, from any machine, through any platform,
+and using clients they already know how to use - for instance, web
+browsers. 
 
 
-\section{Restricciones generales}
+\chapter{Schedule}
 
 
-\subsection{Control de versiones}
+\section{Stages}
 
+Etnozoica y mesozoica.
 
-\subsection{Lenguajes de programación y tecnologías}
 
+\section{Gantt chart}
 
-\subsection{Herramientas}
+Su peaso de diagrama aquí.
 
 
-\subsection{Sistemas operativos y hardware}
+\chapter{Project general description}
 
 
-\chapter{Desarrollo del proyecto}
+\section{Product outlook}
 
 
-\section{Modelo de ciclo de vida}
+\subsection{Environment}
 
+You can take a look at DPMbox from front to back, oh yeah.
 
-\section{Requisitos}
 
+\subsection{User interface}
 
-\subsection{Funcionales}
+You can take a look at DPMbox from front to back, oh yeah.
 
 
-\subsection{De información}
+\section{Functions}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
-\subsection{Reglas de negocio}
 
+\section{User characteristics}
 
-\subsection{Interfaz}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\subsection{No funcionales}
+\section{General restrictions}
 
 
-\section{Análisis del sistema}
+\subsection{Version control}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
-\subsection{Casos de uso}
 
+\subsection{Program languages and technologies}
 
-\subsection{Modelo conceptual de datos del dominio}
+JavaScript, jQuery, w2ui...
 
 
-\subsection{Diagramas de secuencia}
+\subsection{Tools}
 
+Geany (JSHint...), SmartGit, Firefox, Firefox Developer Edition, Firebug...
 
-\section{Diseño del sistema}
 
+\subsection{Operating systems and hardware}
 
-\section{Implementación}
+GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
+\begin{itemize}
+\item HP Pavilion DV6 3040ES with the following technical specification:
 
+\begin{itemize}
+\item Processor: Intel Core i7 Q720 
+\item Memory: 4GB RAM 
+\end{itemize}
+\end{itemize}
 
-\section{Pruebas y validación}
+\chapter{Project development}
 
 
-\chapter{Resumen}
+\section{Life cycle model}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
-\chapter{Conclusiones y trabajo futuro}
 
+\section{Requirements}
 
-\section{Conclusiones}
 
+\subsection{Functional}
 
-\section{Trabajo futuro}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\chapter{Agradecimientos}
+\subsection{Information}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\subsection{Business rules}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\subsection{Interface}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\subsection{Non-functional}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\section{System analysis}
+
+
+\subsection{Use cases}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\subsection{Domain data conceptual model}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\subsection{Sequence diagram}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\section{System design}
+
+
+\section{Implementation}
+
+\lstinputlisting{/home/juanmvcalvellido/Documentos/UCA2015/TFG/TFG/Plantilla/DPMbox-memoria.tex}
+
+
+\section{Testing and validation}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\chapter{Summary}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\chapter{Conclusiones and future work}
+
+
+\section{Conclusions}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\section{Future work}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+
+\chapter{Acknowledgements}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 \appendix
 
 
-\chapter{Manual de instalación}
+\chapter{Installation manual}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\chapter{Manual de usuario}
+\chapter{User manual}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\chapter{Manual del desarrollador}
+\chapter{Developer manual}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 \bibliographystyle{splncs03}
-\bibliography{referencias}
+\bibliography{references}
 
 \end{document}
