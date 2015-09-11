@@ -11,6 +11,7 @@
 \usepackage{babel}
 \usepackage{longtable}
 \usepackage{booktabs}
+\usepackage{marvosym}
 \usepackage{graphicx}
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
@@ -120,10 +121,16 @@
   \end{changemargin}
 }
 
+\AtBeginDocument{
+  \def\labelitemi{\(\circ\)}
+  \def\labelitemii{\(\cdot\)}
+}
+
 \makeatother
 
 \usepackage{listings}
-\lstset{keywordstyle={\color{blue}}}
+\renewcommand{\lstlistingname}{Listing}
+
 \begin{document}
 \begin{titlepage}
   \centering
@@ -151,7 +158,10 @@
     \bigskip
     \bigskip
 
-    {\LARGE \nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based grid storage system}}
+	\includegraphics[width=.25\textwidth]{DPMbox}
+	\vspace{-10px}
+
+   {\LARGE \nohyphens{An interactive user-friendly web interface for a disk-based grid storage system}}
 
     \bigskip
     \bigskip
@@ -159,7 +169,7 @@
     \bigskip
     \bigskip
 
-    {\large Curso 2014-2015}
+    {\large Course 2014-2015}
 
     \bigskip
     \bigskip
@@ -174,7 +184,7 @@
     \bigskip
     \bigskip 
     \bigskip 
-    {\large Cádiz, xx de julio de 2015}
+    {\large Cádiz, xxth July 2015}
 
 \end{titlepage}
 \newpage{\pagestyle{empty}\cleardoublepage}  
@@ -215,9 +225,10 @@
   \begin{flushleft}
     \Large
 
-    \textsc{Departamento}: \nohyphens{Ingeniería Informática.} \\
-    \textsc{Director del proyecto}: \nohyphens{Manuel Palomo Duarte.} \\
-    \textsc{Autor del Proyecto}: \nohyphens{Juan Valencia Calvellido}. \\
+    \textsc{Departament}: \nohyphens{Ingeniería Informática} \\
+    \textsc{Supervisor}: \nohyphens{Manuel Palomo Duarte} \\
+	\textsc{Co-Supervisor}: \nohyphens{Alejandro Álvarez-Ayllón} \\
+    \textsc{Author}: \nohyphens{Juan Valencia Calvellido} \\
   \end{flushleft}
   
   \bigskip
@@ -226,7 +237,7 @@
   
   \begin{flushright}
     \large
-    Cádiz, xx de julio de 2015
+    Cádiz, xxth July 2015
 
     \bigskip    
     \bigskip
@@ -254,7 +265,7 @@ LHC Computing Grid infrastructure.
 
 \section*{Tags}
 
-WebDAV JavaScript Interface LHC DPM Disk Pool Manager CERN
+WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
 
 \tableofcontents{}
 
@@ -431,21 +442,57 @@ download of files. Attracting less technical users from non HEP (High
 Energy Physics) communities has been an objective for the last years.
 Precisely this partially triggered the interest on the HTTP protocol,
 and now follows naturally with a more intuitive, easy to use and user
-appealing graphic user interface. This project will provide a web
-interface that will integrate with the rest of the software stack,
-providing an easy and intuitive tool to both technical and nontechnical
-users to manage their data from and into the grid. The purpose is
-not to create a cloud storage system copycat, but to get advantage
-of the features that DPM grid system already offers (performance,
-different accessing protocols, data replication, etc.) adding the
-ease of use of the increasingly widespread cloud storage systems like
-Dropbox, OneDrive or Google Drive.
+appealing graphic user interface. 
+
+
+\section{Objectives}
+
+This project aims to provide a web interface that can integrate with
+the rest of the software stack, providing an easy and intuitive tool
+to both technical and nontechnical users to manage their data from
+and into the grid. The purpose is not to create a cloud storage system
+copycat, but to get advantage of the features that DPM grid system
+already offers (performance, different accessing protocols, data replication,
+etc.) adding the ease of use of the increasingly widespread cloud
+storage systems like Dropbox, OneDrive or Google Drive.
+
+Currently, when a user wants to retrieve a file, a catalog must be
+queried for different replicas of that file. Then, the client will
+be redirected to the site hosting that replica, and finally to its
+actual physical location within that site. Generally this is done
+automatically, but specific tools are needed. 
+
+HTTP supports this kind of behavior as the response of a request can
+be a redirection to a different location than the one originally demanded.
+The functionality is the same, but as it is an extremely wide implemented
+standard, data could be accessed from almost any kind of platform,
+from servers to mobile devices. 
+
+WebDAV give us, in addition, metadata handling. It is also a popular
+protocol, with clients available for a wide variety of operating systems. 
+
+Giving support to these standards we allow users to access their data
+easily and transparently, from any machine, through any platform,
+and using clients they already know how to use - for instance, web
+browsers. 
+
+Some cuadros here.
+
+
+\section{Scope}
+
+The development has followed a minimum viable product approach. Starting
+creating an interface based on the WebDAV protocol and then integrating
+it with the DPM stack.
+
+This can be then \textquotedblleft translated\textquotedblright{}
+to requirements (functional/non-functional)
 
 As a web development the project DPMbox will use standard web technologies
 as HTML5 {[}7{]}, CSS3 {[}8{]} or JavaScript {[}9{]} and the final
 product must allow users to browse and access their data stored in
 DPM grid elements that provide the HTTP protocol in a manner that
-is straight forward for inexperienced users. With this said, the focus
+is straight forward for unexperienced users. With this said, the focus
 will be held mainly on usability and ease of use but other requirements
 must also be taken into consideration, including, obviously, security
 constraints. This interface will allow uploading new data to the directory
@@ -459,40 +506,13 @@ As the rest of the software involved in DPM the project will be developed
 under the Apache License version 2.0 {[}10{]}.
 
 
-\section{Objectives}
-
-The main objective was...
-
-
-\section{Scope}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-
-\section{Overview}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-
 \section{Glossary}
 
 
 \subsection{Acronyms}
 
 \begin{acronym}
-  \acro{PFC}{Proyecto Fin de Carrera}
+  \acro{CERN}{European Organization for Nuclear Research}
   \acro{UCA}{Universidad de Cádiz}
   \acro{DPM}{Disk Pool Manager}
   \acro{LHC}{Large Hadron Collider}
@@ -501,6 +521,10 @@ mollit anim id est laborum.
   \acro{LFN}{Logical File Name}
   \acro{SFN}{Storage File Name}
   \acro{PFN}{Physical File Name}
+  \acro{RFIO}{RFIO}
+  \acro{XML}{eXtended Markup Language?}
+  \acro{XHR}{XMLHttpRequest}
+  \acro{DAV}{Distributed Authoring and Versioning}
 \end{acronym}
 
 
@@ -514,25 +538,61 @@ espacio protegido (Control+Espacio).
 \item [{Evento~complejo}] Un evento que es una abstracción de otros eventos.
 \end{description}
 
+\section{Document organization}
+
+Firstly the current system state, state of the art, is presented.
+Then the schedule, where the initial planning can be found. Following
+by the project description. Finally the project development section,
+where system analysis, design and implementation and testing are described.
+After that different manual can be found, and also the final thoughts
+and the future work on the project.
+
+
 \chapter{State of the art}
+
+Right now there is already web access implemented in the Disk Pool
+Manager infrastructure. This has been developed as part of the HTTP/WebDAV
+frontend and is built getting advantage of the Apache WebDAV modules,
+mod\_dav and mod\_gridsite. To get a deeper understanding of how a
+paper from his authors, Álvarez Ayllón et al., can be checked: Web
+enabled data management with DPM \& \ac{LFC}.
+
+WebDAV is an extension to the HTTP protocol that aims to let users
+create, rename, modify and remove elements over the web. For this
+goal it defines some new additional methods to the traditional ones
+(POST, GET, PUT), these are methods like PROPFIND, MKCOL\dots{} You
+can read the complete specification in this link. In the current web
+visualization you can explore a collection, download the data and
+navigate through a collection. But is not possible to upload data,
+there is no interaction. A reason for this is that HTML forms don\textquoteright t
+support more HTTP verbs/methods than just GET and POST, and no PUT.
+So until now for this cases the use of CURL or a proper WebDAV client
+is needed.
+
+We are aiming to improve the actual web access by adding more functionality,
+creating a web interface integrated with the rest of the DPM software
+stack, offering an easy tool to manage the data from and into the
+grid. This is the current view accesing through a web browser:
 
 
 \section{DPM and LFC}
 
-The Disk Pool Manager (DPM) and LCG File Catalog (LFC) are two grid
-components with more than 240 endpoints available. 
+The Disk Pool Manager (\ac{DPM}) and \ac{LCG} File Catalog (\ac{LFC})
+are two grid components with more than 240 endpoints available. 
 
-The purpose of the LFC is to allow the access and retrieval of any
-file using just its Logical File Name (LFN), without the need of knowing
-where exactly it is replicated\textsuperscript{1}. When a user does
-a request to an LFC, it will return a list of \textquotedblleft Storage
-File Name\textquotedblright{} (SFN) where this file can be retrieved. 
+The purpose of the \ac{LFC} is to allow the access and retrieval
+of any file using just its Logical File Name (\ac{LFN}), without
+the need of knowing where exactly it is replicated\textsuperscript{1}.
+When a user does a request to an \ac{LFC}, it will return a list
+of \textquotedblleft Storage File Name\textquotedblright{} (\ac{SFN})
+where this file can be retrieved. 
 
-DPM is a lightweight storage system mostly targeted at Tier-2 and
-medium size sites, providing reliable and scalable storage while keeping
-configuration and management simple\textsuperscript{1}. It maps a
-SFN to a Transfer URL (TURL), which is the association between a Physical
-File Name (PFN) and an access protocol such as RFIO, HTTP or GridFTP\textsuperscript{2}.
+\ac{DPM}is a lightweight storage system mostly targeted at Tier-2
+and medium size sites, providing reliable and scalable storage while
+keeping configuration and management simple\textsuperscript{1}. It
+maps a \ac{SFN} to a Transfer URL (TURL), which is the association
+between a Physical File Name (\ac{PFN}) and an access protocol such
+as \ac{RFIO}, HTTP or GridFTP\textsuperscript{2}.
 
 
 \section{HTTP and WebDAV}
@@ -564,27 +624,70 @@ It also uses XML to encode the answers, as the list of properties
 of a file, or the content of a folder. 
 
 
-\section{Objectives}
+\section{Access}
 
-Currently, when a user wants to retrieve a file, a catalog must be
-queried for different replicas of that file. Then, the client will
-be redirected to the site hosting that replica, and finally to its
-actual physical location within that site. Generally this is done
-automatically, but specific tools are needed. 
 
-HTTP supports this kind of behavior as the response of a request can
-be a redirection to a different location than the one originally demanded.
-The functionality is the same, but as it is an extremely wide implemented
-standard, data could be accessed from almost any kind of platform,
-from servers to mobile devices. 
+\subsection{HTTP clients}
 
-WebDAV give us, in addition, metadata handling. It is also a popular
-protocol, with clients available for a wide variety of operating systems. 
+A DAV server can be accessed safely using plain HTTP, which allows
+using regular web browsers - Mozilla Firefox, Google Chrome, Opera,
+. . . - to explore a DAV endpoint an retrieve files. However, web
+browsers don\textquoteright t usually allow uploading files directly
+- without using a web form - so for that purpose curl can be used.
+CURL is a command line interface able to interact with several protocols,
+being http/s one of them. It can also be used for scripted access.
+We compare the support of some key features of two of the most frequent
+tools used to access a web server in table \ref{tab:things}. 
 
-Giving support to these standards we allow users to access their data
-easily and transparently, from any machine, through any platform,
-and using clients they already know how to use - for instance, web
-browsers. 
+\begin{table}[h]
+\protect\caption{Things}
+
+
+\label{tab:things}
+
+\begin{tabular}{cccccccc}
+\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X509} & \textbf{X509 Proxies} & \textbf{Redirections} & \textbf{PUT}\tabularnewline
+\hline 
+CURL & Any & No & Yes & Yes & Yes & Yes & Yes\tabularnewline
+Web browser & Any & Yes & No & Yes & Only Internet Explorer & Yes & No\tabularnewline[\doublerulesep]
+\end{tabular}
+\begin{description}
+\item [{OS}] Operating System 
+\item [{GUI}] Graphical User Interface 
+\item [{CLI}] Command Line Interface
+\item [{X509}] Support for client certificates
+\item [{X509}] Proxies Support for proxy certificates
+\item [{Follow~redirections}] Follows redirections when needed, as described
+in section 4 
+\item [{PUT}] Writing support \end{description}
+\end{table}
+
+
+
+\subsection{WebDAV clients}
+
+For performing namespace operations, such as creating directories,
+renaming or fetching properties, WebDAV must be used. We also present
+a comparison between the most popular WebDAV clients on table 2. 
+
+\begin{table}
+\protect\caption{}
+
+
+\begin{tabular}{ccccccc}
+\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X509} & \textbf{X509 Proxies} & \textbf{Redirections}\tabularnewline
+\hline 
+Cadaver & {*}nix & No & Yes & Yes & No & No\tabularnewline
+Davlib & OS X & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
+Shared folder & Windows & Yes & Yes & Yes & Yes & Not on Win7\tabularnewline[\doublerulesep]
+DavFS2 & {*}nix & N/A & Yes & Yes & No & No\tabularnewline[\doublerulesep]
+gvfs \ensuremath{\ge} 1.12.1 & Gnome 3 & Yes & No & No & No & Not on PUT\tabularnewline[\doublerulesep]
+Dolphin & KDE & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
+Cyberduck & Win, OS X & Yes & No & No & No & Not on PUT\tabularnewline[\doublerulesep]
+libneon & {*}nix & N/A & N/A & Yes & No & No\tabularnewline[\doublerulesep]
+\end{tabular}
+\end{table}
+
 
 
 \chapter{Schedule}
@@ -592,7 +695,15 @@ browsers.
 
 \section{Stages}
 
-Etnozoica y mesozoica.
+Etnozoica y mesozoica. 
+
+The development has followed a minimal viable product approach. Firstly
+creating an interface for a WebDAV server, built over Apache, and
+then extending it and integrating it into the Disk Pool Manager software
+stack.
+
+Two on site stages were programmed... Access to the CERN network has
+been granted...
 
 
 \section{Gantt chart}
@@ -600,10 +711,26 @@ Etnozoica y mesozoica.
 Su peaso de diagrama aquí.
 
 
+\section{Costs?}
+
+Hours and salary...
+
+
 \chapter{Project general description}
 
 
 \section{Product outlook}
+
+DPMbox could be basically divided in two parts: the web user interface
+and the JavaScript API that communicates with the server. 
+
+Taking the present HTTP/WebDAV frontend implementation the first step
+was to build that API with JavaScript via jQuery library that can
+interact with it. This way it is possible to translate WebDAV standard
+methods like PROPFIND or MKCOL and use the information provided by
+them in an HTML document through JavaScript and jQuery. That API uses
+ajax calls to perform the HTTP/WebDAV requests and receive the data
+in an XmlHttpResquest object. 
 
 
 \subsection{Environment}
@@ -613,29 +740,201 @@ You can take a look at DPMbox from front to back, oh yeah.
 
 \subsection{User interface}
 
-You can take a look at DPMbox from front to back, oh yeah.
+The user interface is built upon w2ui, a very useful JavaScript UI
+library that offers practically all that was needed for DPMbox. 
+
+All the initially designed and proposed elements are present in the
+final interface. Upon a layout divided in a top panel and three horizontal
+ones under it, you can find the sidebar managing the directory tree,
+a grid in the center showing the files and including a toolbar, and
+then in the right panel there is the directory information. 
+
+As stated before, DPMbox have some filters/parsers (jQuery.dpmFilters.js)
+that adapt the data received from the server in a way that the w2ui
+interface can use it (that are basically JSON formats). 
+
+-----
+
+Hello again! While the work on the API continues I want to show you
+an advance of what it will be the next step. Using the data provided
+by this WebDAV API the user interface design will take advantage of
+jQuery UI potential. Since jQuery and jQuery UI are widely known libraries
+this interface will be hopefully easy to understand and maintain,
+and could also be easily adapted for other uses or modified for extended
+support in the future.
+
+For this frontend development some setbacks will be taken in consideration.
+These two are interconnected:
+
+Very deep collections or cases with hundreds of files inside a directory
+could be problematic to load, so a lazy loading technique will be
+used, and in an asynchronous way.
+
+And just not only for loading, also for the user experience this high
+number of data nodes inside a collection could be troublesome. Then
+it will be mandatory to use pagination when a certain number of nodes
+are read.
+
+In the following image you can see an initial sketch design of the
+DPM user interface. You can see the nodes tree, a data section, an
+information column and other elements that will be needed in the final
+design:
+
+-----
+
+Beside this I\textquoteright ve also developed a small mockup with
+jQuery UI. Obviously it\textquoteright s not functional yet and it
+is subject to changes, but it can show a first approach and the actual
+appearance on a browser. You can check it out on the folowing link: 
 
 
 \section{Functions}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+The other methods are similar to the GET method shown, attending to
+particular characteristics. 
 
+cob is the jQuery ajax call object. In the prepare function the DAV
+call is built. Here it's needed to ensure integrity of the call object,
+verify the DAV method requested and set any additional parameters
+(if necesssary). 
+
+Then the send function does the actual HTTP send through an ajax request. 
+
+To use this API in a document we just call the function needed, which
+as we have seen is basically an ajax call. 
+
+Besides the standard methods some more functions are developed in
+order to operate properly. WebDAV answers with XML data, so some parsers/filters
+and some other methods will be needed before the data can be used
+by the UI. 
+
+-----
+
+Hello! In this post I want to talk you about a key thing in the development,
+and that is the way to talk with the current DPM software stack.
+
+How can we add more interactivity to the current webview? We have
+to communicate with the current implementation, so we need to build
+an API that deals with the HTTP/WebDAV frontend. This can be done
+in JavaScript, particularly using jQuery. Now the current work is
+to build this JavaScript library that can interact with it. This will
+let us use methods of the WebDAV standard like PROPFIND or MKCOL in
+an HTML environment and thus manage the information they provide.
+This API will use XMLHttpRequest operations, also known as XHR. These
+are basically ajax calls that perform the HTTP/WebDAV requests and
+receive the data in a JavaScript XHR object. An XMLHttpRequest support
+GET, POST, PUT, and basically any HTTP method, and is available in
+any browser, even in old ones like Internet Explorer 6 or Firefox
+3.
+
+This is a simplified version of the API. In this case a GET is shown
+but the other ones are are implemented in a similar way though considering
+some particularities (like the PROPFIND needing a depth parameter). 
+
+\begin{lstlisting}[caption={Listing algo},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+$.fn.extend($,{ 	
+	Dav: function(res) { 		
+		var api = function() {
+			this.get = function(cob) { 				
+				this.prepare(cob, 'GET'); 				
+				return this.send(cob); 			
+			};
+			this.prepare = function(cob, typ) { 				
+				cob = cob || {}; 				
+				cob.url = resourceUrl; 			
+				cob.headers = cob.headers || {};
+				cob.type = typ || 'GET'; 				
+				cob.dataType  = cob.dataType || 'xml'; 			
+			};
+			this.send = function(cob) { 				
+				lastRequest = $.ajax(cob); 				
+				return lastRequest; 			
+			};
+		}; 		
+		return new api;     
+	} 
+};
+\end{lstlisting}
+
+
+cob is the jQuery ajax call object, in the prepare function the DAV
+call is built. There it\textquoteright s needed to ensure integrity
+of the call object, verify the DAV method requested and set any authorization
+information (if necesssary). The headers that will include that information
+are set by the SetRequestHeader ajax method. After that the send function
+does the actual HTTP send through an ajax request.
+
+To use this API in an HTML document we just call the function needed,
+which as we have seen is basically an ajax call that we can process
+if it success. Here\textquoteright s an example with a textxml.xml
+file and other one creating a test collection: 
+
+\begin{lstlisting}[caption={Listing algo2},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+// #get 
+jQuery.dpm(url + 'testxml.xml').get({ 	
+	complete: function() { 		
+		console.log('#get'); 	
+	}, 	
+	success:  function(dat, stat) { 		
+		console.log(jQuery.dpm(dat).getNodesByTag('acl')); 	
+	} 
+});
+//#mkcol 
+jQuery.Dav(url + 'test').mkcol({ 	
+	complete:  function(dat, stat) { 		
+		console.log('#mkcol'); 	}, 	
+	async: false 
+});
+\end{lstlisting}
+
+
+In the API there are also other methods developed in order to work
+properly with the data. For example to traverse the nodes received
+in a PROPFIND, or to select a specific property\dots{} WebDAV answers
+with XML data so some parsers will be needed too.
+
+\begin{lstlisting}[caption={Listing algo3},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+this.getAllProperties = function(cob) { 	
+	cob.data = XmlHeader + '<D:propfind xmlns:D="DAV:"><D:allprop/>';
+	if(isArray(cob.includes)) { 		
+		cob.data    +=  '<D:include>';
+		for(var i=0; i < d.includes.length; i++) { 			
+			cob.body  += '<D:' + d.includes[i] + '/>'; 		
+		}
+		cob.data    +=  '</D:include>'; 	
+	}
+	cob.data      += '</D:propfind>'; 	
+	return this.propFind(cob); 
+};
+\end{lstlisting}
+
+
+As you can see in the way the code communicate with the DPM software
+stack, is the developed WebDAV module the one that deals with the
+DPM head or DPM disk actually.
+
+By supporting these standard WebDAV operations in our API it could
+be possible to build a functional HTML interface, but once we have
+completed the development for them the goal will be to cover specific
+DPM/\ac{LFC} issues like the replica (a specific location for a file)
+and metalink (the full list of locations for a certain file) management,
+this would be very helpful for broken file location links.
+
+Right now DPMbox has basic functionality: 
+\begin{itemize}
+\item It's possible to navigate through different directories, starting
+on the location written on the browser, so you can copy/paste locations. 
+\item You can create new directories and delete them. 
+\item It's also possible to upload new files and delete them. You can upload
+multiple files at once, same for deleting.
+\item You can also sort data in a collection by its name, size or modification
+date. And also you can search inside a collection giving some of these
+parameters. 
+\end{itemize}
 
 \section{User characteristics}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+USER!!!
 
 
 \section{General restrictions}
@@ -643,23 +942,89 @@ mollit anim id est laborum.
 
 \subsection{Version control}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Git has been used, getting advantage of the GitHub platform.
 
 
 \subsection{Program languages and technologies}
 
-JavaScript, jQuery, w2ui...
+
+\subsubsection{HTML }
+
+El HTML (Hyper Text Markup Language) o, en castellano, lenguaje de
+marcación de hiper- texto, es el lenguaje de marcas de texto utilizado
+normalmente en World Wide Web (WWW). Fue creado por Tim Berners-Lee
+en 1986, a partir de dos herramientas preexistentes: el concepto de
+hipertexto y el SGML. HTML permite denir tanto la estructura y ubicación
+de los elementos que se muestran en una página Web como las relaciones
+entre los diversos componentes de un sitio Web gracias al uso de los
+hipervínculos. La interpretación de los documentos HTML la realizan
+los navegadores Web, como Mozilla Firefox o Google Chrome entre otros.
+La interpretación puede hacer que la presentación nal varíe en pequeños
+detalles. Por ello el desarrollo del HTML se ajustará al máximo a
+los estándares impuestos por la W3C. 
+
+
+\subsubsection{CSS}
+
+El termino CSS, acrónimo de Cascading Style Sheets (hojas de estilo
+en cascada), hace refer- encia al lenguaje formal usado para denir
+la presentación de documentos estructurados escritos en HTML, XML
+y XHTML por extensión. El World Wide Web Consortium (W3C) es el organ-
+ismo encargado de formular la especicación de las hojas de estilo
+que servirán como estándar para los navegadores. Con CSS se pretende
+separar la estructura de un documento web de su presentación. 
+
+En el caso de Abreforjas no se desarrollaron plantillas CSS desde
+cero, sino que se aprovecharon las plantillas libres Twitter Bootstrap,
+las cuales permitieron un desarrollo más rápido sin pérdida de calidad
+en el diseño y presentación de la web 
+
+
+\subsubsection{JavaScript}
+
+
+\subsubsection{jQuery}
+
+
+\subsubsection{w2ui}
+
+
+\subsubsection{XML}
+
+XML, siglas en inglés de eXtensible Markup Language , es un lenguaje
+de marcas desarrollado por el World Wide Web Consortium (W3C) utilizado
+para almacenar datos en forma legible por un humano. se propone como
+un estándar para el intercambio de información estructurada entre
+diferentes plataformas. Siguiendo esta recomendación las APIs de las
+forjas Redmine y Assembla ofrecen su infor- mación en formato XML,
+por lo que Abreforjas tendrá que tratar obligatoriamente con esta
+tecnología. Por otro lado, Abreforjas también generará de manera indirecta
+documentos XML, pues la información extraída de las forjas será publicada
+en formato RDF con la ayuda de D2R-Server. 
+
+
+\subsubsection{JSON}
 
 
 \subsection{Tools}
 
-Geany (JSHint...), SmartGit, Firefox, Firefox Developer Edition, Firebug...
+
+\subsubsection{Apache}
+
+
+\subsubsection{Geany (JSHint...)}
+
+
+\subsubsection{SmartGit}
+
+
+\subsubsection{Firefox Developer Edition}
+
+
+\subsubsection{Firebug}
+
+
+\subsubsection{LibreOffice Calc}
 
 
 \subsection{Operating systems and hardware}
@@ -687,11 +1052,19 @@ voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
+As already stated, a minimal viable product approach has been followed.
+
+Iterative and incremental model. Different cycles...
+
 
 \section{Requirements}
 
 
 \subsection{Functional}
+
+System functionality.
+
+Upload, download, list, delete...
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -704,6 +1077,8 @@ mollit anim id est laborum.
 
 \subsection{Information}
 
+UML diagram. ¿?
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -715,35 +1090,99 @@ mollit anim id est laborum.
 
 \subsection{Business rules}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+CERN network acces has been granted... Lorem ipsum dolor sit amet,
+consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+irure dolor in reprehenderit in voluptate velit esse cillum dolore
+eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
 \subsection{Interface}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Cambiar lo de aquí abajo. Lo que realmente va a aquí son requirements
+para la interfaz. Standards. Accesibility. Usability... 
+
+Hello again!! It\textquoteright s been a while but in this period
+I\textquoteright ve been busy finally starting to build the actual
+interface and connecting it to the DPMbox API methods.
+
+As stated in past posts I was thinking initially in jQuery UI as a
+good partner in the interface creation, using some other components
+when needed, for example zTree for the directory folder management.
+jQuery UI is very useful but for a complete user interface creation
+I was gonna have to build everything almost from scratch (toolbars,
+menus, file listings\dots ) and a library like zTree is extremely
+powerful but it\textquoteright s also like a big dinosaur with a bunch
+of files to load and manage. Thinking about these issues I stumbled
+upon w2ui, an awesome JavaScript UI library that offers practically
+all what I was looking for. By its own description: \textquotedblleft w2ui
+is a modern, intuitive JavaScript UI library for building rich data-driven
+web application\textquotedblright . Some of its features are:
+\begin{itemize}
+\item Complete w2ui library is only 69kb (minified and gziped) and provides
+extremely fast load and execution. It is 9 times smaller then ExtJS
+and 7 times smaller then Kendo UI. It is just a bit over the size
+of jQuery.
+\item It\textquoteright s really easy to use with simple and standard API
+methods, JSON friendly, and it has a stable and good support from
+its main developer.
+\item It has no dependencies except jQuery, is all-in-one solution. It contains
+all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
+popup, field controls and forms. No need to put together a collection
+of mismatched plugins or more libraries.
+\item The library heavily uses HTML5 and CSS3 and yet supports all major
+modern browsers. Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are
+among supported browsers.
+\end{itemize}
+With this change of libraries is possible that a bit of scope or control
+was lost but using w2ui I stuck with not reinventing the wheel and
+KISS design principles, making things easier to understand, maintain
+and even expand. This being said, no worries because all the initially
+designed and proposed elements are present in this final interface,
+and since they fit so well I have used almost all w2ui components
+to build the DPMbox interface. Upon a layout divided in a top panel
+and three horizontal ones under it you can find the sidebar managing
+the directory tree, a grid in the center showing the files including
+a toolbar, and then in the right panel there is the directory information. 
+
+I still have to check intesively and get deeper into the very deep
+collections problem but for now the tree it\textquoteright s only
+built on demand and the grid panel only load the files information
+when you actually scroll down to look for them.
+
+And of course, you can already check and interact with this brand
+new interface. Yes, it\textquoteright s read-only and has a limited
+functionality still, but the final version of DPMbox will be built
+upon this one step by step. Check it out here:
+
+calvellido.es/dpm
+
+In the next update, for which you won\textquoteright t have to wait
+so long as for this one, I will explain how this interface and the
+DPMbox API work together.
+
+Seeya!! =)
 
 
 \subsection{Non-functional}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Security. Fiability. Other systems communications. Extensibility.
+Performance. Scalability. Lorem ipsum dolor sit amet, consectetur
+adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+\section{Solution alternatives}
+
+JavaScript was the only option...
+
+For the interface different frameworks and approaches were tested.
 
 
 \section{System analysis}
@@ -751,16 +1190,137 @@ mollit anim id est laborum.
 
 \subsection{Use cases}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Hi! Today I\textquoteright d like to show you how the jQuery.dpm library
+works and how it communicates with the user interface.
+
+The library is responsible af all communication between DPMbox and
+the DPM server through its WebDAV interface. So basically it acts
+as an API exposing the needed WebDAV methods, lying on the JavaScript
+XMLHttpRequest object through the jQuery Ajax method.
+
+Besides taking care of global data as XML headers or defining some
+additional functions, what the library offers is (method with correspoding
+WebDAV call in brackets): 
+
+
+\subsubsection{Main methods}
+\begin{description}
+\item [{get}] (GET) 
+\item [{post}] (POST) 
+\item [{head}] (HEAD) 
+\item [{mkcol,~createFolder}] (MKCOL) 
+\item [{put,~createFile}] (PUT) 
+\item [{remove}] (DELETE) 
+\item [{report}] (REPORT) 
+\item [{getVersionTreeReport}] (REPORT) 
+\item [{checkout}] (CHECKOUT) 
+\item [{uncheckout}] (UNCHEKCOUT) 
+\item [{checkin}] (CHECKIN) 
+\item [{versionControl}] (VERSION-CONTROL) 
+\item [{lock}] (LOCK) 
+\item [{unlock}] (UNLOCK) 
+\item [{propfind,~getProperty}] (PROPFIND) 
+\item [{proppatch,~setProperty,~removeProperty}] (PROPPATCH)
+\end{description}
+And here\textquoteright s a diagram represeting how a jquery.dpm method
+works. As you see by the prepare function we configurate accordingly
+an XHR that then is sent to the server:
+
+---------
+
+
+\subsubsection{Additional methods}
+\begin{description}
+\item [{isCollection:}] Returns whether an element is a collection or not
+by looking for a collection XML tag inside a resourcetype property.
+For a DPM server there\textquoteright s no need to use it since a
+DPM response includes a specific property iscollection to check this,
+but the method is needed for standard WebDAV server support.
+\item [{getNodesByTag:}] Works exactly like the standard getElementsByTagName,
+however introduces the ability to filter those results by namespace,
+which is important for handling WebDAV results.
+\item [{seekToNode:}] Sets resource variable to first node matched via
+getNodesByTag, and returns this, allowing further processing.
+\item [{eachNode:}] Executes a function on each element.
+\item [{nodeText:}] Get the text contained by a node.
+\item [{nodeName:}] Returns the name of a node (the tag name, essentially).
+\item [{extendbeforesend:}] jQuery ajax option beforeSend may be set to
+a function reference, and this function will fire prior to the request
+being sent. It gets the XHR object, so this is the point you will
+want to do things like set headers, for example.
+\item [{prepare:}] Prepares the WebDAV call. Here we want to ensure integrity
+of call object, verify WebDAV method requested, set any authorization
+information (if necesssary), and return the modified call object.
+WebDAV servers usually respond in XML but some WebDAV methods will
+not return anything at all, or return an empty response. This matters
+to jQuery in that the success method of a jQuery.ajax options object
+won\textquoteright t fire if the reponse could not be parsed (although
+the complete method will). Is needed to be aware of what dataType
+of your ajax response will be, and set it appropriately.
+\end{description}
+An XML response of the DPM server looks like this:
+
+\begin{lstlisting}[language=XML,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+<D:multistatus xmlns:D="DAV:" xmlns:ns0="DAV:"> 	
+	<D:response xmlns:lcgdm="LCGDM:" xmlns:lp3="LCGDM:" xmlns:lp1="DAV:" xmlns:lp2="http://apache.org/dav/props/"> 		<D:href>/dpm/cern.ch/home/dteam/aalvarez/public/test_collection/</D:href> 		
+		<D:propstat> 			
+			<D:prop> 				
+				<lcgdm:type>0</lcgdm:type> 				
+				<lp1:resourcetype> 					
+					<D:collection></D:collection> 				
+				</lp1:resourcetype> 				
+				<lp1:creationdate>2015-04-04T09:51:59Z</lp1:creationdate> 				
+				<lp1:getlastmodified>Fri, 27 Feb 2015 18:57:50 GMT</lp1:getlastmodified> 				
+				<lp3:lastaccessed>Sat, 04 Apr 2015 09:51:59 GMT</lp3:lastaccessed> 				
+				<lp1:getetag>5c317-54f0be2e</lp1:getetag> 				
+				<lp1:getcontentlength>0</lp1:getcontentlength> 				
+				<lp1:displayname>test_collection</lp1:displayname> 				
+				<lp1:iscollection>1</lp1:iscollection> 				
+				<lp3:guid></lp3:guid> 				
+				<lp3:mode>040775</lp3:mode> 				
+				<lp3:sumtype></lp3:sumtype> 				
+				<lp3:sumvalue></lp3:sumvalue> 				
+				<lp3:fileid>377623</lp3:fileid> 				
+				<lp3:status>-</lp3:status> 				
+				<lp3:xattr>{"type": 0, "normPath": "\/dpm\/cern.ch\/home\/dteam\/aalvarez\/public\/test_collection"}</lp3:xattr> 				
+				<lp1:owner>3</lp1:owner> 				
+				<lp1:group>102</lp1:group> 			
+			</D:prop> 			
+			<D:status>HTTP/1.1 200 OK</D:status> 		
+		</D:propstat> 	
+	</D:response> 
+</D:multistatus>
+\end{lstlisting}
+
+
+Depending on the context in the interface and the w2ui library, the
+XML data is parsed in JSON format and adapted with a specific dpmFilters
+method. And considering that is a petition on the network, the way
+to use it is by taking advantage of jQuery ajax callbacks, e.g. (i.e.?)
+success. 
+
+\begin{lstlisting}[language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+/*  
+ * A function to refresh the grid content  
+ */ 
+function refreshContent(directory_route){     
+	$.dpm(server + directory_route).readFolder({         
+		success:    function(dat) {             
+			w2ui.grid.clear();             
+			w2ui.grid.add(dat);         },         
+		dataFilter: $.dpmFilters.filesDPM     
+	}); 
+}
+\end{lstlisting}
+
+
+And that\textquoteright s all. I hope that with this post you have
+now a clear vision of how DPMbox communicates with a DPM server.
 
 
 \subsection{Domain data conceptual model}
+
+Information requirements -> UML diagram. ¿?
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -782,12 +1342,159 @@ sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
 
+\subsection{User interface model}
+
+
 \section{System design}
+
+Hello there! I\textquoteright ll write today a brief review of how
+DPMbox manage the file uploads, and how we solved a small problem
+that had complicated this feature.
+
+So, the steps to upload a file to the Disk Pool Manager would be as
+folllows:
+
+------
+
+In the DPM architecture one entity handles the namespace with the
+metadata, and other ones store the files with the actual data. This
+means that any request must go through a server hosting the namespace
+first, and then redirect to the disk node storing the physical file.
+We execute a PUT call and the file won\textquoteright t be yet uploaded
+but DPM will answer back, then our web application has to try a second
+time. The URL needed to actually do the PUT would look like this,
+you can see the specific DPM node where the file will be uploaded,
+including a token validating the transaction:
+\begin{verbatim}
+http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489.0?sfn=%2Fdpm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d%2FXHR.js.zip&dpmtoken=dbf5fcbe-7c31-4849-aa57-b07c6b474f5e&token=ojkU%2FdgyPqTYEvu4TfZAyueVDqQ%3D%401425288602%401
+\end{verbatim}
+User agents commonly apply same-origin restrictions to network requests.
+These restrictions prevent a client-side Web application as DPMbox
+running from one origin from obtaining data retrieved from another
+origin, and also limit unsafe HTTP requests that can be automatically
+launched toward destinations that differ from the running application\textquoteright s
+origin. In user agents that follow this pattern, network requests
+typically include user credentials with cross-origin requests, including
+HTTP authentication and cookie information. As DPMbox relies heavily
+on XHR calls this has to be handled carefully or we\textquoteright ll
+face a lot of error messages like this:
+\begin{verbatim}
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/public/test5.file. (Reason: CORS header 'Access-Control-Allow-Origin' missing).
+\end{verbatim}
+You can check a bit of history of XHR and CORS and why is this happening
+here {[}2{]}.
+
+Back in our development, the DPM initial behaviour was to answer with
+a 302 code indicating redirection, and then the browser will try transparently
+to reach that new location. That would work it out, but the thing
+is that 30x responses are treated as error by CORS specification {[}1{]}:
+\begin{quote}
+This is the actual request. Apply the make a request steps and observe
+the request rules below while making the request.
+
+If the response has an HTTP status code of 301, 302, 303, 307, or
+308 Apply the cache and network error steps.
+
+(\dots )
+
+Whenever the network error steps are applied, terminate the algorithm
+that invoked this set of steps and set the cross-origin request status
+to network error.
+
+Note: This has no effect on setting of user credentials. I.e. if the
+block cookies flag is unset, cookies will be set by the response.
+
+Whenever the cache and network error steps are applied, follow these
+steps:
+
+Remove the entries in the preflight result cache where origin field
+value is a case-sensitive match for source origin and url field value
+is a case-sensitive match for request URL.
+
+Apply the network error steps acting as if the algorithm that invoked
+the cache and network error steps invoked the network error steps
+instead. 
+\end{quote}
+So with ths configuration it would be impossible to get any information
+of the response, not any header at a JavaScript level, specifically
+the Location header. Finally, the solution given was manage the uploads
+though a first empty PUT including a header X-No-Redirect and the
+server will answer with a 202 Accepted response. We can extract any
+header from this type of response as it\textquoteright s not treated
+as error for XHR CORS requests.
+
+After this we have to add this new header information to our server
+CORS security settings and add it to the directive Access-Control-Expose-Headers.
+There\textquoteright s a lot of tutorials for different servers CORS
+configuration, for example you can check this one for Apache {[}2{]}.
+But in the end, in the server side we would need to configurate it
+as to response with this headers:
+\begin{verse}
+\begin{lstlisting}[float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+Access-Control-Allow-Origin: UrlWhereDPMboxIsHosted.host 
+Access-Control-Allow-Credentials: true 
+Access-Control-Allow-Methods: ACL, CANCELUPLOAD, CHECKIN, CHECKOUT, COPY, DELETE, GET, HEAD, LOCK, MKCALENDAR, MKCOL, MOVE, OPTIONS, POST, PROPFIND, PROPPATCH, PUT, REPORT, SEARCH, UNCHECKOUT, UNLOCK, UPDATE, VERSION-CONTROL 
+Access-Control-Allow-Headers: Authorization, Overwrite, Destination, Content-Type, Depth, User-Agent, Translate, Range, Content-Range, Timeout, X-File-Size, X-Requested-With, Accept, Accept-Version, If-Modified-Since, X-File-Name, Cache-Control, Location, Lock-Token, If, X-No-Redirect 
+Access-Control-Expose-Headers: DAV, content-length, Allow, Location
+\end{lstlisting}
+
+\end{verse}
+At first, find a solution to this problem was tough since I\textquoteright m
+not very familiar with this Cross-Origin Resource Sharing HTML5 new
+settings, but after all it was properly (and happily) solved. Good
+night!
+
+
+\subsection{Logic arquitecture}
+
+Pipes and filters? MVC?
+
+A esquema con las cajas y eso.
+
+
+\subsection{Physical arquitecture}
+
+A lot to explain about how DPM works.
 
 
 \section{Implementation}
 
-\lstinputlisting{/home/juanmvcalvellido/Documentos/UCA2015/TFG/TFG/Plantilla/DPMbox-memoria.tex}
+
+\subsection{HTML}
+
+
+\subsubsection{index.html}
+
+It is actually just a frame.
+
+
+\subsection{CSS}
+
+
+\subsubsection{style.css}
+
+
+\subsubsection{w2ui.css}
+
+
+\subsection{JavaScript}
+
+
+\subsubsection{config.js}
+
+
+\subsubsection{dpmbox-ui.js }
+
+
+\subsubsection{jquery.dpm.js }
+
+
+\subsubsection{jquery.dpmFilters.js}
+
+
+\subsubsection{w2ui-1.4.2.js}
+
+\lstinputlisting[basicstyle={\footnotesize\ttfamily},columns=fullflexible]{/home/juanmvcalvellido/Documentos/UCA2015/TFG/TFG/Plantilla/DPMbox-memoria.tex}
 
 
 \section{Testing and validation}
@@ -800,16 +1507,44 @@ voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
+Para la prueba de Abreforjas se ha seguido una estrategia de pruebas
+manual, pues la cantidad de funcionalidades no requería la programación
+de una herramienta que asistiera la fase de pruebas y permitiera automatizarlas. 
 
-\chapter{Summary}
+Al coincidir en este proyecto el grupo de testeadores independientes
+con los clientes, se podría decir que se han realizado pruebas unitarias
+de aceptación, siendo como el propio nombre indica la aceptación por
+parte de los clientes la evaluación de los resultados de las pruebas. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Para las pruebas de regresión se detectaron las funcionalidades que
+eran dependientes de los elementos que sufrían cambios de algún tipo.
+De esta manera, tras la realización de los cambios pertinentes se
+procedía a probar aquellas funcionalidades que pudieran haber sido
+afectadas. Por ejemplo, si una transformación de un proceso de Pentaho
+sufría algún cambio, se procedía al testeo del Job inmediatamente
+superior en la jerarquía, o si se realizaban cambios en un formulario
+se procedía a probar aquellas vistas que lo utilizaban. No obstante,
+cuando el estado de desarrollo de Abreforjas fue lo sucientemente
+avanzado, era más sencillo realizar directamente las pruebas de sistema
+en lugar de buscar y detectar las correspondientes dependencias. 
+
+
+\subsection{Unity testing}
+
+
+\subsection{Functional testing}
+
+(Functional requirements).
+
+
+\subsection{Non-functional testing }
+
+(Non-functional requirements).
+
+
+\subsection{Acceptance tests}
+
+Same tests as before but over production.
 
 
 \chapter{Conclusiones and future work}
@@ -817,25 +1552,26 @@ mollit anim id est laborum.
 
 \section{Conclusions}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Summary. 
+
+The work on DPMbox has been really exciting. 
+
+Objetivos alcanzados y lecciones aprendidas.
 
 
 \section{Future work}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
+As an open source development, licensed by the Apache license, the
+future development... Future functionality can be varied: 
+\begin{itemize}
+\item Renaming (files and collections)
+\item Show more information about a collection 
+\item Offer more information about the files
+\item Implement a better system for the uploads
+\item Improve the error message popups
+\item Give some configuration options to the user (as sizes or data fields)
+\item Etc... 
+\end{itemize}
 
 \chapter{Acknowledgements}
 
@@ -847,10 +1583,167 @@ voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
+Agradecimientos! Thanks to all the IT-DPM.. DPM team for all the help.
+Alejandro Álvarez Ayllón. Manuel Palomo Duarte.
+
+Free software. CUSL team.
+
+Family.
+
 \appendix
 
 
 \chapter{Installation manual}
+
+
+\section{DPM installation}
+
+
+\subsection{Installing Scientific Linux 6 }
+
+Image: \href{file:http://linuxsoft.cern.ch/cern/slc6X/iso/SLC_6.6_x86_64_dvd.iso}{linuxsoft.cern.ch/cern/slc6X/iso/SLC\_{}6.6\_{}x86\_{}64\_{}dvd.iso}
+\begin{itemize}
+\item Instalar nuevo sistema
+\item Seguir las instrucciones del instalador
+\item Elegir Basic Server / Customize Later
+\item Esperar \Clocklogo{}
+\item Reiniciará, y actualizará
+\item Recomiendo redirigir puerto 2222 local al puerto 22 de la máquina
+virtual (para tener SSH)
+\end{itemize}
+
+\subsection{Installing DPM manually}
+
+Normalmente se puede instalar desde EPEL, pero para tener tu código
+necesitas el repo del continuous build
+
+
+\subsubsection{Instalar DPM}
+
+\emph{Repositorio}
+
+wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
+-P /etc/yum.repos.d
+
+\emph{Paquetes}
+
+yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql
+dpm-name-server-mysql dpm
+
+
+\subsubsection{Instalar MySQL}
+\begin{verbatim}
+# yum install mysql-server - chkconfig mysqld on - service mysqld start
+\end{verbatim}
+
+\subsubsection{Crear las tablas y usuario}
+\begin{verbatim}
+mysql < /usr/share/lcgdm/create_dpns_tables_mysql.sql 
+mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql 
+mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
+\end{verbatim}
+
+\subsubsection{Generar un certificado}
+\begin{verbatim}
+# cd /etc/grid-security
+# openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
+# openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname -f`" 
+\end{verbatim}
+hostname -f debe coincidir con el nombre de la maquina.dominio tal
+como lo configuraste! Si no, ponlo a mano
+\begin{verbatim}
+# openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pem 
+# mkdir dpmmgr
+# cp hostkey.pem dpmmgr/dpmkey.pem 
+# cp hostcert.pem dpmmgr/dpmcert.pem 
+# chown dpmmgr.dpmmgr dpmmgr/*
+\end{verbatim}
+
+\subsubsection{Confiar en tu certificado como CA}
+\begin{verbatim}
+# mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
+\end{verbatim}
+
+\subsubsection{Trampear DNS}
+
+En /etc/hosts, añade tu host y host.domain al final de la lista para
+127.0.0.1 y ::1
+
+
+\subsubsection{Configurar DPM y DPNS}
+
+Modificar /etc/sysconfig/dpm DPNS\_HOST=`hostname` 
+
+- Crear /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
+
+- Crear /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
+
+groupadd dpmmgr \&\& useradd -g dpmmgr dpmmgr 
+
+En /etc/shift.conf 
+\begin{verbatim}
+DPM TRUST host.domain
+DPNS TRUST host.domain
+RFIOD TRUST host.domain
+RFIOD WTRUST host.domain
+RFIOD RTRUST host.domain
+RFIOD XTRUST host.domain
+RFIOD FTRUST host.domain
+
+# export DPNS_HOST=localhost
+# export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
+\end{verbatim}
+
+\subsubsection{Validar}
+\begin{verbatim}
+# dpns-ls
+# dpm-qryconf
+\end{verbatim}
+Si no fallan, va bien, aunque no veas nada
+
+
+\subsubsection{Arrancar siempre}
+\begin{verbatim}
+# chkconfig dpnsdaemon on chkconfig dpm on
+\end{verbatim}
+
+\subsubsection{Añadir una base}
+
+\emph{Crear directorio }
+\begin{verbatim}
+dpns-mkdir -p /dpm/domain/home/public 
+dpns-chmod 0777 /dpm/domain/home/public
+\end{verbatim}
+\emph{Crear un sitio donde almacenar ficher }
+
+dpm-addpool --poolname default --def\_filesize 100M mkdir /storage
+chown dpmmgr.dpmmgr /storage dpm-addfs --poolname default --server
+host.domain --fs /storage/ dpm-qryconf (y verás que ahora aparece
+algo) 
+
+
+\subsubsection{Configurar dav}
+
+cd /etc/httpd/conf/ Modificar httpd.conf User dpmmgr Group dpmmgr
+Elimina o comenta las líneas LoadModule dav\_module modules/mod\_dav.so
+LoadModule dav\_fs\_module modules/mod\_dav\_fs.so cd /etc/httpd/conf.d/
+rm -f ssl.conf welcome.conf zgridsite.conf En zlcgdm-dav.conf SSLVerifyClient
+require => SSLVerifyClient optional NSSecureRedirect Off Añade Write
+to DiskFlags y NSFlags NSRedirectPort 8080 4443 (puertos expuestos
+al exterior) service httpd restart
+
+Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox.
+Configura el firewall para el puerto 443 y 80, o desactivalo (service
+iptables stop / chkconfig iptables off).
+
+Desactiva selinux, que es un dolor
+\begin{verbatim}
+setenforce 0 vim /etc/selinux/config SELINUX=permissive
+\end{verbatim}
+En https://localhost:8080/dpm/ deberías ya tener algo. 
+
+
+\section{DPMbox installation}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -859,6 +1752,8 @@ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
+
+It's on the repositories. 
 
 
 \chapter{User manual}

@@ -32,10 +32,9 @@
 % and a pdf-bookmark for the TOC is added
 \let\myTOC\tableofcontents
 \renewcommand\tableofcontents{%
-  \frontmatter
   \pdfbookmark[1]{\contentsname}{}
   \myTOC
-  \mainmatter }
+}
 
 % redefine the \LyX macro for PDF bookmarks
 \def\LyX{\texorpdfstring{%
@@ -94,7 +93,13 @@
 \end_preamble
 \options intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove
 \use_default_options true
+\begin_modules
+logicalmkup
+\end_modules
 \maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
 \language english
 \language_package default
 \inputencoding auto
@@ -176,7 +181,8 @@
 \papercolumns 1
 \papersides 2
 \paperpagestyle default
-\listings_params "keywordstyle={\color{blue}}"
+\bullet 0 0 9 -1
+\bullet 1 0 10 -1
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -436,12 +442,32 @@ bigskip
 
 \begin_layout Plain Layout
 
-    {
+	
+\backslash
+includegraphics[width=.25
+\backslash
+textwidth]{DPMbox}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vspace{-10px}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+   {
 \backslash
 LARGE 
 \backslash
-nohyphens{DPMbox: An interactive user-friendly web interface for a disk-based
- grid storage system}}
+nohyphens{An interactive user-friendly web interface for a disk-based grid
+ storage system}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -491,7 +517,7 @@ bigskip
 
     {
 \backslash
-large Curso 2014-2015}
+large Course 2014-2015}
 \end_layout
 
 \begin_layout Plain Layout
@@ -592,7 +618,7 @@ bigskip
 
     {
 \backslash
-large Cádiz, xx de julio de 2015}
+large Cádiz, xxth July 2015}
 \end_layout
 
 \begin_layout Plain Layout
@@ -863,22 +889,9 @@ Large
 
     
 \backslash
-textsc{Departamento}: 
+textsc{Department}: 
 \backslash
-nohyphens{Ingeniería Informática.} 
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    
-\backslash
-textsc{Director del proyecto}: 
-\backslash
-nohyphens{Manuel Palomo Duarte.} 
+nohyphens{Ingeniería Informática} 
 \backslash
 
 \backslash
@@ -889,10 +902,35 @@ nohyphens{Manuel Palomo Duarte.}
 
     
 \backslash
-textsc{Autor del Proyecto}: 
+textsc{Supervisor}: 
 \backslash
-nohyphens{Juan Valencia Calvellido}.
- 
+nohyphens{Manuel Palomo Duarte} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+textsc{Co-Supervisor}: 
+\backslash
+nohyphens{Alejandro Álvarez-Ayllón} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+textsc{Author}: 
+\backslash
+nohyphens{Juan Valencia Calvellido} 
 \backslash
 
 \backslash
@@ -953,7 +991,7 @@ large
 
 \begin_layout Plain Layout
 
-    Cádiz, xx de julio de 2015
+    Cádiz, xxth July 2015
 \end_layout
 
 \begin_layout Plain Layout
@@ -1050,7 +1088,68 @@ end{flushright}
 
 
 \backslash
-clearpage
+newpage{
+\backslash
+pagestyle{empty}
+\backslash
+cleardoublepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+License
+\end_layout
+
+\begin_layout Standard
+Copyright © 2015 Juan Valencia Calvellido.
+ 
+\end_layout
+
+\begin_layout Standard
+Permission is granted to copy, distribute and/or modify this document under
+ the terms of the GNU Free Documentation License, Version 1.3 or any later
+ version published by the Free Software Foundation; with no Invariant Sections,
+ no Front-Cover Texts, and no Back-Cover Texts.
+ A copy of the license is included in the section entitled GNU Free Documentatio
+n License.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage{
+\backslash
+pagestyle{empty}
+\backslash
+cleardoublepage}
+\backslash
+pagestyle{empty}
 \end_layout
 
 \end_inset
@@ -1073,7 +1172,23 @@ Tags
 \end_layout
 
 \begin_layout Standard
-WebDAV JavaScript Interface LHC DPM Disk Pool Manager CERN
+WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+frontmatter
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1095,6 +1210,22 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
 
 \end_inset
 
@@ -2035,7 +2166,15 @@ g the access to grid storage via easily available clients as web browsers,
  Precisely this partially triggered the interest on the HTTP protocol, and
  now follows naturally with a more intuitive, easy to use and user appealing
  graphic user interface.
- This project will provide a web interface that will integrate with the
+ 
+\end_layout
+
+\begin_layout Section
+Objectives
+\end_layout
+
+\begin_layout Standard
+This project aims to provide a web interface that can integrate with the
  rest of the software stack, providing an easy and intuitive tool to both
  technical and nontechnical users to manage their data from and into the
  grid.
@@ -2047,10 +2186,60 @@ g the access to grid storage via easily available clients as web browsers,
 \end_layout
 
 \begin_layout Standard
+Currently, when a user wants to retrieve a file, a catalog must be queried
+ for different replicas of that file.
+ Then, the client will be redirected to the site hosting that replica, and
+ finally to its actual physical location within that site.
+ Generally this is done automatically, but specific tools are needed.
+ 
+\end_layout
+
+\begin_layout Standard
+HTTP supports this kind of behavior as the response of a request can be
+ a redirection to a different location than the one originally demanded.
+ The functionality is the same, but as it is an extremely wide implemented
+ standard, data could be accessed from almost any kind of platform, from
+ servers to mobile devices.
+ 
+\end_layout
+
+\begin_layout Standard
+WebDAV give us, in addition, metadata handling.
+ It is also a popular protocol, with clients available for a wide variety
+ of operating systems.
+ 
+\end_layout
+
+\begin_layout Standard
+Giving support to these standards we allow users to access their data easily
+ and transparently, from any machine, through any platform, and using clients
+ they already know how to use - for instance, web browsers.
+ 
+\end_layout
+
+\begin_layout Standard
+Some cuadros here.
+\end_layout
+
+\begin_layout Section
+Scope
+\end_layout
+
+\begin_layout Standard
+The development has followed a minimum viable product approach.
+ Starting creating an interface based on the WebDAV protocol and then integratin
+g it with the DPM stack.
+\end_layout
+
+\begin_layout Standard
+This can be then “translated” to requirements (functional/non-functional)
+\end_layout
+
+\begin_layout Standard
 As a web development the project DPMbox will use standard web technologies
  as HTML5 [7], CSS3 [8] or JavaScript [9] and the final product must allow
  users to browse and access their data stored in DPM grid elements that
- provide the HTTP protocol in a manner that is straight forward for inexperience
+ provide the HTTP protocol in a manner that is straight forward for unexperience
 d users.
  With this said, the focus will be held mainly on usability and ease of
  use but other requirements must also be taken into consideration, including,
@@ -2067,44 +2256,6 @@ d users.
 \begin_layout Standard
 As the rest of the software involved in DPM the project will be developed
  under the Apache License version 2.0 [10].
-\end_layout
-
-\begin_layout Section
-Objectives
-\end_layout
-
-\begin_layout Standard
-The main objective was...
-\end_layout
-
-\begin_layout Section
-Scope
-\end_layout
-
-\begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
-\end_layout
-
-\begin_layout Section
-Overview
-\end_layout
-
-\begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Section
@@ -2130,7 +2281,7 @@ begin{acronym}
 
   
 \backslash
-acro{PFC}{Proyecto Fin de Carrera}
+acro{CERN}{European Organization for Nuclear Research}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2191,6 +2342,34 @@ acro{PFN}{Physical File Name}
 
 \begin_layout Plain Layout
 
+  
+\backslash
+acro{RFIO}{RFIO}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{XML}{eXtended Markup Language?}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{XHR}{XMLHttpRequest}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{DAV}{Distributed Authoring and Versioning}
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 end{acronym}
@@ -2227,8 +2406,66 @@ Evento
 complejo Un evento que es una abstracción de otros eventos.
 \end_layout
 
+\begin_layout Section
+Document organization
+\end_layout
+
+\begin_layout Standard
+Firstly the current system state, state of the art, is presented.
+ Then the schedule, where the initial planning can be found.
+ Following by the project description.
+ Finally the project development section, where system analysis, design
+ and implementation and testing are described.
+ After that different manual can be found, and also the final thoughts and
+ the future work on the project.
+\end_layout
+
 \begin_layout Chapter
 State of the art
+\end_layout
+
+\begin_layout Standard
+Right now there is already web access implemented in the Disk Pool Manager
+ infrastructure.
+ This has been developed as part of the HTTP/WebDAV frontend and is built
+ getting advantage of the Apache WebDAV modules, mod_dav and mod_gridsite.
+ To get a deeper understanding of how a paper from his authors, Álvarez
+ Ayllón et al., can be checked: Web enabled data management with DPM & 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFC}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+WebDAV is an extension to the HTTP protocol that aims to let users create,
+ rename, modify and remove elements over the web.
+ For this goal it defines some new additional methods to the traditional
+ ones (POST, GET, PUT), these are methods like PROPFIND, MKCOL… You can
+ read the complete specification in this link.
+ In the current web visualization you can explore a collection, download
+ the data and navigate through a collection.
+ But is not possible to upload data, there is no interaction.
+ A reason for this is that HTML forms don’t support more HTTP verbs/methods
+ than just GET and POST, and no PUT.
+ So until now for this cases the use of CURL or a proper WebDAV client is
+ needed.
+\end_layout
+
+\begin_layout Standard
+We are aiming to improve the actual web access by adding more functionality,
+ creating a web interface integrated with the rest of the DPM software stack,
+ offering an easy tool to manage the data from and into the grid.
+ This is the current view accesing through a web browser:
 \end_layout
 
 \begin_layout Section
@@ -2236,15 +2473,78 @@ DPM and LFC
 \end_layout
 
 \begin_layout Standard
-The Disk Pool Manager (DPM) and LCG File Catalog (LFC) are two grid components
- with more than 240 endpoints available.
+The Disk Pool Manager (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{DPM}
+\end_layout
+
+\end_inset
+
+) and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LCG}
+\end_layout
+
+\end_inset
+
+ File Catalog (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFC}
+\end_layout
+
+\end_inset
+
+) are two grid components with more than 240 endpoints available.
  
 \end_layout
 
 \begin_layout Standard
-The purpose of the LFC is to allow the access and retrieval of any file
- using just its Logical File Name (LFN), without the need of knowing where
- exactly it is replicated
+The purpose of the 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFC}
+\end_layout
+
+\end_inset
+
+ is to allow the access and retrieval of any file using just its Logical
+ File Name (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFN}
+\end_layout
+
+\end_inset
+
+), without the need of knowing where exactly it is replicated
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -2254,14 +2554,51 @@ The purpose of the LFC is to allow the access and retrieval of any file
 \end_inset
 
 .
- When a user does a request to an LFC, it will return a list of “Storage
- File Name” (SFN) where this file can be retrieved.
+ When a user does a request to an 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFC}
+\end_layout
+
+\end_inset
+
+, it will return a list of “Storage File Name” (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{SFN}
+\end_layout
+
+\end_inset
+
+) where this file can be retrieved.
  
 \end_layout
 
 \begin_layout Standard
-DPM is a lightweight storage system mostly targeted at Tier-2 and medium
- size sites, providing reliable and scalable storage while keeping configuration
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{DPM}
+\end_layout
+
+\end_inset
+
+is a lightweight storage system mostly targeted at Tier-2 and medium size
+ sites, providing reliable and scalable storage while keeping configuration
  and management simple
 \begin_inset script superscript
 
@@ -2272,9 +2609,47 @@ DPM is a lightweight storage system mostly targeted at Tier-2 and medium
 \end_inset
 
 .
- It maps a SFN to a Transfer URL (TURL), which is the association between
- a Physical File Name (PFN) and an access protocol such as RFIO, HTTP or
- GridFTP
+ It maps a 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{SFN}
+\end_layout
+
+\end_inset
+
+ to a Transfer URL (TURL), which is the association between a Physical File
+ Name (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{PFN}
+\end_layout
+
+\end_inset
+
+) and an access protocol such as 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{RFIO}
+\end_layout
+
+\end_inset
+
+, HTTP or GridFTP
 \begin_inset script superscript
 
 \begin_layout Plain Layout
@@ -2358,51 +2733,1140 @@ It also uses XML to encode the answers, as the list of properties of a file,
 \end_layout
 
 \begin_layout Section
-Objectives
+Access
+\end_layout
+
+\begin_layout Subsection
+HTTP clients
 \end_layout
 
 \begin_layout Standard
-Currently, when a user wants to retrieve a file, a catalog must be queried
- for different replicas of that file.
- Then, the client will be redirected to the site hosting that replica, and
- finally to its actual physical location within that site.
- Generally this is done automatically, but specific tools are needed.
+A DAV server can be accessed safely using plain HTTP, which allows using
+ regular web browsers - Mozilla Firefox, Google Chrome, Opera, .
+ .
+ .
+ - to explore a DAV endpoint an retrieve files.
+ However, web browsers don’t usually allow uploading files directly - without
+ using a web form - so for that purpose curl can be used.
+ CURL is a command line interface able to interact with several protocols,
+ being http/s one of them.
+ It can also be used for scripted access.
+ We compare the support of some key features of two of the most frequent
+ tools used to access a web server in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:things"
+
+\end_inset
+
+.
  
 \end_layout
 
 \begin_layout Standard
-HTTP supports this kind of behavior as the response of a request can be
- a redirection to a different location than the one originally demanded.
- The functionality is the same, but as it is an extremely wide implemented
- standard, data could be accessed from almost any kind of platform, from
- servers to mobile devices.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Things
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:things"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="8">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Client
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+OS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+GUI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+CLI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+X509
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+X509 Proxies
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Redirections
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+PUT
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CURL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Any
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Web browser
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Any
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Only Internet Explorer
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+OS Operating System 
+\end_layout
+
+\begin_layout Description
+GUI Graphical User Interface 
+\end_layout
+
+\begin_layout Description
+CLI Command Line Interface
+\end_layout
+
+\begin_layout Description
+X509 Support for client certificates
+\end_layout
+
+\begin_layout Description
+X509 Proxies Support for proxy certificates
+\end_layout
+
+\begin_layout Description
+Follow
+\begin_inset space ~
+\end_inset
+
+redirections Follows redirections when needed, as described in section 4
+ 
+\end_layout
+
+\begin_layout Description
+PUT Writing support 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+WebDAV clients
+\end_layout
+
+\begin_layout Standard
+For performing namespace operations, such as creating directories, renaming
+ or fetching properties, WebDAV must be used.
+ We also present a comparison between the most popular WebDAV clients on
+ table 2.
  
 \end_layout
 
 \begin_layout Standard
-WebDAV give us, in addition, metadata handling.
- It is also a popular protocol, with clients available for a wide variety
- of operating systems.
- 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
 \end_layout
 
-\begin_layout Standard
-Giving support to these standards we allow users to access their data easily
- and transparently, from any machine, through any platform, and using clients
- they already know how to use - for instance, web browsers.
- 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="7">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Client
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+OS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+GUI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+CLI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+X509
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+X509 Proxies
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Redirections
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cadaver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+*nix
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Davlib
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OS X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Shared folder
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Windows
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not on Win7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DavFS2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+*nix
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+gvfs ≥ 1.12.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gnome 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not on PUT
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dolphin
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KDE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cyberduck
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Win, OS X
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not on PUT
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row bottomspace="default">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+libneon
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+*nix
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N/A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
 Schedule
 \end_layout
 
+\begin_layout Standard
+In this section we cover the schedule that the project has followed.
+ Specifically we talk about the chosen development methodology, the stages
+ the project has gone through and the personnel involved.
+\end_layout
+
+\begin_layout Section
+Life cycle model
+\end_layout
+
+\begin_layout Standard
+The ISO/IEC 12207-1 standard defines the life cycle model as a 
+\end_layout
+
+\begin_layout Quote
+«
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+framework of processes and activities concerned with the life cycle that
+ may be organized into stages, which also acts as a common reference for
+ communication and understanding
+\end_layout
+
+\end_inset
+
+».
+ 
+\end_layout
+
+\begin_layout Standard
+In our case, we can see in Figure 2.1, we used a methodology structured and
+ agile development, ie iterative and incremental development.
+ Therefore, the life cycle is summarized in a set of iterations.
+ The phases of the life cycle are analysis, design, implementation, testing,
+ operation and maintenance.
+ After performing the analysis (get requirements specification) and application
+ design (we define the system architecture), we begin implementing or coding
+ system, obtaining a very limited initial release.
+ This version will be tested and in the case of positive results, go back
+ to the implementation phase where an expanded version of the above will
+ be achieved.
+ This step has to be repeated as many times as necessary until the final
+ version for the customer's use, thus moving to the exploitation phase.
+ If the tests do not give the expected results, if any, we must return to
+ the analysis stage to find out the problems relating to this version and
+ redirect it.
+ Finally, during system operation errors or improvements necessary for this
+ can occur.
+ It will then move on to the maintenance phase, where these incidents be
+ drafted before moving back to the analysis phase.
+ Thus, we can say that our model is incremental and iterative.
+\end_layout
+
+\begin_layout Standard
+The software development model used was iterative and incremental.
+ With this model of development have created product versions that have
+ slowly grown in performance until a final product stage is reached.
+ 
+\end_layout
+
+\begin_layout Standard
+Here are the features that have each of these versions are described.
+\end_layout
+
 \begin_layout Section
 Stages
 \end_layout
 
+\begin_layout Subsection
+First
+\end_layout
+
 \begin_layout Standard
-Etnozoica y mesozoica.
+Access to the CERN network has been granted...
+ First CERN visit.
+\end_layout
+
+\begin_layout Standard
+WebDAV server study.
+ 
+\end_layout
+
+\begin_layout Standard
+JavaScript study.
+\end_layout
+
+\begin_layout Standard
+Different approaches.
+\end_layout
+
+\begin_layout Subsection
+Second
+\end_layout
+
+\begin_layout Standard
+Firstly creating an interface for a WebDAV server, built over Apache.
+ Library development.
+\end_layout
+
+\begin_layout Subsection
+Third
+\end_layout
+
+\begin_layout Standard
+Interface development.
+\end_layout
+
+\begin_layout Subsection
+Fourth
+\end_layout
+
+\begin_layout Standard
+Extending it and integrating it into the Disk Pool Manager software stack.
+\end_layout
+
+\begin_layout Subsection
+Fifth
+\end_layout
+
+\begin_layout Standard
+Testing.
+ On site deployment.
 \end_layout
 
 \begin_layout Section
@@ -2413,12 +3877,69 @@ Gantt chart
 Su peaso de diagrama aquí.
 \end_layout
 
+\begin_layout Section
+Costs
+\end_layout
+
+\begin_layout Standard
+Although the organization has the infrastructure mentioned in the previous
+ section, for this project only need a single PC computer with GNU / Linux
+ and free internet.
+ The tools used have free license so neither requires cost.
+\end_layout
+
+\begin_layout Standard
+For the realization of this project they were required 1.240 hours of work
+ or 7,75 persons / month.
+ In the Gantt 2.1 can be seen that the project is planned to be finished
+ in 310 days, but with a working day 4 hours per day.
+\end_layout
+
+\begin_layout Standard
+The category of workers will: TS Support for Teaching and Research.
+ Monthly base salary workers + Complement category: 2.746,65
+\end_layout
+
+\begin_layout Standard
+Total estimated workers = 7,75 workers × 21.286,53€ and 2.746,65€
+\end_layout
+
+\begin_layout Section
+Risks
+\end_layout
+
+\begin_layout Standard
+?? 
+\end_layout
+
+\begin_layout Standard
+Living is a problem because everything dies.
+\end_layout
+
 \begin_layout Chapter
 Project general description
 \end_layout
 
 \begin_layout Section
 Product outlook
+\end_layout
+
+\begin_layout Standard
+DPMbox could be basically divided in two parts: the web user interface and
+ the JavaScript API that communicates with the server.
+ 
+\end_layout
+
+\begin_layout Standard
+Taking the present HTTP/WebDAV frontend implementation the first step was
+ to build that API with JavaScript via jQuery library that can interact
+ with it.
+ This way it is possible to translate WebDAV standard methods like PROPFIND
+ or MKCOL and use the information provided by them in an HTML document through
+ JavaScript and jQuery.
+ That API uses ajax calls to perform the HTTP/WebDAV requests and receive
+ the data in an XmlHttpResquest object.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2434,22 +3955,76 @@ User interface
 \end_layout
 
 \begin_layout Standard
-You can take a look at DPMbox from front to back, oh yeah.
-\end_layout
-
-\begin_layout Section
-Functions
+The user interface is built upon w2ui, a very useful JavaScript UI library
+ that offers practically all that was needed for DPMbox.
+ 
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+All the initially designed and proposed elements are present in the final
+ interface.
+ Upon a layout divided in a top panel and three horizontal ones under it,
+ you can find the sidebar managing the directory tree, a grid in the center
+ showing the files and including a toolbar, and then in the right panel
+ there is the directory information.
+ 
+\end_layout
+
+\begin_layout Standard
+As stated before, DPMbox have some filters/parsers (jQuery.dpmFilters.js)
+ that adapt the data received from the server in a way that the w2ui interface
+ can use it (that are basically JSON formats).
+ 
+\end_layout
+
+\begin_layout Standard
+-----
+\end_layout
+
+\begin_layout Standard
+Hello again! While the work on the API continues I want to show you an advance
+ of what it will be the next step.
+ Using the data provided by this WebDAV API the user interface design will
+ take advantage of jQuery UI potential.
+ Since jQuery and jQuery UI are widely known libraries this interface will
+ be hopefully easy to understand and maintain, and could also be easily
+ adapted for other uses or modified for extended support in the future.
+\end_layout
+
+\begin_layout Standard
+For this frontend development some setbacks will be taken in consideration.
+ These two are interconnected:
+\end_layout
+
+\begin_layout Standard
+Very deep collections or cases with hundreds of files inside a directory
+ could be problematic to load, so a lazy loading technique will be used,
+ and in an asynchronous way.
+\end_layout
+
+\begin_layout Standard
+And just not only for loading, also for the user experience this high number
+ of data nodes inside a collection could be troublesome.
+ Then it will be mandatory to use pagination when a certain number of nodes
+ are read.
+\end_layout
+
+\begin_layout Standard
+In the following image you can see an initial sketch design of the DPM user
+ interface.
+ You can see the nodes tree, a data section, an information column and other
+ elements that will be needed in the final design:
+\end_layout
+
+\begin_layout Standard
+-----
+\end_layout
+
+\begin_layout Standard
+Beside this I’ve also developed a small mockup with jQuery UI.
+ Obviously it’s not functional yet and it is subject to changes, but it
+ can show a first approach and the actual appearance on a browser.
+ You can check it out on the folowing link: 
 \end_layout
 
 \begin_layout Section
@@ -2457,14 +4032,9 @@ User characteristics
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+The typical user of DPMbox will be NEP physycists and so, so the target
+ user is a non-high level technical user but acquainted at file browser
+ interfaces and even cloud storing services.
 \end_layout
 
 \begin_layout Section
@@ -2476,30 +4046,176 @@ Version control
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+Git has been used, getting advantage of the GitHub platform.
+ Git (/ɡɪt/[4]) is a distributed revision control system with an emphasis
+ on speed,[5] data integrity,[6] and support for distributed, non-linear
+ workflows.[7] Git was initially designed and developed by Linus Torvalds
+ for Linux kernel development in 2005, and has since become one of the most
+ widely adopted version control systems for software development.[8]
 \end_layout
 
 \begin_layout Subsection
 Program languages and technologies
 \end_layout
 
+\begin_layout Subsubsection
+HTML 
+\end_layout
+
 \begin_layout Standard
-JavaScript, jQuery, w2ui...
+HTML (Hyper Text Markup Language) is the text markup language normally used
+ in World Wide Web (WWW).
+ It was created by Tim Berners-Lee in 1986 from two existing tools: the
+ concept of hypertext and SGML.
+ HTML allows you to define both the structure and location of the items
+ displayed on a Web page and the relations between the different components
+ of a Web site by using hyperlinks.
+ The interpretation of HTML documents is performed by Web browsers such
+ as Mozilla Firefox or Google Chrome and others.
+ The interpretation may make the final presentation vary in small details.
+ Therefore the development of HTML is adjusted to the maximum to the standards
+ set by the W3C.
+\end_layout
+
+\begin_layout Subsubsection
+CSS
+\end_layout
+
+\begin_layout Standard
+The term CSS, which stands for Cascading Style Sheets, refers to the formal
+ language used to define the presentation of structured documents written
+ in HTML, XML and XHTML by extension.
+ The World Wide Web Consortium (W3C) is the agency responsible for developing
+ the specification of style sheets that serve as a standard for browsers.
+ The objective of CSS is separate the structure of a Web document from its
+ visual representation.
+\end_layout
+
+\begin_layout Standard
+CSS from the framework used, adapted accordingly.
+\end_layout
+
+\begin_layout Subsubsection
+JavaScript
+\end_layout
+
+\begin_layout Standard
+JavaScript (/ˈdʒɑːvəˌskrɪpt/[5]) is a high level, dynamic, untyped, and
+ interpreted programming language.[6] It has been standardized in the ECMAScript
+ language specification.[7] Alongside HTML and CSS, it is one of the three
+ essential technologies of World Wide Web content production; the majority
+ of websites employ it and it is supported by all modern web browsers without
+ plug-ins.[6] JavaScript is prototype-based with first-class functions, making
+ it a multi-paradigm language, supporting object-oriented,[8] imperative,
+ and functional programming styles.[6] It has an API for working with text,
+ arrays, dates and regular expressions, but does not include any I/O, such
+ as networking, storage or graphics facilities, relying for these upon the
+ host environment in which it is embedded.[7]
+\end_layout
+
+\begin_layout Subsubsection
+jQuery
+\end_layout
+
+\begin_layout Standard
+jQuery is a cross-platform JavaScript library designed to simplify the client-si
+de scripting of HTML.
+ jQuery is the most popular JavaScript library in use today, with installation
+ on 65% of the top 10 million highest-trafficked sites on the Web.[3][4][5]
+ jQuery is free, open-source software licensed under the MIT License.
+\end_layout
+
+\begin_layout Subsubsection
+w2ui
+\end_layout
+
+\begin_layout Standard
+W2UI is a small JavaScript UI library with a complete set of widgets that
+ covers a wide range of interface design elements: layout, grid, sidebar,
+ toolbar, tabs, fields, popup and other utilities.
+\end_layout
+
+\begin_layout Subsubsection
+XML
+\end_layout
+
+\begin_layout Standard
+XML stands for eXtensible Markup Language, is a markup language developed
+ by the World Wide Web Consortium (W3C) used to store data in a human readable
+ form.
+ It is proposed as a standard for exchanging structured information between
+ different platforms.
+ Following this recommendation the Redmine APIs and forges Assembla offer
+ their information in XML format, so Abreforjas necessarily have to deal
+ with this technology.
+ On the other hand, Abreforjas also indirectly generate XML documents, as
+ the information extracted from the forges will be published in RDF format
+ with the help of D2R-Server.
+\end_layout
+
+\begin_layout Subsubsection
+JSON
+\end_layout
+
+\begin_layout Standard
+JSON, (canonically pronounced /ˈdʒeɪsən/ jay-sən;[1] sometimes JavaScript
+ Object Notation), is an open standard format that uses human-readable text
+ to transmit data objects consisting of attribute–value pairs.
+ It is the primary data format used for asynchronous browser/server communicatio
+n (AJAJ), largely replacing XML (used by AJAX).
 \end_layout
 
 \begin_layout Subsection
 Tools
 \end_layout
 
+\begin_layout Subsubsection
+Apache
+\end_layout
+
 \begin_layout Standard
-Geany (JSHint...), SmartGit, Firefox, Firefox Developer Edition, Firebug...
+The Apache HTTP Server, colloquially called Apache (/əˈpætʃiː/ ə-pa-chee),
+ is the world's most widely used web server software.
+ Originally based on the NCSA HTTPd server, development of Apache began
+ in early 1995 after work on the NCSA code stalled.
+ Apache played a key role in the initial growth of the World Wide Web,[4]
+ quickly overtaking NCSA HTTPd as the dominant HTTP server, and has remained
+ most popular since April 1996.
+ In 2009, it became the first web server software to serve more than 100
+ million websites.[5]
+\end_layout
+
+\begin_layout Subsubsection
+Geany (JSHint...)
+\end_layout
+
+\begin_layout Standard
+Geany (IPA:ʒeːniː) is a lightweight cross-platform GUI based text editor[2]
+ using Scintilla and GTK+, including basic Integrated Development Environment
+ (IDE) features.
+ It is designed to have short load times, with limited dependency on separate
+ packages or external libraries.
+ It is available for a wide range of operating systems, such as BSD, Linux,
+ Mac OS X,[3] Solaris and Windows.
+ Among the supported programming languages and markup languages are C, C++,
+ C#, Java, JavaScript, PHP, HTML, LaTeX, CSS, Python, Perl, Ruby, Pascal,
+ Haskell, Erlang, Vala and many others.[4]
+\end_layout
+
+\begin_layout Subsubsection
+SmartGit
+\end_layout
+
+\begin_layout Subsubsection
+Firefox Developer Edition
+\end_layout
+
+\begin_layout Subsubsection
+Firebug
+\end_layout
+
+\begin_layout Subsubsection
+LibreOffice Calc
 \end_layout
 
 \begin_layout Subsection
@@ -2529,18 +4245,238 @@ Project development
 \end_layout
 
 \begin_layout Section
-Life cycle model
+Objectives
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+OBJ-1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+OBJ-2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+OBJ-3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2552,14 +4488,480 @@ Functional
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+System functionality.
+\end_layout
+
+\begin_layout Standard
+Upload, download, list, delete...
+\end_layout
+
+\begin_layout Description
+get (GET) 
+\end_layout
+
+\begin_layout Description
+post (POST) 
+\end_layout
+
+\begin_layout Description
+head (HEAD) 
+\end_layout
+
+\begin_layout Description
+mkcol,
+\begin_inset space ~
+\end_inset
+
+createFolder (MKCOL) 
+\end_layout
+
+\begin_layout Description
+put,
+\begin_inset space ~
+\end_inset
+
+createFile (PUT) 
+\end_layout
+
+\begin_layout Description
+remove (DELETE) 
+\end_layout
+
+\begin_layout Description
+report (REPORT) 
+\end_layout
+
+\begin_layout Description
+getVersionTreeReport (REPORT) 
+\end_layout
+
+\begin_layout Description
+checkout (CHECKOUT) 
+\end_layout
+
+\begin_layout Description
+uncheckout (UNCHEKCOUT) 
+\end_layout
+
+\begin_layout Description
+checkin (CHECKIN) 
+\end_layout
+
+\begin_layout Description
+versionControl (VERSION-CONTROL) 
+\end_layout
+
+\begin_layout Description
+lock (LOCK) 
+\end_layout
+
+\begin_layout Description
+unlock (UNLOCK) 
+\end_layout
+
+\begin_layout Description
+propfind,
+\begin_inset space ~
+\end_inset
+
+getProperty (PROPFIND) 
+\end_layout
+
+\begin_layout Description
+proppatch,
+\begin_inset space ~
+\end_inset
+
+setProperty,
+\begin_inset space ~
+\end_inset
+
+removeProperty (PROPPATCH)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRQ-1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRQ-2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRQ-3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRQ-4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FRQ-5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2567,14 +4969,239 @@ Information
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+UML diagram.
+ ¿?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+IRQ-1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+IRQ-2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+IRQ-3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2582,7 +5209,8 @@ Business rules
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+CERN network acces has been granted...
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua.
  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
  ut aliquip ex ea commodo consequat.
@@ -2597,14 +5225,12 @@ Interface
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+Cambiar lo de aquí abajo.
+ Lo que realmente va a aquí son requirements para la interfaz.
+ Standards.
+ Accesibility.
+ Usability...
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2612,7 +5238,13 @@ Non-functional
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+Security.
+ Fiability.
+ Other systems communications.
+ Extensibility.
+ Performance.
+ Scalability.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua.
  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
  ut aliquip ex ea commodo consequat.
@@ -2620,6 +5252,354 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  eu fugiat nulla pariatur.
  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
  deserunt mollit anim id est laborum.
+\end_layout
+
+\begin_layout Subsubsection
+Security
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Fiability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Usability and accesibility
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Manteinability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Solution alternatives
+\end_layout
+
+\begin_layout Standard
+JavaScript was the only option...
+\end_layout
+
+\begin_layout Subsubsection
+Graphical interface
+\end_layout
+
+\begin_layout Standard
+For the interface different frameworks and approaches were tested.
+\end_layout
+
+\begin_layout Standard
+jQuery UI.
+\end_layout
+
+\begin_layout Standard
+Finally w2ui.
 \end_layout
 
 \begin_layout Section
@@ -2631,18 +5611,442 @@ Use cases
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+Hi! Today I’d like to show you how the jQuery.dpm library works and how it
+ communicates with the user interface.
+\end_layout
+
+\begin_layout Standard
+The library is responsible af all communication between DPMbox and the DPM
+ server through its WebDAV interface.
+ So basically it acts as an API exposing the needed WebDAV methods, lying
+ on the JavaScript XMLHttpRequest object through the jQuery Ajax method.
+\end_layout
+
+\begin_layout Standard
+Besides taking care of global data as XML headers or defining some additional
+ functions, what the library offers is (method with correspoding WebDAV
+ call in brackets): 
+\end_layout
+
+\begin_layout Subsubsection
+Main methods
+\end_layout
+
+\begin_layout Description
+get (GET) 
+\end_layout
+
+\begin_layout Description
+post (POST) 
+\end_layout
+
+\begin_layout Description
+head (HEAD) 
+\end_layout
+
+\begin_layout Description
+mkcol,
+\begin_inset space ~
+\end_inset
+
+createFolder (MKCOL) 
+\end_layout
+
+\begin_layout Description
+put,
+\begin_inset space ~
+\end_inset
+
+createFile (PUT) 
+\end_layout
+
+\begin_layout Description
+remove (DELETE) 
+\end_layout
+
+\begin_layout Description
+report (REPORT) 
+\end_layout
+
+\begin_layout Description
+getVersionTreeReport (REPORT) 
+\end_layout
+
+\begin_layout Description
+checkout (CHECKOUT) 
+\end_layout
+
+\begin_layout Description
+uncheckout (UNCHEKCOUT) 
+\end_layout
+
+\begin_layout Description
+checkin (CHECKIN) 
+\end_layout
+
+\begin_layout Description
+versionControl (VERSION-CONTROL) 
+\end_layout
+
+\begin_layout Description
+lock (LOCK) 
+\end_layout
+
+\begin_layout Description
+unlock (UNLOCK) 
+\end_layout
+
+\begin_layout Description
+propfind,
+\begin_inset space ~
+\end_inset
+
+getProperty (PROPFIND) 
+\end_layout
+
+\begin_layout Description
+proppatch,
+\begin_inset space ~
+\end_inset
+
+setProperty,
+\begin_inset space ~
+\end_inset
+
+removeProperty (PROPPATCH)
+\end_layout
+
+\begin_layout Standard
+And here’s a diagram represeting how a jquery.dpm method works.
+ As you see by the prepare function we configurate accordingly an XHR that
+ then is sent to the server:
+\end_layout
+
+\begin_layout Standard
+---------
+\end_layout
+
+\begin_layout Subsubsection
+Additional methods
+\end_layout
+
+\begin_layout Description
+isCollection: Returns whether an element is a collection or not by looking
+ for a collection XML tag inside a resourcetype property.
+ For a DPM server there’s no need to use it since a DPM response includes
+ a specific property iscollection to check this, but the method is needed
+ for standard WebDAV server support.
+\end_layout
+
+\begin_layout Description
+getNodesByTag: Works exactly like the standard getElementsByTagName, however
+ introduces the ability to filter those results by namespace, which is important
+ for handling WebDAV results.
+\end_layout
+
+\begin_layout Description
+seekToNode: Sets resource variable to first node matched via getNodesByTag,
+ and returns this, allowing further processing.
+\end_layout
+
+\begin_layout Description
+eachNode: Executes a function on each element.
+\end_layout
+
+\begin_layout Description
+nodeText: Get the text contained by a node.
+\end_layout
+
+\begin_layout Description
+nodeName: Returns the name of a node (the tag name, essentially).
+\end_layout
+
+\begin_layout Description
+extendbeforesend: jQuery ajax option beforeSend may be set to a function
+ reference, and this function will fire prior to the request being sent.
+ It gets the XHR object, so this is the point you will want to do things
+ like set headers, for example.
+\end_layout
+
+\begin_layout Description
+prepare: Prepares the WebDAV call.
+ Here we want to ensure integrity of call object, verify WebDAV method requested
+, set any authorization information (if necesssary), and return the modified
+ call object.
+ WebDAV servers usually respond in XML but some WebDAV methods will not
+ return anything at all, or return an empty response.
+ This matters to jQuery in that the success method of a jQuery.ajax options
+ object won’t fire if the reponse could not be parsed (although the complete
+ method will).
+ Is needed to be aware of what dataType of your ajax response will be, and
+ set it appropriately.
+\end_layout
+
+\begin_layout Standard
+An XML response of the DPM server looks like this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=XML,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<D:multistatus xmlns:D="DAV:" xmlns:ns0="DAV:"> 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	<D:response xmlns:lcgdm="LCGDM:" xmlns:lp3="LCGDM:" xmlns:lp1="DAV:" xmlns:lp2=
+"http://apache.org/dav/props/"> 		<D:href>/dpm/cern.ch/home/dteam/aalvarez/public/
+test_collection/</D:href> 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		<D:propstat> 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			<D:prop> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lcgdm:type>0</lcgdm:type> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:resourcetype> 					
+\end_layout
+
+\begin_layout Plain Layout
+
+					<D:collection></D:collection> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				</lp1:resourcetype> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:creationdate>2015-04-04T09:51:59Z</lp1:creationdate> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:getlastmodified>Fri, 27 Feb 2015 18:57:50 GMT</lp1:getlastmodified>
+ 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:lastaccessed>Sat, 04 Apr 2015 09:51:59 GMT</lp3:lastaccessed> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:getetag>5c317-54f0be2e</lp1:getetag> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:getcontentlength>0</lp1:getcontentlength> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:displayname>test_collection</lp1:displayname> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:iscollection>1</lp1:iscollection> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:guid></lp3:guid> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:mode>040775</lp3:mode> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:sumtype></lp3:sumtype> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:sumvalue></lp3:sumvalue> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:fileid>377623</lp3:fileid> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:status>-</lp3:status> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp3:xattr>{"type": 0, "normPath": "
+\backslash
+/dpm
+\backslash
+/cern.ch
+\backslash
+/home
+\backslash
+/dteam
+\backslash
+/aalvarez
+\backslash
+/public
+\backslash
+/test_collection"}</lp3:xattr> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:owner>3</lp1:owner> 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				<lp1:group>102</lp1:group> 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			</D:prop> 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			<D:status>HTTP/1.1 200 OK</D:status> 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		</D:propstat> 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	</D:response> 
+\end_layout
+
+\begin_layout Plain Layout
+
+</D:multistatus>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depending on the context in the interface and the w2ui library, the XML
+ data is parsed in JSON format and adapted with a specific dpmFilters method.
+ And considering that is a petition on the network, the way to use it is
+ by taking advantage of jQuery ajax callbacks, e.g.
+ (i.e.?) success.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/*  
+\end_layout
+
+\begin_layout Plain Layout
+
+ * A function to refresh the grid content  
+\end_layout
+
+\begin_layout Plain Layout
+
+ */ 
+\end_layout
+
+\begin_layout Plain Layout
+
+function refreshContent(directory_route){     
+\end_layout
+
+\begin_layout Plain Layout
+
+	$.dpm(server + directory_route).readFolder({         
+\end_layout
+
+\begin_layout Plain Layout
+
+		success:    function(dat) {             
+\end_layout
+
+\begin_layout Plain Layout
+
+			w2ui.grid.clear();             
+\end_layout
+
+\begin_layout Plain Layout
+
+			w2ui.grid.add(dat);         },         
+\end_layout
+
+\begin_layout Plain Layout
+
+		dataFilter: $.dpmFilters.filesDPM     
+\end_layout
+
+\begin_layout Plain Layout
+
+	}); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And that’s all.
+ I hope that with this post you have now a clear vision of how DPMbox communicat
+es with a DPM server.
 \end_layout
 
 \begin_layout Subsection
 Domain data conceptual model
+\end_layout
+
+\begin_layout Standard
+Information requirements -> UML diagram.
+ ¿?
 \end_layout
 
 \begin_layout Standard
@@ -2671,8 +6075,209 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  deserunt mollit anim id est laborum.
 \end_layout
 
+\begin_layout Subsection
+User interface model
+\end_layout
+
 \begin_layout Section
 System design
+\end_layout
+
+\begin_layout Standard
+Hello there! I’ll write today a brief review of how DPMbox manage the file
+ uploads, and how we solved a small problem that had complicated this feature.
+\end_layout
+
+\begin_layout Standard
+So, the steps to upload a file to the Disk Pool Manager would be as folllows:
+\end_layout
+
+\begin_layout Standard
+------
+\end_layout
+
+\begin_layout Standard
+In the DPM architecture one entity handles the namespace with the metadata,
+ and other ones store the files with the actual data.
+ This means that any request must go through a server hosting the namespace
+ first, and then redirect to the disk node storing the physical file.
+ We execute a PUT call and the file won’t be yet uploaded but DPM will answer
+ back, then our web application has to try a second time.
+ The URL needed to actually do the PUT would look like this, you can see
+ the specific DPM node where the file will be uploaded, including a token
+ validating the transaction:
+\end_layout
+
+\begin_layout Verbatim
+http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489.0?sfn=%2Fd
+pm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d%2FXHR.js.zip&dpmtoke
+n=dbf5fcbe-7c31-4849-aa57-b07c6b474f5e&token=ojkU%2FdgyPqTYEvu4TfZAyueVDqQ%3D%40
+1425288602%401
+\end_layout
+
+\begin_layout Standard
+User agents commonly apply same-origin restrictions to network requests.
+ These restrictions prevent a client-side Web application as DPMbox running
+ from one origin from obtaining data retrieved from another origin, and
+ also limit unsafe HTTP requests that can be automatically launched toward
+ destinations that differ from the running application’s origin.
+ In user agents that follow this pattern, network requests typically include
+ user credentials with cross-origin requests, including HTTP authentication
+ and cookie information.
+ As DPMbox relies heavily on XHR calls this has to be handled carefully
+ or we’ll face a lot of error messages like this:
+\end_layout
+
+\begin_layout Verbatim
+Cross-Origin Request Blocked: The Same Origin Policy disallows reading the
+ remote resource at http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/publ
+ic/test5.file.
+ (Reason: CORS header 'Access-Control-Allow-Origin' missing).
+\end_layout
+
+\begin_layout Standard
+You can check a bit of history of XHR and CORS and why is this happening
+ here [2].
+\end_layout
+
+\begin_layout Standard
+Back in our development, the DPM initial behaviour was to answer with a
+ 302 code indicating redirection, and then the browser will try transparently
+ to reach that new location.
+ That would work it out, but the thing is that 30x responses are treated
+ as error by CORS specification [1]:
+\end_layout
+
+\begin_layout Quote
+This is the actual request.
+ Apply the make a request steps and observe the request rules below while
+ making the request.
+\end_layout
+
+\begin_layout Quote
+If the response has an HTTP status code of 301, 302, 303, 307, or 308 Apply
+ the cache and network error steps.
+\end_layout
+
+\begin_layout Quote
+(…)
+\end_layout
+
+\begin_layout Quote
+Whenever the network error steps are applied, terminate the algorithm that
+ invoked this set of steps and set the cross-origin request status to network
+ error.
+\end_layout
+
+\begin_layout Quote
+Note: This has no effect on setting of user credentials.
+ I.e.
+ if the block cookies flag is unset, cookies will be set by the response.
+\end_layout
+
+\begin_layout Quote
+Whenever the cache and network error steps are applied, follow these steps:
+\end_layout
+
+\begin_layout Quote
+Remove the entries in the preflight result cache where origin field value
+ is a case-sensitive match for source origin and url field value is a case-sensi
+tive match for request URL.
+\end_layout
+
+\begin_layout Quote
+Apply the network error steps acting as if the algorithm that invoked the
+ cache and network error steps invoked the network error steps instead.
+ 
+\end_layout
+
+\begin_layout Standard
+So with ths configuration it would be impossible to get any information
+ of the response, not any header at a JavaScript level, specifically the
+ Location header.
+ Finally, the solution given was manage the uploads though a first empty
+ PUT including a header X-No-Redirect and the server will answer with a
+ 202 Accepted response.
+ We can extract any header from this type of response as it’s not treated
+ as error for XHR CORS requests.
+\end_layout
+
+\begin_layout Standard
+After this we have to add this new header information to our server CORS
+ security settings and add it to the directive Access-Control-Expose-Headers.
+ There’s a lot of tutorials for different servers CORS configuration, for
+ example you can check this one for Apache [2].
+ But in the end, in the server side we would need to configurate it as to
+ response with this headers:
+\end_layout
+
+\begin_layout Verse
+\begin_inset listings
+lstparams "float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Description
+
+Access-Control-Allow-Origin: UrlWhereDPMboxIsHosted.host 
+\end_layout
+
+\begin_layout Description
+
+Access-Control-Allow-Credentials: true 
+\end_layout
+
+\begin_layout Description
+
+Access-Control-Allow-Methods: ACL, CANCELUPLOAD, CHECKIN, CHECKOUT, COPY,
+ DELETE, GET, HEAD, LOCK, MKCALENDAR, MKCOL, MOVE, OPTIONS, POST, PROPFIND,
+ PROPPATCH, PUT, REPORT, SEARCH, UNCHECKOUT, UNLOCK, UPDATE, VERSION-CONTROL
+ 
+\end_layout
+
+\begin_layout Description
+
+Access-Control-Allow-Headers: Authorization, Overwrite, Destination, Content-Typ
+e, Depth, User-Agent, Translate, Range, Content-Range, Timeout, X-File-Size,
+ X-Requested-With, Accept, Accept-Version, If-Modified-Since, X-File-Name,
+ Cache-Control, Location, Lock-Token, If, X-No-Redirect 
+\end_layout
+
+\begin_layout Description
+
+Access-Control-Expose-Headers: DAV, content-length, Allow, Location
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+At first, find a solution to this problem was tough since I’m not very familiar
+ with this Cross-Origin Resource Sharing HTML5 new settings, but after all
+ it was properly (and happily) solved.
+ Good night!
+\end_layout
+
+\begin_layout Subsection
+Logic arquitecture
+\end_layout
+
+\begin_layout Standard
+Pipes and filters? MVC?
+\end_layout
+
+\begin_layout Standard
+A esquema con las cajas y eso.
+\end_layout
+
+\begin_layout Subsection
+Physical arquitecture
+\end_layout
+
+\begin_layout Standard
+A lot to explain about how DPM works.
 \end_layout
 
 \begin_layout Section
@@ -2691,14 +6296,602 @@ Juan: inclúyase en esta sección únicamente el código necesario para una
 
 \end_layout
 
+\begin_layout Subsection
+HTML
+\end_layout
+
+\begin_layout Subsubsection
+index.html
+\end_layout
+
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "/home/juanmvcalvellido/Documentos/UCA2015/TFG/TFG/Plantilla/DPMbox-memoria.tex"
+It is actually just a frame for the JavaScript generated interface.
+\end_layout
+
+\begin_layout Subsection
+CSS
+\end_layout
+
+\begin_layout Subsubsection
+style.css
+\end_layout
+
+\begin_layout Subsubsection
+w2ui.css
+\end_layout
+
+\begin_layout Subsection
+JavaScript
+\end_layout
+
+\begin_layout Subsubsection
+config.js
+\end_layout
+
+\begin_layout Subsubsection
+dpmbox-ui.js 
+\end_layout
+
+\begin_layout Standard
+Hello again!! It’s been a while but in this period I’ve been busy finally
+ starting to build the actual interface and connecting it to the DPMbox
+ API methods.
+\end_layout
+
+\begin_layout Standard
+As stated in past posts I was thinking initially in jQuery UI as a good
+ partner in the interface creation, using some other components when needed,
+ for example zTree for the directory folder management.
+ jQuery UI is very useful but for a complete user interface creation I was
+ gonna have to build everything almost from scratch (toolbars, menus, file
+ listings…) and a library like zTree is extremely powerful but it’s also
+ like a big dinosaur with a bunch of files to load and manage.
+ Thinking about these issues I stumbled upon w2ui, an awesome JavaScript
+ UI library that offers practically all what I was looking for.
+ By its own description: “w2ui is a modern, intuitive JavaScript UI library
+ for building rich data-driven web application”.
+ Some of its features are:
+\end_layout
+
+\begin_layout Itemize
+Complete w2ui library is only 69kb (minified and gziped) and provides extremely
+ fast load and execution.
+ It is 9 times smaller then ExtJS and 7 times smaller then Kendo UI.
+ It is just a bit over the size of jQuery.
+\end_layout
+
+\begin_layout Itemize
+It’s really easy to use with simple and standard API methods, JSON friendly,
+ and it has a stable and good support from its main developer.
+\end_layout
+
+\begin_layout Itemize
+It has no dependencies except jQuery, is all-in-one solution.
+ It contains all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
+ popup, field controls and forms.
+ No need to put together a collection of mismatched plugins or more libraries.
+\end_layout
+
+\begin_layout Itemize
+The library heavily uses HTML5 and CSS3 and yet supports all major modern
+ browsers.
+ Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are among supported browsers.
+\end_layout
+
+\begin_layout Standard
+With this change of libraries is possible that a bit of scope or control
+ was lost but using w2ui I stuck with not reinventing the wheel and KISS
+ design principles, making things easier to understand, maintain and even
+ expand.
+ This being said, no worries because all the initially designed and proposed
+ elements are present in this final interface, and since they fit so well
+ I have used almost all w2ui components to build the DPMbox interface.
+ Upon a layout divided in a top panel and three horizontal ones under it
+ you can find the sidebar managing the directory tree, a grid in the center
+ showing the files including a toolbar, and then in the right panel there
+ is the directory information.
+ 
+\end_layout
+
+\begin_layout Standard
+I still have to check intesively and get deeper into the very deep collections
+ problem but for now the tree it’s only built on demand and the grid panel
+ only load the files information when you actually scroll down to look for
+ them.
+\end_layout
+
+\begin_layout Standard
+And of course, you can already check and interact with this brand new interface.
+ Yes, it’s read-only and has a limited functionality still, but the final
+ version of DPMbox will be built upon this one step by step.
+ Check it out here:
+\end_layout
+
+\begin_layout Standard
+calvellido.es/dpm
+\end_layout
+
+\begin_layout Standard
+In the next update, for which you won’t have to wait so long as for this
+ one, I will explain how this interface and the DPMbox API work together.
+\end_layout
+
+\begin_layout Standard
+Seeya!! =)
+\end_layout
+
+\begin_layout Subsubsection
+jquery.dpm.js 
+\end_layout
+
+\begin_layout Standard
+The other methods are similar to the GET method shown, attending to particular
+ characteristics.
+ 
+\end_layout
+
+\begin_layout Standard
+cob is the jQuery ajax call object.
+ In the prepare function the DAV call is built.
+ Here it's needed to ensure integrity of the call object, verify the DAV
+ method requested and set any additional parameters (if necesssary).
+ 
+\end_layout
+
+\begin_layout Standard
+Then the send function does the actual HTTP send through an ajax request.
+ 
+\end_layout
+
+\begin_layout Standard
+To use this API in a document we just call the function needed, which as
+ we have seen is basically an ajax call.
+ 
+\end_layout
+
+\begin_layout Standard
+Besides the standard methods some more functions are developed in order
+ to operate properly.
+ WebDAV answers with XML data, so some parsers/filters and some other methods
+ will be needed before the data can be used by the UI.
+ 
+\end_layout
+
+\begin_layout Standard
+-----
+\end_layout
+
+\begin_layout Standard
+Hello! In this post I want to talk you about a key thing in the development,
+ and that is the way to talk with the current DPM software stack.
+\end_layout
+
+\begin_layout Standard
+How can we add more interactivity to the current webview? We have to communicate
+ with the current implementation, so we need to build an API that deals
+ with the HTTP/WebDAV frontend.
+ This can be done in JavaScript, particularly using jQuery.
+ Now the current work is to build this JavaScript library that can interact
+ with it.
+ This will let us use methods of the WebDAV standard like PROPFIND or MKCOL
+ in an HTML environment and thus manage the information they provide.
+ This API will use XMLHttpRequest operations, also known as XHR.
+ These are basically ajax calls that perform the HTTP/WebDAV requests and
+ receive the data in a JavaScript XHR object.
+ An XMLHttpRequest support GET, POST, PUT, and basically any HTTP method,
+ and is available in any browser, even in old ones like Internet Explorer
+ 6 or Firefox 3.
+\end_layout
+
+\begin_layout Standard
+This is a simplified version of the API.
+ In this case a GET is shown but the other ones are are implemented in a
+ similar way though considering some particularities (like the PROPFIND
+ needing a depth parameter).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+$.fn.extend($,{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	Dav: function(res) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		var api = function() {
+\end_layout
+
+\begin_layout Plain Layout
+
+			this.get = function(cob) { 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				this.prepare(cob, 'GET'); 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				return this.send(cob); 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			};
+\end_layout
+
+\begin_layout Plain Layout
+
+			this.prepare = function(cob, typ) { 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				cob = cob || {}; 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				cob.url = resourceUrl; 			
+\end_layout
+
+\begin_layout Plain Layout
+
+				cob.headers = cob.headers || {};
+\end_layout
+
+\begin_layout Plain Layout
+
+				cob.type = typ || 'GET'; 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				cob.dataType  = cob.dataType || 'xml'; 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			};
+\end_layout
+
+\begin_layout Plain Layout
+
+			this.send = function(cob) { 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				lastRequest = $.ajax(cob); 				
+\end_layout
+
+\begin_layout Plain Layout
+
+				return lastRequest; 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			};
+\end_layout
+
+\begin_layout Plain Layout
+
+		}; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		return new api;     
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Listing algo
+\end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+cob is the jQuery ajax call object, in the prepare function the DAV call
+ is built.
+ There it’s needed to ensure integrity of the call object, verify the DAV
+ method requested and set any authorization information (if necesssary).
+ The headers that will include that information are set by the SetRequestHeader
+ ajax method.
+ After that the send function does the actual HTTP send through an ajax
+ request.
+\end_layout
+
+\begin_layout Standard
+To use this API in an HTML document we just call the function needed, which
+ as we have seen is basically an ajax call that we can process if it success.
+ Here’s an example with a textxml.xml file and other one creating a test
+ collection: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// #get 
+\end_layout
+
+\begin_layout Plain Layout
+
+jQuery.dpm(url + 'testxml.xml').get({ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	complete: function() { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		console.log('#get'); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	}, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	success:  function(dat, stat) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		console.log(jQuery.dpm(dat).getNodesByTag('acl')); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 
+\end_layout
+
+\begin_layout Plain Layout
+
+});
+\end_layout
+
+\begin_layout Plain Layout
+
+//#mkcol 
+\end_layout
+
+\begin_layout Plain Layout
+
+jQuery.Dav(url + 'test').mkcol({ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	complete:  function(dat, stat) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		console.log('#mkcol'); 	}, 	
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Listing algo2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	async: false 
+\end_layout
+
+\begin_layout Plain Layout
+
+});
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the API there are also other methods developed in order to work properly
+ with the data.
+ For example to traverse the nodes received in a PROPFIND, or to select
+ a specific property… WebDAV answers with XML data so some parsers will
+ be needed too.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+this.getAllProperties = function(cob) { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	cob.data = XmlHeader + '<D:propfind xmlns:D="DAV:"><D:allprop/>';
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(isArray(cob.includes)) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		cob.data    +=  '<D:include>';
+\end_layout
+
+\begin_layout Plain Layout
+
+		for(var i=0; i < d.includes.length; i++) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+			cob.body  += '<D:' + d.includes[i] + '/>'; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		cob.data    +=  '</D:include>'; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	cob.data      += '</D:propfind>'; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	return this.propFind(cob); 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Listing algo3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As you can see in the way the code communicate with the DPM software stack,
+ is the developed WebDAV module the one that deals with the DPM head or
+ DPM disk actually.
+\end_layout
+
+\begin_layout Standard
+By supporting these standard WebDAV operations in our API it could be possible
+ to build a functional HTML interface, but once we have completed the developmen
+t for them the goal will be to cover specific DPM/
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{LFC}
+\end_layout
+
+\end_inset
+
+ issues like the replica (a specific location for a file) and metalink (the
+ full list of locations for a certain file) management, this would be very
+ helpful for broken file location links.
+\end_layout
+
+\begin_layout Standard
+Right now DPMbox has basic functionality: 
+\end_layout
+
+\begin_layout Itemize
+It's possible to navigate through different directories, starting on the
+ location written on the browser, so you can copy/paste locations.
+ 
+\end_layout
+
+\begin_layout Itemize
+You can create new directories and delete them.
+ 
+\end_layout
+
+\begin_layout Itemize
+It's also possible to upload new files and delete them.
+ You can upload multiple files at once, same for deleting.
+\end_layout
+
+\begin_layout Itemize
+You can also sort data in a collection by its name, size or modification
+ date.
+ And also you can search inside a collection giving some of these parameters.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+jquery.dpmFilters.js
+\end_layout
+
+\begin_layout Standard
+Some filters to treat the data.
+\end_layout
+
+\begin_layout Subsubsection
+w2ui-1.4.2.js
+\end_layout
+
+\begin_layout Standard
+The main w2ui file.
+ It weights just 69KB.
+ 
 \end_layout
 
 \begin_layout Section
@@ -2716,19 +6909,62 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  deserunt mollit anim id est laborum.
 \end_layout
 
-\begin_layout Chapter
-Summary
+\begin_layout Standard
+Para la prueba de Abreforjas se ha seguido una estrategia de pruebas manual,
+ pues la cantidad de funcionalidades no requería la programación de una
+ herramienta que asistiera la fase de pruebas y permitiera automatizarlas.
+ 
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+Al coincidir en este proyecto el grupo de testeadores independientes con
+ los clientes, se podría decir que se han realizado pruebas unitarias de
+ aceptación, siendo como el propio nombre indica la aceptación por parte
+ de los clientes la evaluación de los resultados de las pruebas.
+ 
+\end_layout
+
+\begin_layout Standard
+Para las pruebas de regresión se detectaron las funcionalidades que eran
+ dependientes de los elementos que sufrían cambios de algún tipo.
+ De esta manera, tras la realización de los cambios pertinentes se procedía
+ a probar aquellas funcionalidades que pudieran haber sido afectadas.
+ Por ejemplo, si una transformación de un proceso de Pentaho sufría algún
+ cambio, se procedía al testeo del Job inmediatamente superior en la jerarquía,
+ o si se realizaban cambios en un formulario se procedía a probar aquellas
+ vistas que lo utilizaban.
+ No obstante, cuando el estado de desarrollo de Abreforjas fue lo sucientemente
+ avanzado, era más sencillo realizar directamente las pruebas de sistema
+ en lugar de buscar y detectar las correspondientes dependencias.
+ 
+\end_layout
+
+\begin_layout Subsection
+Unity testing
+\end_layout
+
+\begin_layout Subsection
+Functional testing
+\end_layout
+
+\begin_layout Standard
+(Functional requirements).
+\end_layout
+
+\begin_layout Subsection
+Non-functional testing 
+\end_layout
+
+\begin_layout Standard
+(Non-functional requirements).
+\end_layout
+
+\begin_layout Subsection
+Acceptance tests
+\end_layout
+
+\begin_layout Standard
+Same tests as before but over production.
 \end_layout
 
 \begin_layout Chapter
@@ -2740,14 +6976,17 @@ Conclusions
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+Summary.
+ 
+\end_layout
+
+\begin_layout Standard
+The work on DPMbox has been really exciting.
+ 
+\end_layout
+
+\begin_layout Standard
+Objetivos alcanzados y lecciones aprendidas.
 \end_layout
 
 \begin_layout Section
@@ -2755,14 +6994,38 @@ Future work
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+As an open source development, licensed by the Apache license, the future
+ development...
+ Future functionality can be varied: 
+\end_layout
+
+\begin_layout Itemize
+Renaming (files and collections)
+\end_layout
+
+\begin_layout Itemize
+Show more information about a collection 
+\end_layout
+
+\begin_layout Itemize
+Offer more information about the files
+\end_layout
+
+\begin_layout Itemize
+Implement a better system for the uploads
+\end_layout
+
+\begin_layout Itemize
+Improve the error message popups
+\end_layout
+
+\begin_layout Itemize
+Give some configuration options to the user (as sizes or data fields)
+\end_layout
+
+\begin_layout Itemize
+Etc...
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -2778,6 +7041,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  eu fugiat nulla pariatur.
  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
  deserunt mollit anim id est laborum.
+\end_layout
+
+\begin_layout Standard
+Agradecimientos! Thanks to all the IT-DPM..
+ DPM team for all the help.
+ Alejandro Álvarez Ayllón.
+ Manuel Palomo Duarte.
+\end_layout
+
+\begin_layout Standard
+Free software.
+ CUSL team.
+\end_layout
+
+\begin_layout Standard
+Family.
 \end_layout
 
 \begin_layout Standard
@@ -2800,6 +7079,356 @@ appendix
 Installation manual
 \end_layout
 
+\begin_layout Section
+DPM installation
+\end_layout
+
+\begin_layout Subsection
+Installing Scientific Linux 6 
+\end_layout
+
+\begin_layout Standard
+Image: 
+\begin_inset CommandInset href
+LatexCommand href
+name "linuxsoft.cern.ch/cern/slc6X/iso/SLC_6.6_x86_64_dvd.iso"
+target "http://linuxsoft.cern.ch/cern/slc6X/iso/SLC_6.6_x86_64_dvd.iso"
+type "file:"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Instalar nuevo sistema
+\end_layout
+
+\begin_layout Itemize
+Seguir las instrucciones del instalador
+\end_layout
+
+\begin_layout Itemize
+Elegir Basic Server / Customize Later
+\end_layout
+
+\begin_layout Itemize
+Esperar ⌚
+\end_layout
+
+\begin_layout Itemize
+Reiniciará, y actualizará
+\end_layout
+
+\begin_layout Itemize
+Recomiendo redirigir puerto 2222 local al puerto 22 de la máquina virtual
+ (para tener SSH)
+\end_layout
+
+\begin_layout Subsection
+Installing DPM manually
+\end_layout
+
+\begin_layout Standard
+Normalmente se puede instalar desde EPEL, pero para tener tu código necesitas
+ el repo del continuous build
+\end_layout
+
+\begin_layout Subsubsection
+Instalar DPM
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Repositorio
+\end_layout
+
+\begin_layout Standard
+wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
+ -P /etc/yum.repos.d
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Paquetes
+\end_layout
+
+\begin_layout Standard
+yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql dpm-name-se
+rver-mysql dpm
+\end_layout
+
+\begin_layout Subsubsection
+Instalar MySQL
+\end_layout
+
+\begin_layout Verbatim
+# yum install mysql-server - chkconfig mysqld on - service mysqld start
+\end_layout
+
+\begin_layout Subsubsection
+Crear las tablas y usuario
+\end_layout
+
+\begin_layout Verbatim
+mysql < /usr/share/lcgdm/create_dpns_tables_mysql.sql 
+\end_layout
+
+\begin_layout Verbatim
+mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql 
+\end_layout
+
+\begin_layout Verbatim
+mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant
+ all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
+\end_layout
+
+\begin_layout Subsubsection
+Generar un certificado
+\end_layout
+
+\begin_layout Verbatim
+# cd /etc/grid-security
+\end_layout
+
+\begin_layout Verbatim
+# openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
+\end_layout
+
+\begin_layout Verbatim
+# openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname
+ -f`" 
+\end_layout
+
+\begin_layout Standard
+hostname -f debe coincidir con el nombre de la maquina.dominio tal como lo
+ configuraste! Si no, ponlo a mano
+\end_layout
+
+\begin_layout Verbatim
+# openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pe
+m 
+\end_layout
+
+\begin_layout Verbatim
+# mkdir dpmmgr
+\end_layout
+
+\begin_layout Verbatim
+# cp hostkey.pem dpmmgr/dpmkey.pem 
+\end_layout
+
+\begin_layout Verbatim
+# cp hostcert.pem dpmmgr/dpmcert.pem 
+\end_layout
+
+\begin_layout Verbatim
+# chown dpmmgr.dpmmgr dpmmgr/*
+\end_layout
+
+\begin_layout Subsubsection
+Confiar en tu certificado como CA
+\end_layout
+
+\begin_layout Verbatim
+# mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates
+ cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in
+ myca.pem )".0"
+\end_layout
+
+\begin_layout Subsubsection
+Trampear DNS
+\end_layout
+
+\begin_layout Standard
+En /etc/hosts, añade tu host y host.domain al final de la lista para 127.0.0.1
+ y ::1
+\end_layout
+
+\begin_layout Subsubsection
+Configurar DPM y DPNS
+\end_layout
+
+\begin_layout Standard
+Modificar /etc/sysconfig/dpm DPNS_HOST=`hostname` 
+\end_layout
+
+\begin_layout Standard
+- Crear /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
+\end_layout
+
+\begin_layout Standard
+- Crear /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
+\end_layout
+
+\begin_layout Standard
+groupadd dpmmgr && useradd -g dpmmgr dpmmgr 
+\end_layout
+
+\begin_layout Standard
+En /etc/shift.conf 
+\end_layout
+
+\begin_layout Verbatim
+DPM
+\begin_inset space ~
+\end_inset
+
+TRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+DPNS
+\begin_inset space ~
+\end_inset
+
+TRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+RFIOD
+\begin_inset space ~
+\end_inset
+
+TRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+RFIOD
+\begin_inset space ~
+\end_inset
+
+WTRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+RFIOD
+\begin_inset space ~
+\end_inset
+
+RTRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+RFIOD
+\begin_inset space ~
+\end_inset
+
+XTRUST host.domain
+\begin_inset Newline newline
+\end_inset
+
+RFIOD
+\begin_inset space ~
+\end_inset
+
+FTRUST host.domain
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+# export DPNS_HOST=localhost
+\end_layout
+
+\begin_layout Verbatim
+# export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
+\end_layout
+
+\begin_layout Subsubsection
+Validar
+\end_layout
+
+\begin_layout Verbatim
+# dpns-ls
+\end_layout
+
+\begin_layout Verbatim
+# dpm-qryconf
+\end_layout
+
+\begin_layout Standard
+Si no fallan, va bien, aunque no veas nada
+\end_layout
+
+\begin_layout Subsubsection
+Arrancar siempre
+\end_layout
+
+\begin_layout Verbatim
+# chkconfig dpnsdaemon on chkconfig dpm on
+\end_layout
+
+\begin_layout Subsubsection
+Añadir una base
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Crear directorio 
+\end_layout
+
+\begin_layout Verbatim
+dpns-mkdir -p /dpm/domain/home/public 
+\end_layout
+
+\begin_layout Verbatim
+dpns-chmod 0777 /dpm/domain/home/public
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Crear un sitio donde almacenar ficher 
+\end_layout
+
+\begin_layout Standard
+dpm-addpool --poolname default --def_filesize 100M mkdir /storage chown
+ dpmmgr.dpmmgr /storage dpm-addfs --poolname default --server host.domain
+ --fs /storage/ dpm-qryconf (y verás que ahora aparece algo) 
+\end_layout
+
+\begin_layout Subsubsection
+Configurar dav
+\end_layout
+
+\begin_layout Standard
+cd /etc/httpd/conf/ Modificar httpd.conf User dpmmgr Group dpmmgr Elimina
+ o comenta las líneas LoadModule dav_module modules/mod_dav.so LoadModule
+ dav_fs_module modules/mod_dav_fs.so cd /etc/httpd/conf.d/ rm -f ssl.conf welcome.co
+nf zgridsite.conf En zlcgdm-dav.conf SSLVerifyClient require => SSLVerifyClient
+ optional NSSecureRedirect Off Añade Write to DiskFlags y NSFlags NSRedirectPort
+ 8080 4443 (puertos expuestos al exterior) service httpd restart
+\end_layout
+
+\begin_layout Standard
+Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox.
+ Configura el firewall para el puerto 443 y 80, o desactivalo (service iptables
+ stop / chkconfig iptables off).
+\end_layout
+
+\begin_layout Standard
+Desactiva selinux, que es un dolor
+\end_layout
+
+\begin_layout Verbatim
+setenforce 0 vim /etc/selinux/config SELINUX=permissive
+\end_layout
+
+\begin_layout Standard
+En https://localhost:8080/dpm/ deberías ya tener algo.
+ 
+\end_layout
+
+\begin_layout Section
+DPMbox installation
+\end_layout
+
 \begin_layout Standard
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua.
@@ -2809,6 +7438,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  eu fugiat nulla pariatur.
  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
  deserunt mollit anim id est laborum.
+\end_layout
+
+\begin_layout Standard
+It's on the repositories.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -2846,6 +7480,1114 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 LatexCommand bibtex
 bibfiles "references"
 options "splncs03"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Addchap
+GNU Free Documentation License
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+       Version 1.3, 3 November 2008
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Copyright 
+\backslash
+copyright{} 2000, 2001, 2002, 2007, 2008  Free Software Foundation, Inc.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+bigskip
+\backslash
+texttt{<http://fsf.org/>}
+\backslash
+bigskip
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Everyone is permitted to copy and distribute verbatim copies  of this license
+ document, but changing it is not allowed.
+ 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+bf
+\backslash
+large Preamble} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+The purpose of this License is to make a manual, textbook, or other functional
+ and useful document ``free'' in the sense of freedom: to assure everyone
+ the effective freedom to copy and redistribute it, with or without modifying
+ it, either commercially or noncommercially.
+ Secondarily, this License preserves for the author and publisher a way
+ to get credit for their work, while not being considered responsible for
+ modifications made by others.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+This License is a kind of ``copyleft'', which means that derivative works
+ of the document must themselves be free in the same sense.
+  It complements the GNU General Public License, which is a copyleft license
+ designed for free software.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+We have designed this License in order to use it for manuals for free software,
+ because free software needs free documentation: a free program should come
+ with manuals providing the same freedoms that the software does.
+  But this License is not limited to software manuals; it can be used for
+ any textual work, regardless of subject matter or whether it is published
+ as a printed book.
+  We recommend this License principally for works whose purpose is instruction
+ or reference.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 1.
+ APPLICABILITY AND DEFINITIONS
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{1.
+ APPLICABILITY AND DEFINITIONS} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+This License applies to any manual or other work, in any medium, that contains
+ a notice placed by the copyright holder saying it can be distributed under
+ the terms of this License.
+  Such a notice grants a world-wide, royalty-free license, unlimited in
+ duration, to use that work under the conditions stated herein.
+  The ``
+\backslash
+textbf{Document}'', below, refers to any such manual or work.
+  Any member of the public is a licensee, and is addressed as ``
+\backslash
+textbf{you}''.
+  You accept the license if you copy, modify or distribute the work in a
+ way requiring permission under copyright law.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+A ``
+\backslash
+textbf{Modified Version}'' of the Document means any work containing the
+ Document or a portion of it, either copied verbatim, or with modifications
+ and/or translated into another language.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+A ``
+\backslash
+textbf{Secondary Section}'' is a named appendix or a front-matter section
+ of the Document that deals exclusively with the relationship of the publishers
+ or authors of the Document to the Document's overall subject (or to related
+ matters) and contains nothing that could fall directly within that overall
+ subject.
+  (Thus, if the Document is in part a textbook of mathematics, a Secondary
+ Section may not explain any mathematics.)  The relationship could be a matter
+ of historical connection with the subject or with related matters, or of
+ legal, commercial, philosophical, ethical or political position regarding
+ them.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The ``
+\backslash
+textbf{Invariant Sections}'' are certain Secondary Sections whose titles
+ are designated, as being those of Invariant Sections, in the notice that
+ says that the Document is released under this License.
+  If a section does not fit the above definition of Secondary then it is
+ not allowed to be designated as Invariant.
+  The Document may contain zero Invariant Sections.
+  If the Document does not identify any Invariant Sections then there are
+ none.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The ``
+\backslash
+textbf{Cover Texts}'' are certain short passages of text that are listed,
+ as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+ the Document is released under this License.
+  A Front-Cover Text may be at most 5 words, and a Back-Cover Text may be
+ at most 25 words.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+A ``
+\backslash
+textbf{Transparent}'' copy of the Document means a machine-readable copy,
+ represented in a format whose specification is available to the general
+ public, that is suitable for revising the document straightforwardly with
+ generic text editors or (for images composed of pixels) generic paint programs
+ or (for drawings) some widely available drawing editor, and that is suitable
+ for input to text formatters or for automatic translation to a variety
+ of formats suitable for input to text formatters.
+  A copy made in an otherwise Transparent file format whose markup, or absence
+ of markup, has been arranged to thwart or discourage subsequent modification
+ by readers is not Transparent.
+ An image format is not Transparent if used for any substantial amount of
+ text.
+  A copy that is not ``Transparent'' is called ``
+\backslash
+textbf{Opaque}''.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Examples of suitable formats for Transparent copies include plain ASCII
+ without markup, Texinfo input format, LaTeX input format, SGML or XML using
+ a publicly available DTD, and standard-conforming simple HTML, PostScript
+ or PDF designed for human modification.
+  Examples of transparent image formats include PNG, XCF and JPG.
+  Opaque formats include proprietary formats that can be read and edited
+ only by proprietary word processors, SGML or XML for which the DTD and/or
+ processing tools are not generally available, and the machine-generated
+ HTML, PostScript or PDF produced by some word processors for output purposes
+ only.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The ``
+\backslash
+textbf{Title Page}'' means, for a printed book, the title page itself, plus
+ such following pages as are needed to hold, legibly, the material this
+ License requires to appear in the title page.
+  For works in formats which do not have any title page as such, ``Title
+ Page'' means the text near the most prominent appearance of the work's
+ title, preceding the beginning of the body of the text.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The ``
+\backslash
+textbf{publisher}'' means any person or entity that distributes copies of
+ the Document to the public.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+A section ``
+\backslash
+textbf{Entitled XYZ}'' means a named subunit of the Document whose title
+ either is precisely XYZ or contains XYZ in parentheses following text that
+ translates XYZ in another language.
+  (Here XYZ stands for a specific section name mentioned below, such as
+ ``
+\backslash
+textbf{Acknowledgements}'', ``
+\backslash
+textbf{Dedications}'', ``
+\backslash
+textbf{Endorsements}'', or ``
+\backslash
+textbf{History}''.)   To ``
+\backslash
+textbf{Preserve the Title}'' of such a section when you modify the Document
+ means that it remains a section ``Entitled XYZ'' according to this definition.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The Document may include Warranty Disclaimers next to the notice which states
+ that this License applies to the Document.
+  These Warranty Disclaimers are considered to be included by reference
+ in this License, but only as regards disclaiming warranties: any other
+ implication that these Warranty Disclaimers may have is void and has no
+ effect on the meaning of this License.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 2.
+ VERBATIM COPYING
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{2.
+ VERBATIM COPYING} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+You may copy and distribute the Document in any medium, either commercially
+ or noncommercially, provided that this License, the copyright notices,
+ and the license notice saying this License applies to the Document are
+ reproduced in all copies, and that you add no other conditions whatsoever
+ to those of this License.
+  You may not use technical measures to obstruct or control the reading
+ or further copying of the copies you make or distribute.
+  However, you may accept compensation in exchange for copies.
+  If you distribute a large enough number of copies you must also follow
+ the conditions in section~3.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+You may also lend copies, under the same conditions stated above, and you
+ may publicly display copies.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 3.
+ COPYING IN QUANTITY
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{3.
+ COPYING IN QUANTITY} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+If you publish printed copies (or copies in media that commonly have printed
+ covers) of the Document, numbering more than 100, and the Document's license
+ notice requires Cover Texts, you must enclose the copies in covers that
+ carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on
+ the front cover, and Back-Cover Texts on the back cover.
+  Both covers must also clearly and legibly identify you as the publisher
+ of these copies.
+  The front cover must present the full title with all words of the title
+ equally prominent and visible.
+  You may add other material on the covers in addition.
+ Copying with changes limited to the covers, as long as they preserve the
+ title of the Document and satisfy these conditions, can be treated as verbatim
+ copying in other respects.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If the required texts for either cover are too voluminous to fit legibly,
+ you should put the first ones listed (as many as fit reasonably) on the
+ actual cover, and continue the rest onto adjacent pages.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If you publish or distribute Opaque copies of the Document numbering more
+ than 100, you must either include a machine-readable Transparent copy along
+ with each Opaque copy, or state in or with each Opaque copy a computer-network
+ location from which the general network-using public has access to download
+ using public-standard network protocols a complete Transparent copy of
+ the Document, free of added material.
+ If you use the latter option, you must take reasonably prudent steps, when
+ you begin distribution of Opaque copies in quantity, to ensure that this
+ Transparent copy will remain thus accessible at the stated location until
+ at least one year after the last time you distribute an Opaque copy (directly
+ or through your agents or retailers) of that edition to the public.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+It is requested, but not required, that you contact the authors of the Document
+ well before redistributing any large number of copies, to give them a chance
+ to provide you with an updated version of the Document.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 4.
+ MODIFICATIONS
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{4.
+ MODIFICATIONS} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+You may copy and distribute a Modified Version of the Document under the
+ conditions of sections 2 and 3 above, provided that you release the Modified
+ Version under precisely this License, with the Modified Version filling
+ the role of the Document, thus licensing distribution and modification
+ of the Modified Version to whoever possesses a copy of it.
+  In addition, you must do these things in the Modified Version:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{itemize} 
+\backslash
+item[A.]     Use in the Title Page (and on the covers, if any) a title distinct
+    from that of the Document, and from those of previous versions    (which
+ should, if there were any, be listed in the History section    of the Document).
+  You may use the same title as a previous version    if the original publisher
+ of that version gives permission.
+     
+\backslash
+item[B.]    List on the Title Page, as authors, one or more persons or entities
+    responsible for authorship of the modifications in the Modified    Version,
+ together with at least five of the principal authors of the    Document
+ (all of its principal authors, if it has fewer than five),    unless they
+ release you from this requirement.
+     
+\backslash
+item[C.]    State on the Title page the name of the publisher of the    Modified
+ Version, as the publisher.
+     
+\backslash
+item[D.]    Preserve all the copyright notices of the Document.
+     
+\backslash
+item[E.]    Add an appropriate copyright notice for your modifications  
+  adjacent to the other copyright notices.
+     
+\backslash
+item[F.]    Include, immediately after the copyright notices, a license notice
+    giving the public permission to use the Modified Version under the 
+   terms of this License, in the form shown in the Addendum below.
+     
+\backslash
+item[G.]    Preserve in that license notice the full lists of Invariant Sections
+    and required Cover Texts given in the Document's license notice.
+     
+\backslash
+item[H.]    Include an unaltered copy of this License.
+     
+\backslash
+item[I.]    Preserve the section Entitled ``History'', Preserve its Title,
+ and add    to it an item stating at least the title, year, new authors,
+ and    publisher of the Modified Version as given on the Title Page.
+  If    there is no section Entitled ``History'' in the Document, create
+ one    stating the title, year, authors, and publisher of the Document
+ as    given on its Title Page, then add an item describing the Modified
+    Version as stated in the previous sentence.
+     
+\backslash
+item[J.]    Preserve the network location, if any, given in the Document
+ for    public access to a Transparent copy of the Document, and likewise
+    the network locations given in the Document for previous versions  
+  it was based on.
+  These may be placed in the ``History'' section.
+    You may omit a network location for a work that was published at   
+ least four years before the Document itself, or if the original    publisher
+ of the version it refers to gives permission.
+     
+\backslash
+item[K.]    For any section Entitled ``Acknowledgements'' or ``Dedications'',
+    Preserve the Title of the section, and preserve in the section all 
+   the substance and tone of each of the contributor acknowledgements  
+  and/or dedications given therein.
+     
+\backslash
+item[L.]    Preserve all the Invariant Sections of the Document,    unaltered
+ in their text and in their titles.
+  Section numbers    or the equivalent are not considered part of the section
+ titles.
+     
+\backslash
+item[M.]    Delete any section Entitled ``Endorsements''.
+  Such a section    may not be included in the Modified Version.
+     
+\backslash
+item[N.]    Do not retitle any existing section to be Entitled ``Endorsements''
+    or to conflict in title with any Invariant Section.
+     
+\backslash
+item[O.]    Preserve any Warranty Disclaimers.
+ 
+\backslash
+end{itemize}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If the Modified Version includes new front-matter sections or appendices
+ that qualify as Secondary Sections and contain no material copied from
+ the Document, you may at your option designate some or all of these sections
+ as invariant.
+  To do this, add their titles to the list of Invariant Sections in the
+ Modified Version's license notice.
+ These titles must be distinct from any other section titles.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+You may add a section Entitled ``Endorsements'', provided it contains nothing
+ but endorsements of your Modified Version by various parties---for example,
+ statements of peer review or that the text has been approved by an organization
+ as the authoritative definition of a standard.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+You may add a passage of up to five words as a Front-Cover Text, and a passage
+ of up to 25 words as a Back-Cover Text, to the end of the list of Cover
+ Texts in the Modified Version.
+  Only one passage of Front-Cover Text and one of Back-Cover Text may be
+ added by (or through arrangements made by) any one entity.
+  If the Document already includes a cover text for the same cover, previously
+ added by you or by arrangement made by the same entity you are acting on
+ behalf of, you may not add another; but you may replace the old one, on
+ explicit permission from the previous publisher that added the old one.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+The author(s) and publisher(s) of the Document do not by this License give
+ permission to use their names for publicity for or to assert or imply endorseme
+nt of any Modified Version.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 5.
+ COMBINING DOCUMENTS
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{5.
+ COMBINING DOCUMENTS} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+You may combine the Document with other documents released under this License,
+ under the terms defined in section~4 above for modified versions, provided
+ that you include in the combination all of the Invariant Sections of all
+ of the original documents, unmodified, and list them all as Invariant Sections
+ of your combined work in its license notice, and that you preserve all
+ their Warranty Disclaimers.
+\end_layout
+
+\begin_layout Plain Layout
+
+The combined work need only contain one copy of this License, and multiple
+ identical Invariant Sections may be replaced with a single copy.
+  If there are multiple Invariant Sections with the same name but different
+ contents, make the title of each such section unique by adding at the end
+ of it, in parentheses, the name of the original author or publisher of
+ that section if known, or else a unique number.
+ Make the same adjustment to the section titles in the list of Invariant
+ Sections in the license notice of the combined work.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+In the combination, you must combine any sections Entitled ``History'' in
+ the various original documents, forming one section Entitled ``History'';
+ likewise combine any sections Entitled ``Acknowledgements'', and any sections
+ Entitled ``Dedications''.
+  You must delete all sections Entitled ``Endorsements''.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 6.
+ COLLECTIONS OF DOCUMENTS
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{6.
+ COLLECTIONS OF DOCUMENTS} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+You may make a collection consisting of the Document and other documents
+ released under this License, and replace the individual copies of this
+ License in the various documents with a single copy that is included in
+ the collection, provided that you follow the rules of this License for
+ verbatim copying of each of the documents in all other respects.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+You may extract a single document from such a collection, and distribute
+ it individually under this License, provided you insert a copy of this
+ License into the extracted document, and follow this License in all other
+ respects regarding verbatim copying of that document.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 7.
+ AGGREGATION WITH INDEPENDENT WORKS
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{7.
+ AGGREGATION WITH INDEPENDENT WORKS} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+A compilation of the Document or its derivatives with other separate and
+ independent documents or works, in or on a volume of a storage or distribution
+ medium, is called an ``aggregate'' if the copyright resulting from the
+ compilation is not used to limit the legal rights of the compilation's
+ users beyond what the individual works permit.
+ When the Document is included in an aggregate, this License does not apply
+ to the other works in the aggregate which are not themselves derivative
+ works of the Document.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If the Cover Text requirement of section~3 is applicable to these copies
+ of the Document, then if the Document is less than one half of the entire
+ aggregate, the Document's Cover Texts may be placed on covers that bracket
+ the Document within the aggregate, or the electronic equivalent of covers
+ if the Document is in electronic form.
+ Otherwise they must appear on printed covers that bracket the whole aggregate.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 8.
+ TRANSLATION
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{8.
+ TRANSLATION} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+Translation is considered a kind of modification, so you may distribute
+ translations of the Document under the terms of section~4.
+ Replacing Invariant Sections with translations requires special permission
+ from their copyright holders, but you may include translations of some
+ or all Invariant Sections in addition to the original versions of these
+ Invariant Sections.
+  You may include a translation of this License, and all the license notices
+ in the Document, and any Warranty Disclaimers, provided that you also include
+ the original English version of this License and the original versions
+ of those notices and disclaimers.
+  In case of a disagreement between the translation and the original version
+ of this License or a notice or disclaimer, the original version will prevail.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If a section in the Document is Entitled ``Acknowledgements'', ``Dedications'',
+ or ``History'', the requirement (section~4) to Preserve its Title (section~1)
+ will typically require changing the actual title.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 9.
+ TERMINATION
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{9.
+ TERMINATION} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+You may not copy, modify, sublicense, or distribute the Document except
+ as expressly provided under this License.
+  Any attempt otherwise to copy, modify, sublicense, or distribute it is
+ void, and will automatically terminate your rights under this License.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+However, if you cease all violation of this License, then your license from
+ a particular copyright holder is reinstated (a) provisionally, unless and
+ until the copyright holder explicitly and finally terminates your license,
+ and (b) permanently, if the copyright holder fails to notify you of the
+ violation by some reasonable means prior to 60 days after the cessation.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Moreover, your license from a particular copyright holder is reinstated
+ permanently if the copyright holder notifies you of the violation by some
+ reasonable means, this is the first time you have received notice of violation
+ of this License (for any work) from that copyright holder, and you cure
+ the violation prior to 30 days after your receipt of the notice.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Termination of your rights under this section does not terminate the licenses
+ of parties who have received copies or rights from you under this License.
+  If your rights have been terminated and not permanently reinstated, receipt
+ of a copy of some or all of the same material does not give you any rights
+ to use it.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 10.
+ FUTURE REVISIONS OF THIS LICENSE
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{10.
+ FUTURE REVISIONS OF THIS LICENSE} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+The Free Software Foundation may publish new, revised versions of the GNU
+ Free Documentation License from time to time.
+  Such new versions will be similar in spirit to the present version, but
+ may differ in detail to address new problems or concerns.
+  See 
+\backslash
+texttt{http://www.gnu.org/copyleft/}.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Each version of the License is given a distinguishing version number.
+ If the Document specifies that a particular numbered version of this License
+ ``or any later version'' applies to it, you have the option of following
+ the terms and conditions either of that specified version or of any later
+ version that has been published (not as a draft) by the Free Software Foundatio
+n.
+  If the Document does not specify a version number of this License, you
+ may choose any version ever published (not as a draft) by the Free Software
+ Foundation.
+  If the Document specifies that a proxy can decide which future versions
+ of this License can be used, that proxy's public statement of acceptance
+ of a version permanently authorizes you to choose that version for the
+ Document.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf 11.
+ RELICENSING
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{11.
+ RELICENSING} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+``Massive Multiauthor Collaboration Site'' (or ``MMC Site'') means any World
+ Wide Web server that publishes copyrightable works and also provides prominent
+ facilities for anybody to edit those works.
+  A public wiki that anybody can edit is an example of such a server.
+  A ``Massive Multiauthor Collaboration'' (or ``MMC'') contained in the
+ site means any set of copyrightable works thus published on the MMC site.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+``CC-BY-SA'' means the Creative Commons Attribution-Share Alike 3.0 license
+ published by Creative Commons Corporation, a not-for-profit corporation
+ with a principal place of business in San Francisco, California, as well
+ as future copyleft versions of that license published by that same organization.
+\end_layout
+
+\begin_layout Plain Layout
+
+``Incorporate'' means to publish or republish a Document, in whole or in
+ part, as part of another Document.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+An MMC is ``eligible for relicensing'' if it is licensed under this License,
+ and if all works that were first published under this License somewhere
+ other than this MMC, and subsequently incorporated in whole or in part
+ into the MMC, (1) had no cover texts or invariant sections, and (2) were
+ thus incorporated prior to November 1, 2008.
+\end_layout
+
+\begin_layout Plain Layout
+
+The operator of an MMC Site may republish an MMC contained in the site under
+ CC-BY-SA on the same site at any time before August 1, 2009, provided the
+ MMC is eligible for relicensing.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center} {
+\backslash
+Large
+\backslash
+bf ADDENDUM: How to use this License for your documents
+\backslash
+par} 
+\backslash
+phantomsection 
+\backslash
+addcontentsline{toc}{section}{ADDENDUM: How to use this License for your
+ documents} 
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+To use this License in a document you have written, include a copy of the
+ License in the document and put the following copyright and license notices
+ just after the title page:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip 
+\backslash
+begin{quote}     Copyright 
+\backslash
+copyright{}  YEAR  YOUR NAME.
+     Permission is granted to copy, distribute and/or modify this document
+     under the terms of the GNU Free Documentation License, Version 1.3 
+    or any later version published by the Free Software Foundation;    
+ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+     A copy of the license is included in the section entitled ``GNU   
+  Free Documentation License''.
+ 
+\backslash
+end{quote} 
+\backslash
+bigskip      If you have Invariant Sections, Front-Cover Texts and Back-Cover
+ Texts, replace the ``with 
+\backslash
+dots
+\backslash
+ Texts.''
+\backslash
+ line with this:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip 
+\backslash
+begin{quote}     with the Invariant Sections being LIST THEIR TITLES, with
+ the     Front-Cover Texts being LIST, and with the Back-Cover Texts being
+ LIST.
+ 
+\backslash
+end{quote} 
+\backslash
+bigskip      If you have Invariant Sections without Cover Texts, or some
+ other combination of the three, merge those two alternatives to suit the
+ situation.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+If your document contains nontrivial examples of program code, we recommend
+ releasing these examples in parallel under your choice of free software
+ license, such as the GNU General Public License, to permit their use in
+ free software.
+\end_layout
+
+\begin_layout Plain Layout
+
+%---------------------------------------------------------------------
+\end_layout
 
 \end_inset
 
