@@ -1,18 +1,345 @@
-@misc{UCASE-2012,
-  title        = {{Grupo UCASE de Ingenier\'{i}a del Software}},
-  url          ="https://ucase.uca.es/",
-  month = jan, 
-  year = 2014,
+% This file was created with JabRef 2.10.
+% Encoding: UTF-8
+
+
+@Article{1742-6596-396-3-032015,
+  Title                    = {{DPM: Future Proof Storage}},
+  Author                   = {Alejandro Alvarez and Alexandre Beche and Fabrizio Furano and Martin Hellmich and Oliver Keeble and Ricardo Rocha},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2012},
+  Number                   = {3},
+  Pages                    = {032015},
+  Volume                   = {396},
+
+  Abstract                 = {The Disk Pool Manager (DPM) is a lightweight solution for grid enabled disk storage management. Operated at more than 240 sites it has the widest distribution of all grid storage solutions in the WLCG infrastructure. It provides an easy way to manage and configure disk pools, and exposes multiple interfaces for data access (rfio, xroot, nfs, gridftp and http/dav) and control (srm). During the last year we have been working on providing stable, high performant data access to our storage system using standard protocols, while extending the storage management functionality and adapting both configuration and deployment procedures to reuse commonly used building blocks. In this contribution we cover in detail the extensive evaluation we have performed of our new HTTP/WebDAV and NFS 4.1 frontends, in terms of functionality and performance. We summarize the issues we faced and the solutions we developed to turn them into valid alternatives to the existing grid protocols - namely the additional work required to provide multi-stream transfers for high performance wide area access, support for third party copies, credential delegation or the required changes in the experiment and fabric management frameworks and tools. We describe new functionality that has been added to ease system administration, such as different filesystem weights and a faster disk drain, and new configuration and monitoring solutions based on the industry standards Puppet and Nagios. Finally, we explain some of the internal changes we had to do in the DPM architecture to better handle the additional load from the analysis use cases.},
+  Url                      = {http://stacks.iop.org/1742-6596/396/i=3/a=032015}
 }
 
-@inproceedings{boubeta_puig_procesamiento_2011,
-    address = {A Coru\~{n}a, Spain},
-    title = {{Procesamiento de Eventos Complejos en Entornos SOA: Caso de Estudio para la Deteccion Temprana de Epidemias}},
-    isbn = {978-84-9749-485-4},
-    booktitle = {Actas de las {VII} {J}ornadas de {C}iencia e {I}ngenieria de {S}ervicios},
-    publisher = {Servizo de publicacions da Universidade da Coru\~{n}a},
-    author = {Boubeta Puig, Juan and Ortiz, Guadalupe and Medina Bulo, Inmaculada},
-    month = sep,
-    year = {2011},
-    pages = {63--76}
+@Misc{5_apache.org_2015,
+  Title                    = {{Apache License, Version 2.0}},
+
+  Author                   = {Apache.org,},
+  Year                     = {2015},
+
+  Url                      = {http://www.apache.org/licenses/LICENSE-2.0.html},
+  Urldate                  = {2015-9-11}
 }
+
+@Article{1742-6596-396-5-052006,
+  Title                    = {{Web enabled data management with DPM \& LFC}},
+  Author                   = {Alejandro Alvarez Ayllon and Alexandre Beche and Fabrizio Furano and Martin Hellmich and Oliver Keeble and and Ricardo
+Brito Da Rocha},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2012},
+  Number                   = {5},
+  Pages                    = {052006},
+  Volume                   = {396},
+
+  Abstract                 = {The Disk Pool Manager (DPM) and LCG File Catalog (LFC) are two grid data management components currently used in production with more than 240 endpoints. Together with a set of grid client tools they give the users a unified view of their data, hiding most details concerning data location and access. Recently we've put a lot of effort in developing a reliable and high performance HTTP/WebDAV frontend to both our grid catalog and storage components, exposing the existing functionality to users accessing the services via standard clients - e.g. web browsers, curl - present in all operating systems, giving users a simple and straight-forward way of interaction. In addition, as other relevant grid storage components (like dCache) expose their data using the same protocol, for the first time we had the opportunity of attempting a unified view of all grid storage using HTTP. We describe the HTTP redirection mechanism used to integrate the grid catalog(s) with the multiple storage components, including details on some assumptions made to allow integration with other implementations. We describe the way we hide the details regarding site availability or catalog inconsistencies by switching the standard HTTP client automatically between multiple replicas. We also present measurements of access performance, and the relevant factors regarding replica selection - current throughput and load, geographic proximity, etc. Finally, we report on some additional work done to have this system as a viable alternative to GridFTP, providing multi-stream transfers and exploiting some additional features of WebDAV to enable third party copies - essential for managing data movements between storage systems - with equivalent performance.},
+  Url                      = {http://stacks.iop.org/1742-6596/396/i=5/a=052006}
+}
+
+@Article{1742-6596-331-7-072003,
+  Title                    = {{Experiences with HTTP/WebDAV protocols for data access in high throughput computing}},
+  Author                   = {Gerard Bernabeu and Francisco Martinez and Esther Acción and Arnau Bria and Marc Caubet and Manuel Delfino and Xavier
+Espinal},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2011},
+  Number                   = {7},
+  Pages                    = {072003},
+  Volume                   = {331},
+
+  Abstract                 = {In the past, access to remote storage was considered to be at least one order of magnitude slower than local disk access. Improvement on network technologies provide the alternative of using remote disk. For those accesses one can today reach levels of throughput similar or exceeding those of local disks. Common choices as access protocols in the WLCG collaboration are RFIO, [GSI]DCAP, GRIDFTP, XROOTD and NFS. HTTP protocol shows a promising alternative as it is a simple, lightweight protocol. It also enables the use of standard technologies such as http caching or load balancing which can be used to improve service resilience and scalability or to boost performance for some use cases seen in HEP such as the "hot files". WebDAV extensions allow writing data, giving it enough functionality to work as a remote access protocol. This paper will show our experiences with the WebDAV door for dCache, in terms of functionality and performance, applied to some of the HEP work flows in the LHC Tier1 at PIC.},
+  Url                      = {http://stacks.iop.org/1742-6596/331/i=7/a=072003}
+}
+
+@InProceedings{boubeta_puig_procesamiento_2011,
+  Title                    = {{Procesamiento de Eventos Complejos en Entornos SOA: Caso de Estudio para la Deteccion Temprana de Epidemias}},
+  Author                   = {Boubeta Puig, Juan and Ortiz, Guadalupe and Medina Bulo, Inmaculada},
+  Booktitle                = {Actas de las {VII} {J}ornadas de {C}iencia e {I}ngenieria de {S}ervicios},
+  Year                     = {2011},
+
+  Address                  = {A Coru\~{n}a, Spain},
+  Month                    = sep,
+  Pages                    = {63--76},
+  Publisher                = {Servizo de publicacions da Universidade da Coru\~{n}a},
+
+  ISBN                     = {978-84-9749-485-4}
+}
+
+@Book{books/daglib/0020447,
+  Title                    = {JavaScript - The Good Parts: Unearthing The Excellence In JavaScript.},
+  Author                   = {Crockford, Douglas},
+  Publisher                = {O'Reilly},
+  Year                     = {2008},
+
+  Added-at                 = {2011-02-15T00:00:00.000+0100},
+  Biburl                   = {http://www.bibsonomy.org/bibtex/2b40ec3fd03cf3d102eabd8eac70c67fa/dblp},
+  Ee                       = {http://www.oreilly.com/catalog/9780596517748/index.html#top},
+  Interhash                = {184cc674eb0783f4b0bf283c44fd169f},
+  Intrahash                = {b40ec3fd03cf3d102eabd8eac70c67fa},
+  ISBN                     = {978-0-596-51774-8},
+  Keywords                 = {dblp},
+  Pages                    = {I-XIII, 1-153},
+  Timestamp                = {2011-04-29T15:26:03.000+0200}
+}
+
+@Article{1742-6596-513-3-032034,
+  Title                    = {{Towards an HTTP Ecosystem for HEP Data Access}},
+  Author                   = {Fabrizio Furano and Adrien Devresse and Oliver Keeble and Martin Hellmich and Alejandro Álvarez Ayllón},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2014},
+  Number                   = {3},
+  Pages                    = {032034},
+  Volume                   = {513},
+
+  Abstract                 = {In this contribution we present a vision for the use of the HTTP protocol for data access and data management in the context of HEP. The evolution of the DPM/LFC software stacks towards a modern framework that can be plugged into Apache servers triggered various initiatives that successfully demonstrated the use of HTTP-based protocols for data access, federation and transfer. This includes the evolution of the FTS3 system towards being able to manage third-party transfers using HTTP. Given the flexibility of the methods, the feature set may also include a subset of the SRM functionality that is relevant to disk systems. The application domain for such an ecosystem of services goes from large scale, Gridlike computing to the data access from laptops, profiting from tools that are shared with the Web community, like browsers, clients libraries and others. Particular focus was put into emphasizing the flexibility of the frameworks, which can interface with a very broad range of components, data stores, catalogues and metadata stores, including the possibility of building high performance dynamic federations of endpoints that build on the fly the feeling of a unique, seamless very efficient system. The overall goal is to leverage standards and standard practices, and use them to provide the higher level functionalities that are needed to fulfil the complex problem of Data Access in HEP. Other points of interest are about harmonizing the possibilities given by the HTTP/WebDAV protocols with existing frameworks like ROOT and already existing Storage Federations based on the XROOTD framework. We also provide quantitative evaluations of the performance that is achievable using HTTP for remote transfer and remote I/O in the context of HEP data. The idea is to contribute the parts that can make possible an ecosystem of services and applications, where the HEP-related features are covered, and the door is open to standard solutions and tools provided by third parties, in the context of the Web and Cloud technologies.},
+  Url                      = {http://stacks.iop.org/1742-6596/513/i=3/a=032034}
+}
+
+@Article{1742-6596-396-3-032042,
+  Title                    = {Dynamic federations: storage aggregation using open tools and protocols},
+  Author                   = {Fabrizio Furano and Ricardo Brito da Rocha and Adrien Devresse and Oliver Keeble and Alejandro Álvarez
+Ayllón and Patrick Fuhrmann},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2012},
+  Number                   = {3},
+  Pages                    = {032042},
+  Volume                   = {396},
+
+  Abstract                 = {A number of storage elements now offer standard protocol interfaces like NFS 4.1/pNFS and WebDAV, for access to their data repositories, in line with the standardization effort of the European Middleware Initiative (EMI). Also the LCG FileCatalogue (LFC) can offer such features. Here we report on work that seeks to exploit the federation potential of these protocols and build a system that offers a unique view of the storage and metadata ensemble and the possibility of integration of other compatible resources such as those from cloud providers. The challenge, here undertaken by the providers of dCache and DPM, and pragmatically open to other Grid and Cloud storage solutions, is to build such a system while being able to accommodate name translations from existing catalogues (e.g. LFCs), experiment-based metadata catalogues, or stateless algorithmic name translations, also known as “trivial file catalogues”. Such so-called storage federations of standard protocols-based storage elements give a unique view of their content, thus promoting simplicity in accessing the data they contain and offering new possibilities for resilience and data placement strategies. The goal is to consider HTTP and NFS4.1-based storage elements and metadata catalogues and make them able to cooperate through an architecture that properly feeds the redirection mechanisms that they are based upon, thus giving the functionalities of a “loosely coupled” storage federation. One of the key requirements is to use standard clients (provided by OS'es or open source distributions, e.g. Web browsers) to access an already aggregated system; this approach is quite different from aggregating the repositories at the client side through some wrapper API, like for instance GFAL, or by developing new custom clients. Other technical challenges that will determine the success of this initiative include performance, latency and scalability, and the ability to create worldwide storage federations that are able to redirect clients to repositories that they can efficiently access, for instance trying to choose the endpoints that are closer or applying other criteria. We believe that the features of a loosely coupled federation of open-protocols-based storage elements will open many possibilities of evolving the current computing models without disrupting them, and, at the same time, will be able to operate with the existing infrastructures, follow their evolution path and add storage centers that can be acquired as a third-party service.},
+  Url                      = {http://stacks.iop.org/1742-6596/396/i=3/a=032042}
+}
+
+@Article{1742-6596-513-4-042025,
+  Title                    = {DPM — efficient storage in diverse environments},
+  Author                   = {Martin Hellmich and Fabrizio Furano and David Smith and Ricardo Brito da Rocha and Alejandro Álvarez Ayllón and Andrea
+Manzi and Oliver Keeble and Ivan Calvet and Miguel Antonio Regala},
+  Journal                  = {Journal of Physics: Conference Series},
+  Year                     = {2014},
+  Number                   = {4},
+  Pages                    = {042025},
+  Volume                   = {513},
+
+  Abstract                 = {Recent developments, including low power devices, cluster file systems and cloud storage, represent an explosion in the possibilities for deploying and managing grid storage. In this paper we present how different technologies can be leveraged to build a storage service with differing cost, power, performance, scalability and reliability profiles, using the popular storage solution Disk Pool Manager (DPM/dmlite) as the enabling technology. The storage manager DPM is designed for these new environments, allowing users to scale up and down as they need it, and optimizing their computing centers energy efficiency and costs. DPM runs on high-performance machines, profiting from multi-core and multi-CPU setups. It supports separating the database from the metadata server, the head node, largely reducing its hard disk requirements. Since version 1.8.6, DPM is released in EPEL and Fedora, simplifying distribution and maintenance, but also supporting the ARM architecture beside i386 and x86_64, allowing it to run the smallest low-power machines such as the Raspberry Pi or the CuBox. This usage is facilitated by the possibility to scale horizontally using a main database and a distributed memcached-powered namespace cache. Additionally, DPM supports a variety of storage pools in the backend, most importantly HDFS, S3-enabled storage, and cluster file systems, allowing users to fit their DPM installation exactly to their needs. In this paper, we investigate the power-efficiency and total cost of ownership of various DPM configurations. We develop metrics to evaluate the expected performance of a setup both in terms of namespace and disk access considering the overall cost including equipment, power consumptions, or data/storage fees. The setups tested range from the lowest scale using Raspberry Pis with only 700MHz single cores and a 100Mbps network connections, over conventional multi-core servers to typical virtual machine instances in cloud settings. We evaluate the combinations of different name server setups, for example load-balanced clusters, with different storage setups, from using a classic local configuration to private and public clouds.},
+  Url                      = {http://stacks.iop.org/1742-6596/513/i=4/a=042025}
+}
+
+@TechReport{RFC6249,
+  Title                    = {{Metalink/HTTP: Mirrors and Hashes}},
+  Author                   = {{IETF (Internet Engineering Task Force)}},
+  Institution              = {IETF},
+  Year                     = {2011},
+  Month                    = {June},
+  Number                   = {6249},
+  Type                     = {RFC},
+
+  Abstract                 = {This document specifies Metalink/HTTP: Mirrors and Cryptographic Hashes in HTTP header fields, a different way to get information that is usually contained in the Metalink XML-based download description format. Metalink/HTTP describes multiple download locations (mirrors), Peer-to-Peer, cryptographic hashes, digital signatures, and other information using existing standards for HTTP header fields. Metalink clients can use this information to make file transfers more robust and reliable. Normative requirements for Metalink/HTTP clients and servers are described here.},
+  HowPublished             = {Internet Requests for Comments},
+  ISSN                     = {2070-1721},
+  Owner                    = {juanmvcalvellido},
+  Publisher                = {RFC Editor},
+  Timestamp                = {2015.09.12},
+  Url                      = {https://tools.ietf.org/html/rfc6249}
+}
+
+@TechReport{RFC5854,
+  Title                    = {{The Metalink Download Description Format}},
+  Author                   = {{IETF (Internet Engineering Task Force)}},
+  Institution              = {IETF},
+  Year                     = {2010},
+  Month                    = {June},
+  Number                   = {5854},
+  Type                     = {RFC},
+
+  Abstract                 = {This document specifies Metalink, an XML-based download description format. Metalink describes download locations (mirrors), cryptographic hashes, and other information. Clients can transparently use this information to reliably transfer files.},
+  HowPublished             = {Internet Requests for Comments},
+  ISSN                     = {2070-1721},
+  Owner                    = {juanmvcalvellido},
+  Publisher                = {RFC Editor},
+  Timestamp                = {2015.09.12},
+  Url                      = {https://tools.ietf.org/html/rfc5854}
+}
+
+@TechReport{RFC5689,
+  Title                    = {Extended MKCOL for Web Distributed Authoring and Versioning (WebDAV)},
+  Author                   = {{IETF (Internet Engineering Task Force)}},
+  Institution              = {IETF},
+  Year                     = {2009},
+  Month                    = {September},
+  Number                   = {5689},
+  Type                     = {RFC},
+
+  HowPublished             = {Internet Requests for Comments},
+  ISSN                     = {2070-1721},
+  Publisher                = {RFC Editor},
+  Url                      = {http://tools.ietf.org/html/rfc5689}
+}
+
+@TechReport{RFC4918,
+  Title                    = {{RFC} 4918 - {HTTP} Extensions for Web Distributed Authoring and Versioning ({WebDAV})},
+  Author                   = {{IETF (Internet Engineering Task Force)}},
+  Institution              = {IETF},
+  Year                     = {2007},
+  Number                   = {4918},
+  Type                     = {RFC},
+
+  Citeulike-article-id     = {4850150},
+  Citeulike-linkout-0      = {http://tools.ietf.org/html/rfc4918},
+  Posted-at                = {2009-06-15 02:33:36},
+  Priority                 = {2},
+  Url                      = {http://tools.ietf.org/html/rfc4918}
+}
+
+@Misc{8_w2ui_2015,
+  Title                    = {w2ui, a JavaScript UI Library},
+
+  Author                   = {Vitali Malinouski},
+  Year                     = {2015},
+
+  Url                      = {http://w2ui.com},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{4_mozilla_developer_network_2015,
+  Title                    = {JavaScript documentation},
+
+  Author                   = {{Mozilla Developer Network},},
+  Year                     = {2015},
+
+  Url                      = {https://developer.mozilla.org/en-US/docs/Web/JavaScript},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{6_svnweb.cern.ch_2015,
+  Title                    = {{Disk Pool Manager} {Trac} page},
+
+  Author                   = {svnweb.cern.ch,},
+  Year                     = {2015},
+
+  Url                      = {https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{7_svnweb.cern.ch_2015,
+  Title                    = {{DPM HTTP/WebDAV} interface},
+
+  Author                   = {svnweb.cern.ch,},
+  Year                     = {2015},
+
+  Url                      = {https://svnweb.cern.ch/trac/lcgdm/wiki/Dpm/WebDAV},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{10_valencia_calvellido_2015,
+  Title                    = {DPMbox (tentative) development roadmap},
+
+  Author                   = {Valencia Calvellido, Juan},
+  Year                     = {2015},
+
+  Journal                  = {dpmbox.calvellido.es},
+  Url                      = {http://dpmbox.calvellido.es/roadmap/},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{11_valencia_calvellido_2015,
+  Title                    = {Github {DPMbox} code repository},
+
+  Author                   = {Valencia Calvellido, Juan},
+  Year                     = {2015},
+
+  Journal                  = {GitHub},
+  Url                      = {https://github.com/calvellido/DPMbox},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{9_valencia_calvellido_2015,
+  Title                    = {{DPMbox blog}},
+
+  Author                   = {Valencia Calvellido, Juan},
+  Year                     = {2015},
+
+  Journal                  = {dpmbox.calvellido.es},
+  Url                      = {http://dpmbox.calvellido.es/},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{2_w3.org_2015,
+  Title                    = {{HTML 5.1}},
+
+  Author                   = {W3.org,},
+  Year                     = {2015},
+
+  Url                      = {http://www.w3.org/TR/html51/},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{3_w3.org_2015,
+  Title                    = {{Cascading Style Sheets (CSS)}},
+
+  Author                   = {W3.org,},
+  Year                     = {2015},
+
+  Url                      = {http://www.w3.org/TR/css-2010/},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{1_webdav.org_2015,
+  Title                    = {WebDAV Resources},
+
+  Author                   = {Webdav.org,},
+  Year                     = {2015},
+
+  Url                      = {http://webdav.org},
+  Urldate                  = {2015-9-11}
+}
+
+@Misc{WLCG_stats,
+  Title                    = {{WLCG} data management stats},
+
+  Author                   = {{Worldwide LHC Computing Grid REBUS (Resource, Balance and Usage Website)}},
+  Month                    = {September},
+  Year                     = {2015},
+
+  Owner                    = {juanmvcalvellido},
+  Timestamp                = {2015.09.11},
+  Url                      = {http://gstat-wlcg.cern.ch/apps/gt/dm/}
+}
+
+@Misc{UCASE-2012,
+  Title                    = {{Grupo UCASE de Ingenier\'{i}a del Software}},
+  Month                    = jan,
+  Year                     = {2014},
+
+  Url                      = {https://ucase.uca.es/}
+}
+
+@book{Norman02,
+  abstract = {First, businesses discovered quality as a key competitive edge; next came service. Now, Donald A. Norman, former Director of the Institute for Cognitive Science at the University of California, reveals how smart design is the new competitive frontier. The Design of Everyday Things is a powerful primer on how and why some products satisfy customers while others only frustrate them.},
+  added-at = {2012-05-30T11:06:53.000+0200},
+  address = {New York},
+  author = {Norman, Donald A.},
+  biburl = {http://www.bibsonomy.org/bibtex/23fa27aa09c4a244762ac03019e4a4bd3/flint63},
+  edition = {Reprint Paperback},
+  file = {Amazon Search inside:http\://www.amazon.de/gp/reader/0465067107/:URL},
+  groups = {public},
+  interhash = {c6fd1560a6892285580779b96140f88c},
+  intrahash = {3fa27aa09c4a244762ac03019e4a4bd3},
+  isbn = {0-465-06710-7},
+  keywords = {v1205 book cognitive science user interface design},
+  publisher = {Basic Books},
+  timestamp = {2015-03-11T15:00:00.000+0100},
+  title = {The Design of Everyday Things},
+  username = {flint63},
+  year = 2002
+}
+
+@misc{1_musk_2015,
+author={Musk, Elon},
+title={Tesla offers idiot-proof battery warranty},
+url={http://money.cnn.com/2013/04/26/autos/tesla-service-gaurantee/},
+urldate={2015-9-12},
+journal={CNNMoney},
+year={2015}
+}
+

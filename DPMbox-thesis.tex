@@ -9,9 +9,13 @@
 \setlength{\parindent}{0pt}
 \usepackage{color}
 \usepackage{babel}
+\usepackage{array}
 \usepackage{longtable}
+\usepackage{float}
 \usepackage{booktabs}
+\usepackage{textcomp}
 \usepackage{marvosym}
+\usepackage{tipa}
 \usepackage{graphicx}
 \usepackage[unicode=true,
  bookmarks=true,bookmarksnumbered=true,bookmarksopen=false,
@@ -61,10 +65,9 @@
 % and a pdf-bookmark for the TOC is added
 \let\myTOC\tableofcontents
 \renewcommand\tableofcontents{%
-  \frontmatter
   \pdfbookmark[1]{\contentsname}{}
   \myTOC
-  \mainmatter }
+}
 
 % redefine the \LyX macro for PDF bookmarks
 \def\LyX{\texorpdfstring{%
@@ -120,6 +123,8 @@
 }{
   \end{changemargin}
 }
+%to use epigraphs
+\usepackage{epigraph}
 
 \AtBeginDocument{
   \def\labelitemi{\(\circ\)}
@@ -225,7 +230,7 @@
   \begin{flushleft}
     \Large
 
-    \textsc{Departament}: \nohyphens{Ingeniería Informática} \\
+    \textsc{Department}: \nohyphens{Ingeniería Informática} \\
     \textsc{Supervisor}: \nohyphens{Manuel Palomo Duarte} \\
 	\textsc{Co-Supervisor}: \nohyphens{Alejandro Álvarez-Ayllón} \\
     \textsc{Author}: \nohyphens{Juan Valencia Calvellido} \\
@@ -253,7 +258,25 @@
 
 }
 
-\clearpage
+\newpage{\thispagestyle{empty}\cleardoublepage}
+
+\thispagestyle{empty}
+
+
+\section*{License}
+
+Copyright © 2015 Juan Valencia Calvellido. 
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled GNU Free
+Documentation License. 
+
+Document revision number: 0.7
+
+\newpage{\thispagestyle{empty}\cleardoublepage}\thispagestyle{empty}
 
 
 \section*{Abstract}
@@ -267,6 +290,8 @@ LHC Computing Grid infrastructure.
 
 WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
 
+\frontmatter
+
 \tableofcontents{}
 
 \listoffigures
@@ -274,6 +299,8 @@ WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
 
 \listoftables
 
+
+\mainmatter
 
 
 \chapter{Introduction\label{cap:introducci=0000F3n}}
@@ -430,10 +457,10 @@ configuration, low effort of maintenance), while providing all required
 functionality for a grid storage solution (support for multiple disk
 server nodes, different space types, multiple file replicas in disk
 pools). It is installed in 185 different sites, with more than 200
-instances running as of today {[}1{]}.
+instances running as of today~\cite{WLCG_stats}.
 
 As an effort to move towards standard protocols that removes the need
-of special client tools, DPM started offering a WebDAV/HTTP interface,
+of special client tools, DPM started offering a WebDAV/HTTP interface~\cite{1742-6596-396-5-052006},
 facilitating the access to grid storage via easily available clients
 as web browsers, or WebDAV clients. However, the current pure HTTP
 implementation only offers a primitive read-only interface via browsers,
@@ -535,7 +562,21 @@ Para incluir definiciones en la memoria se puede utilizar el tipo
 por más de una palabra, estas palabras deben ser separadas por un
 espacio protegido (Control+Espacio).
 \begin{description}
-\item [{Evento~complejo}] Un evento que es una abstracción de otros eventos.
+\item [{Collection}] In this memory wou will find a lot the word \textquotedblleft collection\textquotedblright .
+A collection is a resource whose state consists of at least a list
+of internal member URIs and a set of properties, but which may have
+additional state such as entity bodies returned by GET. An internal
+member URI must be immediately relative to a base URI of the collection.
+That is, the internal member URI is equal to a containing collection's
+URI plus an additional segment for non-collection resources, or additional
+segment plus trailing slash \textquotedbl{}/\textquotedbl{} for collection
+resources. In a WebDAV environment it could be a synonym of a directory.
+Complete definition can be found on section 5.2 of RFC 4918~\cite{RFC4918}.
+\item [{Metalink}] Metalink is an extensible metadata file format that
+describes one or more computer files available for download. It specifies
+files appropriate for the user's language and operating system; facilitates
+file verification and recovery from data corruption; and lists alternate
+download sources (mirror URIs).~\cite{RFC5854,RFC6249}
 \end{description}
 
 \section{Document organization}
@@ -692,18 +733,79 @@ libneon & {*}nix & N/A & N/A & Yes & No & No\tabularnewline[\doublerulesep]
 
 \chapter{Schedule}
 
+In this section we cover the schedule that the project has followed.
+Specifically we talk about the chosen development methodology, the
+stages the project has gone through and the personnel involved.
+
+
+\section{Life cycle model}
+
+The ISO/IEC 12207-1 standard defines the life cycle model as a 
+\begin{quote}
+\textquotedblleft \emph{framework of processes and activities concerned with the life cycle
+that may be organized into stages, which also acts as a common reference
+for communication and understanding}\textquotedblright{}
+\end{quote}
+In our case, we can see in Figure 2.1, we used a methodology structured
+and agile development, ie iterative and incremental development. Therefore,
+the life cycle is summarized in a set of iterations. The phases of
+the life cycle are analysis, design, implementation, testing, operation
+and maintenance. After performing the analysis (get requirements specification)
+and application design (we define the system architecture), we begin
+implementing or coding system, obtaining a very limited initial release.
+This version will be tested and in the case of positive results, go
+back to the implementation phase where an expanded version of the
+above will be achieved. This step has to be repeated as many times
+as necessary until the final version for the customer's use, thus
+moving to the exploitation phase. If the tests do not give the expected
+results, if any, we must return to the analysis stage to find out
+the problems relating to this version and redirect it. Finally, during
+system operation errors or improvements necessary for this can occur.
+It will then move on to the maintenance phase, where these incidents
+be drafted before moving back to the analysis phase. Thus, we can
+say that our model is incremental and iterative.
+
+The software development model used was iterative and incremental.
+With this model of development have created product versions that
+have slowly grown in performance until a final product stage is reached. 
+
+Here are the features that have each of these versions are described.
+
 
 \section{Stages}
 
-Etnozoica y mesozoica. 
 
-The development has followed a minimal viable product approach. Firstly
-creating an interface for a WebDAV server, built over Apache, and
-then extending it and integrating it into the Disk Pool Manager software
+\subsection{First}
+
+Access to the CERN network has been granted... First CERN visit.
+
+WebDAV server study. 
+
+JavaScript study.
+
+Different approaches.
+
+
+\subsection{Second}
+
+Firstly creating an interface for a WebDAV server, built over Apache.
+Library development.
+
+
+\subsection{Third}
+
+Interface development.
+
+
+\subsection{Fourth}
+
+Extending it and integrating it into the Disk Pool Manager software
 stack.
 
-Two on site stages were programmed... Access to the CERN network has
-been granted...
+
+\subsection{Fifth}
+
+Testing. On site deployment.
 
 
 \section{Gantt chart}
@@ -711,9 +813,30 @@ been granted...
 Su peaso de diagrama aquí.
 
 
-\section{Costs?}
+\section{Costs}
 
-Hours and salary...
+Although the organization has the infrastructure mentioned in the
+previous section, for this project only need a single PC computer
+with GNU / Linux and free internet. The tools used have free license
+so neither requires cost.
+
+For the realization of this project they were required 1.240 hours
+of work or 7,75 persons / month. In the Gantt 2.1 can be seen that
+the project is planned to be finished in 310 days, but with a working
+day 4 hours per day.
+
+The category of workers will: TS Support for Teaching and Research.
+Monthly base salary workers + Complement category: 2.746,65
+
+Total estimated workers = 7,75 workers \texttimes{} 21.286,53¤ and
+2.746,65¤
+
+
+\section{Risks}
+
+?? 
+
+Living is a problem because everything dies.
 
 
 \chapter{Project general description}
@@ -740,6 +863,16 @@ You can take a look at DPMbox from front to back, oh yeah.
 
 \subsection{User interface}
 
+As said by Elon Musk~\cite{1_musk_2015}:
+\begin{quote}
+\textquotedblleft \emph{Any product that needs a manual to work is broken.}\textquotedblright{}
+\end{quote}
+As said by Donal Norman~\cite{Norman02}:
+\begin{quote}
+\textquotedblleft \emph{When a device as simple as a door has to come with an instruction
+manual\textemdash even a one-word manual\textemdash then it is a failure,
+poorly designed. .}
+\end{quote}
 The user interface is built upon w2ui, a very useful JavaScript UI
 library that offers practically all that was needed for DPMbox. 
 
@@ -788,153 +921,11 @@ is subject to changes, but it can show a first approach and the actual
 appearance on a browser. You can check it out on the folowing link: 
 
 
-\section{Functions}
-
-The other methods are similar to the GET method shown, attending to
-particular characteristics. 
-
-cob is the jQuery ajax call object. In the prepare function the DAV
-call is built. Here it's needed to ensure integrity of the call object,
-verify the DAV method requested and set any additional parameters
-(if necesssary). 
-
-Then the send function does the actual HTTP send through an ajax request. 
-
-To use this API in a document we just call the function needed, which
-as we have seen is basically an ajax call. 
-
-Besides the standard methods some more functions are developed in
-order to operate properly. WebDAV answers with XML data, so some parsers/filters
-and some other methods will be needed before the data can be used
-by the UI. 
-
------
-
-Hello! In this post I want to talk you about a key thing in the development,
-and that is the way to talk with the current DPM software stack.
-
-How can we add more interactivity to the current webview? We have
-to communicate with the current implementation, so we need to build
-an API that deals with the HTTP/WebDAV frontend. This can be done
-in JavaScript, particularly using jQuery. Now the current work is
-to build this JavaScript library that can interact with it. This will
-let us use methods of the WebDAV standard like PROPFIND or MKCOL in
-an HTML environment and thus manage the information they provide.
-This API will use XMLHttpRequest operations, also known as XHR. These
-are basically ajax calls that perform the HTTP/WebDAV requests and
-receive the data in a JavaScript XHR object. An XMLHttpRequest support
-GET, POST, PUT, and basically any HTTP method, and is available in
-any browser, even in old ones like Internet Explorer 6 or Firefox
-3.
-
-This is a simplified version of the API. In this case a GET is shown
-but the other ones are are implemented in a similar way though considering
-some particularities (like the PROPFIND needing a depth parameter). 
-
-\begin{lstlisting}[caption={Listing algo},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
-$.fn.extend($,{ 	
-	Dav: function(res) { 		
-		var api = function() {
-			this.get = function(cob) { 				
-				this.prepare(cob, 'GET'); 				
-				return this.send(cob); 			
-			};
-			this.prepare = function(cob, typ) { 				
-				cob = cob || {}; 				
-				cob.url = resourceUrl; 			
-				cob.headers = cob.headers || {};
-				cob.type = typ || 'GET'; 				
-				cob.dataType  = cob.dataType || 'xml'; 			
-			};
-			this.send = function(cob) { 				
-				lastRequest = $.ajax(cob); 				
-				return lastRequest; 			
-			};
-		}; 		
-		return new api;     
-	} 
-};
-\end{lstlisting}
-
-
-cob is the jQuery ajax call object, in the prepare function the DAV
-call is built. There it\textquoteright s needed to ensure integrity
-of the call object, verify the DAV method requested and set any authorization
-information (if necesssary). The headers that will include that information
-are set by the SetRequestHeader ajax method. After that the send function
-does the actual HTTP send through an ajax request.
-
-To use this API in an HTML document we just call the function needed,
-which as we have seen is basically an ajax call that we can process
-if it success. Here\textquoteright s an example with a textxml.xml
-file and other one creating a test collection: 
-
-\begin{lstlisting}[caption={Listing algo2},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
-// #get 
-jQuery.dpm(url + 'testxml.xml').get({ 	
-	complete: function() { 		
-		console.log('#get'); 	
-	}, 	
-	success:  function(dat, stat) { 		
-		console.log(jQuery.dpm(dat).getNodesByTag('acl')); 	
-	} 
-});
-//#mkcol 
-jQuery.Dav(url + 'test').mkcol({ 	
-	complete:  function(dat, stat) { 		
-		console.log('#mkcol'); 	}, 	
-	async: false 
-});
-\end{lstlisting}
-
-
-In the API there are also other methods developed in order to work
-properly with the data. For example to traverse the nodes received
-in a PROPFIND, or to select a specific property\dots{} WebDAV answers
-with XML data so some parsers will be needed too.
-
-\begin{lstlisting}[caption={Listing algo3},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
-this.getAllProperties = function(cob) { 	
-	cob.data = XmlHeader + '<D:propfind xmlns:D="DAV:"><D:allprop/>';
-	if(isArray(cob.includes)) { 		
-		cob.data    +=  '<D:include>';
-		for(var i=0; i < d.includes.length; i++) { 			
-			cob.body  += '<D:' + d.includes[i] + '/>'; 		
-		}
-		cob.data    +=  '</D:include>'; 	
-	}
-	cob.data      += '</D:propfind>'; 	
-	return this.propFind(cob); 
-};
-\end{lstlisting}
-
-
-As you can see in the way the code communicate with the DPM software
-stack, is the developed WebDAV module the one that deals with the
-DPM head or DPM disk actually.
-
-By supporting these standard WebDAV operations in our API it could
-be possible to build a functional HTML interface, but once we have
-completed the development for them the goal will be to cover specific
-DPM/\ac{LFC} issues like the replica (a specific location for a file)
-and metalink (the full list of locations for a certain file) management,
-this would be very helpful for broken file location links.
-
-Right now DPMbox has basic functionality: 
-\begin{itemize}
-\item It's possible to navigate through different directories, starting
-on the location written on the browser, so you can copy/paste locations. 
-\item You can create new directories and delete them. 
-\item It's also possible to upload new files and delete them. You can upload
-multiple files at once, same for deleting.
-\item You can also sort data in a collection by its name, size or modification
-date. And also you can search inside a collection giving some of these
-parameters. 
-\end{itemize}
-
 \section{User characteristics}
 
-USER!!!
+The typical user of DPMbox will be NEP physycists and so, so the target
+user is a non-high level technical user but acquainted at file browser
+interfaces and even cloud storing services.
 
 
 \section{General restrictions}
@@ -942,7 +933,12 @@ USER!!!
 
 \subsection{Version control}
 
-Git has been used, getting advantage of the GitHub platform.
+Git has been used, getting advantage of the GitHub platform. Git (/\textscriptg \textsci t/{[}4{]})
+is a distributed revision control system with an emphasis on speed,{[}5{]}
+data integrity,{[}6{]} and support for distributed, non-linear workflows.{[}7{]}
+Git was initially designed and developed by Linus Torvalds for Linux
+kernel development in 2005, and has since become one of the most widely
+adopted version control systems for software development.{[}8{]}
 
 
 \subsection{Program languages and technologies}
@@ -950,60 +946,83 @@ Git has been used, getting advantage of the GitHub platform.
 
 \subsubsection{HTML }
 
-El HTML (Hyper Text Markup Language) o, en castellano, lenguaje de
-marcación de hiper- texto, es el lenguaje de marcas de texto utilizado
-normalmente en World Wide Web (WWW). Fue creado por Tim Berners-Lee
-en 1986, a partir de dos herramientas preexistentes: el concepto de
-hipertexto y el SGML. HTML permite denir tanto la estructura y ubicación
-de los elementos que se muestran en una página Web como las relaciones
-entre los diversos componentes de un sitio Web gracias al uso de los
-hipervínculos. La interpretación de los documentos HTML la realizan
-los navegadores Web, como Mozilla Firefox o Google Chrome entre otros.
-La interpretación puede hacer que la presentación nal varíe en pequeños
-detalles. Por ello el desarrollo del HTML se ajustará al máximo a
-los estándares impuestos por la W3C. 
+HTML (Hyper Text Markup Language) is the text markup language normally
+used in World Wide Web (WWW). It was created by Tim Berners-Lee in
+1986 from two existing tools: the concept of hypertext and SGML. HTML
+allows you to define both the structure and location of the items
+displayed on a Web page and the relations between the different components
+of a Web site by using hyperlinks. The interpretation of HTML documents
+is performed by Web browsers such as Mozilla Firefox or Google Chrome
+and others. The interpretation may make the final presentation vary
+in small details. Therefore the development of HTML is adjusted to
+the maximum to the standards set by the W3C.~\cite{2_w3.org_2015}
 
 
 \subsubsection{CSS}
 
-El termino CSS, acrónimo de Cascading Style Sheets (hojas de estilo
-en cascada), hace refer- encia al lenguaje formal usado para denir
-la presentación de documentos estructurados escritos en HTML, XML
-y XHTML por extensión. El World Wide Web Consortium (W3C) es el organ-
-ismo encargado de formular la especicación de las hojas de estilo
-que servirán como estándar para los navegadores. Con CSS se pretende
-separar la estructura de un documento web de su presentación. 
+The term CSS, which stands for Cascading Style Sheets, refers to the
+formal language used to define the presentation of structured documents
+written in HTML, XML and XHTML by extension. The World Wide Web Consortium
+(W3C) is the agency responsible for developing the specification of
+style sheets that serve as a standard for browsers. The objective
+of CSS is separate the structure of a Web document from its visual
+representation.~\cite{3_w3.org_2015}
 
-En el caso de Abreforjas no se desarrollaron plantillas CSS desde
-cero, sino que se aprovecharon las plantillas libres Twitter Bootstrap,
-las cuales permitieron un desarrollo más rápido sin pérdida de calidad
-en el diseño y presentación de la web 
+CSS from the framework used, adapted accordingly.
 
 
 \subsubsection{JavaScript}
 
+JavaScript is a high level, dynamic, untyped, and interpreted programming
+language. It has been standardized in the ECMAScript language specification.{[}7{]}
+Alongside HTML and CSS, it is one of the three essential technologies
+of World Wide Web content production; the majority of websites employ
+it and it is supported by all modern web browsers without plug-ins.{[}6{]}
+JavaScript is prototype-based with first-class functions, making it
+a multi-paradigm language, supporting object-oriented,{[}8{]} imperative,
+and functional programming styles.{[}6{]} It has an API for working
+with text, arrays, dates and regular expressions, but does not include
+any I/O, such as networking, storage or graphics facilities, relying
+for these upon the host environment in which it is embedded.{[}7{]}~\cite{4_mozilla_developer_network_2015}
+
 
 \subsubsection{jQuery}
+
+jQuery is a cross-platform JavaScript library designed to simplify
+the client-side scripting of HTML. jQuery is the most popular JavaScript
+library in use today, with installation on 65\% of the top 10 million
+highest-trafficked sites on the Web.{[}3{]}{[}4{]}{[}5{]} jQuery is
+free, open-source software licensed under the MIT License.
 
 
 \subsubsection{w2ui}
 
+W2UI is a small JavaScript UI library with a complete set of widgets
+that covers a wide range of interface design elements: layout, grid,
+sidebar, toolbar, tabs, fields, popup and other utilities.
+
 
 \subsubsection{XML}
 
-XML, siglas en inglés de eXtensible Markup Language , es un lenguaje
-de marcas desarrollado por el World Wide Web Consortium (W3C) utilizado
-para almacenar datos en forma legible por un humano. se propone como
-un estándar para el intercambio de información estructurada entre
-diferentes plataformas. Siguiendo esta recomendación las APIs de las
-forjas Redmine y Assembla ofrecen su infor- mación en formato XML,
-por lo que Abreforjas tendrá que tratar obligatoriamente con esta
-tecnología. Por otro lado, Abreforjas también generará de manera indirecta
-documentos XML, pues la información extraída de las forjas será publicada
-en formato RDF con la ayuda de D2R-Server. 
+XML stands for eXtensible Markup Language, is a markup language developed
+by the World Wide Web Consortium (W3C) used to store data in a human
+readable form. It is proposed as a standard for exchanging structured
+information between different platforms. Following this recommendation
+the Redmine APIs and forges Assembla offer their information in XML
+format, so Abreforjas necessarily have to deal with this technology.
+On the other hand, Abreforjas also indirectly generate XML documents,
+as the information extracted from the forges will be published in
+RDF format with the help of D2R-Server.
 
 
 \subsubsection{JSON}
+
+JSON, (canonically pronounced /\textprimstress d\textyogh e\textsci s\textschwa n/
+jay-s\textschwa n;{[}1{]} sometimes JavaScript Object Notation), is
+an open standard format that uses human-readable text to transmit
+data objects consisting of attribute\textendash value pairs. It is
+the primary data format used for asynchronous browser/server communication
+(AJAJ), largely replacing XML (used by AJAX).
 
 
 \subsection{Tools}
@@ -1011,17 +1030,91 @@ en formato RDF con la ayuda de D2R-Server.
 
 \subsubsection{Apache}
 
+The Apache HTTP Server, colloquially called Apache (/\textschwa \textprimstress pæt\textesh i\textlengthmark /
+\textschwa -pa-chee), is the world's most widely used web server software.
+Originally based on the NCSA HTTPd server, development of Apache began
+in early 1995 after work on the NCSA code stalled. Apache played a
+key role in the initial growth of the World Wide Web,{[}4{]} quickly
+overtaking NCSA HTTPd as the dominant HTTP server, and has remained
+most popular since April 1996. In 2009, it became the first web server
+software to serve more than 100 million websites.{[}5{]}
 
-\subsubsection{Geany (JSHint...)}
+
+\subsubsection{Geany}
+
+Geany (IPA:\textyogh e\textlengthmark ni\textlengthmark ) is a lightweight
+cross-platform GUI based text editor{[}2{]} using Scintilla and GTK+,
+including basic Integrated Development Environment (IDE) features.
+It is designed to have short load times, with limited dependency on
+separate packages or external libraries. It is available for a wide
+range of operating systems, such as BSD, Linux, Mac OS X,{[}3{]} Solaris
+and Windows. Among the supported programming languages and markup
+languages are C, C++, C\#, Java, JavaScript, PHP, HTML, \LaTeX{},
+CSS, Python, Perl, Ruby, Pascal, Haskell, Erlang, Vala and many others.{[}4{]}
 
 
 \subsubsection{SmartGit}
 
+SmartGit is a Git client with support for GitHub Pull Requests+Comments,
+SVN and Mercurial.
+
+It runs on Mac OS X, Windows and Linux. 
+
 
 \subsubsection{Firefox Developer Edition}
 
+Firefox Developer Edition is a version of Firefox tailored for developers,
+featuring the latest Firefox features and experimental developer tools.
+Firefox Developer Edition provides easy accessibility for a wide array
+of developer tools which help in making debugging easy and help in
+faster and more professional development. Tools include Valence, WebIDE,
+Responsive Design Mode \textendash{} see how your website or Web app
+will look on different screen sizes without changing the size of your
+browser window. Page Inspector\textendash{} examine the HTML and CSS
+of any Web page and easily modify the structure and layout of a page.
+Web Console \textendash{} see logged information associated with a
+Web page and use Web Console and interact with a Web page using JavaScript.
+JavaScript Debugger \textendash{} step through JavaScript code and
+examine or modify its state to help track down bugs. Network Monitor
+\textendash{} see all the network requests your browser makes, how
+long each request takes and details of each request. Style Editor
+\textendash{} view and edit CSS styles associated with a Web page,
+create new ones and apply existing CSS stylesheets to any page. Web
+Audio Editor \textendash{} inspect and interact with Web Audio API
+in real time to ensure that all audio nodes are connected in the way
+you expect. 
+
 
 \subsubsection{Firebug}
+
+Firebug is a free and open-source web browser extension for Mozilla
+Firefox that facilitates the live debugging, editing, and monitoring
+of any website's CSS, HTML, DOM, XHR, and JavaScript.
+
+Firebug is licensed under the BSD license{[}3{]} and was initially
+written in January 2006 by Joe Hewitt, one of the original Firefox
+creators.{[}6{]} The Firebug Working Group oversees the open source
+development and extension of Firebug. It has two major implementations:
+an extension for Mozilla Firefox and a bookmarklet implementation
+called Firebug Lite{[}7{]} which can be used with Google Chrome.{[}8{]}
+
+In addition to debugging web pages, Firebug is a useful tool for web
+security testing{[}9{]} and web page performance analysis.{[}10{]}
+
+
+\subsubsection{JSHint}
+
+JSHint is a static code analysis tool used in software development
+for checking if JavaScript source code complies with coding rules.{[}1{]}
+It was forked from Douglas Crockford's JSLint project, as it was felt
+that the original did not allow enough customization options. There
+is also an internet version available at its official website in which
+users can paste code to run the application online.{[}1{]} A command-line
+version of JSHint, distributed as a Node.JS module, makes it possible
+to automate one's \textquotedbl{}linting\textquotedbl{} process and
+integrate JSHint into the website's development workflow.{[}2{]}
+
+Used through Geany and Firefox Developer Edition.
 
 
 \subsubsection{LibreOffice Calc}
@@ -1029,7 +1122,7 @@ en formato RDF con la ayuda de D2R-Server.
 
 \subsection{Operating systems and hardware}
 
-GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
+To develop: GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
 \begin{itemize}
 \item HP Pavilion DV6 3040ES with the following technical specification:
 
@@ -1042,19 +1135,46 @@ GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
 \chapter{Project development}
 
 
-\section{Life cycle model}
+\section{Objectives}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{table}[h]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
 
-As already stated, a minimal viable product approach has been followed.
+\protect\caption{OBJ-1}
+\end{table}
 
-Iterative and incremental model. Different cycles...
+
+\begin{table}[h]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{OBJ-2}
+\end{table}
+
+
+\begin{table}[h]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{OBJ-3}
+\end{table}
+
 
 
 \section{Requirements}
@@ -1065,105 +1185,185 @@ Iterative and incremental model. Different cycles...
 System functionality.
 
 Upload, download, list, delete...
+\begin{description}
+\item [{get}] (GET) 
+\item [{post}] (POST) 
+\item [{head}] (HEAD) 
+\item [{mkcol,~createFolder}] (MKCOL) 
+\item [{put,~createFile}] (PUT) 
+\item [{remove}] (DELETE) 
+\item [{report}] (REPORT) 
+\item [{getVersionTreeReport}] (REPORT) 
+\item [{checkout}] (CHECKOUT) 
+\item [{uncheckout}] (UNCHEKCOUT) 
+\item [{checkin}] (CHECKIN) 
+\item [{versionControl}] (VERSION-CONTROL) 
+\item [{lock}] (LOCK) 
+\item [{unlock}] (UNLOCK) 
+\item [{propfind,~getProperty}] (PROPFIND) 
+\item [{proppatch,~setProperty,~removeProperty}] (PROPPATCH)
+\end{description}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\subsubsection{Files}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Upload a file\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Download a file\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-2}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Delete a file\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-3}
+\end{table}
+
+
+
+\subsubsection{Directories}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Create a directory\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-4}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Read a directory\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-5}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Delete a directory\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{FRQ-6}
+\end{table}
+
 
 
 \subsection{Information}
 
 UML diagram. ¿?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\begin{table}[h]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{IRQ-1}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{IRQ-2}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{IRQ-3}
+\end{table}
+
 
 
 \subsection{Business rules}
 
-CERN network acces has been granted... Lorem ipsum dolor sit amet,
-consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore
-eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-sunt in culpa qui officia deserunt mollit anim id est laborum.
+CERN network acces has been granted... 
+
+A business rule is a rule that defines or constrains some aspect of
+business and always resolves to either true or false. Business rules
+are intended to assert business structure or to control or influence
+the behavior of the business.{[}1{]} Business rules describe the operations,
+definitions and constraints that apply to an organization. Business
+rules can apply to people, processes, corporate behavior and computing
+systems in an organization, and are put in place to help the organization
+achieve its goals.{[}citation needed{]}
+
+For example a business rule might state that no credit check is to
+be performed on return customers. Other examples of business rules
+include requiring a rental agent to disallow a rental tenant if their
+credit rating is too low, or requiring company agents to use a list
+of preferred suppliers and supply schedules.
+
+While a business rule may be informal or even unwritten, documenting
+the rules clearly and making sure that they don't conflict is a valuable
+activity.{[}citation needed{]} When carefully managed, rules can be
+used to help the organization to better achieve goals, remove obstacles
+to market growth, reduce costly mistakes, improve communication, comply
+with legal requirements, and increase customer loyalty.{[}citation
+needed{]}
 
 
 \subsection{Interface}
 
 Cambiar lo de aquí abajo. Lo que realmente va a aquí son requirements
 para la interfaz. Standards. Accesibility. Usability... 
-
-Hello again!! It\textquoteright s been a while but in this period
-I\textquoteright ve been busy finally starting to build the actual
-interface and connecting it to the DPMbox API methods.
-
-As stated in past posts I was thinking initially in jQuery UI as a
-good partner in the interface creation, using some other components
-when needed, for example zTree for the directory folder management.
-jQuery UI is very useful but for a complete user interface creation
-I was gonna have to build everything almost from scratch (toolbars,
-menus, file listings\dots ) and a library like zTree is extremely
-powerful but it\textquoteright s also like a big dinosaur with a bunch
-of files to load and manage. Thinking about these issues I stumbled
-upon w2ui, an awesome JavaScript UI library that offers practically
-all what I was looking for. By its own description: \textquotedblleft w2ui
-is a modern, intuitive JavaScript UI library for building rich data-driven
-web application\textquotedblright . Some of its features are:
-\begin{itemize}
-\item Complete w2ui library is only 69kb (minified and gziped) and provides
-extremely fast load and execution. It is 9 times smaller then ExtJS
-and 7 times smaller then Kendo UI. It is just a bit over the size
-of jQuery.
-\item It\textquoteright s really easy to use with simple and standard API
-methods, JSON friendly, and it has a stable and good support from
-its main developer.
-\item It has no dependencies except jQuery, is all-in-one solution. It contains
-all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
-popup, field controls and forms. No need to put together a collection
-of mismatched plugins or more libraries.
-\item The library heavily uses HTML5 and CSS3 and yet supports all major
-modern browsers. Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are
-among supported browsers.
-\end{itemize}
-With this change of libraries is possible that a bit of scope or control
-was lost but using w2ui I stuck with not reinventing the wheel and
-KISS design principles, making things easier to understand, maintain
-and even expand. This being said, no worries because all the initially
-designed and proposed elements are present in this final interface,
-and since they fit so well I have used almost all w2ui components
-to build the DPMbox interface. Upon a layout divided in a top panel
-and three horizontal ones under it you can find the sidebar managing
-the directory tree, a grid in the center showing the files including
-a toolbar, and then in the right panel there is the directory information. 
-
-I still have to check intesively and get deeper into the very deep
-collections problem but for now the tree it\textquoteright s only
-built on demand and the grid panel only load the files information
-when you actually scroll down to look for them.
-
-And of course, you can already check and interact with this brand
-new interface. Yes, it\textquoteright s read-only and has a limited
-functionality still, but the final version of DPMbox will be built
-upon this one step by step. Check it out here:
-
-calvellido.es/dpm
-
-In the next update, for which you won\textquoteright t have to wait
-so long as for this one, I will explain how this interface and the
-DPMbox API work together.
-
-Seeya!! =)
 
 
 \subsection{Non-functional}
@@ -1178,11 +1378,82 @@ pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 culpa qui officia deserunt mollit anim id est laborum.
 
 
+\subsubsection{Security}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-1}
+\end{table}
+
+
+
+\subsubsection{Fiability}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-2}
+\end{table}
+
+
+
+\subsubsection{Usability and accesibility}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-3}
+\end{table}
+
+
+
+\subsubsection{Manteinability}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-4}
+\end{table}
+
+
+
 \section{Solution alternatives}
 
 JavaScript was the only option...
 
+
+\subsubsection{Graphical interface}
+
 For the interface different frameworks and approaches were tested.
+
+jQuery UI.
+
+Finally w2ui.
 
 
 \section{System analysis}
@@ -1344,6 +1615,27 @@ mollit anim id est laborum.
 
 \subsection{User interface model}
 
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/design_scheme}
+
+\protect\caption{Interface design, main scheme}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/design_action}
+
+\protect\caption{Interface design, action required}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/design_error}
+
+\protect\caption{Interface design, error}
+\end{figure}
+
+
 
 \section{System design}
 
@@ -1368,6 +1660,7 @@ including a token validating the transaction:
 \begin{verbatim}
 http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489.0?sfn=%2Fdpm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d%2FXHR.js.zip&dpmtoken=dbf5fcbe-7c31-4849-aa57-b07c6b474f5e&token=ojkU%2FdgyPqTYEvu4TfZAyueVDqQ%3D%401425288602%401
 \end{verbatim}
+\selectlanguage{english}%
 User agents commonly apply same-origin restrictions to network requests.
 These restrictions prevent a client-side Web application as DPMbox
 running from one origin from obtaining data retrieved from another
@@ -1381,6 +1674,7 @@ face a lot of error messages like this:
 \begin{verbatim}
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/public/test5.file. (Reason: CORS header 'Access-Control-Allow-Origin' missing).
 \end{verbatim}
+\selectlanguage{english}%
 You can check a bit of history of XHR and CORS and why is this happening
 here {[}2{]}.
 
@@ -1449,7 +1743,7 @@ night!
 
 Pipes and filters? MVC?
 
-A esquema con las cajas y eso.
+An esquema con las cajas y eso.
 
 
 \subsection{Physical arquitecture}
@@ -1465,7 +1759,7 @@ A lot to explain about how DPM works.
 
 \subsubsection{index.html}
 
-It is actually just a frame.
+It is actually just a frame for the JavaScript generated interface.
 
 
 \subsection{CSS}
@@ -1485,16 +1779,220 @@ It is actually just a frame.
 
 \subsubsection{dpmbox-ui.js }
 
+Hello again!! It\textquoteright s been a while but in this period
+I\textquoteright ve been busy finally starting to build the actual
+interface and connecting it to the DPMbox API methods.
+
+As stated in past posts I was thinking initially in jQuery UI as a
+good partner in the interface creation, using some other components
+when needed, for example zTree for the directory folder management.
+jQuery UI is very useful but for a complete user interface creation
+I was gonna have to build everything almost from scratch (toolbars,
+menus, file listings\dots ) and a library like zTree is extremely
+powerful but it\textquoteright s also like a big dinosaur with a bunch
+of files to load and manage. Thinking about these issues I stumbled
+upon w2ui, an awesome JavaScript UI library that offers practically
+all what I was looking for. By its own description: \textquotedblleft w2ui
+is a modern, intuitive JavaScript UI library for building rich data-driven
+web application\textquotedblright . Some of its features are:
+\begin{itemize}
+\item Complete w2ui library is only 69kb (minified and gziped) and provides
+extremely fast load and execution. It is 9 times smaller then ExtJS
+and 7 times smaller then Kendo UI. It is just a bit over the size
+of jQuery.
+\item It\textquoteright s really easy to use with simple and standard API
+methods, JSON friendly, and it has a stable and good support from
+its main developer.
+\item It has no dependencies except jQuery, is all-in-one solution. It contains
+all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
+popup, field controls and forms. No need to put together a collection
+of mismatched plugins or more libraries.
+\item The library heavily uses HTML5 and CSS3 and yet supports all major
+modern browsers. Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are
+among supported browsers.
+\end{itemize}
+With this change of libraries is possible that a bit of scope or control
+was lost but using w2ui I stuck with not reinventing the wheel and
+KISS design principles, making things easier to understand, maintain
+and even expand. This being said, no worries because all the initially
+designed and proposed elements are present in this final interface,
+and since they fit so well I have used almost all w2ui components
+to build the DPMbox interface. Upon a layout divided in a top panel
+and three horizontal ones under it you can find the sidebar managing
+the directory tree, a grid in the center showing the files including
+a toolbar, and then in the right panel there is the directory information. 
+
+I still have to check intesively and get deeper into the very deep
+collections problem but for now the tree it\textquoteright s only
+built on demand and the grid panel only load the files information
+when you actually scroll down to look for them.
+
+And of course, you can already check and interact with this brand
+new interface. Yes, it\textquoteright s read-only and has a limited
+functionality still, but the final version of DPMbox will be built
+upon this one step by step. Check it out here:
+
+calvellido.es/dpm
+
+In the next update, for which you won\textquoteright t have to wait
+so long as for this one, I will explain how this interface and the
+DPMbox API work together.
+
+Seeya!! =)
+
 
 \subsubsection{jquery.dpm.js }
 
+The other methods are similar to the GET method shown, attending to
+particular characteristics. 
+
+cob is the jQuery ajax call object. In the prepare function the DAV
+call is built. Here it's needed to ensure integrity of the call object,
+verify the DAV method requested and set any additional parameters
+(if necesssary). 
+
+Then the send function does the actual HTTP send through an ajax request. 
+
+To use this API in a document we just call the function needed, which
+as we have seen is basically an ajax call. 
+
+Besides the standard methods some more functions are developed in
+order to operate properly. WebDAV answers with XML data, so some parsers/filters
+and some other methods will be needed before the data can be used
+by the UI. 
+
+-----
+
+Hello! In this post I want to talk you about a key thing in the development,
+and that is the way to talk with the current DPM software stack.
+
+How can we add more interactivity to the current webview? We have
+to communicate with the current implementation, so we need to build
+an API that deals with the HTTP/WebDAV frontend. This can be done
+in JavaScript, particularly using jQuery. Now the current work is
+to build this JavaScript library that can interact with it. This will
+let us use methods of the WebDAV standard like PROPFIND or MKCOL in
+an HTML environment and thus manage the information they provide.
+This API will use XMLHttpRequest operations, also known as XHR. These
+are basically ajax calls that perform the HTTP/WebDAV requests and
+receive the data in a JavaScript XHR object. An XMLHttpRequest support
+GET, POST, PUT, and basically any HTTP method, and is available in
+any browser, even in old ones like Internet Explorer 6 or Firefox
+3.
+
+This is a simplified version of the API. In this case a GET is shown
+but the other ones are are implemented in a similar way though considering
+some particularities (like the PROPFIND needing a depth parameter). 
+
+\begin{lstlisting}[caption={Listing algo},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+$.fn.extend($,{ 	
+	Dav: function(res) { 		
+		var api = function() {
+			this.get = function(cob) { 				
+				this.prepare(cob, 'GET'); 				
+				return this.send(cob); 			
+			};
+			this.prepare = function(cob, typ) { 				
+				cob = cob || {}; 				
+				cob.url = resourceUrl; 			
+				cob.headers = cob.headers || {};
+				cob.type = typ || 'GET'; 				
+				cob.dataType  = cob.dataType || 'xml'; 			
+			};
+			this.send = function(cob) { 				
+				lastRequest = $.ajax(cob); 				
+				return lastRequest; 			
+			};
+		}; 		
+		return new api;     
+	} 
+};
+\end{lstlisting}
+
+
+cob is the jQuery ajax call object, in the prepare function the DAV
+call is built. There it\textquoteright s needed to ensure integrity
+of the call object, verify the DAV method requested and set any authorization
+information (if necesssary). The headers that will include that information
+are set by the SetRequestHeader ajax method. After that the send function
+does the actual HTTP send through an ajax request.
+
+To use this API in an HTML document we just call the function needed,
+which as we have seen is basically an ajax call that we can process
+if it success. Here\textquoteright s an example with a textxml.xml
+file and other one creating a test collection: 
+
+\begin{lstlisting}[caption={Listing algo2},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+// #get 
+jQuery.dpm(url + 'testxml.xml').get({ 	
+	complete: function() { 		
+		console.log('#get'); 	
+	}, 	
+	success:  function(dat, stat) { 		
+		console.log(jQuery.dpm(dat).getNodesByTag('acl')); 	
+	} 
+});
+//#mkcol 
+jQuery.Dav(url + 'test').mkcol({ 	
+	complete:  function(dat, stat) { 		
+		console.log('#mkcol'); 	}, 	
+	async: false 
+});
+\end{lstlisting}
+
+
+In the API there are also other methods developed in order to work
+properly with the data. For example to traverse the nodes received
+in a PROPFIND, or to select a specific property\dots{} WebDAV answers
+with XML data so some parsers will be needed too.
+
+\begin{lstlisting}[caption={Listing algo3},language=Java,float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
+this.getAllProperties = function(cob) { 	
+	cob.data = XmlHeader + '<D:propfind xmlns:D="DAV:"><D:allprop/>';
+	if(isArray(cob.includes)) { 		
+		cob.data    +=  '<D:include>';
+		for(var i=0; i < d.includes.length; i++) { 			
+			cob.body  += '<D:' + d.includes[i] + '/>'; 		
+		}
+		cob.data    +=  '</D:include>'; 	
+	}
+	cob.data      += '</D:propfind>'; 	
+	return this.propFind(cob); 
+};
+\end{lstlisting}
+
+
+As you can see in the way the code communicate with the DPM software
+stack, is the developed WebDAV module the one that deals with the
+DPM head or DPM disk actually.
+
+By supporting these standard WebDAV operations in our API it could
+be possible to build a functional HTML interface, but once we have
+completed the development for them the goal will be to cover specific
+DPM/\ac{LFC} issues like the replica (a specific location for a file)
+and metalink (the full list of locations for a certain file) management,
+this would be very helpful for broken file location links.
+
+Right now DPMbox has basic functionality: 
+\begin{itemize}
+\item It's possible to navigate through different directories, starting
+on the location written on the browser, so you can copy/paste locations. 
+\item You can create new directories and delete them. 
+\item It's also possible to upload new files and delete them. You can upload
+multiple files at once, same for deleting.
+\item You can also sort data in a collection by its name, size or modification
+date. And also you can search inside a collection giving some of these
+parameters. 
+\end{itemize}
 
 \subsubsection{jquery.dpmFilters.js}
+
+Some filters to treat the data.
 
 
 \subsubsection{w2ui-1.4.2.js}
 
-\lstinputlisting[basicstyle={\footnotesize\ttfamily},columns=fullflexible]{/home/juanmvcalvellido/Documentos/UCA2015/TFG/TFG/Plantilla/DPMbox-memoria.tex}
+The main w2ui file. It weights just 69KB. 
 
 
 \section{Testing and validation}
@@ -1635,6 +2133,7 @@ dpm-name-server-mysql dpm
 \begin{verbatim}
 # yum install mysql-server - chkconfig mysqld on - service mysqld start
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Crear las tablas y usuario}
 \begin{verbatim}
@@ -1642,6 +2141,7 @@ mysql < /usr/share/lcgdm/create_dpns_tables_mysql.sql
 mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql 
 mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Generar un certificado}
 \begin{verbatim}
@@ -1649,6 +2149,7 @@ mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant al
 # openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
 # openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname -f`" 
 \end{verbatim}
+\selectlanguage{english}%
 hostname -f debe coincidir con el nombre de la maquina.dominio tal
 como lo configuraste! Si no, ponlo a mano
 \begin{verbatim}
@@ -1658,11 +2159,13 @@ como lo configuraste! Si no, ponlo a mano
 # cp hostcert.pem dpmmgr/dpmcert.pem 
 # chown dpmmgr.dpmmgr dpmmgr/*
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Confiar en tu certificado como CA}
 \begin{verbatim}
 # mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Trampear DNS}
 
@@ -1693,12 +2196,14 @@ RFIOD FTRUST host.domain
 # export DPNS_HOST=localhost
 # export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Validar}
 \begin{verbatim}
 # dpns-ls
 # dpm-qryconf
 \end{verbatim}
+\selectlanguage{english}%
 Si no fallan, va bien, aunque no veas nada
 
 
@@ -1706,6 +2211,7 @@ Si no fallan, va bien, aunque no veas nada
 \begin{verbatim}
 # chkconfig dpnsdaemon on chkconfig dpm on
 \end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Añadir una base}
 
@@ -1714,6 +2220,7 @@ Si no fallan, va bien, aunque no veas nada
 dpns-mkdir -p /dpm/domain/home/public 
 dpns-chmod 0777 /dpm/domain/home/public
 \end{verbatim}
+\selectlanguage{english}%
 \emph{Crear un sitio donde almacenar ficher }
 
 dpm-addpool --poolname default --def\_filesize 100M mkdir /storage
@@ -1740,6 +2247,7 @@ Desactiva selinux, que es un dolor
 \begin{verbatim}
 setenforce 0 vim /etc/selinux/config SELINUX=permissive
 \end{verbatim}
+\selectlanguage{english}%
 En https://localhost:8080/dpm/ deberías ya tener algo. 
 
 
@@ -1758,13 +2266,53 @@ It's on the repositories.
 
 \chapter{User manual}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+\renewcommand{\textflush}{flushepinormal}\setlength\epigraphwidth{.6\textwidth}\setlength\afterepigraphskip{2\baselineskip}\setlength{\epigraphrule}{0pt}\epigraphhead[40]{\epigraph{\emph{``When a device as simple as a door has to come with an instruction manual \textemdash even a one-word manual\textemdash\ then it is a failure, poorly designed.''}}{--- Donald Norman, \emph{The Design of Everyday Things}~\cite{Norman02}}}
+
+Based on the words of XXX, one of the main design goals in DPMbox
+was to make this user manual unnecessary. Even so.
+
+
+\section{Introduction}
+
+
+\section{Functionality}
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{img/DPMbox-screenshot_comments}
+
+\protect\caption{DPMbox main functionality}
+
+
+\label{fig:dpmbox_functionality}
+\end{figure}
+
+
+
+\section{Requirements}
+
+In order to use DPMbox on your system. If you are unsure, ask your
+administrator about this.
+
+
+\section{How to use DPMbox}
+
+Write the location of the DPM server that you would like to access.
+If the server is already updated you will be presented in your browser
+with a brand new interface that will look like figure~\ref{fig:dpmbox_screenshot}:
+
+\begin{figure}[H]
+\includegraphics[width=1\textwidth]{img/DPMbox-screenshot}
+
+\protect\caption{DPMbox screenshot}
+
+
+\label{fig:dpmbox_screenshot}
+\end{figure}
+
+
+When folder icon is set on white is not yet read.
+
+Clicking on the + icon will read the collection.
 
 
 \chapter{Developer manual}
@@ -1780,4 +2328,112 @@ mollit anim id est laborum.
 \bibliographystyle{splncs03}
 \bibliography{references}
 
+
+
+\addchap{GNU Free Documentation License}
+
+\begin{center}
+       Version 1.3, 3 November 2008
+ 
+Copyright \copyright{} 2000, 2001, 2002, 2007, 2008  Free Software Foundation, Inc.
+
+  \bigskip\texttt{<http://fsf.org/>}\bigskip
+
+Everyone is permitted to copy and distribute verbatim copies  of this license document, but changing it is not allowed. \end{center}
+\begin{center} {\bf\large Preamble} \end{center}
+The purpose of this License is to make a manual, textbook, or other functional and useful document ``free'' in the sense of freedom: to assure everyone the effective freedom to copy and redistribute it, with or without modifying it, either commercially or noncommercially. Secondarily, this License preserves for the author and publisher a way to get credit for their work, while not being considered responsible for modifications made by others.
+
+This License is a kind of ``copyleft'', which means that derivative works of the document must themselves be free in the same sense.  It complements the GNU General Public License, which is a copyleft license designed for free software.
+
+We have designed this License in order to use it for manuals for free software, because free software needs free documentation: a free program should come with manuals providing the same freedoms that the software does.  But this License is not limited to software manuals; it can be used for any textual work, regardless of subject matter or whether it is published as a printed book.  We recommend this License principally for works whose purpose is instruction or reference.
+\begin{center} {\Large\bf 1. APPLICABILITY AND DEFINITIONS\par} \phantomsection \addcontentsline{toc}{section}{1. APPLICABILITY AND DEFINITIONS} \end{center}
+This License applies to any manual or other work, in any medium, that contains a notice placed by the copyright holder saying it can be distributed under the terms of this License.  Such a notice grants a world-wide, royalty-free license, unlimited in duration, to use that work under the conditions stated herein.  The ``\textbf{Document}'', below, refers to any such manual or work.  Any member of the public is a licensee, and is addressed as ``\textbf{you}''.  You accept the license if you copy, modify or distribute the work in a way requiring permission under copyright law.
+
+A ``\textbf{Modified Version}'' of the Document means any work containing the Document or a portion of it, either copied verbatim, or with modifications and/or translated into another language.
+
+A ``\textbf{Secondary Section}'' is a named appendix or a front-matter section of the Document that deals exclusively with the relationship of the publishers or authors of the Document to the Document's overall subject (or to related matters) and contains nothing that could fall directly within that overall subject.  (Thus, if the Document is in part a textbook of mathematics, a Secondary Section may not explain any mathematics.)  The relationship could be a matter of historical connection with the subject or with related matters, or of legal, commercial, philosophical, ethical or political position regarding them.
+
+The ``\textbf{Invariant Sections}'' are certain Secondary Sections whose titles are designated, as being those of Invariant Sections, in the notice that says that the Document is released under this License.  If a section does not fit the above definition of Secondary then it is not allowed to be designated as Invariant.  The Document may contain zero Invariant Sections.  If the Document does not identify any Invariant Sections then there are none.
+
+The ``\textbf{Cover Texts}'' are certain short passages of text that are listed, as Front-Cover Texts or Back-Cover Texts, in the notice that says that the Document is released under this License.  A Front-Cover Text may be at most 5 words, and a Back-Cover Text may be at most 25 words.
+
+A ``\textbf{Transparent}'' copy of the Document means a machine-readable copy, represented in a format whose specification is available to the general public, that is suitable for revising the document straightforwardly with generic text editors or (for images composed of pixels) generic paint programs or (for drawings) some widely available drawing editor, and that is suitable for input to text formatters or for automatic translation to a variety of formats suitable for input to text formatters.  A copy made in an otherwise Transparent file format whose markup, or absence of markup, has been arranged to thwart or discourage subsequent modification by readers is not Transparent. An image format is not Transparent if used for any substantial amount of text.  A copy that is not ``Transparent'' is called ``\textbf{Opaque}''.
+
+Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo input format, LaTeX input format, SGML or XML using a publicly available DTD, and standard-conforming simple HTML, PostScript or PDF designed for human modification.  Examples of transparent image formats include PNG, XCF and JPG.  Opaque formats include proprietary formats that can be read and edited only by proprietary word processors, SGML or XML for which the DTD and/or processing tools are not generally available, and the machine-generated HTML, PostScript or PDF produced by some word processors for output purposes only.
+
+The ``\textbf{Title Page}'' means, for a printed book, the title page itself, plus such following pages as are needed to hold, legibly, the material this License requires to appear in the title page.  For works in formats which do not have any title page as such, ``Title Page'' means the text near the most prominent appearance of the work's title, preceding the beginning of the body of the text.
+
+The ``\textbf{publisher}'' means any person or entity that distributes copies of the Document to the public.
+
+A section ``\textbf{Entitled XYZ}'' means a named subunit of the Document whose title either is precisely XYZ or contains XYZ in parentheses following text that translates XYZ in another language.  (Here XYZ stands for a specific section name mentioned below, such as ``\textbf{Acknowledgements}'', ``\textbf{Dedications}'', ``\textbf{Endorsements}'', or ``\textbf{History}''.)   To ``\textbf{Preserve the Title}'' of such a section when you modify the Document means that it remains a section ``Entitled XYZ'' according to this definition.
+
+The Document may include Warranty Disclaimers next to the notice which states that this License applies to the Document.  These Warranty Disclaimers are considered to be included by reference in this License, but only as regards disclaiming warranties: any other implication that these Warranty Disclaimers may have is void and has no effect on the meaning of this License.
+\begin{center} {\Large\bf 2. VERBATIM COPYING\par} \phantomsection \addcontentsline{toc}{section}{2. VERBATIM COPYING} \end{center}
+You may copy and distribute the Document in any medium, either commercially or noncommercially, provided that this License, the copyright notices, and the license notice saying this License applies to the Document are reproduced in all copies, and that you add no other conditions whatsoever to those of this License.  You may not use technical measures to obstruct or control the reading or further copying of the copies you make or distribute.  However, you may accept compensation in exchange for copies.  If you distribute a large enough number of copies you must also follow the conditions in section~3.
+
+You may also lend copies, under the same conditions stated above, and you may publicly display copies.
+\begin{center} {\Large\bf 3. COPYING IN QUANTITY\par} \phantomsection \addcontentsline{toc}{section}{3. COPYING IN QUANTITY} \end{center}
+If you publish printed copies (or copies in media that commonly have printed covers) of the Document, numbering more than 100, and the Document's license notice requires Cover Texts, you must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover.  Both covers must also clearly and legibly identify you as the publisher of these copies.  The front cover must present the full title with all words of the title equally prominent and visible.  You may add other material on the covers in addition. Copying with changes limited to the covers, as long as they preserve the title of the Document and satisfy these conditions, can be treated as verbatim copying in other respects.
+
+If the required texts for either cover are too voluminous to fit legibly, you should put the first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto adjacent pages.
+
+If you publish or distribute Opaque copies of the Document numbering more than 100, you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or with each Opaque copy a computer-network location from which the general network-using public has access to download using public-standard network protocols a complete Transparent copy of the Document, free of added material. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public.
+
+It is requested, but not required, that you contact the authors of the Document well before redistributing any large number of copies, to give them a chance to provide you with an updated version of the Document.
+\begin{center} {\Large\bf 4. MODIFICATIONS\par} \phantomsection \addcontentsline{toc}{section}{4. MODIFICATIONS} \end{center}
+You may copy and distribute a Modified Version of the Document under the conditions of sections 2 and 3 above, provided that you release the Modified Version under precisely this License, with the Modified Version filling the role of the Document, thus licensing distribution and modification of the Modified Version to whoever possesses a copy of it.  In addition, you must do these things in the Modified Version:
+
+\begin{itemize} \item[A.]     Use in the Title Page (and on the covers, if any) a title distinct    from that of the Document, and from those of previous versions    (which should, if there were any, be listed in the History section    of the Document).  You may use the same title as a previous version    if the original publisher of that version gives permission.     \item[B.]    List on the Title Page, as authors, one or more persons or entities    responsible for authorship of the modifications in the Modified    Version, together with at least five of the principal authors of the    Document (all of its principal authors, if it has fewer than five),    unless they release you from this requirement.     \item[C.]    State on the Title page the name of the publisher of the    Modified Version, as the publisher.     \item[D.]    Preserve all the copyright notices of the Document.     \item[E.]    Add an appropriate copyright notice for your modifications    adjacent to the other copyright notices.     \item[F.]    Include, immediately after the copyright notices, a license notice    giving the public permission to use the Modified Version under the    terms of this License, in the form shown in the Addendum below.     \item[G.]    Preserve in that license notice the full lists of Invariant Sections    and required Cover Texts given in the Document's license notice.     \item[H.]    Include an unaltered copy of this License.     \item[I.]    Preserve the section Entitled ``History'', Preserve its Title, and add    to it an item stating at least the title, year, new authors, and    publisher of the Modified Version as given on the Title Page.  If    there is no section Entitled ``History'' in the Document, create one    stating the title, year, authors, and publisher of the Document as    given on its Title Page, then add an item describing the Modified    Version as stated in the previous sentence.     \item[J.]    Preserve the network location, if any, given in the Document for    public access to a Transparent copy of the Document, and likewise    the network locations given in the Document for previous versions    it was based on.  These may be placed in the ``History'' section.    You may omit a network location for a work that was published at    least four years before the Document itself, or if the original    publisher of the version it refers to gives permission.     \item[K.]    For any section Entitled ``Acknowledgements'' or ``Dedications'',    Preserve the Title of the section, and preserve in the section all    the substance and tone of each of the contributor acknowledgements    and/or dedications given therein.     \item[L.]    Preserve all the Invariant Sections of the Document,    unaltered in their text and in their titles.  Section numbers    or the equivalent are not considered part of the section titles.     \item[M.]    Delete any section Entitled ``Endorsements''.  Such a section    may not be included in the Modified Version.     \item[N.]    Do not retitle any existing section to be Entitled ``Endorsements''    or to conflict in title with any Invariant Section.     \item[O.]    Preserve any Warranty Disclaimers. \end{itemize}
+
+If the Modified Version includes new front-matter sections or appendices that qualify as Secondary Sections and contain no material copied from the Document, you may at your option designate some or all of these sections as invariant.  To do this, add their titles to the list of Invariant Sections in the Modified Version's license notice. These titles must be distinct from any other section titles.
+
+You may add a section Entitled ``Endorsements'', provided it contains nothing but endorsements of your Modified Version by various parties---for example, statements of peer review or that the text has been approved by an organization as the authoritative definition of a standard.
+
+You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25 words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version.  Only one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through arrangements made by) any one entity.  If the Document already includes a cover text for the same cover, previously added by you or by arrangement made by the same entity you are acting on behalf of, you may not add another; but you may replace the old one, on explicit permission from the previous publisher that added the old one.
+
+The author(s) and publisher(s) of the Document do not by this License give permission to use their names for publicity for or to assert or imply endorsement of any Modified Version.
+\begin{center} {\Large\bf 5. COMBINING DOCUMENTS\par} \phantomsection \addcontentsline{toc}{section}{5. COMBINING DOCUMENTS} \end{center}
+You may combine the Document with other documents released under this License, under the terms defined in section~4 above for modified versions, provided that you include in the combination all of the Invariant Sections of all of the original documents, unmodified, and list them all as Invariant Sections of your combined work in its license notice, and that you preserve all their Warranty Disclaimers.
+The combined work need only contain one copy of this License, and multiple identical Invariant Sections may be replaced with a single copy.  If there are multiple Invariant Sections with the same name but different contents, make the title of each such section unique by adding at the end of it, in parentheses, the name of the original author or publisher of that section if known, or else a unique number. Make the same adjustment to the section titles in the list of Invariant Sections in the license notice of the combined work.
+
+In the combination, you must combine any sections Entitled ``History'' in the various original documents, forming one section Entitled ``History''; likewise combine any sections Entitled ``Acknowledgements'', and any sections Entitled ``Dedications''.  You must delete all sections Entitled ``Endorsements''.
+\begin{center} {\Large\bf 6. COLLECTIONS OF DOCUMENTS\par} \phantomsection \addcontentsline{toc}{section}{6. COLLECTIONS OF DOCUMENTS} \end{center}
+You may make a collection consisting of the Document and other documents released under this License, and replace the individual copies of this License in the various documents with a single copy that is included in the collection, provided that you follow the rules of this License for verbatim copying of each of the documents in all other respects.
+
+You may extract a single document from such a collection, and distribute it individually under this License, provided you insert a copy of this License into the extracted document, and follow this License in all other respects regarding verbatim copying of that document.
+\begin{center} {\Large\bf 7. AGGREGATION WITH INDEPENDENT WORKS\par} \phantomsection \addcontentsline{toc}{section}{7. AGGREGATION WITH INDEPENDENT WORKS} \end{center}
+A compilation of the Document or its derivatives with other separate and independent documents or works, in or on a volume of a storage or distribution medium, is called an ``aggregate'' if the copyright resulting from the compilation is not used to limit the legal rights of the compilation's users beyond what the individual works permit. When the Document is included in an aggregate, this License does not apply to the other works in the aggregate which are not themselves derivative works of the Document.
+
+If the Cover Text requirement of section~3 is applicable to these copies of the Document, then if the Document is less than one half of the entire aggregate, the Document's Cover Texts may be placed on covers that bracket the Document within the aggregate, or the electronic equivalent of covers if the Document is in electronic form. Otherwise they must appear on printed covers that bracket the whole aggregate.
+\begin{center} {\Large\bf 8. TRANSLATION\par} \phantomsection \addcontentsline{toc}{section}{8. TRANSLATION} \end{center}
+Translation is considered a kind of modification, so you may distribute translations of the Document under the terms of section~4. Replacing Invariant Sections with translations requires special permission from their copyright holders, but you may include translations of some or all Invariant Sections in addition to the original versions of these Invariant Sections.  You may include a translation of this License, and all the license notices in the Document, and any Warranty Disclaimers, provided that you also include the original English version of this License and the original versions of those notices and disclaimers.  In case of a disagreement between the translation and the original version of this License or a notice or disclaimer, the original version will prevail.
+
+If a section in the Document is Entitled ``Acknowledgements'', ``Dedications'', or ``History'', the requirement (section~4) to Preserve its Title (section~1) will typically require changing the actual title.
+\begin{center} {\Large\bf 9. TERMINATION\par} \phantomsection \addcontentsline{toc}{section}{9. TERMINATION} \end{center}
+You may not copy, modify, sublicense, or distribute the Document except as expressly provided under this License.  Any attempt otherwise to copy, modify, sublicense, or distribute it is void, and will automatically terminate your rights under this License.
+
+However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.
+
+Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.
+
+Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License.  If your rights have been terminated and not permanently reinstated, receipt of a copy of some or all of the same material does not give you any rights to use it.
+\begin{center} {\Large\bf 10. FUTURE REVISIONS OF THIS LICENSE\par} \phantomsection \addcontentsline{toc}{section}{10. FUTURE REVISIONS OF THIS LICENSE} \end{center}
+The Free Software Foundation may publish new, revised versions of the GNU Free Documentation License from time to time.  Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.  See \texttt{http://www.gnu.org/copyleft/}.
+
+Each version of the License is given a distinguishing version number. If the Document specifies that a particular numbered version of this License ``or any later version'' applies to it, you have the option of following the terms and conditions either of that specified version or of any later version that has been published (not as a draft) by the Free Software Foundation.  If the Document does not specify a version number of this License, you may choose any version ever published (not as a draft) by the Free Software Foundation.  If the Document specifies that a proxy can decide which future versions of this License can be used, that proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Document.
+\begin{center} {\Large\bf 11. RELICENSING\par} \phantomsection \addcontentsline{toc}{section}{11. RELICENSING} \end{center}
+``Massive Multiauthor Collaboration Site'' (or ``MMC Site'') means any World Wide Web server that publishes copyrightable works and also provides prominent facilities for anybody to edit those works.  A public wiki that anybody can edit is an example of such a server.  A ``Massive Multiauthor Collaboration'' (or ``MMC'') contained in the site means any set of copyrightable works thus published on the MMC site.
+
+``CC-BY-SA'' means the Creative Commons Attribution-Share Alike 3.0 license published by Creative Commons Corporation, a not-for-profit corporation with a principal place of business in San Francisco, California, as well as future copyleft versions of that license published by that same organization.
+``Incorporate'' means to publish or republish a Document, in whole or in part, as part of another Document.
+
+An MMC is ``eligible for relicensing'' if it is licensed under this License, and if all works that were first published under this License somewhere other than this MMC, and subsequently incorporated in whole or in part into the MMC, (1) had no cover texts or invariant sections, and (2) were thus incorporated prior to November 1, 2008.
+The operator of an MMC Site may republish an MMC contained in the site under CC-BY-SA on the same site at any time before August 1, 2009, provided the MMC is eligible for relicensing.
+\begin{center} {\Large\bf ADDENDUM: How to use this License for your documents\par} \phantomsection \addcontentsline{toc}{section}{ADDENDUM: How to use this License for your documents} \end{center}
+To use this License in a document you have written, include a copy of the License in the document and put the following copyright and license notices just after the title page:
+\bigskip \begin{quote}     Copyright \copyright{}  YEAR  YOUR NAME.     Permission is granted to copy, distribute and/or modify this document     under the terms of the GNU Free Documentation License, Version 1.3     or any later version published by the Free Software Foundation;     with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.     A copy of the license is included in the section entitled ``GNU     Free Documentation License''. \end{quote} \bigskip      If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts, replace the ``with \dots\ Texts.''\ line with this:
+\bigskip \begin{quote}     with the Invariant Sections being LIST THEIR TITLES, with the     Front-Cover Texts being LIST, and with the Back-Cover Texts being LIST. \end{quote} \bigskip      If you have Invariant Sections without Cover Texts, or some other combination of the three, merge those two alternatives to suit the situation.
+
+If your document contains nontrivial examples of program code, we recommend releasing these examples in parallel under your choice of free software license, such as the GNU General Public License, to permit their use in free software.
+%---------------------------------------------------------------------
 \end{document}
