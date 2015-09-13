@@ -36,6 +36,9 @@
 %% Because html converters don't know tabularnewline
 \providecommand{\tabularnewline}{\\}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newcommand{\code}[1]{\texttt{#1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 % DO NOT ALTER THIS PREAMBLE!!!
 %
@@ -265,7 +268,9 @@
 
 \section*{License}
 
-Copyright © 2015 Juan Valencia Calvellido. 
+Copyright © 2015 Juan Valencia Calvellido.
+
+Revision number: 0.7
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
@@ -273,8 +278,6 @@ or any later version published by the Free Software Foundation; with
 no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 A copy of the license is included in the section entitled GNU Free
 Documentation License. 
-
-Document revision number: 0.7
 
 \newpage{\thispagestyle{empty}\cleardoublepage}\thispagestyle{empty}
 
@@ -347,10 +350,9 @@ Cruzada}.
 \section*{References\label{sec:referencias}}
 
 El autor de esta plantilla, Prof. Juan Boubeta Puig, es miembro del
-Grupo UCASE de Ingeniería del Software (TIC-025)~\cite{UCASE-2012}.
-En Boubeta-Puig et al.~\cite{boubeta_puig_procesamiento_2011} se
-presenta una de sus publicaciones en congresos españoles. Nótese
-que las referencias deben ser guardadas en el fichero <<referencias.bib>>
+Grupo UCASE de Ingeniería del Software (TIC-025). En Boubeta-Puig
+et al. se presenta una de sus publicaciones en congresos españoles.
+Nótese que las referencias deben ser guardadas en el fichero <<referencias.bib>>
 y deben ser incluidas en el documento .lyx con \emph{Insertar>Cita}.
 Además, para evitar que la referencia sea separada de la palabra anterior,
 debe incluirse un espacio protegido (~) pulsando Control+Espacio.
@@ -449,6 +451,86 @@ Para más información consúltese la ayuda de \LyX{} en el menú \emph{Ayuda}.
 
 \section{Motivation}
 
+
+\subsection{Introduction}
+
+The support of HTTP/WebDAV, provided by frameworks for scientific
+data access like DPM {[}6{]}, dCache {[}9{]}, STORM {[}10{]}, GFAL2
+{[}11{]}, FTS3 {[}12{]} and foreseen for XROOTD {[}2{]}, can be seen
+as a coherent ensemble \textendash{} an ecosystem \textendash{} that
+is based on a single, standard protocol, where the HEP-related features
+are covered, and the door is open to standard solutions and tools
+provided by third parties, in the context of the Web and Cloud technologies.
+Among our contributions are a fully standard and full-featured client
+library to ROOT 5 and 6, and the design of a plugin that adds HTTP/WebDav
+support to the XROOTD frame- work. At the same time, the Dynamic Federations
+project gives the possibility of clustering HTTP/WebDAV resources
+across LANs and WANs in a very efficient and scalable way, thus allowing
+one to build large federations of HTTP-based storage sites or file
+metadata databases. The application domain goes from large scale,
+Grid-like computing to data access from laptops, profiting from tools
+that are shared with the Web community, like browsers, clients libraries
+and others. The overall goal is to leverage standards and standard
+practices, and use them to contribute the components that are needed
+to fulfil the complex problem of Data Access in HEP while using technologies
+and toolsets that are attractive also for non-HEP communities, making
+long term sustainability a closer goal.
+
+
+\subsection{Enabling scalable, uniform services based on HTTP and WebDAV}
+
+The storage elements used in the Grid and for HEP belong to the categories
+of software systems whose goal is to cluster storage resources and
+make them available to data processing clients as if they were a unique
+system. Many other projects have analogous functionalities, in the
+Scientific community (e.g. DPM, dCache, iRODS, Xrootd) or in the market.
+Most of these products work by managing and distributing data across
+mountpoints that are spread through many servers. Clients that want
+to access the repository are redirected to the best machine according
+to various criteria, typically given by some clustering algorithm.
+There are different clustering techniques using various technologies
+(p2p-like, database, hashes, ...) and the goal of such systems is
+always to hide to the users doing analysis and data access the complexity
+of managing site resources, for repositories that are too big for
+a single server to be able to sustain the load that the clients would
+generate. From the technical point of view, one of the main goals
+of this kind of systems is to hide to the users doing analysis and
+data access the complexity linked to the \textquotedblleft where is
+my file problem\textquotedblright . The central systems that schedule
+analysis jobs to be submitted, or the users themselves do not need
+to deal with details that are internal to the site (e.g. the names
+of the mount points, which can change); they need to interact with
+a coherent storage service that is offered and administered by the
+site. 
+
+
+\subsubsection{DPM and DMLite }
+
+One of our most important contributions to the usage of HTTP in High
+Energy Physics has been the evolution of the Disk Pool Manager (DPM)
+architecture towards our scalable and flexible framework for designing
+data management systems, called dmlite {[}4{]}. The Disk Pool Manager
+(DPM) is a lightweight solution for grid enabled disk storage management.
+Operated at more than 200 sites, it has the widest distribution of
+all grid storage solutions in the WLCG infrastructure. It provides
+an easy way to manage and configure disk pools, and exposes multiple
+interfaces for data access (xrootd, NFS, GridFTP and HTTP/WebDAV)
+and control (SRM). Some of the most important supported features are: 
+
+\textbullet{} Provide HTTP multi-stream transfers for high performance
+wide area, access matching it with the strict requirement of DPM about
+coordination of accesses. 
+
+\textbullet{} Support for third party copies. 
+
+\textbullet{} Support for X.509 authentication with proxy certificates
+and VOMS extensions 
+
+\textbullet{} Support for user credential delegations. 
+
+\textbullet{} Support for modern configuration and monitoring solutions
+based on the industry standards Puppet and Nagios.
+
 The Disk Pool Manager (DPM) is a lightweight storage solution for
 grid sites. It offers a simple way to create a disk-based grid storage
 element and supports relevant protocols (SRM, gridFTP, RFIO) for file
@@ -456,7 +538,7 @@ management and access. It focus on manageability (ease of installation,
 configuration, low effort of maintenance), while providing all required
 functionality for a grid storage solution (support for multiple disk
 server nodes, different space types, multiple file replicas in disk
-pools). It is installed in 185 different sites, with more than 200
+pools). It is installed in 165 different sites, with more than 180
 instances running as of today~\cite{WLCG_stats}.
 
 As an effort to move towards standard protocols that removes the need
@@ -513,7 +595,7 @@ creating an interface based on the WebDAV protocol and then integrating
 it with the DPM stack.
 
 This can be then \textquotedblleft translated\textquotedblright{}
-to requirements (functional/non-functional)
+to requirements (functional/non-functional).
 
 As a web development the project DPMbox will use standard web technologies
 as HTML5 {[}7{]}, CSS3 {[}8{]} or JavaScript {[}9{]} and the final
@@ -540,6 +622,7 @@ under the Apache License version 2.0 {[}10{]}.
 
 \begin{acronym}
   \acro{CERN}{European Organization for Nuclear Research}
+  \acro{EGI}{European Grid Infrastructure}
   \acro{UCA}{Universidad de Cádiz}
   \acro{DPM}{Disk Pool Manager}
   \acro{LHC}{Large Hadron Collider}
@@ -549,44 +632,67 @@ under the Apache License version 2.0 {[}10{]}.
   \acro{SFN}{Storage File Name}
   \acro{PFN}{Physical File Name}
   \acro{RFIO}{RFIO}
-  \acro{XML}{eXtended Markup Language?}
+  \acro{XML}{eXtended Markup Language}
   \acro{XHR}{XMLHttpRequest}
   \acro{DAV}{Distributed Authoring and Versioning}
+  \acro{PMI}{Privilege Management Infrastructure}
+  \acro{VOMS}{Virtual Organization Membership Service}
+  \acro{AC}{Attribute Cetificate}
+  \acro{DN}{Distinguished Name}
+  \acro{FQAN}{Fully Qualified Attribute Name}
 \end{acronym}
 
 
 \subsection{Definitions}
-
-Para incluir definiciones en la memoria se puede utilizar el tipo
-<<descripción>>. Nótese que si el concepto a definir está compuesto
-por más de una palabra, estas palabras deben ser separadas por un
-espacio protegido (Control+Espacio).
 \begin{description}
-\item [{Collection}] In this memory wou will find a lot the word \textquotedblleft collection\textquotedblright .
-A collection is a resource whose state consists of at least a list
-of internal member URIs and a set of properties, but which may have
-additional state such as entity bodies returned by GET. An internal
-member URI must be immediately relative to a base URI of the collection.
-That is, the internal member URI is equal to a containing collection's
-URI plus an additional segment for non-collection resources, or additional
-segment plus trailing slash \textquotedbl{}/\textquotedbl{} for collection
-resources. In a WebDAV environment it could be a synonym of a directory.
-Complete definition can be found on section 5.2 of RFC 4918~\cite{RFC4918}.
+\item [{Collection}] A collection is defined as a resource whose state
+consists of at least a list of internal member URIs and a set of properties,
+but which may have additional state such as entity bodies returned
+by GET. In this work you can almost consider as a synonym to a directory.
+Complete and formal definition can be found on section 5.2 of RFC
+4918~\cite{RFC4918}.
 \item [{Metalink}] Metalink is an extensible metadata file format that
 describes one or more computer files available for download. It specifies
-files appropriate for the user's language and operating system; facilitates
-file verification and recovery from data corruption; and lists alternate
-download sources (mirror URIs).~\cite{RFC5854,RFC6249}
+files appropriate for the user's language and operating system, facilitates
+file verification and recovery from data corruption, and lists alternate
+download sources (mirror URIs)~\cite{RFC5854,RFC6249}.
+\item [{POSIX}] Acronym for Portable Operating System Interface, a family
+of standards specified by the IEEE Computer Society for maintaining
+compatibility between operating systems. POSIX defines the application
+programming interface (API), along with command line shells and utility
+interfaces, for software compatibility with variants of Unix and other
+operating systems.
+\item [{X.509}] An ITU-T (Telecommunication Standardization Sector) standard
+for a public key infrastructure and Privilege Management Infrastructure.
+X.509 specifies, amongst other things, standard formats for public
+key certificates, certificate revocation lists, attribute certificates,
+and a certification path validation algorithm.
 \end{description}
 
 \section{Document organization}
 
-Firstly the current system state, state of the art, is presented.
-Then the schedule, where the initial planning can be found. Following
-by the project description. Finally the project development section,
-where system analysis, design and implementation and testing are described.
-After that different manual can be found, and also the final thoughts
-and the future work on the project.
+In this \emph{Introduction} you can read about the project motivation
+and some descriptions about how the CERN works, giving some context
+to the project. This is naturally followed by the \emph{State of the Art},
+so the reader can completely envision the current system and environment
+state. 
+
+After that comes the \emph{Schedule}, all the organization and planning
+stuff can be found here. 
+
+Then, in the \emph{Project general description} you can read about
+what has been developed in a non-technical way, before getting into
+detail in the next section, \emph{Project development}, where all
+things about how DPMbox has been built are shown: system analysis,
+design, implementation and testing.
+
+Next come \emph{Conclusions} and \emph{Acknowledgements}, where
+we explain the final thoughts that have been reached after completing
+the development.
+
+Finally, an appendix is presented, where different manuals can be
+found (\emph{Installation}, \emph{Development} and \emph{User}),
+and also the \emph{License} under which this document is published.
 
 
 \chapter{State of the art}
@@ -622,47 +728,42 @@ The Disk Pool Manager (\ac{DPM}) and \ac{LCG} File Catalog (\ac{LFC})
 are two grid components with more than 240 endpoints available. 
 
 The purpose of the \ac{LFC} is to allow the access and retrieval
-of any file using just its Logical File Name (\ac{LFN}), without
-the need of knowing where exactly it is replicated\textsuperscript{1}.
-When a user does a request to an \ac{LFC}, it will return a list
-of \textquotedblleft Storage File Name\textquotedblright{} (\ac{SFN})
-where this file can be retrieved. 
+of any file using just its \ac{LFN}, without the need of knowing
+where exactly it is replicated. When a user does a request to an \ac{LFC},
+it will return a list of \ac{SFN} where this file can be retrieved. 
 
 \ac{DPM}is a lightweight storage system mostly targeted at Tier-2
 and medium size sites, providing reliable and scalable storage while
-keeping configuration and management simple\textsuperscript{1}. It
-maps a \ac{SFN} to a Transfer URL (TURL), which is the association
-between a Physical File Name (\ac{PFN}) and an access protocol such
-as \ac{RFIO}, HTTP or GridFTP\textsuperscript{2}.
+keeping configuration and management simple. It maps a \ac{SFN} to
+a Transfer URL (TURL), which is the association between a Physical
+File Name (\ac{PFN}) and an access protocol such as \ac{RFIO}, HTTP
+or GridFTP.
 
 
 \section{HTTP and WebDAV}
 
-The Hypertext Transfer Protocol (HTTP)\textsuperscript{3} is a well
+The Hypertext Transfer Protocol (HTTP)\textsuperscript{}is a well
 known and widely implemented standard protocol based on a client-server
 stateless model. It can be used as a data transfer protocol, where
 users request a resource to a specific server, which then sends the
 response back. 
 
-Web Distributed Authoring and Versioning (WebDAV)\textsuperscript{4}
-is an extension of the HTTP protocol. It provides a framework to handle
-metadata through the web, so users can create and retrieve resources,
-and also modify its associated properties, as owner, description,
-permissions and any other information that can be expressed as text
-or XML.
+Web Distributed Authoring and Versioning (WebDAV) is an extension
+of the HTTP protocol. It provides a framework to handle metadata through
+the web, so users can create and retrieve resources, and also modify
+its associated properties, as owner, description, permissions and
+any other information that can be expressed as text or XML.
 
 WebDAV extends the HTTP protocol allowing clients to perform web authoring
-operations\textsuperscript{4}. That is, it provides a framework to
-handle namespaces, so users can perform operations such as create,
-rename, modify or remove files and directories through the Web. 
+operations. That is, it provides a framework to handle namespaces,
+so users can perform operations such as create, rename, modify or
+remove files and directories through the Web. 
 
 For this, it defines new methods for manipulating properties and collections
 (i.e. directories), and the possibility of passing parameters through
 XML on a request body, instead of HTTP headers or queries, so they
-can be easily extended. 
-
-It also uses XML to encode the answers, as the list of properties
-of a file, or the content of a folder. 
+can be easily extended. It also uses XML to encode the answers, as
+the list of properties of a file, or the content of a folder. 
 
 
 \section{Access}
@@ -681,13 +782,10 @@ We compare the support of some key features of two of the most frequent
 tools used to access a web server in table \ref{tab:things}. 
 
 \begin{table}[h]
-\protect\caption{Things}
-
-
 \label{tab:things}
 
 \begin{tabular}{cccccccc}
-\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X509} & \textbf{X509 Proxies} & \textbf{Redirections} & \textbf{PUT}\tabularnewline
+\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X.509} & \textbf{X.509 Proxies} & \textbf{Redirections} & \textbf{PUT}\tabularnewline
 \hline 
 CURL & Any & No & Yes & Yes & Yes & Yes & Yes\tabularnewline
 Web browser & Any & Yes & No & Yes & Only Internet Explorer & Yes & No\tabularnewline[\doublerulesep]
@@ -696,11 +794,13 @@ Web browser & Any & Yes & No & Yes & Only Internet Explorer & Yes & No\tabularne
 \item [{OS}] Operating System 
 \item [{GUI}] Graphical User Interface 
 \item [{CLI}] Command Line Interface
-\item [{X509}] Support for client certificates
-\item [{X509}] Proxies Support for proxy certificates
+\item [{X.509}] Support for client certificates
+\item [{X.509}] Proxies Support for proxy certificates
 \item [{Follow~redirections}] Follows redirections when needed, as described
 in section 4 
-\item [{PUT}] Writing support \end{description}
+\item [{PUT}] Writing support 
+\end{description}
+\protect\caption{HTTP clients}
 \end{table}
 
 
@@ -712,11 +812,8 @@ renaming or fetching properties, WebDAV must be used. We also present
 a comparison between the most popular WebDAV clients on table 2. 
 
 \begin{table}
-\protect\caption{}
-
-
 \begin{tabular}{ccccccc}
-\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X509} & \textbf{X509 Proxies} & \textbf{Redirections}\tabularnewline
+\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X.509} & \textbf{X.509 Proxies} & \textbf{Redirections}\tabularnewline
 \hline 
 Cadaver & {*}nix & No & Yes & Yes & No & No\tabularnewline
 Davlib & OS X & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
@@ -727,8 +824,32 @@ Dolphin & KDE & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
 Cyberduck & Win, OS X & Yes & No & No & No & Not on PUT\tabularnewline[\doublerulesep]
 libneon & {*}nix & N/A & N/A & Yes & No & No\tabularnewline[\doublerulesep]
 \end{tabular}
+
+\protect\caption{WebDAV clients}
 \end{table}
 
+
+
+\section{Security }
+
+In terms of authentication information for authorization, Grids use
+X.509 \ac{AC}s and \ac{PMI}s~\cite{wiki:PMI} to assign privileges
+to users, and to carry the privileges around the Grid. \ac{DPM} uses
+X.509 and a Grid privilege management system called \ac{VOMS}. 
+
+In a nutshell, \ac{VOMS} provides the tools to enable Virtual Organizations
+and attribute-based authorization in distributed contexts. \ac{VOMS}
+supports a rich registration process compliant with the \ac{EGI}policies
+on VO registration services. Users can be organized in groups and
+can be assigned roles and other types of attributes. User privileges,
+in the shape of VO memberships and roles, are placed inside an X.509
+\ac{AC} by the VOMS server, signed by the VOMS server, and then embedded
+in the user's X.509 proxy certificate for carrying around the Grid~\cite{AlfieriCCdFGLS03}.
+
+Once the clients are authenticated, the X.509 certificate \ac{DN}
+is used as a \code{\_user name\_} and the VOMS \ac{FQAN} are used
+as \code{\_group names\_}. Apart from this DPM's authorization follows
+the POSIX filesystem authorization semantics.
 
 
 \chapter{Schedule}
@@ -738,9 +859,20 @@ Specifically we talk about the chosen development methodology, the
 stages the project has gone through and the personnel involved.
 
 
+\section{Organization}
+
+The project was developed entirely by the writer, student of \emph{Universidad de Cadiz},
+carrying out the work of analysis, design and development, and visual
+interface design and branding project. The project development has
+been reviewed and guided by supervisors Alejandro Álvarez Ayllón,
+current employee at CERN IT-SDC-ID section, and Manuel Palomo Duarte,
+PhD in \emph{Universidad de Cádiz}.
+
+
 \section{Life cycle model}
 
-The ISO/IEC 12207-1 standard defines the life cycle model as a 
+The ISO/IEC 12207-1~\cite{ISO12207} standard defines the life cycle
+model as a 
 \begin{quote}
 \textquotedblleft \emph{framework of processes and activities concerned with the life cycle
 that may be organized into stages, which also acts as a common reference
@@ -853,7 +985,7 @@ interact with it. This way it is possible to translate WebDAV standard
 methods like PROPFIND or MKCOL and use the information provided by
 them in an HTML document through JavaScript and jQuery. That API uses
 ajax calls to perform the HTTP/WebDAV requests and receive the data
-in an XmlHttpResquest object. 
+in an \ac{XHR} object. 
 
 
 \subsection{Environment}
@@ -918,7 +1050,7 @@ design:
 Beside this I\textquoteright ve also developed a small mockup with
 jQuery UI. Obviously it\textquoteright s not functional yet and it
 is subject to changes, but it can show a first approach and the actual
-appearance on a browser. You can check it out on the folowing link: 
+appearance on a browser. You can check it out on the following link: 
 
 
 \section{User characteristics}
@@ -955,7 +1087,7 @@ of a Web site by using hyperlinks. The interpretation of HTML documents
 is performed by Web browsers such as Mozilla Firefox or Google Chrome
 and others. The interpretation may make the final presentation vary
 in small details. Therefore the development of HTML is adjusted to
-the maximum to the standards set by the W3C.~\cite{2_w3.org_2015}
+the maximum to the standards set by the W3C~\cite{2_w3.org_2015}.
 
 
 \subsubsection{CSS}
@@ -966,7 +1098,7 @@ written in HTML, XML and XHTML by extension. The World Wide Web Consortium
 (W3C) is the agency responsible for developing the specification of
 style sheets that serve as a standard for browsers. The objective
 of CSS is separate the structure of a Web document from its visual
-representation.~\cite{3_w3.org_2015}
+representation~\cite{3_w3.org_2015}.
 
 CSS from the framework used, adapted accordingly.
 
@@ -974,16 +1106,20 @@ CSS from the framework used, adapted accordingly.
 \subsubsection{JavaScript}
 
 JavaScript is a high level, dynamic, untyped, and interpreted programming
-language. It has been standardized in the ECMAScript language specification.{[}7{]}
+language. It has been standardized in the ECMAScript language specification~.
 Alongside HTML and CSS, it is one of the three essential technologies
 of World Wide Web content production; the majority of websites employ
-it and it is supported by all modern web browsers without plug-ins.{[}6{]}
+it and it is supported by all modern web browsers without plug-ins.
 JavaScript is prototype-based with first-class functions, making it
-a multi-paradigm language, supporting object-oriented,{[}8{]} imperative,
-and functional programming styles.{[}6{]} It has an API for working
-with text, arrays, dates and regular expressions, but does not include
+a multi-paradigm language, supporting object-oriented, imperative,
+and functional programming styles. It has an API for working with
+text, arrays, dates and regular expressions, but does not include
 any I/O, such as networking, storage or graphics facilities, relying
-for these upon the host environment in which it is embedded.{[}7{]}~\cite{4_mozilla_developer_network_2015}
+for these upon the host environment in which it is embedded~\cite{4_mozilla_developer_network_2015}.
+
+ECMAScript 6 includes interesting syntax and structural improvements
+but it was in process of approval while DPMbox was being developed,
+thus the standard followed has been ECMAScript 5.1~\cite{EcmaScript}.
 
 
 \subsubsection{jQuery}
@@ -1115,9 +1251,6 @@ to automate one's \textquotedbl{}linting\textquotedbl{} process and
 integrate JSHint into the website's development workflow.{[}2{]}
 
 Used through Geany and Firefox Developer Edition.
-
-
-\subsubsection{LibreOffice Calc}
 
 
 \subsection{Operating systems and hardware}
@@ -1343,7 +1476,7 @@ the behavior of the business.{[}1{]} Business rules describe the operations,
 definitions and constraints that apply to an organization. Business
 rules can apply to people, processes, corporate behavior and computing
 systems in an organization, and are put in place to help the organization
-achieve its goals.{[}citation needed{]}
+achieve its goals.
 
 For example a business rule might state that no credit check is to
 be performed on return customers. Other examples of business rules
@@ -1356,8 +1489,7 @@ the rules clearly and making sure that they don't conflict is a valuable
 activity.{[}citation needed{]} When carefully managed, rules can be
 used to help the organization to better achieve goals, remove obstacles
 to market growth, reduce costly mistakes, improve communication, comply
-with legal requirements, and increase customer loyalty.{[}citation
-needed{]}
+with legal requirements, and increase customer loyalty.
 
 
 \subsection{Interface}
@@ -1458,8 +1590,36 @@ Finally w2ui.
 
 \section{System analysis}
 
+In this chapter the analysis based on the available presentation requirements
+two in Chapter 3, using the UML modeling language. Specifically, the
+chapter describes: 
+\begin{itemize}
+\item The conceptual data model used in the application, made from reporting
+requirements. 
+\item The use cases that describe the steps in the process habits tual project. 
+\item The UI model, in which a prototype is presented and navigation interfaces.
+\end{itemize}
 
-\subsection{Use cases}
+\subsection{Use case model}
+
+
+\subsubsection{Actors}
+
+\begin{figure}[h]
+\begin{centering}
+
+\includegraphics[scale=0.4]{img/Actors}
+
+\end{centering}
+
+\protect\caption{Actors}
+
+
+\end{figure}
+
+
+
+\subsubsection{Use cases}
 
 Hi! Today I\textquoteright d like to show you how the jQuery.dpm library
 works and how it communicates with the user interface.
@@ -1615,6 +1775,15 @@ mollit anim id est laborum.
 
 \subsection{User interface model}
 
+In this section we offer an approximation to the appearance and navigation
+in the user interface.
+
+
+\subsubsection{Navigation}
+
+
+\subsubsection{Prototypes}
+
 \begin{figure}
 \includegraphics[width=1\textwidth]{img/design_scheme}
 
@@ -1637,7 +1806,7 @@ mollit anim id est laborum.
 
 
 
-\section{System design}
+\section{System design~\label{sec:System-design}}
 
 Hello there! I\textquoteright ll write today a brief review of how
 DPMbox manage the file uploads, and how we solved a small problem
@@ -2045,12 +2214,19 @@ en lugar de buscar y detectar las correspondientes dependencias.
 Same tests as before but over production.
 
 
-\chapter{Conclusiones and future work}
+\chapter{Conclusions and future work}
+
+In this work we have shortly described the contributions that we have
+given towards being able to use the HTTP protocol in the context of
+High Energy Physics distributed data access. Although the Web world
+is based on HTTP, the set of the features supported by the more widespread
+components did not include some that are needed for the kind of high
+performance distributed computing that modern HEP experiments need.
 
 
 \section{Conclusions}
 
-Summary. 
+Summary. You learn a lot seeing an external user with your product.
 
 The work on DPMbox has been really exciting. 
 
@@ -2091,7 +2267,7 @@ Family.
 \appendix
 
 
-\chapter{Installation manual}
+\chapter{Installation manual\label{chap:Installation-manual}}
 
 
 \section{DPM installation}
@@ -2116,26 +2292,26 @@ Normalmente se puede instalar desde EPEL, pero para tener tu código
 necesitas el repo del continuous build
 
 
-\subsubsection{Instalar DPM}
+\subsubsection{Install DPM}
 
-\emph{Repositorio}
+\emph{Repository}
 
 wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
 -P /etc/yum.repos.d
 
-\emph{Paquetes}
+\emph{Packages}
 
 yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql
 dpm-name-server-mysql dpm
 
 
-\subsubsection{Instalar MySQL}
+\subsubsection{Install MySQL}
 \begin{verbatim}
 # yum install mysql-server - chkconfig mysqld on - service mysqld start
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Crear las tablas y usuario}
+\subsubsection{Create the tables and the user}
 \begin{verbatim}
 mysql < /usr/share/lcgdm/create_dpns_tables_mysql.sql 
 mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql 
@@ -2143,7 +2319,7 @@ mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant al
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Generar un certificado}
+\subsubsection{Generate a grid security certificate}
 \begin{verbatim}
 # cd /etc/grid-security
 # openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
@@ -2161,29 +2337,29 @@ como lo configuraste! Si no, ponlo a mano
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Confiar en tu certificado como CA}
+\subsubsection{Trust this new certificate as CA}
 \begin{verbatim}
 # mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Trampear DNS}
+\subsubsection{Trick the DNS tables}
 
 En /etc/hosts, añade tu host y host.domain al final de la lista para
 127.0.0.1 y ::1
 
 
-\subsubsection{Configurar DPM y DPNS}
+\subsubsection{Configurate DPM y DPNS}
 
-Modificar /etc/sysconfig/dpm DPNS\_HOST=`hostname` 
+Modificate /etc/sysconfig/dpm DPNS\_HOST=`hostname` 
 
-- Crear /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
+- Create /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
 
-- Crear /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
+- Create /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
 
 groupadd dpmmgr \&\& useradd -g dpmmgr dpmmgr 
 
-En /etc/shift.conf 
+In /etc/shift.conf 
 \begin{verbatim}
 DPM TRUST host.domain
 DPNS TRUST host.domain
@@ -2198,7 +2374,7 @@ RFIOD FTRUST host.domain
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Validar}
+\subsubsection{Validate}
 \begin{verbatim}
 # dpns-ls
 # dpm-qryconf
@@ -2207,21 +2383,21 @@ RFIOD FTRUST host.domain
 Si no fallan, va bien, aunque no veas nada
 
 
-\subsubsection{Arrancar siempre}
+\subsubsection{Load on startup}
 \begin{verbatim}
 # chkconfig dpnsdaemon on chkconfig dpm on
 \end{verbatim}
 \selectlanguage{english}%
 
-\subsubsection{Añadir una base}
+\subsubsection{Add a base}
 
-\emph{Crear directorio }
+\emph{Create directory}
 \begin{verbatim}
 dpns-mkdir -p /dpm/domain/home/public 
 dpns-chmod 0777 /dpm/domain/home/public
 \end{verbatim}
 \selectlanguage{english}%
-\emph{Crear un sitio donde almacenar ficher }
+\emph{Create a place where files can be hosted }
 
 dpm-addpool --poolname default --def\_filesize 100M mkdir /storage
 chown dpmmgr.dpmmgr /storage dpm-addfs --poolname default --server
@@ -2229,7 +2405,7 @@ host.domain --fs /storage/ dpm-qryconf (y verás que ahora aparece
 algo) 
 
 
-\subsubsection{Configurar dav}
+\subsubsection{Configurate DAV}
 
 cd /etc/httpd/conf/ Modificar httpd.conf User dpmmgr Group dpmmgr
 Elimina o comenta las líneas LoadModule dav\_module modules/mod\_dav.so
@@ -2239,29 +2415,437 @@ require => SSLVerifyClient optional NSSecureRedirect Off Añade Write
 to DiskFlags y NSFlags NSRedirectPort 8080 4443 (puertos expuestos
 al exterior) service httpd restart
 
-Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox.
+Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox. 
+
 Configura el firewall para el puerto 443 y 80, o desactivalo (service
 iptables stop / chkconfig iptables off).
 
-Desactiva selinux, que es un dolor
+Deactivate selinux.
 \begin{verbatim}
 setenforce 0 vim /etc/selinux/config SELINUX=permissive
 \end{verbatim}
 \selectlanguage{english}%
-En https://localhost:8080/dpm/ deberías ya tener algo. 
+Accesing https://localhost:8080/dpm/ something should appears now. 
 
 
 \section{DPMbox installation}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+DPMbox it's included on build 0.16.0-1 of lcgdm-dav, on the repositories.
+As of today, 12/09/15:
 
-It's on the repositories. 
+It's on testing channel for EPEL 5, 6, 7 and on stable for Fedora
+22 and 23.
+
+This update can be installed with the \textquotedbl{}yum\textquotedbl{}
+update program. Use su -c 'yum update lcgdm-dav' at the command line.
+For more information, refer to \textquotedbl{}Managing Software with
+yum\textquotedbl{}, available at \href{http://docs.fedoraproject.org/yum/}{http://docs.fedoraproject.org/yum/}
+
+
+\chapter{Developer manual}
+
+
+\section{DPM server environment}
+
+It's recommended to test DPMbox against a proper DPM machine. You
+can install a DPM instance following the guide above:~\nameref{chap:Installation-manual}.
+
+When installed DPMbox files will be located on the path:
+\begin{verbatim}
+/usr/share/lcgdm-dav/lcgdm-dav/DPMbox/
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Also you can download last DPMbox version from its code repository
+address~\cite{11_valencia_calvellido_2015}. Be aware that you should
+not touch the server and root parameters in the config.js file as
+they will be obtained automatically from the location (those lines
+on config.js will be commented out). 
+
+
+\section{WebDAV server environment}
+
+You may encounter problems setting an instance of DPM running. In
+that case you can still dig into DPMbox by testing it on a WebDAV
+server. You only need an Apache server and a couple of modules.
+
+Follow your system recommendations to install Apache server. The WebDAV
+modules \code{mod\_dav} and \code{mod\_dav\_fs} are bundled with
+any version of Apache \ensuremath{\ge} 2.0~\cite{apache_mod_dav}~\cite{apache_mod_dav_fs},
+so enable them, and then indicate Apache where the WebDAV filesystem
+will be hosted on your system. 
+
+These operations could vary from system to system, but the following
+are guide steps to install a WebDAV server on a Linux Debian based
+system~\cite{install_webdav}. For other OS some instructions will
+be very similar, even identical:
+
+
+\subsection{Install Apache}
+
+Our implementation of WebDAV will be established on Apache through
+the use of the WebDAV module.
+
+First, you will need to install Apache from Ubuntu's default repositories.
+\begin{verbatim}
+sudo apt-get update
+sudo apt-get install apache2
+\end{verbatim}
+\selectlanguage{english}%
+
+
+You now have a fully functioning web server installed. It should be
+accessible already by navigating to your server's IP address in a
+web browser. 
+
+
+\subsection{Enable WebDAV}
+
+Apache has built-in support for WebDAV with a few modules. We simply
+have to enable them to get access to their functions.
+
+Enable the WebDAV modules with the following two commands:
+\begin{verbatim}
+sudo a2enmod dav
+sudo a2enmod dav_fs
+\end{verbatim}
+\selectlanguage{english}%
+
+
+We now need to restart the server to implement the changes:
+\begin{verbatim}
+sudo service apache2 restart
+\end{verbatim}
+\selectlanguage{english}%
+
+
+WebDAV as a functionality is now enabled, but we still haven't configured
+it correctly yet for our server. 
+
+
+\subsection{Create the FileSystem}
+
+We will create a directory that will house our WebDAV file content.
+
+The default document root of the Apache server on Ubuntu is located
+at \code{/var/www}. However, we will be creating an alias, which
+will allow us to keep our directory content elsewhere.
+
+In this guide, we will place our WebDAV content at \code{/webdav/}
+\begin{verbatim}
+sudo mkdir /webdav
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Give the web user, which is \code{www-data}, ownership of the new
+directory, so that it can serve content correctly:
+\begin{verbatim}
+sudo chown www-data /webdav
+\end{verbatim}
+\selectlanguage{english}%
+
+\subsection{Set Up Password Protection}
+
+We can create an authentication procedure for accessing the directory
+content by creating an htpasswd file.
+
+We will place it outside of the content directory so that it will
+not be accessible to users of our system. Create a username within
+the command call and you will be prompted for an associated password:
+\begin{verbatim}
+sudo htpasswd -c /etc/apache2/webdav.password username
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Right now, anybody can view the username and hashed password in the
+file. We will assign group ownership of the file to www-data and then
+lock down the permissions for everyone else:
+\begin{verbatim}
+sudo chown root:www-data /etc/apache2/webdav.password 
+sudo chmod 640 /etc/apache2/webdav.password
+\end{verbatim}
+\selectlanguage{english}%
+
+\subsection{Configure Apache}
+
+Now, we will have to configure access to our content directory and
+tell Apache to use the WebDAV modules to serve that location. We will
+also have to note the authentication scheme we've created.
+
+Edit the main virtual host configuration with root privileges:
+\begin{verbatim}
+sudo nano /etc/apache2/sites-available/default
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Here, our web content is served out of /var/www like normal. We will
+add some information that will allow Apache to treat content in our
+new directory as WebDAV material.
+
+Below the directory listings, we will add an alias directive to tell
+Apache that requests for \textquotedbl{}/webdav\textquotedbl{} should
+be served out of the /webdav directory we created.
+
+We will then add options to allow authentication using the methods
+we established.
+\begin{verbatim}
+. . . 
+. . . 
+<Directory /var/www/> 
+	Options Indexes FollowSymLinks MultiViews 
+	AllowOverride None 
+	Order allow,deny 
+	allow from all 
+</Directory>
+
+Alias /webdav /webdav
+
+<Location /webdav> 
+	Options Indexes 
+	DAV On AuthType Basic AuthName "webdav" 
+	AuthUserFile /etc/apache2/webdav.password 
+	Require valid-user 
+</Location>
+. . . 
+. . .
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Save and close the file.
+
+Restart Apache with the following command:
+\begin{verbatim}
+sudo service apache2 restart
+\end{verbatim}
+\selectlanguage{english}%
+
+\subsection{Test the Results}
+
+You can test the results of you configuration first in a web browser,
+and then in a WebDAV client. 
+
+
+\subsubsection{Web Browser Test}
+
+To test that your authentication is working correctly, navigate to
+your server's IP address or domain name using a web browser.
+
+You should see the default Apache index.html file:
+
+\begin{figure}
+\begin{center}
+
+\includegraphics{img/ApacheItWorks}
+
+\end{center}
+
+\protect\caption{Apache default index file}
+\end{figure}
+
+
+This demonstrates that the regular web functionality is working.
+
+Now, navigate to your IP address or domain name followed by \textquotedbl{}/webdav\textquotedbl{}:
+\begin{verbatim}
+your_IP_address_or_domain/webdav
+\end{verbatim}
+\selectlanguage{english}%
+
+
+You should be prompted for the username and password combination you
+set up earlier. Afterwards, you should see an empty directory listing:
+
+\begin{figure}
+\begin{center}
+
+\includegraphics{img/EmptyWebDAV}
+
+\end{center}
+
+\protect\caption{Empty WebDAV}
+\end{figure}
+
+
+We don't currently have any content here, but we'll be able to change
+that by accessing the same area with a WebDAV client. 
+
+
+\subsubsection{WebDAV Client Test}
+
+There are many WebDAV clients and support for WebDAV access is baked
+into many popular file managers.
+
+For simplicity's sake, we'll use an easy command-line WebDAV client
+called \textquotedbl{}cadaver\textquotedbl{} in this guide.
+
+Preferably from another droplet or Linux machine, install cadaver
+from the default repositories:
+\begin{verbatim}
+sudo apt-get install cadaver
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Now, let's create a file that we'll upload to the WebDAV directory:
+\begin{verbatim}
+cd ~ 
+touch testfile
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Next, we'll connect using the same location we used to access from
+the browser:
+\begin{verbatim}
+cadaver http://your_IP_address_or_domain/webdav
+
+Authentication required for webdav on server `162.243.2.14': 
+Username:
+\end{verbatim}
+\selectlanguage{english}%
+
+
+You must type the \textquotedbl{}http://\textquotedbl{} portion for
+cadaver to find your server correctly. We will need to authenticate
+again, and then we'll be dropped into a command-line interface.
+\begin{verbatim}
+dav:/webdav/>
+\end{verbatim}
+\selectlanguage{english}%
+
+
+From here, we can operate the client and host at the same time using
+commands that are similar to regular Linux commands.
+
+To list the contents of the server directory, type:
+\begin{verbatim}
+ls
+
+Listing collection `/webdav/': collection is empty.
+\end{verbatim}
+\selectlanguage{english}%
+
+
+The directory is empty. Let's change that uploading our test file:
+\begin{verbatim}
+put testfile
+\end{verbatim}
+\selectlanguage{english}%
+
+
+We can try the list command again and see the file is now on the server:
+\begin{verbatim}
+ls
+
+Listing collection `/webdav/': succeeded. 
+	testfile 0 Sep 20 19:36
+\end{verbatim}
+\selectlanguage{english}%
+
+
+We can make a directory and change into it by typing:
+\begin{verbatim}
+mkdir hello 
+cd hello
+\end{verbatim}
+\selectlanguage{english}%
+
+
+We can then create a file by typing:
+\begin{verbatim}
+edit file.html
+\end{verbatim}
+\selectlanguage{english}%
+
+
+We can insert whatever content we want:
+\begin{verbatim}
+<h1>Hi!!!</h1>
+\end{verbatim}
+\selectlanguage{english}%
+
+
+When we are finished, we can type exit to close the connection:
+\begin{verbatim}
+exit
+\end{verbatim}
+\selectlanguage{english}%
+
+
+Now, if we go back to our web browser, the changes that we've made
+are visible:
+\begin{verbatim}
+your_IP_address_or_domain/webdav
+\end{verbatim}
+\selectlanguage{english}%
+\begin{figure}
+\begin{center}
+
+\includegraphics{img/WebDAV_content}
+
+\end{center}
+
+\protect\caption{WebDAV content}
+\end{figure}
+
+
+
+\subsection{Conclusion}
+
+You should now have a WebDAV directory complete with basic authentication.
+If your directory contains content that absolutely must be kept secure,
+you might want to implement an SSL solution on top of the password
+authentication. 
+
+Many file managers and clients exist that can seamlessly access and
+modify WebDAV content as if it were additional local storage. WebDAV
+allows for a much more dynamic HTTP experience than is traditionally
+possible.
+
+
+\subsection{DPMbox integration}
+
+You can download last DPMbox version from its code repository address~\cite{11_valencia_calvellido_2015}. 
+
+To use it on an Apache environment, extract the DPMbox distribution
+on your server and access through your browser to the existing index.html.
+Before testing on your local context, or if you are using DPMbox to
+connect to an external DPM server, please assign the values on config.js
+file properly. 
+
+The server value must be filled with something like 'http://lxfsra04a04.cern.ch'
+or 'localhost' and the root parameter (the directory at where the
+interface will start to read WebDAV content) should be set to anything
+like '/dpm/cern.ch/home/dteam/aalvarez/public/' or '/webdav/' (trailing
+backslash needed).
+
+
+\section{Extending DPMbox}
+
+Once the DPM or WebDAV server is up and running you can start playing
+with DPMbox. As you have seen DPMbox works basically through three
+files: 
+\begin{description}
+\item [{dpmbox-ui.js}] User interface code
+\item [{jquery.dpm.js}] Server interaction code
+\item [{jquery.dpmFilters.js}] Filters to adapt server response information 
+\end{description}
+
+
+You can find more information about the content and organization of
+these files in the section \nameref{sec:System-design}. 
+
+Be careful when changing the context if you are developing on local
+and deploying over some external server. Also, as the interface is
+based on an external library, please read its documentation and follow
+its developer recommendations and advices~\cite{8_w2ui_2015}.
+
+And you are all set, happy coding!
 
 
 \chapter{User manual}
@@ -2274,9 +2858,26 @@ was to make this user manual unnecessary. Even so.
 
 \section{Introduction}
 
+The Disk Pool Manager (DPM) is a lightweight grid storage component,
+allowing access to data using commonly used grid protocols. The LCG
+File Catalog (LFC) is the main catalog being used by grid communities
+for both file bookkeeping and meta-data. DPMbox is a new interface,
+. 
+
 
 \section{Functionality}
 
+DPMbox functionality include:
+\begin{itemize}
+\item Collections exploring and navigation
+\item Collections creation and deletion
+\item Files download, including massive download
+\item Files upload, including massive upload
+\item Files removing
+\item Filter and/or order the content inside a collection
+\item Search inside a collection
+\item Get metalink
+\end{itemize}
 \begin{figure}[H]
 \includegraphics[width=1\textwidth]{img/DPMbox-screenshot_comments}
 
@@ -2290,8 +2891,8 @@ was to make this user manual unnecessary. Even so.
 
 \section{Requirements}
 
-In order to use DPMbox on your system. If you are unsure, ask your
-administrator about this.
+In order to use DPMbox on your system the DPM server must be updated
+to the . If you are unsure, ask your DPM administrator about this.
 
 
 \section{How to use DPMbox}
@@ -2301,7 +2902,7 @@ If the server is already updated you will be presented in your browser
 with a brand new interface that will look like figure~\ref{fig:dpmbox_screenshot}:
 
 \begin{figure}[H]
-\includegraphics[width=1\textwidth]{img/DPMbox-screenshot}
+\includegraphics[width=1\textwidth]{img/howtouse_1}
 
 \protect\caption{DPMbox screenshot}
 
@@ -2310,20 +2911,37 @@ with a brand new interface that will look like figure~\ref{fig:dpmbox_screenshot
 \end{figure}
 
 
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/howtouse_2}
+
+\protect\caption{How to use 2}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/howtouse_3}
+
+\protect\caption{How to use 3}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/howtouse_4}
+
+\protect\caption{How to use 4}
+\end{figure}
+
+
+\begin{figure}
+\includegraphics[width=1\textwidth]{img/howtouse_5}
+
+\protect\caption{How to use 5}
+\end{figure}
+
+
 When folder icon is set on white is not yet read.
 
 Clicking on the + icon will read the collection.
-
-
-\chapter{Developer manual}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
 
 \bibliographystyle{splncs03}
 \bibliography{references}

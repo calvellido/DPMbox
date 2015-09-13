@@ -1123,11 +1123,11 @@ License
 \end_layout
 
 \begin_layout Standard
-Copyright © 2015 Juan Valencia Calvellido
+Copyright © 2015 Juan Valencia Calvellido.
 \end_layout
 
 \begin_layout Standard
-Document revision number: 0.7
+Revision number: 0.7
 \end_layout
 
 \begin_layout Standard
@@ -1441,29 +1441,8 @@ name "sec:referencias"
 \begin_layout Standard
 El autor de esta plantilla, Prof.
  Juan Boubeta Puig, es miembro del Grupo UCASE de Ingeniería del Software
- (TIC-025)
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "UCASE-2012"
-
-\end_inset
-
-.
+ (TIC-025).
  En Boubeta-Puig et al.
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "boubeta_puig_procesamiento_2011"
-
-\end_inset
-
  se presenta una de sus publicaciones en congresos españoles
 \begin_inset Note Note
 status open
@@ -2145,6 +2124,111 @@ Ayuda
 Motivation
 \end_layout
 
+\begin_layout Subsection
+Introduction
+\end_layout
+
+\begin_layout Standard
+The support of HTTP/WebDAV, provided by frameworks for scientific data access
+ like DPM [6], dCache [9], STORM [10], GFAL2 [11], FTS3 [12] and foreseen
+ for XROOTD [2], can be seen as a coherent ensemble – an ecosystem – that
+ is based on a single, standard protocol, where the HEP-related features
+ are covered, and the door is open to standard solutions and tools provided
+ by third parties, in the context of the Web and Cloud technologies.
+ Among our contributions are a fully standard and full-featured client library
+ to ROOT 5 and 6, and the design of a plugin that adds HTTP/WebDav support
+ to the XROOTD frame- work.
+ At the same time, the Dynamic Federations project gives the possibility
+ of clustering HTTP/WebDAV resources across LANs and WANs in a very efficient
+ and scalable way, thus allowing one to build large federations of HTTP-based
+ storage sites or file metadata databases.
+ The application domain goes from large scale, Grid-like computing to data
+ access from laptops, profiting from tools that are shared with the Web
+ community, like browsers, clients libraries and others.
+ The overall goal is to leverage standards and standard practices, and use
+ them to contribute the components that are needed to fulfil the complex
+ problem of Data Access in HEP while using technologies and toolsets that
+ are attractive also for non-HEP communities, making long term sustainability
+ a closer goal.
+\end_layout
+
+\begin_layout Subsection
+Enabling scalable, uniform services based on HTTP and WebDAV
+\end_layout
+
+\begin_layout Standard
+The storage elements used in the Grid and for HEP belong to the categories
+ of software systems whose goal is to cluster storage resources and make
+ them available to data processing clients as if they were a unique system.
+ Many other projects have analogous functionalities, in the Scientific community
+ (e.g.
+ DPM, dCache, iRODS, Xrootd) or in the market.
+ Most of these products work by managing and distributing data across mountpoint
+s that are spread through many servers.
+ Clients that want to access the repository are redirected to the best machine
+ according to various criteria, typically given by some clustering algorithm.
+ There are different clustering techniques using various technologies (p2p-like,
+ database, hashes, ...) and the goal of such systems is always to hide to the
+ users doing analysis and data access the complexity of managing site resources,
+ for repositories that are too big for a single server to be able to sustain
+ the load that the clients would generate.
+ From the technical point of view, one of the main goals of this kind of
+ systems is to hide to the users doing analysis and data access the complexity
+ linked to the “where is my file problem”.
+ The central systems that schedule analysis jobs to be submitted, or the
+ users themselves do not need to deal with details that are internal to
+ the site (e.g.
+ the names of the mount points, which can change); they need to interact
+ with a coherent storage service that is offered and administered by the
+ site.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+DPM and DMLite 
+\end_layout
+
+\begin_layout Standard
+One of our most important contributions to the usage of HTTP in High Energy
+ Physics has been the evolution of the Disk Pool Manager (DPM) architecture
+ towards our scalable and flexible framework for designing data management
+ systems, called dmlite [4].
+ The Disk Pool Manager (DPM) is a lightweight solution for grid enabled
+ disk storage management.
+ Operated at more than 200 sites, it has the widest distribution of all
+ grid storage solutions in the WLCG infrastructure.
+ It provides an easy way to manage and configure disk pools, and exposes
+ multiple interfaces for data access (xrootd, NFS, GridFTP and HTTP/WebDAV)
+ and control (SRM).
+ Some of the most important supported features are: 
+\end_layout
+
+\begin_layout Standard
+• Provide HTTP multi-stream transfers for high performance wide area, access
+ matching it with the strict requirement of DPM about coordination of accesses.
+ 
+\end_layout
+
+\begin_layout Standard
+• Support for third party copies.
+ 
+\end_layout
+
+\begin_layout Standard
+• Support for X.509 authentication with proxy certificates and VOMS extensions
+ 
+\end_layout
+
+\begin_layout Standard
+• Support for user credential delegations.
+ 
+\end_layout
+
+\begin_layout Standard
+• Support for modern configuration and monitoring solutions based on the
+ industry standards Puppet and Nagios.
+\end_layout
+
 \begin_layout Standard
 The Disk Pool Manager (DPM) is a lightweight storage solution for grid sites.
  It offers a simple way to create a disk-based grid storage element and
@@ -2154,7 +2238,7 @@ The Disk Pool Manager (DPM) is a lightweight storage solution for grid sites.
  of maintenance), while providing all required functionality for a grid
  storage solution (support for multiple disk server nodes, different space
  types, multiple file replicas in disk pools).
- It is installed in 185 different sites, with more than 200 instances running
+ It is installed in 165 different sites, with more than 180 instances running
  as of today
 \begin_inset space ~
 \end_inset
@@ -2258,7 +2342,7 @@ g it with the DPM stack.
 \end_layout
 
 \begin_layout Standard
-This can be then “translated” to requirements (functional/non-functional)
+This can be then “translated” to requirements (functional/non-functional).
 \end_layout
 
 \begin_layout Standard
@@ -2308,6 +2392,13 @@ begin{acronym}
   
 \backslash
 acro{CERN}{European Organization for Nuclear Research}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{EGI}{European Grid Infrastructure}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2377,7 +2468,7 @@ acro{RFIO}{RFIO}
 
   
 \backslash
-acro{XML}{eXtended Markup Language?}
+acro{XML}{eXtended Markup Language}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2396,6 +2487,41 @@ acro{DAV}{Distributed Authoring and Versioning}
 
 \begin_layout Plain Layout
 
+  
+\backslash
+acro{PMI}{Privilege Management Infrastructure}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{VOMS}{Virtual Organization Membership Service}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{AC}{Attribute Cetificate}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{DN}{Distinguished Name}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+acro{FQAN}{Fully Qualified Attribute Name}
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 end{acronym}
@@ -2410,32 +2536,12 @@ end{acronym}
 Definitions
 \end_layout
 
-\begin_layout Standard
-Para incluir definiciones en la memoria se puede utilizar el tipo 
-\begin_inset Quotes fld
-\end_inset
-
-descripción
-\begin_inset Quotes frd
-\end_inset
-
-.
- Nótese que si el concepto a definir está compuesto por más de una palabra,
- estas palabras deben ser separadas por un espacio protegido (Control+Espacio).
-\end_layout
-
 \begin_layout Description
-Collection In this memory wou will find a lot the word “collection”.
- A collection is a resource whose state consists of at least a list of internal
- member URIs and a set of properties, but which may have additional state
- such as entity bodies returned by GET.
- An internal member URI must be immediately relative to a base URI of the
- collection.
- That is, the internal member URI is equal to a containing collection's
- URI plus an additional segment for non-collection resources, or additional
- segment plus trailing slash "/" for collection resources.
- In a WebDAV environment it could be a synonym of a directory.
- Complete definition can be found on section 5.2 of RFC 4918
+Collection A collection is defined as a resource whose state consists of
+ at least a list of internal member URIs and a set of properties, but which
+ may have additional state such as entity bodies returned by GET.
+ In this work you can almost consider as a synonym to a directory.
+ Complete and formal definition can be found on section 5.2 of RFC 4918
 \begin_inset space ~
 \end_inset
 
@@ -2452,9 +2558,9 @@ key "RFC4918"
 \begin_layout Description
 Metalink Metalink is an extensible metadata file format that describes one
  or more computer files available for download.
- It specifies files appropriate for the user's language and operating system;
- facilitates file verification and recovery from data corruption; and lists
- alternate download sources (mirror URIs).
+ It specifies files appropriate for the user's language and operating system,
+ facilitates file verification and recovery from data corruption, and lists
+ alternate download sources (mirror URIs)
 \begin_inset space ~
 \end_inset
 
@@ -2465,7 +2571,24 @@ key "RFC5854,RFC6249"
 
 \end_inset
 
+.
+\end_layout
 
+\begin_layout Description
+POSIX Acronym for Portable Operating System Interface, a family of standards
+ specified by the IEEE Computer Society for maintaining compatibility between
+ operating systems.
+ POSIX defines the application programming interface (API), along with command
+ line shells and utility interfaces, for software compatibility with variants
+ of Unix and other operating systems.
+\end_layout
+
+\begin_layout Description
+X.509 An ITU-T (Telecommunication Standardization Sector) standard for a
+ public key infrastructure and Privilege Management Infrastructure.
+ X.509 specifies, amongst other things, standard formats for public key certifica
+tes, certificate revocation lists, attribute certificates, and a certification
+ path validation algorithm.
 \end_layout
 
 \begin_layout Section
@@ -2473,13 +2596,142 @@ Document organization
 \end_layout
 
 \begin_layout Standard
-Firstly the current system state, state of the art, is presented.
- Then the schedule, where the initial planning can be found.
- Following by the project description.
- Finally the project development section, where system analysis, design
- and implementation and testing are described.
- After that different manual can be found, and also the final thoughts and
- the future work on the project.
+In this 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Introduction
+\end_layout
+
+\end_inset
+
+ you can read about the project motivation and some descriptions about how
+ the CERN works, giving some context to the project.
+ This is naturally followed by the 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+State of the Art
+\end_layout
+
+\end_inset
+
+, so the reader can completely envision the current system and environment
+ state.
+ 
+\end_layout
+
+\begin_layout Standard
+After that comes the 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Schedule
+\end_layout
+
+\end_inset
+
+, all the organization and planning stuff can be found here.
+ 
+\end_layout
+
+\begin_layout Standard
+Then, in the 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Project general description
+\end_layout
+
+\end_inset
+
+ you can read about what has been developed in a non-technical way, before
+ getting into detail in the next section, 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Project development
+\end_layout
+
+\end_inset
+
+, where all things about how DPMbox has been built are shown: system analysis,
+ design, implementation and testing.
+\end_layout
+
+\begin_layout Standard
+Next come 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Conclusions
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Acknowledgements
+\end_layout
+
+\end_inset
+
+, where we explain the final thoughts that have been reached after completing
+ the development.
+\end_layout
+
+\begin_layout Standard
+Finally, an appendix is presented, where different manuals can be found
+ (
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Installation
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Development
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+
+), and also the 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+License
+\end_layout
+
+\end_inset
+
+ under which this document is published.
 \end_layout
 
 \begin_layout Chapter
@@ -2592,8 +2844,7 @@ ac{LFC}
 
 \end_inset
 
- is to allow the access and retrieval of any file using just its Logical
- File Name (
+ is to allow the access and retrieval of any file using just its 
 \begin_inset ERT
 status open
 
@@ -2606,16 +2857,7 @@ ac{LFN}
 
 \end_inset
 
-), without the need of knowing where exactly it is replicated
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-
-.
+, without the need of knowing where exactly it is replicated.
  When a user does a request to an 
 \begin_inset ERT
 status open
@@ -2629,7 +2871,7 @@ ac{LFC}
 
 \end_inset
 
-, it will return a list of “Storage File Name” (
+, it will return a list of 
 \begin_inset ERT
 status open
 
@@ -2642,7 +2884,7 @@ ac{SFN}
 
 \end_inset
 
-) where this file can be retrieved.
+ where this file can be retrieved.
  
 \end_layout
 
@@ -2661,16 +2903,7 @@ ac{DPM}
 
 is a lightweight storage system mostly targeted at Tier-2 and medium size
  sites, providing reliable and scalable storage while keeping configuration
- and management simple
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-
-.
+ and management simple.
  It maps a 
 \begin_inset ERT
 status open
@@ -2711,16 +2944,7 @@ ac{RFIO}
 
 \end_inset
 
-, HTTP or GridFTP
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-
-.
+, HTTP or GridFTP.
 \end_layout
 
 \begin_layout Section
@@ -2732,29 +2956,21 @@ The Hypertext Transfer Protocol (HTTP)
 \begin_inset script superscript
 
 \begin_layout Plain Layout
-3
+
 \end_layout
 
 \end_inset
 
- is a well known and widely implemented standard protocol based on a client-serv
-er stateless model.
+is a well known and widely implemented standard protocol based on a client-serve
+r stateless model.
  It can be used as a data transfer protocol, where users request a resource
  to a specific server, which then sends the response back.
  
 \end_layout
 
 \begin_layout Standard
-Web Distributed Authoring and Versioning (WebDAV)
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-
- is an extension of the HTTP protocol.
+Web Distributed Authoring and Versioning (WebDAV) is an extension of the
+ HTTP protocol.
  It provides a framework to handle metadata through the web, so users can
  create and retrieve resources, and also modify its associated properties,
  as owner, description, permissions and any other information that can be
@@ -2763,16 +2979,7 @@ Web Distributed Authoring and Versioning (WebDAV)
 
 \begin_layout Standard
 WebDAV extends the HTTP protocol allowing clients to perform web authoring
- operations
-\begin_inset script superscript
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-
-.
+ operations.
  That is, it provides a framework to handle namespaces, so users can perform
  operations such as create, rename, modify or remove files and directories
  through the Web.
@@ -2785,12 +2992,8 @@ For this, it defines new methods for manipulating properties and collections
  directories), and the possibility of passing parameters through XML on
  a request body, instead of HTTP headers or queries, so they can be easily
  extended.
- 
-\end_layout
-
-\begin_layout Standard
-It also uses XML to encode the answers, as the list of properties of a file,
- or the content of a folder.
+ It also uses XML to encode the answers, as the list of properties of a
+ file, or the content of a folder.
  
 \end_layout
 
@@ -2831,18 +3034,6 @@ placement h
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Things
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2917,7 +3108,7 @@ CLI
 \begin_layout Plain Layout
 
 \series bold
-X509
+X.509
 \end_layout
 
 \end_inset
@@ -2928,7 +3119,7 @@ X509
 \begin_layout Plain Layout
 
 \series bold
-X509 Proxies
+X.509 Proxies
 \end_layout
 
 \end_inset
@@ -3124,11 +3315,11 @@ CLI Command Line Interface
 \end_layout
 
 \begin_layout Description
-X509 Support for client certificates
+X.509 Support for client certificates
 \end_layout
 
 \begin_layout Description
-X509 Proxies Support for proxy certificates
+X.509 Proxies Support for proxy certificates
 \end_layout
 
 \begin_layout Description
@@ -3142,6 +3333,18 @@ redirections Follows redirections when needed, as described in section 4
 
 \begin_layout Description
 PUT Writing support 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+HTTP clients
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3166,18 +3369,6 @@ For performing namespace operations, such as creating directories, renaming
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -3241,7 +3432,7 @@ CLI
 \begin_layout Plain Layout
 
 \series bold
-X509
+X.509
 \end_layout
 
 \end_inset
@@ -3252,7 +3443,7 @@ X509
 \begin_layout Plain Layout
 
 \series bold
-X509 Proxies
+X.509 Proxies
 \end_layout
 
 \end_inset
@@ -3796,9 +3987,221 @@ No
 
 \end_layout
 
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+WebDAV clients
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Security 
+\end_layout
+
+\begin_layout Standard
+In terms of authentication information for authorization, Grids use X.509
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{AC}
+\end_layout
+
+\end_inset
+
+s and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{PMI}
+\end_layout
+
+\end_inset
+
+s
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki:PMI"
+
+\end_inset
+
+ to assign privileges to users, and to carry the privileges around the Grid.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{DPM}
+\end_layout
+
+\end_inset
+
+ uses X.509 and a Grid privilege management system called 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{VOMS}
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In a nutshell, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{VOMS}
+\end_layout
+
+\end_inset
+
+ provides the tools to enable Virtual Organizations and attribute-based
+ authorization in distributed contexts.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{VOMS}
+\end_layout
+
+\end_inset
+
+ supports a rich registration process compliant with the 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{EGI}
+\end_layout
+
+\end_inset
+
+policies on VO registration services.
+ Users can be organized in groups and can be assigned roles and other types
+ of attributes.
+ User privileges, in the shape of VO memberships and roles, are placed inside
+ an X.509 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{AC}
+\end_layout
+
+\end_inset
+
+ by the VOMS server, signed by the VOMS server, and then embedded in the
+ user's X.509 proxy certificate for carrying around the Grid
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AlfieriCCdFGLS03"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Once the clients are authenticated, the X.509 certificate 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{DN}
+\end_layout
+
+\end_inset
+
+ is used as a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+_user name_
+\end_layout
+
+\end_inset
+
+ and the VOMS 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{FQAN}
+\end_layout
+
+\end_inset
+
+ are used as 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+_group names_
+\end_layout
+
+\end_inset
+
+.
+ Apart from this DPM's authorization follows the POSIX filesystem authorization
+ semantics.
 \end_layout
 
 \begin_layout Chapter
@@ -3812,11 +4215,54 @@ In this section we cover the schedule that the project has followed.
 \end_layout
 
 \begin_layout Section
+Organization
+\end_layout
+
+\begin_layout Standard
+The project was developed entirely by the writer, student of 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Universidad de Cadiz
+\end_layout
+
+\end_inset
+
+, carrying out the work of analysis, design and development, and visual
+ interface design and branding project.
+ The project development has been reviewed and guided by supervisors Alejandro
+ Álvarez Ayllón, current employee at CERN IT-SDC-ID section, and Manuel
+ Palomo Duarte, PhD in 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Universidad de Cádiz
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
 Life cycle model
 \end_layout
 
 \begin_layout Standard
-The ISO/IEC 12207-1 standard defines the life cycle model as a 
+The ISO/IEC 12207-1
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ISO12207"
+
+\end_inset
+
+ standard defines the life cycle model as a 
 \end_layout
 
 \begin_layout Quote
@@ -3999,7 +4445,20 @@ Taking the present HTTP/WebDAV frontend implementation the first step was
  or MKCOL and use the information provided by them in an HTML document through
  JavaScript and jQuery.
  That API uses ajax calls to perform the HTTP/WebDAV requests and receive
- the data in an XmlHttpResquest object.
+ the data in an 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{XHR}
+\end_layout
+
+\end_inset
+
+ object.
  
 \end_layout
 
@@ -4145,7 +4604,7 @@ In the following image you can see an initial sketch design of the DPM user
 Beside this I’ve also developed a small mockup with jQuery UI.
  Obviously it’s not functional yet and it is subject to changes, but it
  can show a first approach and the actual appearance on a browser.
- You can check it out on the folowing link: 
+ You can check it out on the following link: 
 \end_layout
 
 \begin_layout Section
@@ -4195,7 +4654,7 @@ HTML (Hyper Text Markup Language) is the text markup language normally used
  as Mozilla Firefox or Google Chrome and others.
  The interpretation may make the final presentation vary in small details.
  Therefore the development of HTML is adjusted to the maximum to the standards
- set by the W3C.
+ set by the W3C
 \begin_inset space ~
 \end_inset
 
@@ -4206,7 +4665,7 @@ key "2_w3.org_2015"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -4220,7 +4679,7 @@ The term CSS, which stands for Cascading Style Sheets, refers to the formal
  The World Wide Web Consortium (W3C) is the agency responsible for developing
  the specification of style sheets that serve as a standard for browsers.
  The objective of CSS is separate the structure of a Web document from its
- visual representation.
+ visual representation
 \begin_inset space ~
 \end_inset
 
@@ -4231,7 +4690,7 @@ key "3_w3.org_2015"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -4245,15 +4704,20 @@ JavaScript
 \begin_layout Standard
 JavaScript is a high level, dynamic, untyped, and interpreted programming
  language.
- It has been standardized in the ECMAScript language specification.[7] Alongside
- HTML and CSS, it is one of the three essential technologies of World Wide
- Web content production; the majority of websites employ it and it is supported
- by all modern web browsers without plug-ins.[6] JavaScript is prototype-based
- with first-class functions, making it a multi-paradigm language, supporting
- object-oriented,[8] imperative, and functional programming styles.[6] It
- has an API for working with text, arrays, dates and regular expressions,
+ It has been standardized in the ECMAScript language specification
+\begin_inset space ~
+\end_inset
+
+.
+ Alongside HTML and CSS, it is one of the three essential technologies of
+ World Wide Web content production; the majority of websites employ it and
+ it is supported by all modern web browsers without plug-ins.
+ JavaScript is prototype-based with first-class functions, making it a multi-par
+adigm language, supporting object-oriented, imperative, and functional programmi
+ng styles.
+ It has an API for working with text, arrays, dates and regular expressions,
  but does not include any I/O, such as networking, storage or graphics facilitie
-s, relying for these upon the host environment in which it is embedded.[7]
+s, relying for these upon the host environment in which it is embedded
 \begin_inset space ~
 \end_inset
 
@@ -4264,7 +4728,24 @@ key "4_mozilla_developer_network_2015"
 
 \end_inset
 
+.
+\end_layout
 
+\begin_layout Standard
+ECMAScript 6 includes interesting syntax and structural improvements but
+ it was in process of approval while DPMbox was being developed, thus the
+ standard followed has been ECMAScript 5.1
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EcmaScript"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -5531,7 +6012,7 @@ A business rule is a rule that defines or constrains some aspect of business
  operations, definitions and constraints that apply to an organization.
  Business rules can apply to people, processes, corporate behavior and computing
  systems in an organization, and are put in place to help the organization
- achieve its goals.[citation needed]
+ achieve its goals.
 \end_layout
 
 \begin_layout Standard
@@ -5937,7 +6418,106 @@ Finally w2ui.
 System analysis
 \end_layout
 
+\begin_layout Standard
+In this chapter the analysis based on the available presentation requirements
+ two in Chapter 3, using the UML modeling language.
+ Specifically, the chapter describes: 
+\end_layout
+
+\begin_layout Itemize
+The conceptual data model used in the application, made from reporting requireme
+nts.
+ 
+\end_layout
+
+\begin_layout Itemize
+The use cases that describe the steps in the process habits tual project.
+ 
+\end_layout
+
+\begin_layout Itemize
+The UI model, in which a prototype is presented and navigation interfaces.
+\end_layout
+
 \begin_layout Subsection
+Use case model
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/Actors.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Use cases
 \end_layout
 
@@ -6524,6 +7104,17 @@ Interface design, error
 
 \begin_layout Section
 System design
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:System-design"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7413,7 +8004,17 @@ Same tests as before but over production.
 \end_layout
 
 \begin_layout Chapter
-Conclusiones and future work
+Conclusions and future work
+\end_layout
+
+\begin_layout Standard
+In this work we have shortly described the contributions that we have given
+ towards being able to use the HTTP protocol in the context of High Energy
+ Physics distributed data access.
+ Although the Web world is based on HTTP, the set of the features supported
+ by the more widespread components did not include some that are needed
+ for the kind of high performance distributed computing that modern HEP
+ experiments need.
 \end_layout
 
 \begin_layout Section
@@ -7422,7 +8023,7 @@ Conclusions
 
 \begin_layout Standard
 Summary.
- 
+ You learn a lot seeing an external user with your product.
 \end_layout
 
 \begin_layout Standard
@@ -7522,6 +8123,13 @@ appendix
 
 \begin_layout Chapter
 Installation manual
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Installation-manual"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -7580,13 +8188,13 @@ Normalmente se puede instalar desde EPEL, pero para tener tu código necesitas
 \end_layout
 
 \begin_layout Subsubsection
-Instalar DPM
+Install DPM
 \end_layout
 
 \begin_layout Standard
 
 \emph on
-Repositorio
+Repository
 \end_layout
 
 \begin_layout Standard
@@ -7597,7 +8205,7 @@ wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
 \begin_layout Standard
 
 \emph on
-Paquetes
+Packages
 \end_layout
 
 \begin_layout Standard
@@ -7606,7 +8214,7 @@ rver-mysql dpm
 \end_layout
 
 \begin_layout Subsubsection
-Instalar MySQL
+Install MySQL
 \end_layout
 
 \begin_layout Verbatim
@@ -7615,7 +8223,7 @@ Instalar MySQL
 \end_layout
 
 \begin_layout Subsubsection
-Crear las tablas y usuario
+Create the tables and the user
 \end_layout
 
 \begin_layout Verbatim
@@ -7635,7 +8243,7 @@ mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant
 \end_layout
 
 \begin_layout Subsubsection
-Generar un certificado
+Generate a grid security certificate
 \end_layout
 
 \begin_layout Verbatim
@@ -7686,7 +8294,7 @@ m
 \end_layout
 
 \begin_layout Subsubsection
-Confiar en tu certificado como CA
+Trust this new certificate as CA
 \end_layout
 
 \begin_layout Verbatim
@@ -7697,7 +8305,7 @@ Confiar en tu certificado como CA
 \end_layout
 
 \begin_layout Subsubsection
-Trampear DNS
+Trick the DNS tables
 \end_layout
 
 \begin_layout Standard
@@ -7706,19 +8314,19 @@ En /etc/hosts, añade tu host y host.domain al final de la lista para 127.0.0.1
 \end_layout
 
 \begin_layout Subsubsection
-Configurar DPM y DPNS
+Configurate DPM y DPNS
 \end_layout
 
 \begin_layout Standard
-Modificar /etc/sysconfig/dpm DPNS_HOST=`hostname` 
+Modificate /etc/sysconfig/dpm DPNS_HOST=`hostname` 
 \end_layout
 
 \begin_layout Standard
-- Crear /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
+- Create /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
 \end_layout
 
 \begin_layout Standard
-- Crear /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
+- Create /etc/DPMCONFIG -> dpmmgr/dpmmgr@localhost
 \end_layout
 
 \begin_layout Standard
@@ -7726,7 +8334,7 @@ groupadd dpmmgr && useradd -g dpmmgr dpmmgr
 \end_layout
 
 \begin_layout Standard
-En /etc/shift.conf 
+In /etc/shift.conf 
 \end_layout
 
 \begin_layout Verbatim
@@ -7801,7 +8409,7 @@ FTRUST host.domain
 \end_layout
 
 \begin_layout Subsubsection
-Validar
+Validate
 \end_layout
 
 \begin_layout Verbatim
@@ -7819,7 +8427,7 @@ Si no fallan, va bien, aunque no veas nada
 \end_layout
 
 \begin_layout Subsubsection
-Arrancar siempre
+Load on startup
 \end_layout
 
 \begin_layout Verbatim
@@ -7828,13 +8436,13 @@ Arrancar siempre
 \end_layout
 
 \begin_layout Subsubsection
-Añadir una base
+Add a base
 \end_layout
 
 \begin_layout Standard
 
 \emph on
-Crear directorio 
+Create directory
 \end_layout
 
 \begin_layout Verbatim
@@ -7850,7 +8458,7 @@ dpns-chmod 0777 /dpm/domain/home/public
 \begin_layout Standard
 
 \emph on
-Crear un sitio donde almacenar ficher 
+Create a place where files can be hosted 
 \end_layout
 
 \begin_layout Standard
@@ -7860,7 +8468,7 @@ dpm-addpool --poolname default --def_filesize 100M mkdir /storage chown
 \end_layout
 
 \begin_layout Subsubsection
-Configurar dav
+Configurate DAV
 \end_layout
 
 \begin_layout Standard
@@ -7874,12 +8482,16 @@ nf zgridsite.conf En zlcgdm-dav.conf SSLVerifyClient require => SSLVerifyClient
 
 \begin_layout Standard
 Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox.
- Configura el firewall para el puerto 443 y 80, o desactivalo (service iptables
+ 
+\end_layout
+
+\begin_layout Standard
+Configura el firewall para el puerto 443 y 80, o desactivalo (service iptables
  stop / chkconfig iptables off).
 \end_layout
 
 \begin_layout Standard
-Desactiva selinux, que es un dolor
+Deactivate selinux.
 \end_layout
 
 \begin_layout Verbatim
@@ -7888,7 +8500,7 @@ setenforce 0 vim /etc/selinux/config SELINUX=permissive
 \end_layout
 
 \begin_layout Standard
-En https://localhost:8080/dpm/ deberías ya tener algo.
+Accesing https://localhost:8080/dpm/ something should appears now.
  
 \end_layout
 
@@ -7897,19 +8509,1089 @@ DPMbox installation
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+DPMbox it's included on build 0.16.0-1 of lcgdm-dav, on the repositories.
+ As of today, 12/09/15:
 \end_layout
 
 \begin_layout Standard
-It's on the repositories.
+It's on testing channel for EPEL 5, 6, 7 and on stable for Fedora 22 and
+ 23.
+\end_layout
+
+\begin_layout Standard
+This update can be installed with the "yum" update program.
+ Use su -c 'yum update lcgdm-dav' at the command line.
+ For more information, refer to "Managing Software with yum", available
+ at 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://docs.fedoraproject.org/yum/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Developer manual
+\end_layout
+
+\begin_layout Section
+DPM server environment
+\end_layout
+
+\begin_layout Standard
+It's recommended to test DPMbox against a proper DPM machine.
+ You can install a DPM instance following the guide above:
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "chap:Installation-manual"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+When installed DPMbox files will be located on the path:
+\end_layout
+
+\begin_layout Verbatim
+
+/usr/share/lcgdm-dav/lcgdm-dav/DPMbox/
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Also you can download last DPMbox version from its code repository address
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11_valencia_calvellido_2015"
+
+\end_inset
+
+.
+ Be aware that you should not touch the server and root parameters in the
+ config.js file as they will be obtained automatically from the location
+ (those lines on config.js will be commented out).
  
+\end_layout
+
+\begin_layout Section
+WebDAV server environment
+\end_layout
+
+\begin_layout Standard
+You may encounter problems setting an instance of DPM running.
+ In that case you can still dig into DPMbox by testing it on a WebDAV server.
+ You only need an Apache server and a couple of modules.
+\end_layout
+
+\begin_layout Standard
+Follow your system recommendations to install Apache server.
+ The WebDAV modules 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+mod_dav
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+mod_dav_fs
+\end_layout
+
+\end_inset
+
+ are bundled with any version of Apache ≥ 2.0
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "apache_mod_dav"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "apache_mod_dav_fs"
+
+\end_inset
+
+, so enable them, and then indicate Apache where the WebDAV filesystem will
+ be hosted on your system.
+ 
+\end_layout
+
+\begin_layout Standard
+These operations could vary from system to system, but the following are
+ guide steps to install a WebDAV server on a Linux Debian based system
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "install_webdav"
+
+\end_inset
+
+.
+ For other OS some instructions will be very similar, even identical:
+\end_layout
+
+\begin_layout Subsection
+Install Apache
+\end_layout
+
+\begin_layout Standard
+Our implementation of WebDAV will be established on Apache through the use
+ of the WebDAV module.
+\end_layout
+
+\begin_layout Standard
+First, you will need to install Apache from Ubuntu's default repositories.
+\end_layout
+
+\begin_layout Verbatim
+
+sudo apt-get update
+\end_layout
+
+\begin_layout Verbatim
+
+sudo apt-get install apache2
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+You now have a fully functioning web server installed.
+ It should be accessible already by navigating to your server's IP address
+ in a web browser.
+ 
+\end_layout
+
+\begin_layout Subsection
+Enable WebDAV
+\end_layout
+
+\begin_layout Standard
+Apache has built-in support for WebDAV with a few modules.
+ We simply have to enable them to get access to their functions.
+\end_layout
+
+\begin_layout Standard
+Enable the WebDAV modules with the following two commands:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo a2enmod dav
+\end_layout
+
+\begin_layout Verbatim
+
+sudo a2enmod dav_fs
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+We now need to restart the server to implement the changes:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo service apache2 restart
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+WebDAV as a functionality is now enabled, but we still haven't configured
+ it correctly yet for our server.
+ 
+\end_layout
+
+\begin_layout Subsection
+Create the FileSystem
+\end_layout
+
+\begin_layout Standard
+We will create a directory that will house our WebDAV file content.
+\end_layout
+
+\begin_layout Standard
+The default document root of the Apache server on Ubuntu is located at 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+/var/www
+\end_layout
+
+\end_inset
+
+.
+ However, we will be creating an alias, which will allow us to keep our
+ directory content elsewhere.
+\end_layout
+
+\begin_layout Standard
+In this guide, we will place our WebDAV content at 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+/webdav/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Verbatim
+
+sudo mkdir /webdav
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Give the web user, which is 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+www-data
+\end_layout
+
+\end_inset
+
+, ownership of the new directory, so that it can serve content correctly:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo chown www-data /webdav
+\end_layout
+
+\begin_layout Subsection
+Set Up Password Protection
+\end_layout
+
+\begin_layout Standard
+We can create an authentication procedure for accessing the directory content
+ by creating an htpasswd file.
+\end_layout
+
+\begin_layout Standard
+We will place it outside of the content directory so that it will not be
+ accessible to users of our system.
+ Create a username within the command call and you will be prompted for
+ an associated password:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo htpasswd -c /etc/apache2/webdav.password username
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Right now, anybody can view the username and hashed password in the file.
+ We will assign group ownership of the file to www-data and then lock down
+ the permissions for everyone else:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo chown root:www-data /etc/apache2/webdav.password 
+\end_layout
+
+\begin_layout Verbatim
+
+sudo chmod 640 /etc/apache2/webdav.password
+\end_layout
+
+\begin_layout Subsection
+Configure Apache
+\end_layout
+
+\begin_layout Standard
+Now, we will have to configure access to our content directory and tell
+ Apache to use the WebDAV modules to serve that location.
+ We will also have to note the authentication scheme we've created.
+\end_layout
+
+\begin_layout Standard
+Edit the main virtual host configuration with root privileges:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo nano /etc/apache2/sites-available/default
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Here, our web content is served out of /var/www like normal.
+ We will add some information that will allow Apache to treat content in
+ our new directory as WebDAV material.
+\end_layout
+
+\begin_layout Standard
+Below the directory listings, we will add an alias directive to tell Apache
+ that requests for "/webdav" should be served out of the /webdav directory
+ we created.
+\end_layout
+
+\begin_layout Standard
+We will then add options to allow authentication using the methods we establishe
+d.
+\end_layout
+
+\begin_layout Verbatim
+
+.
+ .
+ .
+ 
+\end_layout
+
+\begin_layout Verbatim
+
+.
+ .
+ .
+ 
+\end_layout
+
+\begin_layout Verbatim
+
+<Directory /var/www/> 
+\end_layout
+
+\begin_layout Verbatim
+
+	Options Indexes FollowSymLinks MultiViews 
+\end_layout
+
+\begin_layout Verbatim
+
+	AllowOverride None 
+\end_layout
+
+\begin_layout Verbatim
+
+	Order allow,deny 
+\end_layout
+
+\begin_layout Verbatim
+
+	allow from all 
+\end_layout
+
+\begin_layout Verbatim
+
+</Directory>
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+Alias /webdav /webdav
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+<Location /webdav> 
+\end_layout
+
+\begin_layout Verbatim
+
+	Options Indexes 
+\end_layout
+
+\begin_layout Verbatim
+
+	DAV On AuthType Basic AuthName "webdav" 
+\end_layout
+
+\begin_layout Verbatim
+
+	AuthUserFile /etc/apache2/webdav.password 
+\end_layout
+
+\begin_layout Verbatim
+
+	Require valid-user 
+\end_layout
+
+\begin_layout Verbatim
+
+</Location>
+\end_layout
+
+\begin_layout Verbatim
+
+.
+ .
+ .
+ 
+\end_layout
+
+\begin_layout Verbatim
+
+.
+ .
+ .
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Save and close the file.
+\end_layout
+
+\begin_layout Standard
+Restart Apache with the following command:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo service apache2 restart
+\end_layout
+
+\begin_layout Subsection
+Test the Results
+\end_layout
+
+\begin_layout Standard
+You can test the results of you configuration first in a web browser, and
+ then in a WebDAV client.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Web Browser Test
+\end_layout
+
+\begin_layout Standard
+To test that your authentication is working correctly, navigate to your
+ server's IP address or domain name using a web browser.
+\end_layout
+
+\begin_layout Standard
+You should see the default Apache index.html file:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/ApacheItWorks.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Apache default index file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This demonstrates that the regular web functionality is working.
+\end_layout
+
+\begin_layout Standard
+Now, navigate to your IP address or domain name followed by "/webdav":
+\end_layout
+
+\begin_layout Verbatim
+
+your_IP_address_or_domain/webdav
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+You should be prompted for the username and password combination you set
+ up earlier.
+ Afterwards, you should see an empty directory listing:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/EmptyWebDAV.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Empty WebDAV
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We don't currently have any content here, but we'll be able to change that
+ by accessing the same area with a WebDAV client.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+WebDAV Client Test
+\end_layout
+
+\begin_layout Standard
+There are many WebDAV clients and support for WebDAV access is baked into
+ many popular file managers.
+\end_layout
+
+\begin_layout Standard
+For simplicity's sake, we'll use an easy command-line WebDAV client called
+ "cadaver" in this guide.
+\end_layout
+
+\begin_layout Standard
+Preferably from another droplet or Linux machine, install cadaver from the
+ default repositories:
+\end_layout
+
+\begin_layout Verbatim
+
+sudo apt-get install cadaver
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Now, let's create a file that we'll upload to the WebDAV directory:
+\end_layout
+
+\begin_layout Verbatim
+
+cd ~ 
+\end_layout
+
+\begin_layout Verbatim
+
+touch testfile
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Next, we'll connect using the same location we used to access from the browser:
+\end_layout
+
+\begin_layout Verbatim
+
+cadaver http://your_IP_address_or_domain/webdav
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+Authentication required for webdav on server `162.243.2.14': 
+\end_layout
+
+\begin_layout Verbatim
+
+Username:
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+You must type the "http://" portion for cadaver to find your server correctly.
+ We will need to authenticate again, and then we'll be dropped into a command-li
+ne interface.
+\end_layout
+
+\begin_layout Verbatim
+
+dav:/webdav/>
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+From here, we can operate the client and host at the same time using commands
+ that are similar to regular Linux commands.
+\end_layout
+
+\begin_layout Standard
+To list the contents of the server directory, type:
+\end_layout
+
+\begin_layout Verbatim
+
+ls
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+Listing collection `/webdav/': collection is empty.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+The directory is empty.
+ Let's change that uploading our test file:
+\end_layout
+
+\begin_layout Verbatim
+
+put testfile
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+We can try the list command again and see the file is now on the server:
+\end_layout
+
+\begin_layout Verbatim
+
+ls
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+Listing collection `/webdav/': succeeded.
+ 
+\end_layout
+
+\begin_layout Verbatim
+
+	testfile 0 Sep 20 19:36
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+We can make a directory and change into it by typing:
+\end_layout
+
+\begin_layout Verbatim
+
+mkdir hello 
+\end_layout
+
+\begin_layout Verbatim
+
+cd hello
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+We can then create a file by typing:
+\end_layout
+
+\begin_layout Verbatim
+
+edit file.html
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+We can insert whatever content we want:
+\end_layout
+
+\begin_layout Verbatim
+
+<h1>Hi!!!</h1>
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+When we are finished, we can type exit to close the connection:
+\end_layout
+
+\begin_layout Verbatim
+
+exit
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+Now, if we go back to our web browser, the changes that we've made are visible:
+\end_layout
+
+\begin_layout Verbatim
+
+your_IP_address_or_domain/webdav
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/WebDAV_content.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+WebDAV content
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+You should now have a WebDAV directory complete with basic authentication.
+ If your directory contains content that absolutely must be kept secure,
+ you might want to implement an SSL solution on top of the password authenticati
+on.
+ 
+\end_layout
+
+\begin_layout Standard
+Many file managers and clients exist that can seamlessly access and modify
+ WebDAV content as if it were additional local storage.
+ WebDAV allows for a much more dynamic HTTP experience than is traditionally
+ possible.
+\end_layout
+
+\begin_layout Subsection
+DPMbox integration
+\end_layout
+
+\begin_layout Standard
+You can download last DPMbox version from its code repository address
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "11_valencia_calvellido_2015"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+To use it on an Apache environment, extract the DPMbox distribution on your
+ server and access through your browser to the existing index.html.
+ Before testing on your local context, or if you are using DPMbox to connect
+ to an external DPM server, please assign the values on config.js file properly.
+ 
+\end_layout
+
+\begin_layout Standard
+The server value must be filled with something like 'http://lxfsra04a04.cern.ch'
+ or 'localhost' and the root parameter (the directory at where the interface
+ will start to read WebDAV content) should be set to anything like '/dpm/cern.ch/
+home/dteam/aalvarez/public/' or '/webdav/' (trailing backslash needed).
+\end_layout
+
+\begin_layout Section
+Extending DPMbox
+\end_layout
+
+\begin_layout Standard
+Once the DPM or WebDAV server is up and running you can start playing with
+ DPMbox.
+ As you have seen DPMbox works basically through three files: 
+\end_layout
+
+\begin_layout Description
+dpmbox-ui.js User interface code
+\end_layout
+
+\begin_layout Description
+jquery.dpm.js Server interaction code
+\end_layout
+
+\begin_layout Description
+jquery.dpmFilters.js Filters to adapt server response information 
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+You can find more information about the content and organization of these
+ files in the section 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:System-design"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Be careful when changing the context if you are developing on local and
+ deploying over some external server.
+ Also, as the interface is based on an external library, please read its
+ documentation and follow its developer recommendations and advices
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "8_w2ui_2015"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+And you are all set, happy coding!
 \end_layout
 
 \begin_layout Chapter
@@ -7977,8 +9659,53 @@ Based on the words of XXX, one of the main design goals in DPMbox was to
 Introduction
 \end_layout
 
+\begin_layout Standard
+The Disk Pool Manager (DPM) is a lightweight grid storage component, allowing
+ access to data using commonly used grid protocols.
+ The LCG File Catalog (LFC) is the main catalog being used by grid communities
+ for both file bookkeeping and meta-data.
+ DPMbox is a new interface, .
+ 
+\end_layout
+
 \begin_layout Section
 Functionality
+\end_layout
+
+\begin_layout Standard
+DPMbox functionality include:
+\end_layout
+
+\begin_layout Itemize
+Collections exploring and navigation
+\end_layout
+
+\begin_layout Itemize
+Collections creation and deletion
+\end_layout
+
+\begin_layout Itemize
+Files download, including massive download
+\end_layout
+
+\begin_layout Itemize
+Files upload, including massive upload
+\end_layout
+
+\begin_layout Itemize
+Files removing
+\end_layout
+
+\begin_layout Itemize
+Filter and/or order the content inside a collection
+\end_layout
+
+\begin_layout Itemize
+Search inside a collection
+\end_layout
+
+\begin_layout Itemize
+Get metalink
 \end_layout
 
 \begin_layout Standard
@@ -8030,8 +9757,9 @@ Requirements
 \end_layout
 
 \begin_layout Standard
-In order to use DPMbox on your system.
- If you are unsure, ask your administrator about this.
+In order to use DPMbox on your system the DPM server must be updated to
+ the .
+ If you are unsure, ask your DPM administrator about this.
 \end_layout
 
 \begin_layout Section
@@ -8060,11 +9788,11 @@ reference "fig:dpmbox_screenshot"
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename img/DPMbox-screenshot.png
+	filename img/howtouse_1.png
 	width 100text%
 
 \end_inset
@@ -8100,26 +9828,143 @@ name "fig:dpmbox_screenshot"
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/howtouse_2.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+How to use 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/howtouse_3.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+How to use 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/howtouse_4.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+How to use 4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/howtouse_5.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+How to use 5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 When folder icon is set on white is not yet read.
 \end_layout
 
 \begin_layout Standard
 Clicking on the + icon will read the collection.
-\end_layout
-
-\begin_layout Chapter
-Developer manual
-\end_layout
-
-\begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
 \end_layout
 
 \begin_layout Standard
