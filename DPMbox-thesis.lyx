@@ -1058,7 +1058,7 @@ bigskip
 
 \begin_layout Plain Layout
 
-    Fdo.: Juan Valencia Calvellido
+    Juan Valencia Calvellido
 \end_layout
 
 \begin_layout Plain Layout
@@ -1127,7 +1127,7 @@ Copyright © 2015 Juan Valencia Calvellido.
 \end_layout
 
 \begin_layout Standard
-Revision number: 0.7
+Revision number: 0.8
 \end_layout
 
 \begin_layout Standard
@@ -1167,9 +1167,16 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-DPMbox is a project for a friendly web interface for Disk Pool Manager,
+DPMbox is a project for a friendly web interface for Disk Pool Manager (DPM),
  the most widely adopted storage management system in the Worldwide LHC
  Computing Grid infrastructure.
+ 
+\end_layout
+
+\begin_layout Standard
+It's been built getting advantage of the WebDAV protocol, recently implemented
+ as a new DPM front-end by the CERN IT-SDC-ID section, and it uses JavaScript
+ as its core development language.
 \end_layout
 
 \begin_layout Section*
@@ -1177,7 +1184,7 @@ Tags
 \end_layout
 
 \begin_layout Standard
-WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
+DPM Disk Pool Manager CERN LHC Grid WebDAV Interface JavaScript ECMAScript
 \end_layout
 
 \begin_layout Standard
@@ -1241,7 +1248,7 @@ mainmatter
 Introduction
 \begin_inset CommandInset label
 LatexCommand label
-name "cap:introducción"
+name "chap:Introduction"
 
 \end_inset
 
@@ -2122,6 +2129,263 @@ Ayuda
 
 \begin_layout Section
 Motivation
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Motivation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Relación con el CERN durante un año para el desarrollo del TFG.
+ 
+\end_layout
+
+\begin_layout Standard
+Organización Europea para la Investigación Nuclear.
+ Es el mayor laboratorio de investigación en física de partículas del mundo.
+ Situado cerca de Ginebra, en la frontera franco-suiza.
+ Se fundó en 1954, actualmente cuenta con 20 estados miembros y unos 2.500
+ trabajadores en plantilla.
+ Aunque con personal eventual, estudiantes, universidades, etc.
+ en el centro pueden concentrarse en torno a las 10.000 personas.
+ 
+\end_layout
+
+\begin_layout Standard
+La WWW fue creada por Tim Berners-Lee cuando trabajaba aquí en 1990.
+ 
+\end_layout
+
+\begin_layout Standard
+En los últimos tiempos se ha hecho bastante conocido mucho debido al LHC
+ y al famoso Bosón de Higgs.
+ Pero además de éste existen otros experimentos.
+ No sólo para físicos, el CERN cuenta con una importante infraestructura
+ informática debido al gran volumen de datos que se manejan.
+ Ocho departamentos (PH, BE, TE, EN, HR, FP, GS, IT).
+ Organización por Departamento/Grupo/Sección.
+ Software libre por filosofía.
+ 
+\end_layout
+
+\begin_layout Standard
+Dependiendo de la época, el LHC (Large Hadron Collider o Gran Colisionador
+ de Hadrones) y sus experimentos en el CERN (Organización Europea para la
+ Investigación Nuclear, con sede en Suiza) pueden llegar a generar en torno
+ a 30 terabytes de datos al día.
+ Todos estos datos han de ser almacenados para poder ser posteriormente
+ procesados y analizados por distintos centros socios del CERN que necesitan
+ acceder a ellos desde distintos puntos del planeta.
+ Aquí es donde entra en escena el grid computing o computación en malla.
+ La idea detrás de este concepto es tener un grid, una malla, como con la
+ red eléctrica.
+ Da igual de dónde venga la electricidad, lo que realmente importa es que
+ esté disponible cuando te conectas.
+ 
+\end_layout
+
+\begin_layout Standard
+La WLCG (Worldwide LHC Computing Grid) es una infraestructura de computación
+ global cuya misión es proporcionar recursos informáticos para almacenar,
+ distribuir y analizar los datos generados por el LHC, buscando que estén
+ disponibles por igual para todos los socios, independientemente de su ubicación
+ física.
+ Una colaboración mundial entre los distintos experimentos del Gran Colisionador
+ de Hadrones (ALICE, ATLAS, CMS y LHCb) y los centros de computación participant
+es administra y organiza sus recursos, siendo todo ello coordinado desde
+ el CERN.
+ 
+\end_layout
+
+\begin_layout Standard
+gLite es el middleware usado por los experimentos del LHC.
+ Se define un SE como un elemento de almacenamiento: 
+\end_layout
+
+\begin_layout Itemize
+dCache: Un punto de acceso, múltiples nodos.
+ 
+\end_layout
+
+\begin_layout Itemize
+CASTOR: Almacenamiento en cintas, con buffer de discos.
+\end_layout
+
+\begin_layout Itemize
+DPM: Disk Pool Manager.
+ Basado en disco, máximo 10TB por nodo.
+ 
+\end_layout
+
+\begin_layout Standard
+Disk Pool Manager (DPM) es un sistema de gestión de estructuras de almacenamient
+o en grid, centrado en sistemas basados en disco.
+ Así, ofrece una forma sencilla de crear un nodo de almacenamiento en la
+ red y es compatible con los protocolos pertinentes tanto para la gestión
+ de archivos como para el acceso.
+ Se centra en la capacidad de gestión (instalación y configuración sencillas,
+ así como facilidad de mantenimiento), pero proporciona asimismo toda la
+ funcionalidad necesaria para un sistema de almacenamiento en red/grid (soporte
+ para múltiples nodos servidor, diferentes espacios de nombres o múltiples
+ réplicas de archivos).
+ Actualmente está instalado en 185 sitios diferentes, con más de 200 instancias
+ ejecutándose en estos momentos.
+ 
+\end_layout
+
+\begin_layout Standard
+Uno de los objetivos durante los últimos años ha sido atraer al uso de Disk
+ Pool Manager a los usuarios menos técnicos de la comunidad científica de
+ la física de partículas.
+ Por ello hace unos años, avanzando hacia la adopción de estándares que
+ faciliten su utilización y buscando eliminar la necesidad de emplear herramient
+as especiales, se implementó una interfaz WebDAV (una extensión del protocolo
+ HTTP).
+ El objetivo era facilitar el acceso a la red de almacenamiento a través
+ de programas comunes como navegadores web, o sencillos como clientes WebDAV.
+ Sin embargo, esta implementación se basa en una interfaz primitiva de sólo
+ lectura, que limita los casos de uso a la mera navegación de directorios
+ y descarga de ficheros.
+ Esto hace que siga siendo necesario usar herramientas especiales para ciertas
+ operaciones, como puede ser la subida de ficheros.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/CERNexperiments.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DPM current usage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/DPMuse.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+DPM current usage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2280,7 +2544,7 @@ key "1742-6596-396-5-052006"
 \end_layout
 
 \begin_layout Section
-Objectives
+Scope
 \end_layout
 
 \begin_layout Standard
@@ -2293,6 +2557,29 @@ This project aims to provide a web interface that can integrate with the
  different accessing protocols, data replication, etc.) adding the ease of
  use of the increasingly widespread cloud storage systems like Dropbox,
  OneDrive or Google Drive.
+\end_layout
+
+\begin_layout Standard
+As a web development the project DPMbox will use standard web technologies
+ as HTML5 [7], CSS3 [8] or JavaScript [9] and the final product must allow
+ users to browse and access their data stored in DPM grid elements that
+ provide the HTTP protocol in a manner that is straight forward for unexperience
+d users.
+ With this said, the focus will be held mainly on usability and ease of
+ use but other requirements must also be taken into consideration, including,
+ obviously, security constraints.
+ This interface will allow uploading new data to the directory a user is
+ currently viewing, either via web formularies or in a drag-and-drop fashion.
+ It should also add the ability to perform other sort of basic namespace
+ management, as renaming or deleting.
+ A read-only mode would be of interest as well as any other additional features
+ that may be deemed of interest during development.
+ 
+\end_layout
+
+\begin_layout Standard
+As the rest of the software involved in DPM the project will be developed
+ under the Apache License version 2.0 [10].
 \end_layout
 
 \begin_layout Standard
@@ -2331,14 +2618,27 @@ Giving support to these standards we allow users to access their data easily
 Some cuadros here.
 \end_layout
 
-\begin_layout Section
-Scope
-\end_layout
-
 \begin_layout Standard
 The development has followed a minimum viable product approach.
  Starting creating an interface based on the WebDAV protocol and then integratin
 g it with the DPM stack.
+\end_layout
+
+\begin_layout Section
+Objectives
+\end_layout
+
+\begin_layout Standard
+El objetivo del proyecto DPMbox es ofrecer una interfaz realmente amigable,
+ que concentre toda la funcionalidad posible en una misma herramienta y
+ que pueda usarse con programas ya conocidos por los usuarios, como los
+ navegadores web.
+ Pero no se busca tener un sistema de almacenamiento en la nube más, sino
+ aprovechar las características que ofrece Disk Pool Manager (rendimiento,
+ diferentes protocolos de acceso, replicación de datos, etc.) añadiendo a
+ ello la facilidad de uso del cada vez más generalizado almacenamiento en
+ la nube, con ejemplos como Dropbox, OneDrive o Google Drive.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2346,26 +2646,14 @@ This can be then “translated” to requirements (functional/non-functional).
 \end_layout
 
 \begin_layout Standard
-As a web development the project DPMbox will use standard web technologies
- as HTML5 [7], CSS3 [8] or JavaScript [9] and the final product must allow
- users to browse and access their data stored in DPM grid elements that
- provide the HTTP protocol in a manner that is straight forward for unexperience
-d users.
- With this said, the focus will be held mainly on usability and ease of
- use but other requirements must also be taken into consideration, including,
- obviously, security constraints.
- This interface will allow uploading new data to the directory a user is
- currently viewing, either via web formularies or in a drag-and-drop fashion.
- It should also add the ability to perform other sort of basic namespace
- management, as renaming or deleting.
- A read-only mode would be of interest as well as any other additional features
- that may be deemed of interest during development.
+Al realizarse en colaboración con el CERN, el desarrollo se ha centrado
+ en las funcionalidades requeridas por la sección IT-SDC-ID (Information
+ Technology, Support for Distributed Computing, Information and Data), buscando
+ la eficacia sobre la infraestructura de DPM.
+ Pero uno de los objetivos futuros es que, tras cumplir con estos requisitos,
+ DPMbox pueda adaptarse fácilmente posibilitando su uso de manera general
+ con cualquier otro sistema que implemente el protocolo WebDAV.
  
-\end_layout
-
-\begin_layout Standard
-As the rest of the software involved in DPM the project will be developed
- under the Apache License version 2.0 [10].
 \end_layout
 
 \begin_layout Section
@@ -2593,6 +2881,13 @@ tes, certificate revocation lists, attribute certificates, and a certification
 
 \begin_layout Section
 Document organization
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Document-organization"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2634,7 +2929,7 @@ Schedule
 
 \end_inset
 
-, all the organization and planning stuff can be found here.
+, all the organization and planning stuff can be found there.
  
 \end_layout
 
@@ -2736,6 +3031,13 @@ License
 
 \begin_layout Chapter
 State of the art
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:State-of-the"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2743,8 +3045,9 @@ Right now there is already web access implemented in the Disk Pool Manager
  infrastructure.
  This has been developed as part of the HTTP/WebDAV frontend and is built
  getting advantage of the Apache WebDAV modules, mod_dav and mod_gridsite.
- To get a deeper understanding of how a paper from his authors, Álvarez
- Ayllón et al., can be checked: Web enabled data management with DPM & 
+ To get a deeper understanding of how it works a paper from his authors,
+ Álvarez Ayllón et al., can be checked: Web enabled data management with
+ DPM & 
 \begin_inset ERT
 status open
 
@@ -2754,6 +3057,17 @@ status open
 \backslash
 ac{LFC}
 \end_layout
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "1742-6596-396-5-052006"
 
 \end_inset
 
@@ -3119,7 +3433,7 @@ X.509
 \begin_layout Plain Layout
 
 \series bold
-X.509 Proxies
+X.509 proxies
 \end_layout
 
 \end_inset
@@ -3271,7 +3585,7 @@ Yes
 \begin_inset Text
 
 \begin_layout Plain Layout
-Only Internet Explorer
+Only IE
 \end_layout
 
 \end_inset
@@ -3319,16 +3633,15 @@ X.509 Support for client certificates
 \end_layout
 
 \begin_layout Description
-X.509 Proxies Support for proxy certificates
-\end_layout
-
-\begin_layout Description
-Follow
+X.509
 \begin_inset space ~
 \end_inset
 
-redirections Follows redirections when needed, as described in section 4
- 
+proxies Support for proxy certificates 
+\end_layout
+
+\begin_layout Description
+Redirections Follows redirections when needed
 \end_layout
 
 \begin_layout Description
@@ -4005,7 +4318,14 @@ WebDAV clients
 \end_layout
 
 \begin_layout Section
-Security 
+Security
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Security"
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4206,44 +4526,19 @@ _group names_
 
 \begin_layout Chapter
 Schedule
-\end_layout
-
-\begin_layout Standard
-In this section we cover the schedule that the project has followed.
- Specifically we talk about the chosen development methodology, the stages
- the project has gone through and the personnel involved.
-\end_layout
-
-\begin_layout Section
-Organization
-\end_layout
-
-\begin_layout Standard
-The project was developed entirely by the writer, student of 
-\begin_inset Flex Emph
-status open
-
-\begin_layout Plain Layout
-Universidad de Cadiz
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Schedule"
 
 \end_inset
 
-, carrying out the work of analysis, design and development, and visual
- interface design and branding project.
- The project development has been reviewed and guided by supervisors Alejandro
- Álvarez Ayllón, current employee at CERN IT-SDC-ID section, and Manuel
- Palomo Duarte, PhD in 
-\begin_inset Flex Emph
-status open
 
-\begin_layout Plain Layout
-Universidad de Cádiz
 \end_layout
 
-\end_inset
-
-.
+\begin_layout Standard
+In this section we cover the schedule the project has followed.
+ Specifically we talk about the the personnel involved, the chosen development
+ methodology, the stages the project has gone through and its planning.
 \end_layout
 
 \begin_layout Section
@@ -4281,43 +4576,66 @@ framework of processes and activities concerned with the life cycle that
 ”
 \end_layout
 
-\begin_layout Standard
-In our case, we can see in Figure 2.1, we used a methodology structured and
- agile development, ie iterative and incremental development.
- Therefore, the life cycle is summarized in a set of iterations.
- The phases of the life cycle are analysis, design, implementation, testing,
- operation and maintenance.
- After performing the analysis (get requirements specification) and application
- design (we define the system architecture), we begin implementing or coding
- system, obtaining a very limited initial release.
- This version will be tested and in the case of positive results, go back
- to the implementation phase where an expanded version of the above will
- be achieved.
- This step has to be repeated as many times as necessary until the final
- version for the customer's use, thus moving to the exploitation phase.
- If the tests do not give the expected results, if any, we must return to
- the analysis stage to find out the problems relating to this version and
- redirect it.
- Finally, during system operation errors or improvements necessary for this
- can occur.
- It will then move on to the maintenance phase, where these incidents be
- drafted before moving back to the analysis phase.
- Thus, we can say that our model is incremental and iterative.
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
-The software development model used was iterative and incremental.
- With this model of development have created product versions that have
- slowly grown in performance until a final product stage is reached.
+The chosen development methodology for DPMbox was the iterative and incremental
+ model, an structured and agile software development methodology.
  
 \end_layout
 
 \begin_layout Standard
-Here are the features that have each of these versions are described.
+The life cycle is summarized in a set of iterations.
+ The phases of the life cycle are analysis, design, implementation, testing,
+ operation and maintenance.
+ After performing the analysis (getting requirements specification) and
+ application design (defining the system's architecture), we start to code
+ already, obtaining a very limited initial release.
+ This version will be tested and in case of positive results, we go back
+ to the implementation phase where this initial version will be expanded,
+ adding new features or improving the existing ones.
+ This step has to be repeated as many times as necessary until the expected
+ final version has been reached, when the project moves to the exploitation
+ phase.
+ If the tests don't give the expected results, we must return to the analysis
+ stage to find out the problems relating to this version and redirect it.
+ Finally, during exploitation phase, errors or mandatory improvements could
+ be expected.
+ Then it will be time to move on to the maintenance phase, where these incidents
+ will be addressed before moving back to the analysis phase.
+ 
+\end_layout
+
+\begin_layout Standard
+After summarizing this process, we can say that our model is incremental
+ and iterative, thereby we have created product versions that have slowly
+ grown in features and performance until a final product stage has been
+ reached.
+ 
 \end_layout
 
 \begin_layout Section
 Stages
+\end_layout
+
+\begin_layout Standard
+Here you can read a small brief about the features that particularize each
+ of the stages that DPMbox has gone through.
+ Also you can get the big picture at a glance having a look at the Gantt
+ chart, figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand vref
+reference "fig:gantt"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -4376,16 +4694,239 @@ Testing.
  On site deployment.
 \end_layout
 
-\begin_layout Section
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:gantt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/GanttChart.png
+	height 100theight%
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
 Gantt chart
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Organization
+\end_layout
+
 \begin_layout Standard
-Su peaso de diagrama aquí.
+The project has been developed entirely by the writer, student of 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Universidad de Cadiz
+\end_layout
+
+\end_inset
+
+, carrying out the work of analysis, design and development, including also
+ visual interface design.
+ The project development has been reviewed and guided by supervisors Alejandro
+ Álvarez Ayllón, current employee at CERN IT-SDC-ID section, and Manuel
+ Palomo Duarte, PhD Computer Science in 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+Universidad de Cádiz
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Non-Human resources
+\end_layout
+
+\begin_layout Standard
+As a free software project DPMbox has been developed using a lot of open
+ source and free technologies: Git, jQuery, w2ui...
+ You can read more about the software and tools employed in the sections
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Version-control"
+
+\end_inset
+
+,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Program-languages-and"
+
+\end_inset
+
+ and
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:Tools"
+
+\end_inset
+
+.
+ What is important to bring out in this section is that these tools are
+ not only free, as in speech, but also free as in beer.
+\end_layout
+
+\begin_layout Standard
+Apache local server, including its WebDAV modules.
+ In the hardware section we have:
+\end_layout
+
+\begin_layout Itemize
+HP Pavilion DV6 3040ES with the following technical specification:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Intel Core i7 Q720 Processor
+\end_layout
+
+\begin_layout Itemize
+4GB Memory
+\end_layout
+
+\begin_layout Itemize
+128GB SSD Crucial M4
+\end_layout
+
+\begin_layout Itemize
+GNU/Linux Ubuntu 10.04 and GNU/Linux Mint 17 as OS
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+To do some testing outside the local scope an external cloud server has
+ been used:
+\end_layout
+
+\begin_layout Itemize
+Digital Ocean SSD droplet with these characteristics:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1 Core Processor 
+\end_layout
+
+\begin_layout Itemize
+512MB Memory 
+\end_layout
+
+\begin_layout Itemize
+20GB SSD Disk 
+\end_layout
+
+\begin_layout Itemize
+1TB Transfer 
+\end_layout
+
+\begin_layout Itemize
+GNU/Linux Ubuntu 14.04 32bits
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Also, in different development stages DPMbox prototypes have been deployed
+ in DPM testing instances in CERN servers.
 \end_layout
 
 \begin_layout Section
 Costs
+\end_layout
+
+\begin_layout Itemize
+$5 / mo (through GitHub Education developer pack
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "github_education_2015"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Standard
@@ -4425,6 +4966,13 @@ Living is a problem because everything dies.
 
 \begin_layout Chapter
 Project general description
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Project-general-description"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -4460,6 +5008,14 @@ ac{XHR}
 
  object.
  
+\end_layout
+
+\begin_layout Standard
+Is possible to use it as a GUI for WebDAV servers...
+\end_layout
+
+\begin_layout Standard
+DPM blabalbla
 \end_layout
 
 \begin_layout Subsection
@@ -4532,6 +5088,11 @@ When a device as simple as a door has to come with an instruction manual—even
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Clean interface.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4617,341 +5178,19 @@ The typical user of DPMbox will be NEP physycists and so, so the target
  interfaces and even cloud storing services.
 \end_layout
 
-\begin_layout Section
-General restrictions
-\end_layout
-
-\begin_layout Subsection
-Version control
-\end_layout
-
-\begin_layout Standard
-Git has been used, getting advantage of the GitHub platform.
- Git (/ɡɪt/[4]) is a distributed revision control system with an emphasis
- on speed,[5] data integrity,[6] and support for distributed, non-linear
- workflows.[7] Git was initially designed and developed by Linus Torvalds
- for Linux kernel development in 2005, and has since become one of the most
- widely adopted version control systems for software development.[8]
-\end_layout
-
-\begin_layout Subsection
-Program languages and technologies
-\end_layout
-
-\begin_layout Subsubsection
-HTML 
-\end_layout
-
-\begin_layout Standard
-HTML (Hyper Text Markup Language) is the text markup language normally used
- in World Wide Web (WWW).
- It was created by Tim Berners-Lee in 1986 from two existing tools: the
- concept of hypertext and SGML.
- HTML allows you to define both the structure and location of the items
- displayed on a Web page and the relations between the different components
- of a Web site by using hyperlinks.
- The interpretation of HTML documents is performed by Web browsers such
- as Mozilla Firefox or Google Chrome and others.
- The interpretation may make the final presentation vary in small details.
- Therefore the development of HTML is adjusted to the maximum to the standards
- set by the W3C
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "2_w3.org_2015"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsubsection
-CSS
-\end_layout
-
-\begin_layout Standard
-The term CSS, which stands for Cascading Style Sheets, refers to the formal
- language used to define the presentation of structured documents written
- in HTML, XML and XHTML by extension.
- The World Wide Web Consortium (W3C) is the agency responsible for developing
- the specification of style sheets that serve as a standard for browsers.
- The objective of CSS is separate the structure of a Web document from its
- visual representation
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "3_w3.org_2015"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-CSS from the framework used, adapted accordingly.
-\end_layout
-
-\begin_layout Subsubsection
-JavaScript
-\end_layout
-
-\begin_layout Standard
-JavaScript is a high level, dynamic, untyped, and interpreted programming
- language.
- It has been standardized in the ECMAScript language specification
-\begin_inset space ~
-\end_inset
-
-.
- Alongside HTML and CSS, it is one of the three essential technologies of
- World Wide Web content production; the majority of websites employ it and
- it is supported by all modern web browsers without plug-ins.
- JavaScript is prototype-based with first-class functions, making it a multi-par
-adigm language, supporting object-oriented, imperative, and functional programmi
-ng styles.
- It has an API for working with text, arrays, dates and regular expressions,
- but does not include any I/O, such as networking, storage or graphics facilitie
-s, relying for these upon the host environment in which it is embedded
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "4_mozilla_developer_network_2015"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-ECMAScript 6 includes interesting syntax and structural improvements but
- it was in process of approval while DPMbox was being developed, thus the
- standard followed has been ECMAScript 5.1
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "EcmaScript"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Subsubsection
-jQuery
-\end_layout
-
-\begin_layout Standard
-jQuery is a cross-platform JavaScript library designed to simplify the client-si
-de scripting of HTML.
- jQuery is the most popular JavaScript library in use today, with installation
- on 65% of the top 10 million highest-trafficked sites on the Web.[3][4][5]
- jQuery is free, open-source software licensed under the MIT License.
-\end_layout
-
-\begin_layout Subsubsection
-w2ui
-\end_layout
-
-\begin_layout Standard
-W2UI is a small JavaScript UI library with a complete set of widgets that
- covers a wide range of interface design elements: layout, grid, sidebar,
- toolbar, tabs, fields, popup and other utilities.
-\end_layout
-
-\begin_layout Subsubsection
-XML
-\end_layout
-
-\begin_layout Standard
-XML stands for eXtensible Markup Language, is a markup language developed
- by the World Wide Web Consortium (W3C) used to store data in a human readable
- form.
- It is proposed as a standard for exchanging structured information between
- different platforms.
- Following this recommendation the Redmine APIs and forges Assembla offer
- their information in XML format, so Abreforjas necessarily have to deal
- with this technology.
- On the other hand, Abreforjas also indirectly generate XML documents, as
- the information extracted from the forges will be published in RDF format
- with the help of D2R-Server.
-\end_layout
-
-\begin_layout Subsubsection
-JSON
-\end_layout
-
-\begin_layout Standard
-JSON, (canonically pronounced /ˈdʒeɪsən/ jay-sən;[1] sometimes JavaScript
- Object Notation), is an open standard format that uses human-readable text
- to transmit data objects consisting of attribute–value pairs.
- It is the primary data format used for asynchronous browser/server communicatio
-n (AJAJ), largely replacing XML (used by AJAX).
-\end_layout
-
-\begin_layout Subsection
-Tools
-\end_layout
-
-\begin_layout Subsubsection
-Apache
-\end_layout
-
-\begin_layout Standard
-The Apache HTTP Server, colloquially called Apache (/əˈpætʃiː/ ə-pa-chee),
- is the world's most widely used web server software.
- Originally based on the NCSA HTTPd server, development of Apache began
- in early 1995 after work on the NCSA code stalled.
- Apache played a key role in the initial growth of the World Wide Web,[4]
- quickly overtaking NCSA HTTPd as the dominant HTTP server, and has remained
- most popular since April 1996.
- In 2009, it became the first web server software to serve more than 100
- million websites.[5]
-\end_layout
-
-\begin_layout Subsubsection
-Geany
-\end_layout
-
-\begin_layout Standard
-Geany (IPA:ʒeːniː) is a lightweight cross-platform GUI based text editor[2]
- using Scintilla and GTK+, including basic Integrated Development Environment
- (IDE) features.
- It is designed to have short load times, with limited dependency on separate
- packages or external libraries.
- It is available for a wide range of operating systems, such as BSD, Linux,
- Mac OS X,[3] Solaris and Windows.
- Among the supported programming languages and markup languages are C, C++,
- C#, Java, JavaScript, PHP, HTML, LaTeX, CSS, Python, Perl, Ruby, Pascal,
- Haskell, Erlang, Vala and many others.[4]
-\end_layout
-
-\begin_layout Subsubsection
-SmartGit
-\end_layout
-
-\begin_layout Standard
-SmartGit is a Git client with support for GitHub Pull Requests+Comments,
- SVN and Mercurial.
-\end_layout
-
-\begin_layout Standard
-It runs on Mac OS X, Windows and Linux.
- 
-\end_layout
-
-\begin_layout Subsubsection
-Firefox Developer Edition
-\end_layout
-
-\begin_layout Standard
-Firefox Developer Edition is a version of Firefox tailored for developers,
- featuring the latest Firefox features and experimental developer tools.
- Firefox Developer Edition provides easy accessibility for a wide array
- of developer tools which help in making debugging easy and help in faster
- and more professional development.
- Tools include Valence, WebIDE, Responsive Design Mode – see how your website
- or Web app will look on different screen sizes without changing the size
- of your browser window.
- Page Inspector– examine the HTML and CSS of any Web page and easily modify
- the structure and layout of a page.
- Web Console – see logged information associated with a Web page and use
- Web Console and interact with a Web page using JavaScript.
- JavaScript Debugger – step through JavaScript code and examine or modify
- its state to help track down bugs.
- Network Monitor – see all the network requests your browser makes, how
- long each request takes and details of each request.
- Style Editor – view and edit CSS styles associated with a Web page, create
- new ones and apply existing CSS stylesheets to any page.
- Web Audio Editor – inspect and interact with Web Audio API in real time
- to ensure that all audio nodes are connected in the way you expect.
- 
-\end_layout
-
-\begin_layout Subsubsection
-Firebug
-\end_layout
-
-\begin_layout Standard
-Firebug is a free and open-source web browser extension for Mozilla Firefox
- that facilitates the live debugging, editing, and monitoring of any website's
- CSS, HTML, DOM, XHR, and JavaScript.
-\end_layout
-
-\begin_layout Standard
-Firebug is licensed under the BSD license[3] and was initially written in
- January 2006 by Joe Hewitt, one of the original Firefox creators.[6] The
- Firebug Working Group oversees the open source development and extension
- of Firebug.
- It has two major implementations: an extension for Mozilla Firefox and
- a bookmarklet implementation called Firebug Lite[7] which can be used with
- Google Chrome.[8]
-\end_layout
-
-\begin_layout Standard
-In addition to debugging web pages, Firebug is a useful tool for web security
- testing[9] and web page performance analysis.[10]
-\end_layout
-
-\begin_layout Subsubsection
-JSHint
-\end_layout
-
-\begin_layout Standard
-JSHint is a static code analysis tool used in software development for checking
- if JavaScript source code complies with coding rules.[1] It was forked from
- Douglas Crockford's JSLint project, as it was felt that the original did
- not allow enough customization options.
- There is also an internet version available at its official website in
- which users can paste code to run the application online.[1] A command-line
- version of JSHint, distributed as a Node.JS module, makes it possible to
- automate one's "linting" process and integrate JSHint into the website's
- development workflow.[2]
-\end_layout
-
-\begin_layout Standard
-Used through Geany and Firefox Developer Edition.
-\end_layout
-
-\begin_layout Subsection
-Operating systems and hardware
-\end_layout
-
-\begin_layout Standard
-To develop: GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
-\end_layout
-
-\begin_layout Itemize
-HP Pavilion DV6 3040ES with the following technical specification:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Processor: Intel Core i7 Q720 
-\end_layout
-
-\begin_layout Itemize
-Memory: 4GB RAM 
-\end_layout
-
-\end_deeper
 \begin_layout Chapter
 Project development
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Project-development"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Objectives
+System objectives
 \end_layout
 
 \begin_layout Standard
@@ -5036,7 +5275,7 @@ OBJ-1
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -5113,7 +5352,7 @@ OBJ-2
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -5996,67 +6235,11 @@ IRQ-3
 \end_layout
 
 \begin_layout Subsection
-Business rules
-\end_layout
-
-\begin_layout Standard
-CERN network acces has been granted...
- 
-\end_layout
-
-\begin_layout Standard
-A business rule is a rule that defines or constrains some aspect of business
- and always resolves to either true or false.
- Business rules are intended to assert business structure or to control
- or influence the behavior of the business.[1] Business rules describe the
- operations, definitions and constraints that apply to an organization.
- Business rules can apply to people, processes, corporate behavior and computing
- systems in an organization, and are put in place to help the organization
- achieve its goals.
-\end_layout
-
-\begin_layout Standard
-For example a business rule might state that no credit check is to be performed
- on return customers.
- Other examples of business rules include requiring a rental agent to disallow
- a rental tenant if their credit rating is too low, or requiring company
- agents to use a list of preferred suppliers and supply schedules.
-\end_layout
-
-\begin_layout Standard
-While a business rule may be informal or even unwritten, documenting the
- rules clearly and making sure that they don't conflict is a valuable activity.[c
-itation needed] When carefully managed, rules can be used to help the organizati
-on to better achieve goals, remove obstacles to market growth, reduce costly
- mistakes, improve communication, comply with legal requirements, and increase
- customer loyalty.
-\end_layout
-
-\begin_layout Subsection
-Interface
-\end_layout
-
-\begin_layout Standard
-Cambiar lo de aquí abajo.
- Lo que realmente va a aquí son requirements para la interfaz.
- Standards.
- Accesibility.
- Usability...
- 
-\end_layout
-
-\begin_layout Subsection
 Non-functional
 \end_layout
 
 \begin_layout Standard
-Security.
- Fiability.
- Other systems communications.
- Extensibility.
- Performance.
- Scalability.
- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua.
  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
  ut aliquip ex ea commodo consequat.
@@ -6067,7 +6250,7 @@ Security.
 \end_layout
 
 \begin_layout Subsubsection
-Security
+Performance
 \end_layout
 
 \begin_layout Standard
@@ -6148,7 +6331,7 @@ NRQ-1
 \end_layout
 
 \begin_layout Subsubsection
-Fiability
+Security
 \end_layout
 
 \begin_layout Standard
@@ -6229,7 +6412,7 @@ NRQ-2
 \end_layout
 
 \begin_layout Subsubsection
-Usability and accesibility
+Reliability
 \end_layout
 
 \begin_layout Standard
@@ -6310,7 +6493,7 @@ NRQ-3
 \end_layout
 
 \begin_layout Subsubsection
-Manteinability
+Maintainability
 \end_layout
 
 \begin_layout Standard
@@ -6390,6 +6573,178 @@ NRQ-4
 
 \end_layout
 
+\begin_layout Subsubsection
+Extensibility
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interface
+\end_layout
+
+\begin_layout Standard
+Cambiar lo de aquí abajo.
+ Lo que realmente va a aquí son requirements para la interfaz.
+ Standards.
+\end_layout
+
+\begin_layout Subsubsection
+Usability and accessibility
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access a WebDAV server
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+NRQ-5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Solution alternatives
 \end_layout
@@ -6443,8 +6798,30 @@ The UI model, in which a prototype is presented and navigation interfaces.
 Use case model
 \end_layout
 
+\begin_layout Standard
+Para describir los distintos comportamientos que tendrá el sistema, usaremos
+ el lenguaje de modelado de sistemas UML; que representa los requisitos
+ funcionales del sistema, centrando en que hace y no cómo lo hace.
+ 
+\end_layout
+
 \begin_layout Subsubsection
 Actors
+\end_layout
+
+\begin_layout Standard
+Here you can find the different roles that participate in the system, figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:actors"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6464,6 +6841,16 @@ status open
 \backslash
 begin{centering}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:actors"
 
 \end_inset
 
@@ -6508,6 +6895,983 @@ Actors
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+User
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Users
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Authorized user
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authorized user
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The system must be able to access to a WebDAV server...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Use cases
+\end_layout
+
+\begin_layout Subsubsection
+Read a collection
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Read a collection
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+A user clicks on a specific directory.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Description
+2a The user is not authorized to read that collection.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Create a collection
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Create a collection
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authorized user
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+An authorized user clicks on new directory button.
+\end_layout
+
+\begin_layout Enumerate
+The authorized user writes a collection name.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Description
+3a The user.
+\end_layout
+
+\begin_layout Description
+3b The name couldn't be used.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Delete a collection
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Delete a collection
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authorized user
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+An authorized user clicks on delete directory button.
+\end_layout
+
+\begin_layout Enumerate
+The authorized user confirms the deletion.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Description
+3a The collection couldn't be created.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Download a file
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Download a file
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+A user clicks on download button.
+\end_layout
+
+\begin_layout Enumerate
+The user selects the location to save the file.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Description
+3a The user is not authorized.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Upload a file
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Upload a file
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authorized user
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+An authorized user clicks on upload button.
+\end_layout
+
+\begin_layout Enumerate
+The user selects the file(s) to upload.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Delete a file
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Delete a file
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Authorized user
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Main scenario
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+An authorized user clicks on delete button.
+\end_layout
+
+\begin_layout Enumerate
+The user confirms the deletion.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and accepts the petition.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alternative flow
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Domain data conceptual model
+\end_layout
+
+\begin_layout Standard
+Information requirements -> UML diagram.
+ ¿?
+\end_layout
+
+\begin_layout Standard
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.
+ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+ ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+ eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+ deserunt mollit anim id est laborum.
+\end_layout
+
+\begin_layout Standard
+files and collections...
+\end_layout
+
+\begin_layout Subsection
+Sequence diagram
+\end_layout
+
+\begin_layout Standard
+Not all possible sequence diagrams are shown (different use cases and scenarios)
+, we present a small sample that may be representative of the the whole
+ system:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seqcreatecoll"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/SeqDiagram_CreateCollection.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sequence diagram, create collection
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
@@ -6517,8 +7881,486 @@ Actors
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seqdnlfile"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/SeqDiagram_DownloadFile.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sequence diagram, download file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:seqdeletefile"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/SeqDiagram_DeleteFile.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sequence diagram, delete file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+User interface model
+\end_layout
+
+\begin_layout Standard
+In this section we offer an approximation to the appearance and navigation
+ in the user interface.
+\end_layout
+
 \begin_layout Subsubsection
-Use cases
+Navigation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:navmodel"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/NavigationDiagram.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Navigation model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Prototypes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:intschememain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/design_scheme.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interface design, main scheme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:intschemeaction"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/design_action.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interface design, action required
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:intschemeerror"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/design_error.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Interface design, error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+System design
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:System-design"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6951,170 +8793,8 @@ And that’s all.
 es with a DPM server.
 \end_layout
 
-\begin_layout Subsection
-Domain data conceptual model
-\end_layout
-
 \begin_layout Standard
-Information requirements -> UML diagram.
- ¿?
-\end_layout
-
-\begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
-\end_layout
-
-\begin_layout Subsection
-Sequence diagram
-\end_layout
-
-\begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
-\end_layout
-
-\begin_layout Subsection
-User interface model
-\end_layout
-
-\begin_layout Standard
-In this section we offer an approximation to the appearance and navigation
- in the user interface.
-\end_layout
-
-\begin_layout Subsubsection
-Navigation
-\end_layout
-
-\begin_layout Subsubsection
-Prototypes
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/design_scheme.png
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Interface design, main scheme
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/design_action.png
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Interface design, action required
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/design_error.png
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Interface design, error
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-System design
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:System-design"
-
-\end_inset
-
-
+---------------------------------------------------------------
 \end_layout
 
 \begin_layout Standard
@@ -7308,12 +8988,490 @@ Pipes and filters? MVC?
 An esquema con las cajas y eso.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:logicscheme"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/DPMbox_globalscheme.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Logic scheme
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Physical arquitecture
 \end_layout
 
 \begin_layout Standard
 A lot to explain about how DPM works.
+\end_layout
+
+\begin_layout Section
+General restrictions
+\end_layout
+
+\begin_layout Subsection
+Business rules
+\end_layout
+
+\begin_layout Standard
+CERN network acces has been granted...
+ 
+\end_layout
+
+\begin_layout Standard
+A business rule is a rule that defines or constrains some aspect of business
+ and always resolves to either true or false.
+ Business rules are intended to assert business structure or to control
+ or influence the behavior of the business.[1] Business rules describe the
+ operations, definitions and constraints that apply to an organization.
+ Business rules can apply to people, processes, corporate behavior and computing
+ systems in an organization, and are put in place to help the organization
+ achieve its goals.
+\end_layout
+
+\begin_layout Standard
+For example a business rule might state that no credit check is to be performed
+ on return customers.
+ Other examples of business rules include requiring a rental agent to disallow
+ a rental tenant if their credit rating is too low, or requiring company
+ agents to use a list of preferred suppliers and supply schedules.
+\end_layout
+
+\begin_layout Standard
+While a business rule may be informal or even unwritten, documenting the
+ rules clearly and making sure that they don't conflict is a valuable activity.[c
+itation needed] When carefully managed, rules can be used to help the organizati
+on to better achieve goals, remove obstacles to market growth, reduce costly
+ mistakes, improve communication, comply with legal requirements, and increase
+ customer loyalty.
+\end_layout
+
+\begin_layout Subsection
+Version control
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Version-control"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Git has been used, getting advantage of the GitHub platform.
+ Git (/ɡɪt/[4]) is a distributed revision control system with an emphasis
+ on speed,[5] data integrity,[6] and support for distributed, non-linear
+ workflows.[7] Git was initially designed and developed by Linus Torvalds
+ for Linux kernel development in 2005, and has since become one of the most
+ widely adopted version control systems for software development.[8]
+\end_layout
+
+\begin_layout Subsection
+Program languages and technologies
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Program-languages-and"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+HTML 
+\end_layout
+
+\begin_layout Standard
+HTML (Hyper Text Markup Language) is the text markup language normally used
+ in World Wide Web (WWW).
+ It was created by Tim Berners-Lee in 1986 from two existing tools: the
+ concept of hypertext and SGML.
+ HTML allows you to define both the structure and location of the items
+ displayed on a Web page and the relations between the different components
+ of a Web site by using hyperlinks.
+ The interpretation of HTML documents is performed by Web browsers such
+ as Mozilla Firefox or Google Chrome and others.
+ The interpretation may make the final presentation vary in small details.
+ Therefore the development of HTML is adjusted to the maximum to the standards
+ set by the W3C
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2_w3.org_2015"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+CSS
+\end_layout
+
+\begin_layout Standard
+The term CSS, which stands for Cascading Style Sheets, refers to the formal
+ language used to define the presentation of structured documents written
+ in HTML, XML and XHTML by extension.
+ The World Wide Web Consortium (W3C) is the agency responsible for developing
+ the specification of style sheets that serve as a standard for browsers.
+ The objective of CSS is separate the structure of a Web document from its
+ visual representation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "3_w3.org_2015"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+CSS from the framework used, adapted accordingly.
+\end_layout
+
+\begin_layout Subsubsection
+JavaScript
+\end_layout
+
+\begin_layout Standard
+JavaScript is a high level, dynamic, untyped, and interpreted programming
+ language.
+ It has been standardized in the ECMAScript language specification
+\begin_inset space ~
+\end_inset
+
+.
+ Alongside HTML and CSS, it is one of the three essential technologies of
+ World Wide Web content production; the majority of websites employ it and
+ it is supported by all modern web browsers without plug-ins.
+ JavaScript is prototype-based with first-class functions, making it a multi-par
+adigm language, supporting object-oriented, imperative, and functional programmi
+ng styles.
+ It has an API for working with text, arrays, dates and regular expressions,
+ but does not include any I/O, such as networking, storage or graphics facilitie
+s, relying for these upon the host environment in which it is embedded
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "4_mozilla_developer_network_2015"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+ECMAScript 6 includes interesting syntax and structural improvements but
+ it was in process of approval while DPMbox was being developed, thus the
+ standard followed has been ECMAScript 5.1
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "EcmaScript"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+jQuery
+\end_layout
+
+\begin_layout Standard
+jQuery is a cross-platform JavaScript library designed to simplify the client-si
+de scripting of HTML.
+ jQuery is the most popular JavaScript library in use today, with installation
+ on 65% of the top 10 million highest-trafficked sites on the Web.[3][4][5]
+ jQuery is free, open-source software licensed under the MIT License.
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+w2ui
+\end_layout
+
+\begin_layout Standard
+W2UI is a small JavaScript UI library with a complete set of widgets that
+ covers a wide range of interface design elements: layout, grid, sidebar,
+ toolbar, tabs, fields, popup and other utilities.
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+XML
+\end_layout
+
+\begin_layout Standard
+XML stands for eXtensible Markup Language, is a markup language developed
+ by the World Wide Web Consortium (W3C) used to store data in a human readable
+ form.
+ It is proposed as a standard for exchanging structured information between
+ different platforms.
+ Following this recommendation the Redmine APIs and forges Assembla offer
+ their information in XML format, so Abreforjas necessarily have to deal
+ with this technology.
+ On the other hand, Abreforjas also indirectly generate XML documents, as
+ the information extracted from the forges will be published in RDF format
+ with the help of D2R-Server.
+\end_layout
+
+\begin_layout Subsubsection
+JSON
+\end_layout
+
+\begin_layout Standard
+JSON, (canonically pronounced /ˈdʒeɪsən/ jay-sən;[1] sometimes JavaScript
+ Object Notation), is an open standard format that uses human-readable text
+ to transmit data objects consisting of attribute–value pairs.
+ It is the primary data format used for asynchronous browser/server communicatio
+n (AJAJ), largely replacing XML (used by AJAX).
+\end_layout
+
+\begin_layout Subsection
+Tools 
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Tools"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As stated on section 3543437436473647, GNU/Linux Ubuntu 10.04, GNU/Linux
+ Mint 17 were the OS where DPMbox has been developed.
+\end_layout
+
+\begin_layout Subsubsection
+Apache
+\end_layout
+
+\begin_layout Standard
+The Apache HTTP Server, colloquially called Apache (/əˈpætʃiː/ ə-pa-chee),
+ is the world's most widely used web server software.
+ Originally based on the NCSA HTTPd server, development of Apache began
+ in early 1995 after work on the NCSA code stalled.
+ Apache played a key role in the initial growth of the World Wide Web,[4]
+ quickly overtaking NCSA HTTPd as the dominant HTTP server, and has remained
+ most popular since April 1996.
+ In 2009, it became the first web server software to serve more than 100
+ million websites.[5]
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+Geany
+\end_layout
+
+\begin_layout Standard
+Geany (IPA:ʒeːniː) is a lightweight cross-platform GUI based text editor[2]
+ using Scintilla and GTK+, including basic Integrated Development Environment
+ (IDE) features.
+ It is designed to have short load times, with limited dependency on separate
+ packages or external libraries.
+ It is available for a wide range of operating systems, such as BSD, Linux,
+ Mac OS X,[3] Solaris and Windows.
+ Among the supported programming languages and markup languages are C, C++,
+ C#, Java, JavaScript, PHP, HTML, LaTeX, CSS, Python, Perl, Ruby, Pascal,
+ Haskell, Erlang, Vala and many others.[4]
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+SmartGit
+\end_layout
+
+\begin_layout Standard
+SmartGit is a Git client with support for GitHub Pull Requests+Comments,
+ SVN and Mercurial.
+\end_layout
+
+\begin_layout Standard
+It runs on Mac OS X, Windows and Linux.
+ 
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+Firefox Developer Edition
+\end_layout
+
+\begin_layout Standard
+Firefox Developer Edition is a version of Firefox tailored for developers,
+ featuring the latest Firefox features and experimental developer tools.
+ Firefox Developer Edition provides easy accessibility for a wide array
+ of developer tools which help in making debugging easy and help in faster
+ and more professional development.
+ Tools include Valence, WebIDE, Responsive Design Mode – see how your website
+ or Web app will look on different screen sizes without changing the size
+ of your browser window.
+ Page Inspector– examine the HTML and CSS of any Web page and easily modify
+ the structure and layout of a page.
+ Web Console – see logged information associated with a Web page and use
+ Web Console and interact with a Web page using JavaScript.
+ JavaScript Debugger – step through JavaScript code and examine or modify
+ its state to help track down bugs.
+ Network Monitor – see all the network requests your browser makes, how
+ long each request takes and details of each request.
+ Style Editor – view and edit CSS styles associated with a Web page, create
+ new ones and apply existing CSS stylesheets to any page.
+ Web Audio Editor – inspect and interact with Web Audio API in real time
+ to ensure that all audio nodes are connected in the way you expect.
+ 
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+Firebug
+\end_layout
+
+\begin_layout Standard
+Firebug is a free and open-source web browser extension for Mozilla Firefox
+ that facilitates the live debugging, editing, and monitoring of any website's
+ CSS, HTML, DOM, XHR, and JavaScript.
+\end_layout
+
+\begin_layout Standard
+Firebug is licensed under the BSD license[3] and was initially written in
+ January 2006 by Joe Hewitt, one of the original Firefox creators.[6] The
+ Firebug Working Group oversees the open source development and extension
+ of Firebug.
+ It has two major implementations: an extension for Mozilla Firefox and
+ a bookmarklet implementation called Firebug Lite[7] which can be used with
+ Google Chrome.[8]
+\end_layout
+
+\begin_layout Standard
+In addition to debugging web pages, Firebug is a useful tool for web security
+ testing[9] and web page performance analysis.[10]
+\end_layout
+
+\begin_layout Standard
+Version used.
+\end_layout
+
+\begin_layout Subsubsection
+JSHint
+\end_layout
+
+\begin_layout Standard
+JSHint is a static code analysis tool used in software development for checking
+ if JavaScript source code complies with coding rules.[1] It was forked from
+ Douglas Crockford's JSLint project, as it was felt that the original did
+ not allow enough customization options.
+ There is also an internet version available at its official website in
+ which users can paste code to run the application online.[1] A command-line
+ version of JSHint, distributed as a Node.JS module, makes it possible to
+ automate one's "linting" process and integrate JSHint into the website's
+ development workflow.[2]
+\end_layout
+
+\begin_layout Standard
+Used through Geany and Firefox Developer Edition.
+ Versions used.
 \end_layout
 
 \begin_layout Section
@@ -8005,6 +10163,13 @@ Same tests as before but over production.
 
 \begin_layout Chapter
 Conclusions and future work
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusions-and-future"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8023,11 +10188,18 @@ Conclusions
 
 \begin_layout Standard
 Summary.
- You learn a lot seeing an external user with your product.
+ You learn a lot watching someone external using with your product.
 \end_layout
 
 \begin_layout Standard
 The work on DPMbox has been really exciting.
+ 
+\end_layout
+
+\begin_layout Standard
+Our current implementation is ready for production, and it is already available
+ in EPEL 5 and 6, where we aim to have frequent updates with fixes and new
+ functionalities, while keeping a high level of interaction with our users.
  
 \end_layout
 
@@ -8076,6 +10248,13 @@ Etc...
 
 \begin_layout Chapter
 Acknowledgements
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Acknowledgements"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8154,28 +10333,28 @@ type "file:"
 \end_layout
 
 \begin_layout Itemize
-Instalar nuevo sistema
+Install new system
 \end_layout
 
 \begin_layout Itemize
-Seguir las instrucciones del instalador
+Follow the installer instructions
 \end_layout
 
 \begin_layout Itemize
-Elegir Basic Server / Customize Later
+Choose Basic Server / Customize Later
 \end_layout
 
 \begin_layout Itemize
-Esperar ⌚
+Wait ⌚
 \end_layout
 
 \begin_layout Itemize
-Reiniciará, y actualizará
+Reboot, it will then update
 \end_layout
 
 \begin_layout Itemize
-Recomiendo redirigir puerto 2222 local al puerto 22 de la máquina virtual
- (para tener SSH)
+It's a good idea to redirect local port 2222 to the port 22 of the virtual
+ machine (so you get SSH connection)
 \end_layout
 
 \begin_layout Subsection
@@ -8192,23 +10371,21 @@ Install DPM
 \end_layout
 
 \begin_layout Standard
-
-\emph on
 Repository
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verbatim
+
 wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
  -P /etc/yum.repos.d
 \end_layout
 
 \begin_layout Standard
-
-\emph on
 Packages
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verbatim
+
 yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql dpm-name-se
 rver-mysql dpm
 \end_layout
@@ -8219,7 +10396,17 @@ Install MySQL
 
 \begin_layout Verbatim
 
-# yum install mysql-server - chkconfig mysqld on - service mysqld start
+yum install mysql-server
+\end_layout
+
+\begin_layout Verbatim
+
+chkconfig mysqld on
+\end_layout
+
+\begin_layout Verbatim
+
+service mysqld start
 \end_layout
 
 \begin_layout Subsubsection
@@ -8238,8 +10425,17 @@ mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql
 
 \begin_layout Verbatim
 
-mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant
- all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
+mysql 
+\end_layout
+
+\begin_layout Verbatim
+
+	grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr';
+\end_layout
+
+\begin_layout Verbatim
+
+	grant all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
 \end_layout
 
 \begin_layout Subsubsection
@@ -8248,49 +10444,49 @@ Generate a grid security certificate
 
 \begin_layout Verbatim
 
-# cd /etc/grid-security
+cd /etc/grid-security
 \end_layout
 
 \begin_layout Verbatim
 
-# openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
+openssl genrsa -out hostkey.pem 1024 
 \end_layout
 
 \begin_layout Verbatim
 
-# openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname
+chmod 0400 hostkey.pem
+\end_layout
+
+\begin_layout Verbatim
+
+openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname
  -f`" 
 \end_layout
 
-\begin_layout Standard
-hostname -f debe coincidir con el nombre de la maquina.dominio tal como lo
- configuraste! Si no, ponlo a mano
+\begin_layout Verbatim
+
+openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pem
+ 
 \end_layout
 
 \begin_layout Verbatim
 
-# openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pe
-m 
+mkdir dpmmgr
 \end_layout
 
 \begin_layout Verbatim
 
-# mkdir dpmmgr
+cp hostkey.pem dpmmgr/dpmkey.pem 
 \end_layout
 
 \begin_layout Verbatim
 
-# cp hostkey.pem dpmmgr/dpmkey.pem 
+cp hostcert.pem dpmmgr/dpmcert.pem 
 \end_layout
 
 \begin_layout Verbatim
 
-# cp hostcert.pem dpmmgr/dpmcert.pem 
-\end_layout
-
-\begin_layout Verbatim
-
-# chown dpmmgr.dpmmgr dpmmgr/*
+chown dpmmgr.dpmmgr dpmmgr/*
 \end_layout
 
 \begin_layout Subsubsection
@@ -8299,9 +10495,22 @@ Trust this new certificate as CA
 
 \begin_layout Verbatim
 
-# mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates
- cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in
- myca.pem )".0"
+mkdir /etc/grid-security/certificates 
+\end_layout
+
+\begin_layout Verbatim
+
+cd /etc/grid-security/certificates 
+\end_layout
+
+\begin_layout Verbatim
+
+cp ../hostcert.pem myca.pem 
+\end_layout
+
+\begin_layout Verbatim
+
+ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
 \end_layout
 
 \begin_layout Subsubsection
@@ -8309,16 +10518,16 @@ Trick the DNS tables
 \end_layout
 
 \begin_layout Standard
-En /etc/hosts, añade tu host y host.domain al final de la lista para 127.0.0.1
+En /etc/hosts, add your host and host.domain to the end of the list for 127.0.0.1
  y ::1
 \end_layout
 
 \begin_layout Subsubsection
-Configurate DPM y DPNS
+Configure DPM y DPNS
 \end_layout
 
 \begin_layout Standard
-Modificate /etc/sysconfig/dpm DPNS_HOST=`hostname` 
+Change /etc/sysconfig/dpm DPNS_HOST=`hostname` 
 \end_layout
 
 \begin_layout Standard
@@ -8400,12 +10609,12 @@ FTRUST host.domain
 
 \begin_layout Verbatim
 
-# export DPNS_HOST=localhost
+export DPNS_HOST=localhost
 \end_layout
 
 \begin_layout Verbatim
 
-# export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
+export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
 \end_layout
 
 \begin_layout Subsubsection
@@ -8414,12 +10623,12 @@ Validate
 
 \begin_layout Verbatim
 
-# dpns-ls
+dpns-ls
 \end_layout
 
 \begin_layout Verbatim
 
-# dpm-qryconf
+dpm-qryconf
 \end_layout
 
 \begin_layout Standard
@@ -8432,7 +10641,12 @@ Load on startup
 
 \begin_layout Verbatim
 
-# chkconfig dpnsdaemon on chkconfig dpm on
+chkconfig dpnsdaemon on 
+\end_layout
+
+\begin_layout Verbatim
+
+chkconfig dpm on
 \end_layout
 
 \begin_layout Subsubsection
@@ -8440,8 +10654,6 @@ Add a base
 \end_layout
 
 \begin_layout Standard
-
-\emph on
 Create directory
 \end_layout
 
@@ -8456,28 +10668,107 @@ dpns-chmod 0777 /dpm/domain/home/public
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-Create a place where files can be hosted 
+Create a place where files can be hosted
 \end_layout
 
-\begin_layout Standard
-dpm-addpool --poolname default --def_filesize 100M mkdir /storage chown
- dpmmgr.dpmmgr /storage dpm-addfs --poolname default --server host.domain
- --fs /storage/ dpm-qryconf (y verás que ahora aparece algo) 
+\begin_layout Verbatim
+
+dpm-addpool --poolname default --def_filesize 100M 
+\end_layout
+
+\begin_layout Verbatim
+
+mkdir /storage 
+\end_layout
+
+\begin_layout Verbatim
+
+chown dpmmgr.dpmmgr /storage 
+\end_layout
+
+\begin_layout Verbatim
+
+dpm-addfs --poolname default --server host.domain --fs /storage/ 
+\end_layout
+
+\begin_layout Verbatim
+
+dpm-qryconf
 \end_layout
 
 \begin_layout Subsubsection
 Configurate DAV
 \end_layout
 
-\begin_layout Standard
-cd /etc/httpd/conf/ Modificar httpd.conf User dpmmgr Group dpmmgr Elimina
- o comenta las líneas LoadModule dav_module modules/mod_dav.so LoadModule
- dav_fs_module modules/mod_dav_fs.so cd /etc/httpd/conf.d/ rm -f ssl.conf welcome.co
-nf zgridsite.conf En zlcgdm-dav.conf SSLVerifyClient require => SSLVerifyClient
- optional NSSecureRedirect Off Añade Write to DiskFlags y NSFlags NSRedirectPort
- 8080 4443 (puertos expuestos al exterior) service httpd restart
+\begin_layout Verbatim
+
+cd /etc/httpd/conf/ 
+\end_layout
+
+\begin_layout Verbatim
+
+	Modificar httpd.conf 
+\end_layout
+
+\begin_layout Verbatim
+
+	User dpmmgr 
+\end_layout
+
+\begin_layout Verbatim
+
+	Group dpmmgr 
+\end_layout
+
+\begin_layout Verbatim
+
+	Elimina o comenta las líneas 
+\end_layout
+
+\begin_layout Verbatim
+
+		LoadModule dav_module modules/mod_dav.so 
+\end_layout
+
+\begin_layout Verbatim
+
+		LoadModule dav_fs_module modules/mod_dav_fs.so 
+\end_layout
+
+\begin_layout Verbatim
+
+cd /etc/httpd/conf.d/ 
+\end_layout
+
+\begin_layout Verbatim
+
+	rm -f ssl.conf welcome.conf zgridsite.conf 
+\end_layout
+
+\begin_layout Verbatim
+
+	En zlcgdm-dav.conf 
+\end_layout
+
+\begin_layout Verbatim
+
+		SSLVerifyClient require => SSLVerifyClient optional 
+\end_layout
+
+\begin_layout Verbatim
+
+		NSSecureRedirect Off 
+\end_layout
+
+\begin_layout Verbatim
+
+		Añade Write to DiskFlags y NSFlags 
+\end_layout
+
+\begin_layout Verbatim
+
+		NSRedirectPort 8080 4443 (puertos expuestos al exterior) service httpd
+ restart
 \end_layout
 
 \begin_layout Standard
@@ -8491,12 +10782,17 @@ Configura el firewall para el puerto 443 y 80, o desactivalo (service iptables
 \end_layout
 
 \begin_layout Standard
-Deactivate selinux.
+Deactivate selinux
 \end_layout
 
 \begin_layout Verbatim
 
-setenforce 0 vim /etc/selinux/config SELINUX=permissive
+setenforce 0 
+\end_layout
+
+\begin_layout Verbatim
+
+vim /etc/selinux/config SELINUX=permissive
 \end_layout
 
 \begin_layout Standard
@@ -8534,6 +10830,13 @@ target "http://docs.fedoraproject.org/yum/"
 
 \begin_layout Chapter
 Developer manual
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Developer-manual"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -8584,7 +10887,7 @@ key "11_valencia_calvellido_2015"
 .
  Be aware that you should not touch the server and root parameters in the
  config.js file as they will be obtained automatically from the location
- (those lines on config.js will be commented out).
+ (those lines on config.js will be already set).
  
 \end_layout
 
@@ -9596,6 +11899,13 @@ And you are all set, happy coding!
 
 \begin_layout Chapter
 User manual
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:User-manual"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9716,6 +12026,16 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dpmbox_functionality"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/DPMbox-screenshot_comments.png
 	width 100text%
@@ -9731,16 +12051,6 @@ status open
 \begin_layout Plain Layout
 DPMbox main functionality
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dpmbox_functionality"
 
 \end_inset
 
@@ -9791,6 +12101,16 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:dpmbox_screenshot"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/howtouse_1.png
 	width 100text%
@@ -9806,16 +12126,6 @@ status open
 \begin_layout Plain Layout
 DPMbox screenshot
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:dpmbox_screenshot"
 
 \end_inset
 
@@ -9980,6 +12290,13 @@ options "splncs03"
 
 \begin_layout Addchap
 GNU Free Documentation License
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:GNU-Free-Documentation"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

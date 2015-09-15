@@ -11,6 +11,8 @@
 \usepackage{babel}
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{varioref}
+\usepackage{prettyref}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{textcomp}
@@ -255,7 +257,7 @@
     \bigskip
     \bigskip
     \bigskip
-    Fdo.: Juan Valencia Calvellido
+    Juan Valencia Calvellido
     
   \end{flushright}
 
@@ -270,7 +272,7 @@
 
 Copyright © 2015 Juan Valencia Calvellido.
 
-Revision number: 0.7
+Revision number: 0.8
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
@@ -284,14 +286,18 @@ Documentation License.
 
 \section*{Abstract}
 
-DPMbox is a project for a friendly web interface for Disk Pool Manager,
-the most widely adopted storage management system in the Worldwide
-LHC Computing Grid infrastructure.
+DPMbox is a project for a friendly web interface for Disk Pool Manager
+(DPM), the most widely adopted storage management system in the Worldwide
+LHC Computing Grid infrastructure. 
+
+It's been built getting advantage of the WebDAV protocol, recently
+implemented as a new DPM front-end by the CERN IT-SDC-ID section,
+and it uses JavaScript as its core development language.
 
 
 \section*{Tags}
 
-WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
+DPM Disk Pool Manager CERN LHC Grid WebDAV Interface JavaScript ECMAScript
 
 \frontmatter
 
@@ -306,7 +312,7 @@ WebDAV JavaScript ECMAScript Interface LHC DPM Disk Pool Manager CERN
 \mainmatter
 
 
-\chapter{Introduction\label{cap:introducci=0000F3n}}
+\chapter{Introduction\label{chap:Introduction}}
 
 Esta plantilla para el procesador de documentos \LyX{} (\url{http://www.lyx.org})
 está preparada para la redacción de una memoria de \ac{PFC} de las
@@ -449,7 +455,103 @@ vez que el flujo ha comenzado. & externas mientras el proceso esté activo.\tabul
 Para más información consúltese la ayuda de \LyX{} en el menú \emph{Ayuda}.
 
 
-\section{Motivation}
+\section{Motivation\label{sec:Motivation}}
+
+Relación con el CERN durante un año para el desarrollo del TFG. 
+
+Organización Europea para la Investigación Nuclear. Es el mayor laboratorio
+de investigación en física de partículas del mundo. Situado cerca
+de Ginebra, en la frontera franco-suiza. Se fundó en 1954, actualmente
+cuenta con 20 estados miembros y unos 2.500 trabajadores en plantilla.
+Aunque con personal eventual, estudiantes, universidades, etc. en
+el centro pueden concentrarse en torno a las 10.000 personas. 
+
+La WWW fue creada por Tim Berners-Lee cuando trabajaba aquí en 1990. 
+
+En los últimos tiempos se ha hecho bastante conocido mucho debido
+al LHC y al famoso Bosón de Higgs. Pero además de éste existen otros
+experimentos. No sólo para físicos, el CERN cuenta con una importante
+infraestructura informática debido al gran volumen de datos que se
+manejan. Ocho departamentos (PH, BE, TE, EN, HR, FP, GS, IT). Organización
+por Departamento/Grupo/Sección. Software libre por filosofía. 
+
+Dependiendo de la época, el LHC (Large Hadron Collider o Gran Colisionador
+de Hadrones) y sus experimentos en el CERN (Organización Europea para
+la Investigación Nuclear, con sede en Suiza) pueden llegar a generar
+en torno a 30 terabytes de datos al día. Todos estos datos han de
+ser almacenados para poder ser posteriormente procesados y analizados
+por distintos centros socios del CERN que necesitan acceder a ellos
+desde distintos puntos del planeta. Aquí es donde entra en escena
+el grid computing o computación en malla. La idea detrás de este concepto
+es tener un grid, una malla, como con la red eléctrica. Da igual de
+dónde venga la electricidad, lo que realmente importa es que esté
+disponible cuando te conectas. 
+
+La WLCG (Worldwide LHC Computing Grid) es una infraestructura de computación
+global cuya misión es proporcionar recursos informáticos para almacenar,
+distribuir y analizar los datos generados por el LHC, buscando que
+estén disponibles por igual para todos los socios, independientemente
+de su ubicación física. Una colaboración mundial entre los distintos
+experimentos del Gran Colisionador de Hadrones (ALICE, ATLAS, CMS
+y LHCb) y los centros de computación participantes administra y organiza
+sus recursos, siendo todo ello coordinado desde el CERN. 
+
+gLite es el middleware usado por los experimentos del LHC. Se define
+un SE como un elemento de almacenamiento: 
+\begin{itemize}
+\item dCache: Un punto de acceso, múltiples nodos. 
+\item CASTOR: Almacenamiento en cintas, con buffer de discos.
+\item DPM: Disk Pool Manager. Basado en disco, máximo 10TB por nodo. 
+\end{itemize}
+Disk Pool Manager (DPM) es un sistema de gestión de estructuras de
+almacenamiento en grid, centrado en sistemas basados en disco. Así,
+ofrece una forma sencilla de crear un nodo de almacenamiento en la
+red y es compatible con los protocolos pertinentes tanto para la gestión
+de archivos como para el acceso. Se centra en la capacidad de gestión
+(instalación y configuración sencillas, así como facilidad de mantenimiento),
+pero proporciona asimismo toda la funcionalidad necesaria para un
+sistema de almacenamiento en red/grid (soporte para múltiples nodos
+servidor, diferentes espacios de nombres o múltiples réplicas de archivos).
+Actualmente está instalado en 185 sitios diferentes, con más de 200
+instancias ejecutándose en estos momentos. 
+
+Uno de los objetivos durante los últimos años ha sido atraer al uso
+de Disk Pool Manager a los usuarios menos técnicos de la comunidad
+científica de la física de partículas. Por ello hace unos años, avanzando
+hacia la adopción de estándares que faciliten su utilización y buscando
+eliminar la necesidad de emplear herramientas especiales, se implementó
+una interfaz WebDAV (una extensión del protocolo HTTP). El objetivo
+era facilitar el acceso a la red de almacenamiento a través de programas
+comunes como navegadores web, o sencillos como clientes WebDAV. Sin
+embargo, esta implementación se basa en una interfaz primitiva de
+sólo lectura, que limita los casos de uso a la mera navegación de
+directorios y descarga de ficheros. Esto hace que siga siendo necesario
+usar herramientas especiales para ciertas operaciones, como puede
+ser la subida de ficheros. 
+
+\begin{figure}
+\begin{centering}
+
+\includegraphics[width=1\textwidth]{img/CERNexperiments}
+
+\end{centering}
+
+\protect\caption{DPM current usage}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+
+\includegraphics[width=1\textwidth]{img/DPMuse}
+
+\end{centering}
+
+\protect\caption{DPM current usage}
+
+
+\end{figure}
+
 
 
 \subsection{Introduction}
@@ -554,7 +656,7 @@ and now follows naturally with a more intuitive, easy to use and user
 appealing graphic user interface. 
 
 
-\section{Objectives}
+\section{Scope}
 
 This project aims to provide a web interface that can integrate with
 the rest of the software stack, providing an easy and intuitive tool
@@ -564,6 +666,23 @@ copycat, but to get advantage of the features that DPM grid system
 already offers (performance, different accessing protocols, data replication,
 etc.) adding the ease of use of the increasingly widespread cloud
 storage systems like Dropbox, OneDrive or Google Drive.
+
+As a web development the project DPMbox will use standard web technologies
+as HTML5 {[}7{]}, CSS3 {[}8{]} or JavaScript {[}9{]} and the final
+product must allow users to browse and access their data stored in
+DPM grid elements that provide the HTTP protocol in a manner that
+is straight forward for unexperienced users. With this said, the focus
+will be held mainly on usability and ease of use but other requirements
+must also be taken into consideration, including, obviously, security
+constraints. This interface will allow uploading new data to the directory
+a user is currently viewing, either via web formularies or in a drag-and-drop
+fashion. It should also add the ability to perform other sort of basic
+namespace management, as renaming or deleting. A read-only mode would
+be of interest as well as any other additional features that may be
+deemed of interest during development. 
+
+As the rest of the software involved in DPM the project will be developed
+under the Apache License version 2.0 {[}10{]}.
 
 Currently, when a user wants to retrieve a file, a catalog must be
 queried for different replicas of that file. Then, the client will
@@ -587,32 +706,33 @@ browsers.
 
 Some cuadros here.
 
-
-\section{Scope}
-
 The development has followed a minimum viable product approach. Starting
 creating an interface based on the WebDAV protocol and then integrating
 it with the DPM stack.
 
+
+\section{Objectives}
+
+El objetivo del proyecto DPMbox es ofrecer una interfaz realmente
+amigable, que concentre toda la funcionalidad posible en una misma
+herramienta y que pueda usarse con programas ya conocidos por los
+usuarios, como los navegadores web. Pero no se busca tener un sistema
+de almacenamiento en la nube más, sino aprovechar las características
+que ofrece Disk Pool Manager (rendimiento, diferentes protocolos de
+acceso, replicación de datos, etc.) añadiendo a ello la facilidad
+de uso del cada vez más generalizado almacenamiento en la nube, con
+ejemplos como Dropbox, OneDrive o Google Drive. 
+
 This can be then \textquotedblleft translated\textquotedblright{}
 to requirements (functional/non-functional).
 
-As a web development the project DPMbox will use standard web technologies
-as HTML5 {[}7{]}, CSS3 {[}8{]} or JavaScript {[}9{]} and the final
-product must allow users to browse and access their data stored in
-DPM grid elements that provide the HTTP protocol in a manner that
-is straight forward for unexperienced users. With this said, the focus
-will be held mainly on usability and ease of use but other requirements
-must also be taken into consideration, including, obviously, security
-constraints. This interface will allow uploading new data to the directory
-a user is currently viewing, either via web formularies or in a drag-and-drop
-fashion. It should also add the ability to perform other sort of basic
-namespace management, as renaming or deleting. A read-only mode would
-be of interest as well as any other additional features that may be
-deemed of interest during development. 
-
-As the rest of the software involved in DPM the project will be developed
-under the Apache License version 2.0 {[}10{]}.
+Al realizarse en colaboración con el CERN, el desarrollo se ha centrado
+en las funcionalidades requeridas por la sección IT-SDC-ID (Information
+Technology, Support for Distributed Computing, Information and Data),
+buscando la eficacia sobre la infraestructura de DPM. Pero uno de
+los objetivos futuros es que, tras cumplir con estos requisitos, DPMbox
+pueda adaptarse fácilmente posibilitando su uso de manera general
+con cualquier otro sistema que implemente el protocolo WebDAV. 
 
 
 \section{Glossary}
@@ -669,7 +789,7 @@ key certificates, certificate revocation lists, attribute certificates,
 and a certification path validation algorithm.
 \end{description}
 
-\section{Document organization}
+\section{Document organization\label{sec:Document-organization}}
 
 In this \emph{Introduction} you can read about the project motivation
 and some descriptions about how the CERN works, giving some context
@@ -678,7 +798,7 @@ so the reader can completely envision the current system and environment
 state. 
 
 After that comes the \emph{Schedule}, all the organization and planning
-stuff can be found here. 
+stuff can be found there. 
 
 Then, in the \emph{Project general description} you can read about
 what has been developed in a non-technical way, before getting into
@@ -695,14 +815,14 @@ found (\emph{Installation}, \emph{Development} and \emph{User}),
 and also the \emph{License} under which this document is published.
 
 
-\chapter{State of the art}
+\chapter{State of the art\label{chap:State-of-the}}
 
 Right now there is already web access implemented in the Disk Pool
 Manager infrastructure. This has been developed as part of the HTTP/WebDAV
 frontend and is built getting advantage of the Apache WebDAV modules,
-mod\_dav and mod\_gridsite. To get a deeper understanding of how a
-paper from his authors, Álvarez Ayllón et al., can be checked: Web
-enabled data management with DPM \& \ac{LFC}.
+mod\_dav and mod\_gridsite. To get a deeper understanding of how it
+works a paper from his authors, Álvarez Ayllón et al., can be checked:
+Web enabled data management with DPM \& \ac{LFC}~\cite{1742-6596-396-5-052006}.
 
 WebDAV is an extension to the HTTP protocol that aims to let users
 create, rename, modify and remove elements over the web. For this
@@ -785,19 +905,18 @@ tools used to access a web server in table \ref{tab:things}.
 \label{tab:things}
 
 \begin{tabular}{cccccccc}
-\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X.509} & \textbf{X.509 Proxies} & \textbf{Redirections} & \textbf{PUT}\tabularnewline
+\textbf{Client} & \textbf{OS} & \textbf{GUI} & \textbf{CLI} & \textbf{X.509} & \textbf{X.509 proxies} & \textbf{Redirections} & \textbf{PUT}\tabularnewline
 \hline 
 CURL & Any & No & Yes & Yes & Yes & Yes & Yes\tabularnewline
-Web browser & Any & Yes & No & Yes & Only Internet Explorer & Yes & No\tabularnewline[\doublerulesep]
+Web browser & Any & Yes & No & Yes & Only IE & Yes & No\tabularnewline[\doublerulesep]
 \end{tabular}
 \begin{description}
 \item [{OS}] Operating System 
 \item [{GUI}] Graphical User Interface 
 \item [{CLI}] Command Line Interface
 \item [{X.509}] Support for client certificates
-\item [{X.509}] Proxies Support for proxy certificates
-\item [{Follow~redirections}] Follows redirections when needed, as described
-in section 4 
+\item [{X.509~proxies}] Support for proxy certificates 
+\item [{Redirections}] Follows redirections when needed
 \item [{PUT}] Writing support 
 \end{description}
 \protect\caption{HTTP clients}
@@ -830,7 +949,7 @@ libneon & {*}nix & N/A & N/A & Yes & No & No\tabularnewline[\doublerulesep]
 
 
 
-\section{Security }
+\section{Security\label{sec:Security} }
 
 In terms of authentication information for authorization, Grids use
 X.509 \ac{AC}s and \ac{PMI}s~\cite{wiki:PMI} to assign privileges
@@ -852,21 +971,11 @@ as \code{\_group names\_}. Apart from this DPM's authorization follows
 the POSIX filesystem authorization semantics.
 
 
-\chapter{Schedule}
+\chapter{Schedule\label{chap:Schedule}}
 
-In this section we cover the schedule that the project has followed.
-Specifically we talk about the chosen development methodology, the
-stages the project has gone through and the personnel involved.
-
-
-\section{Organization}
-
-The project was developed entirely by the writer, student of \emph{Universidad de Cadiz},
-carrying out the work of analysis, design and development, and visual
-interface design and branding project. The project development has
-been reviewed and guided by supervisors Alejandro Álvarez Ayllón,
-current employee at CERN IT-SDC-ID section, and Manuel Palomo Duarte,
-PhD in \emph{Universidad de Cádiz}.
+In this section we cover the schedule the project has followed. Specifically
+we talk about the the personnel involved, the chosen development methodology,
+the stages the project has gone through and its planning.
 
 
 \section{Life cycle model}
@@ -878,33 +987,39 @@ model as a
 that may be organized into stages, which also acts as a common reference
 for communication and understanding}\textquotedblright{}
 \end{quote}
-In our case, we can see in Figure 2.1, we used a methodology structured
-and agile development, ie iterative and incremental development. Therefore,
-the life cycle is summarized in a set of iterations. The phases of
+
+
+The chosen development methodology for DPMbox was the iterative and
+incremental model, an structured and agile software development methodology. 
+
+The life cycle is summarized in a set of iterations. The phases of
 the life cycle are analysis, design, implementation, testing, operation
-and maintenance. After performing the analysis (get requirements specification)
-and application design (we define the system architecture), we begin
-implementing or coding system, obtaining a very limited initial release.
-This version will be tested and in the case of positive results, go
-back to the implementation phase where an expanded version of the
-above will be achieved. This step has to be repeated as many times
-as necessary until the final version for the customer's use, thus
-moving to the exploitation phase. If the tests do not give the expected
-results, if any, we must return to the analysis stage to find out
-the problems relating to this version and redirect it. Finally, during
-system operation errors or improvements necessary for this can occur.
-It will then move on to the maintenance phase, where these incidents
-be drafted before moving back to the analysis phase. Thus, we can
-say that our model is incremental and iterative.
+and maintenance. After performing the analysis (getting requirements
+specification) and application design (defining the system's architecture),
+we start to code already, obtaining a very limited initial release.
+This version will be tested and in case of positive results, we go
+back to the implementation phase where this initial version will be
+expanded, adding new features or improving the existing ones. This
+step has to be repeated as many times as necessary until the expected
+final version has been reached, when the project moves to the exploitation
+phase. If the tests don't give the expected results, we must return
+to the analysis stage to find out the problems relating to this version
+and redirect it. Finally, during exploitation phase, errors or mandatory
+improvements could be expected. Then it will be time to move on to
+the maintenance phase, where these incidents will be addressed before
+moving back to the analysis phase. 
 
-The software development model used was iterative and incremental.
-With this model of development have created product versions that
-have slowly grown in performance until a final product stage is reached. 
-
-Here are the features that have each of these versions are described.
+After summarizing this process, we can say that our model is incremental
+and iterative, thereby we have created product versions that have
+slowly grown in features and performance until a final product stage
+has been reached. 
 
 
 \section{Stages}
+
+Here you can read a small brief about the features that particularize
+each of the stages that DPMbox has gone through. Also you can get
+the big picture at a glance having a look at the Gantt chart, figure~\vref{fig:gantt}.
 
 
 \subsection{First}
@@ -939,14 +1054,72 @@ stack.
 
 Testing. On site deployment.
 
+\begin{figure}
+\begin{centering}
 
-\section{Gantt chart}
+\label{fig:gantt}
 
-Su peaso de diagrama aquí.
+\includegraphics[angle=90,height=1\textheight]{img/GanttChart}
+
+\end{centering}
+
+\protect\caption{Gantt chart}
+\end{figure}
+
+
+
+\section{Organization}
+
+The project has been developed entirely by the writer, student of
+\emph{Universidad de Cadiz}, carrying out the work of analysis, design
+and development, including also visual interface design. The project
+development has been reviewed and guided by supervisors Alejandro
+Álvarez Ayllón, current employee at CERN IT-SDC-ID section, and Manuel
+Palomo Duarte, PhD Computer Science in \emph{Universidad de Cádiz}.
+
+
+\section{Non-Human resources}
+
+As a free software project DPMbox has been developed using a lot of
+open source and free technologies: Git, jQuery, w2ui... You can read
+more about the software and tools employed in the sections~\ref{sub:Version-control},~\ref{sub:Program-languages-and}
+and~\prettyref{sub:Tools}. What is important to bring out in this
+section is that these tools are not only free, as in speech, but also
+free as in beer.
+
+Apache local server, including its WebDAV modules. In the hardware
+section we have:
+\begin{itemize}
+\item HP Pavilion DV6 3040ES with the following technical specification:
+
+\begin{itemize}
+\item Intel Core i7 Q720 Processor
+\item 4GB Memory
+\item 128GB SSD Crucial M4
+\item GNU/Linux Ubuntu 10.04 and GNU/Linux Mint 17 as OS
+\end{itemize}
+\end{itemize}
+To do some testing outside the local scope an external cloud server
+has been used:
+\begin{itemize}
+\item Digital Ocean SSD droplet with these characteristics:
+
+\begin{itemize}
+\item 1 Core Processor 
+\item 512MB Memory 
+\item 20GB SSD Disk 
+\item 1TB Transfer 
+\item GNU/Linux Ubuntu 14.04 32bits
+\end{itemize}
+\end{itemize}
+Also, in different development stages DPMbox prototypes have been
+deployed in DPM testing instances in CERN servers.
 
 
 \section{Costs}
-
+\begin{itemize}
+\item \$5 / mo (through GitHub Education developer pack~\cite{github_education_2015})
+\end{itemize}
 Although the organization has the infrastructure mentioned in the
 previous section, for this project only need a single PC computer
 with GNU / Linux and free internet. The tools used have free license
@@ -971,7 +1144,7 @@ Total estimated workers = 7,75 workers \texttimes{} 21.286,53¤ and
 Living is a problem because everything dies.
 
 
-\chapter{Project general description}
+\chapter{Project general description\label{chap:Project-general-description}}
 
 
 \section{Product outlook}
@@ -986,6 +1159,10 @@ methods like PROPFIND or MKCOL and use the information provided by
 them in an HTML document through JavaScript and jQuery. That API uses
 ajax calls to perform the HTTP/WebDAV requests and receive the data
 in an \ac{XHR} object. 
+
+Is possible to use it as a GUI for WebDAV servers...
+
+DPM blabalbla
 
 
 \subsection{Environment}
@@ -1005,6 +1182,8 @@ As said by Donal Norman~\cite{Norman02}:
 manual\textemdash even a one-word manual\textemdash then it is a failure,
 poorly designed. .}
 \end{quote}
+Clean interface. 
+
 The user interface is built upon w2ui, a very useful JavaScript UI
 library that offers practically all that was needed for DPMbox. 
 
@@ -1060,215 +1239,10 @@ user is a non-high level technical user but acquainted at file browser
 interfaces and even cloud storing services.
 
 
-\section{General restrictions}
+\chapter{Project development\label{chap:Project-development}}
 
 
-\subsection{Version control}
-
-Git has been used, getting advantage of the GitHub platform. Git (/\textscriptg \textsci t/{[}4{]})
-is a distributed revision control system with an emphasis on speed,{[}5{]}
-data integrity,{[}6{]} and support for distributed, non-linear workflows.{[}7{]}
-Git was initially designed and developed by Linus Torvalds for Linux
-kernel development in 2005, and has since become one of the most widely
-adopted version control systems for software development.{[}8{]}
-
-
-\subsection{Program languages and technologies}
-
-
-\subsubsection{HTML }
-
-HTML (Hyper Text Markup Language) is the text markup language normally
-used in World Wide Web (WWW). It was created by Tim Berners-Lee in
-1986 from two existing tools: the concept of hypertext and SGML. HTML
-allows you to define both the structure and location of the items
-displayed on a Web page and the relations between the different components
-of a Web site by using hyperlinks. The interpretation of HTML documents
-is performed by Web browsers such as Mozilla Firefox or Google Chrome
-and others. The interpretation may make the final presentation vary
-in small details. Therefore the development of HTML is adjusted to
-the maximum to the standards set by the W3C~\cite{2_w3.org_2015}.
-
-
-\subsubsection{CSS}
-
-The term CSS, which stands for Cascading Style Sheets, refers to the
-formal language used to define the presentation of structured documents
-written in HTML, XML and XHTML by extension. The World Wide Web Consortium
-(W3C) is the agency responsible for developing the specification of
-style sheets that serve as a standard for browsers. The objective
-of CSS is separate the structure of a Web document from its visual
-representation~\cite{3_w3.org_2015}.
-
-CSS from the framework used, adapted accordingly.
-
-
-\subsubsection{JavaScript}
-
-JavaScript is a high level, dynamic, untyped, and interpreted programming
-language. It has been standardized in the ECMAScript language specification~.
-Alongside HTML and CSS, it is one of the three essential technologies
-of World Wide Web content production; the majority of websites employ
-it and it is supported by all modern web browsers without plug-ins.
-JavaScript is prototype-based with first-class functions, making it
-a multi-paradigm language, supporting object-oriented, imperative,
-and functional programming styles. It has an API for working with
-text, arrays, dates and regular expressions, but does not include
-any I/O, such as networking, storage or graphics facilities, relying
-for these upon the host environment in which it is embedded~\cite{4_mozilla_developer_network_2015}.
-
-ECMAScript 6 includes interesting syntax and structural improvements
-but it was in process of approval while DPMbox was being developed,
-thus the standard followed has been ECMAScript 5.1~\cite{EcmaScript}.
-
-
-\subsubsection{jQuery}
-
-jQuery is a cross-platform JavaScript library designed to simplify
-the client-side scripting of HTML. jQuery is the most popular JavaScript
-library in use today, with installation on 65\% of the top 10 million
-highest-trafficked sites on the Web.{[}3{]}{[}4{]}{[}5{]} jQuery is
-free, open-source software licensed under the MIT License.
-
-
-\subsubsection{w2ui}
-
-W2UI is a small JavaScript UI library with a complete set of widgets
-that covers a wide range of interface design elements: layout, grid,
-sidebar, toolbar, tabs, fields, popup and other utilities.
-
-
-\subsubsection{XML}
-
-XML stands for eXtensible Markup Language, is a markup language developed
-by the World Wide Web Consortium (W3C) used to store data in a human
-readable form. It is proposed as a standard for exchanging structured
-information between different platforms. Following this recommendation
-the Redmine APIs and forges Assembla offer their information in XML
-format, so Abreforjas necessarily have to deal with this technology.
-On the other hand, Abreforjas also indirectly generate XML documents,
-as the information extracted from the forges will be published in
-RDF format with the help of D2R-Server.
-
-
-\subsubsection{JSON}
-
-JSON, (canonically pronounced /\textprimstress d\textyogh e\textsci s\textschwa n/
-jay-s\textschwa n;{[}1{]} sometimes JavaScript Object Notation), is
-an open standard format that uses human-readable text to transmit
-data objects consisting of attribute\textendash value pairs. It is
-the primary data format used for asynchronous browser/server communication
-(AJAJ), largely replacing XML (used by AJAX).
-
-
-\subsection{Tools}
-
-
-\subsubsection{Apache}
-
-The Apache HTTP Server, colloquially called Apache (/\textschwa \textprimstress pæt\textesh i\textlengthmark /
-\textschwa -pa-chee), is the world's most widely used web server software.
-Originally based on the NCSA HTTPd server, development of Apache began
-in early 1995 after work on the NCSA code stalled. Apache played a
-key role in the initial growth of the World Wide Web,{[}4{]} quickly
-overtaking NCSA HTTPd as the dominant HTTP server, and has remained
-most popular since April 1996. In 2009, it became the first web server
-software to serve more than 100 million websites.{[}5{]}
-
-
-\subsubsection{Geany}
-
-Geany (IPA:\textyogh e\textlengthmark ni\textlengthmark ) is a lightweight
-cross-platform GUI based text editor{[}2{]} using Scintilla and GTK+,
-including basic Integrated Development Environment (IDE) features.
-It is designed to have short load times, with limited dependency on
-separate packages or external libraries. It is available for a wide
-range of operating systems, such as BSD, Linux, Mac OS X,{[}3{]} Solaris
-and Windows. Among the supported programming languages and markup
-languages are C, C++, C\#, Java, JavaScript, PHP, HTML, \LaTeX{},
-CSS, Python, Perl, Ruby, Pascal, Haskell, Erlang, Vala and many others.{[}4{]}
-
-
-\subsubsection{SmartGit}
-
-SmartGit is a Git client with support for GitHub Pull Requests+Comments,
-SVN and Mercurial.
-
-It runs on Mac OS X, Windows and Linux. 
-
-
-\subsubsection{Firefox Developer Edition}
-
-Firefox Developer Edition is a version of Firefox tailored for developers,
-featuring the latest Firefox features and experimental developer tools.
-Firefox Developer Edition provides easy accessibility for a wide array
-of developer tools which help in making debugging easy and help in
-faster and more professional development. Tools include Valence, WebIDE,
-Responsive Design Mode \textendash{} see how your website or Web app
-will look on different screen sizes without changing the size of your
-browser window. Page Inspector\textendash{} examine the HTML and CSS
-of any Web page and easily modify the structure and layout of a page.
-Web Console \textendash{} see logged information associated with a
-Web page and use Web Console and interact with a Web page using JavaScript.
-JavaScript Debugger \textendash{} step through JavaScript code and
-examine or modify its state to help track down bugs. Network Monitor
-\textendash{} see all the network requests your browser makes, how
-long each request takes and details of each request. Style Editor
-\textendash{} view and edit CSS styles associated with a Web page,
-create new ones and apply existing CSS stylesheets to any page. Web
-Audio Editor \textendash{} inspect and interact with Web Audio API
-in real time to ensure that all audio nodes are connected in the way
-you expect. 
-
-
-\subsubsection{Firebug}
-
-Firebug is a free and open-source web browser extension for Mozilla
-Firefox that facilitates the live debugging, editing, and monitoring
-of any website's CSS, HTML, DOM, XHR, and JavaScript.
-
-Firebug is licensed under the BSD license{[}3{]} and was initially
-written in January 2006 by Joe Hewitt, one of the original Firefox
-creators.{[}6{]} The Firebug Working Group oversees the open source
-development and extension of Firebug. It has two major implementations:
-an extension for Mozilla Firefox and a bookmarklet implementation
-called Firebug Lite{[}7{]} which can be used with Google Chrome.{[}8{]}
-
-In addition to debugging web pages, Firebug is a useful tool for web
-security testing{[}9{]} and web page performance analysis.{[}10{]}
-
-
-\subsubsection{JSHint}
-
-JSHint is a static code analysis tool used in software development
-for checking if JavaScript source code complies with coding rules.{[}1{]}
-It was forked from Douglas Crockford's JSLint project, as it was felt
-that the original did not allow enough customization options. There
-is also an internet version available at its official website in which
-users can paste code to run the application online.{[}1{]} A command-line
-version of JSHint, distributed as a Node.JS module, makes it possible
-to automate one's \textquotedbl{}linting\textquotedbl{} process and
-integrate JSHint into the website's development workflow.{[}2{]}
-
-Used through Geany and Firefox Developer Edition.
-
-
-\subsection{Operating systems and hardware}
-
-To develop: GNU/Linux Ubuntu 10.04, GNU/Linux Mint 17.
-\begin{itemize}
-\item HP Pavilion DV6 3040ES with the following technical specification:
-
-\begin{itemize}
-\item Processor: Intel Core i7 Q720 
-\item Memory: 4GB RAM 
-\end{itemize}
-\end{itemize}
-
-\chapter{Project development}
-
-
-\section{Objectives}
+\section{System objectives}
 
 \begin{table}[h]
 \begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
@@ -1465,52 +1439,18 @@ Description & The system must be able to access to a WebDAV server...\tabularnew
 
 
 
-\subsection{Business rules}
-
-CERN network acces has been granted... 
-
-A business rule is a rule that defines or constrains some aspect of
-business and always resolves to either true or false. Business rules
-are intended to assert business structure or to control or influence
-the behavior of the business.{[}1{]} Business rules describe the operations,
-definitions and constraints that apply to an organization. Business
-rules can apply to people, processes, corporate behavior and computing
-systems in an organization, and are put in place to help the organization
-achieve its goals.
-
-For example a business rule might state that no credit check is to
-be performed on return customers. Other examples of business rules
-include requiring a rental agent to disallow a rental tenant if their
-credit rating is too low, or requiring company agents to use a list
-of preferred suppliers and supply schedules.
-
-While a business rule may be informal or even unwritten, documenting
-the rules clearly and making sure that they don't conflict is a valuable
-activity.{[}citation needed{]} When carefully managed, rules can be
-used to help the organization to better achieve goals, remove obstacles
-to market growth, reduce costly mistakes, improve communication, comply
-with legal requirements, and increase customer loyalty.
-
-
-\subsection{Interface}
-
-Cambiar lo de aquí abajo. Lo que realmente va a aquí son requirements
-para la interfaz. Standards. Accesibility. Usability... 
-
-
 \subsection{Non-functional}
 
-Security. Fiability. Other systems communications. Extensibility.
-Performance. Scalability. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 
-\subsubsection{Security}
+\subsubsection{Performance}
 
 \begin{table}[H]
 \begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
@@ -1526,7 +1466,7 @@ Description & The system must be able to access to a WebDAV server...\tabularnew
 
 
 
-\subsubsection{Fiability}
+\subsubsection{Security}
 
 \begin{table}[H]
 \begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
@@ -1542,7 +1482,7 @@ Description & The system must be able to access to a WebDAV server...\tabularnew
 
 
 
-\subsubsection{Usability and accesibility}
+\subsubsection{Reliability}
 
 \begin{table}[H]
 \begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
@@ -1558,7 +1498,7 @@ Description & The system must be able to access to a WebDAV server...\tabularnew
 
 
 
-\subsubsection{Manteinability}
+\subsubsection{Maintainability}
 
 \begin{table}[H]
 \begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
@@ -1570,6 +1510,44 @@ Description & The system must be able to access to a WebDAV server...\tabularnew
 \end{tabular}
 
 \protect\caption{NRQ-4}
+\end{table}
+
+
+
+\subsubsection{Extensibility}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-3}
+\end{table}
+
+
+
+\subsection{Interface}
+
+Cambiar lo de aquí abajo. Lo que realmente va a aquí son requirements
+para la interfaz. Standards.
+
+
+\subsubsection{Usability and accessibility}
+
+\begin{table}[H]
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Access a WebDAV server\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+\protect\caption{NRQ-5}
 \end{table}
 
 
@@ -1602,24 +1580,318 @@ requirements.
 
 \subsection{Use case model}
 
+Para describir los distintos comportamientos que tendrá el sistema,
+usaremos el lenguaje de modelado de sistemas UML; que representa los
+requisitos funcionales del sistema, centrando en que hace y no cómo
+lo hace. 
+
 
 \subsubsection{Actors}
 
+Here you can find the different roles that participate in the system,
+figure~\ref{fig:actors}
+
 \begin{figure}[h]
 \begin{centering}
+
+\label{fig:actors}
 
 \includegraphics[scale=0.4]{img/Actors}
 
 \end{centering}
 
 \protect\caption{Actors}
+\end{figure}
+
+
+
+\subsubsection{User}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Users\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Authorized user}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Authorized user\tabularnewline
+\hline 
+Description & The system must be able to access to a WebDAV server...\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Use cases}
+
+
+\subsubsection{Read a collection}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Read a collection\tabularnewline
+\hline 
+Actors & User\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item A user clicks on a specific directory.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \begin{description}
+\item [{2a}] The user is not authorized to read that collection.\end{description}
+\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Create a collection}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Create a collection\tabularnewline
+\hline 
+Actors & Authorized user\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item An authorized user clicks on new directory button.
+\item The authorized user writes a collection name.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \begin{description}
+\item [{3a}] The user.
+\item [{3b}] The name couldn't be used.\end{description}
+\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Delete a collection}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Delete a collection\tabularnewline
+\hline 
+Actors & Authorized user\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item An authorized user clicks on delete directory button.
+\item The authorized user confirms the deletion.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \begin{description}
+\item [{3a}] The collection couldn't be created.\end{description}
+\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Download a file}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Download a file\tabularnewline
+\hline 
+Actors & User\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item A user clicks on download button.
+\item The user selects the location to save the file.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \begin{description}
+\item [{3a}] The user is not authorized.\end{description}
+\tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Upload a file}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Upload a file\tabularnewline
+\hline 
+Actors & Authorized user\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item An authorized user clicks on upload button.
+\item The user selects the file(s) to upload.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsubsection{Delete a file}
+
+\begin{tabular}{|>{\centering}p{0.15\textwidth}|>{\raggedright}p{0.8\textwidth}|}
+\hline 
+ & Delete a file\tabularnewline
+\hline 
+Actors & Authorized user\tabularnewline
+\hline 
+Description & \tabularnewline
+\hline 
+Main scenario & \begin{enumerate}
+\item An authorized user clicks on delete button.
+\item The user confirms the deletion.
+\item DPM server checks and accepts the petition.\end{enumerate}
+\tabularnewline
+\hline 
+Alternative flow & \tabularnewline
+\hline 
+\end{tabular}
+
+
+\subsection{Domain data conceptual model}
+
+Information requirements -> UML diagram. ¿?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+files and collections...
+
+
+\subsection{Sequence diagram}
+
+Not all possible sequence diagrams are shown (different use cases
+and scenarios), we present a small sample that may be representative
+of the the whole system:
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:seqcreatecoll}
+
+\includegraphics[width=1\textwidth]{img/SeqDiagram_CreateCollection}
+
+\end{centering}
+
+\protect\caption{Sequence diagram, create collection}
 
 
 \end{figure}
 
 
+\begin{figure}
+\begin{centering}
 
-\subsubsection{Use cases}
+\label{fig:seqdnlfile}
+
+\includegraphics[width=1\textwidth]{img/SeqDiagram_DownloadFile}
+
+\end{centering}
+
+\protect\caption{Sequence diagram, download file}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:seqdeletefile}
+
+\includegraphics[width=1\textwidth]{img/SeqDiagram_DeleteFile}
+
+\end{centering}
+
+\protect\caption{Sequence diagram, delete file}
+\end{figure}
+
+
+
+\subsection{User interface model}
+
+In this section we offer an approximation to the appearance and navigation
+in the user interface.
+
+
+\subsubsection{Navigation}
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:navmodel}
+
+\includegraphics[width=1\textwidth]{img/NavigationDiagram}
+
+\end{centering}
+
+\protect\caption{Navigation model}
+\end{figure}
+
+
+
+\subsubsection{Prototypes}
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:intschememain}
+
+\includegraphics[width=1\textwidth]{img/design_scheme}
+
+\end{centering}
+
+\protect\caption{Interface design, main scheme}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:intschemeaction}
+
+\includegraphics[width=1\textwidth]{img/design_action}
+
+\end{centering}
+
+\protect\caption{Interface design, action required}
+\end{figure}
+
+
+\begin{figure}
+\begin{centering}
+
+\label{fig:intschemeerror}
+
+\includegraphics[width=1\textwidth]{img/design_error}
+
+\end{centering}
+
+\protect\caption{Interface design, error}
+\end{figure}
+
+
+
+\section{System design~\label{sec:System-design}}
 
 Hi! Today I\textquoteright d like to show you how the jQuery.dpm library
 works and how it communicates with the user interface.
@@ -1748,65 +2020,7 @@ function refreshContent(directory_route){
 And that\textquoteright s all. I hope that with this post you have
 now a clear vision of how DPMbox communicates with a DPM server.
 
-
-\subsection{Domain data conceptual model}
-
-Information requirements -> UML diagram. ¿?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-
-\subsection{Sequence diagram}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-
-\subsection{User interface model}
-
-In this section we offer an approximation to the appearance and navigation
-in the user interface.
-
-
-\subsubsection{Navigation}
-
-
-\subsubsection{Prototypes}
-
-\begin{figure}
-\includegraphics[width=1\textwidth]{img/design_scheme}
-
-\protect\caption{Interface design, main scheme}
-\end{figure}
-
-
-\begin{figure}
-\includegraphics[width=1\textwidth]{img/design_action}
-
-\protect\caption{Interface design, action required}
-\end{figure}
-
-
-\begin{figure}
-\includegraphics[width=1\textwidth]{img/design_error}
-
-\protect\caption{Interface design, error}
-\end{figure}
-
-
-
-\section{System design~\label{sec:System-design}}
+---------------------------------------------------------------
 
 Hello there! I\textquoteright ll write today a brief review of how
 DPMbox manage the file uploads, and how we solved a small problem
@@ -1914,10 +2128,262 @@ Pipes and filters? MVC?
 
 An esquema con las cajas y eso.
 
+\begin{figure}
+\begin{centering}
+
+\label{fig:logicscheme}
+
+\includegraphics[width=1\textwidth]{img/DPMbox_globalscheme}
+
+\end{centering}
+
+\protect\caption{Logic scheme}
+
+
+\end{figure}
+
+
 
 \subsection{Physical arquitecture}
 
 A lot to explain about how DPM works.
+
+
+\section{General restrictions}
+
+
+\subsection{Business rules}
+
+CERN network acces has been granted... 
+
+A business rule is a rule that defines or constrains some aspect of
+business and always resolves to either true or false. Business rules
+are intended to assert business structure or to control or influence
+the behavior of the business.{[}1{]} Business rules describe the operations,
+definitions and constraints that apply to an organization. Business
+rules can apply to people, processes, corporate behavior and computing
+systems in an organization, and are put in place to help the organization
+achieve its goals.
+
+For example a business rule might state that no credit check is to
+be performed on return customers. Other examples of business rules
+include requiring a rental agent to disallow a rental tenant if their
+credit rating is too low, or requiring company agents to use a list
+of preferred suppliers and supply schedules.
+
+While a business rule may be informal or even unwritten, documenting
+the rules clearly and making sure that they don't conflict is a valuable
+activity.{[}citation needed{]} When carefully managed, rules can be
+used to help the organization to better achieve goals, remove obstacles
+to market growth, reduce costly mistakes, improve communication, comply
+with legal requirements, and increase customer loyalty.
+
+
+\subsection{Version control\label{sub:Version-control}}
+
+Git has been used, getting advantage of the GitHub platform. Git (/\textscriptg \textsci t/{[}4{]})
+is a distributed revision control system with an emphasis on speed,{[}5{]}
+data integrity,{[}6{]} and support for distributed, non-linear workflows.{[}7{]}
+Git was initially designed and developed by Linus Torvalds for Linux
+kernel development in 2005, and has since become one of the most widely
+adopted version control systems for software development.{[}8{]}
+
+
+\subsection{Program languages and technologies\label{sub:Program-languages-and}}
+
+
+\subsubsection{HTML }
+
+HTML (Hyper Text Markup Language) is the text markup language normally
+used in World Wide Web (WWW). It was created by Tim Berners-Lee in
+1986 from two existing tools: the concept of hypertext and SGML. HTML
+allows you to define both the structure and location of the items
+displayed on a Web page and the relations between the different components
+of a Web site by using hyperlinks. The interpretation of HTML documents
+is performed by Web browsers such as Mozilla Firefox or Google Chrome
+and others. The interpretation may make the final presentation vary
+in small details. Therefore the development of HTML is adjusted to
+the maximum to the standards set by the W3C~\cite{2_w3.org_2015}.
+
+
+\subsubsection{CSS}
+
+The term CSS, which stands for Cascading Style Sheets, refers to the
+formal language used to define the presentation of structured documents
+written in HTML, XML and XHTML by extension. The World Wide Web Consortium
+(W3C) is the agency responsible for developing the specification of
+style sheets that serve as a standard for browsers. The objective
+of CSS is separate the structure of a Web document from its visual
+representation~\cite{3_w3.org_2015}.
+
+CSS from the framework used, adapted accordingly.
+
+
+\subsubsection{JavaScript}
+
+JavaScript is a high level, dynamic, untyped, and interpreted programming
+language. It has been standardized in the ECMAScript language specification~.
+Alongside HTML and CSS, it is one of the three essential technologies
+of World Wide Web content production; the majority of websites employ
+it and it is supported by all modern web browsers without plug-ins.
+JavaScript is prototype-based with first-class functions, making it
+a multi-paradigm language, supporting object-oriented, imperative,
+and functional programming styles. It has an API for working with
+text, arrays, dates and regular expressions, but does not include
+any I/O, such as networking, storage or graphics facilities, relying
+for these upon the host environment in which it is embedded~\cite{4_mozilla_developer_network_2015}.
+
+ECMAScript 6 includes interesting syntax and structural improvements
+but it was in process of approval while DPMbox was being developed,
+thus the standard followed has been ECMAScript 5.1~\cite{EcmaScript}.
+
+
+\subsubsection{jQuery}
+
+jQuery is a cross-platform JavaScript library designed to simplify
+the client-side scripting of HTML. jQuery is the most popular JavaScript
+library in use today, with installation on 65\% of the top 10 million
+highest-trafficked sites on the Web.{[}3{]}{[}4{]}{[}5{]} jQuery is
+free, open-source software licensed under the MIT License.
+
+Version used.
+
+
+\subsubsection{w2ui}
+
+W2UI is a small JavaScript UI library with a complete set of widgets
+that covers a wide range of interface design elements: layout, grid,
+sidebar, toolbar, tabs, fields, popup and other utilities.
+
+Version used.
+
+
+\subsubsection{XML}
+
+XML stands for eXtensible Markup Language, is a markup language developed
+by the World Wide Web Consortium (W3C) used to store data in a human
+readable form. It is proposed as a standard for exchanging structured
+information between different platforms. Following this recommendation
+the Redmine APIs and forges Assembla offer their information in XML
+format, so Abreforjas necessarily have to deal with this technology.
+On the other hand, Abreforjas also indirectly generate XML documents,
+as the information extracted from the forges will be published in
+RDF format with the help of D2R-Server.
+
+
+\subsubsection{JSON}
+
+JSON, (canonically pronounced /\textprimstress d\textyogh e\textsci s\textschwa n/
+jay-s\textschwa n;{[}1{]} sometimes JavaScript Object Notation), is
+an open standard format that uses human-readable text to transmit
+data objects consisting of attribute\textendash value pairs. It is
+the primary data format used for asynchronous browser/server communication
+(AJAJ), largely replacing XML (used by AJAX).
+
+
+\subsection{Tools \label{sub:Tools}}
+
+As stated on section 3543437436473647, GNU/Linux Ubuntu 10.04, GNU/Linux
+Mint 17 were the OS where DPMbox has been developed.
+
+
+\subsubsection{Apache}
+
+The Apache HTTP Server, colloquially called Apache (/\textschwa \textprimstress pæt\textesh i\textlengthmark /
+\textschwa -pa-chee), is the world's most widely used web server software.
+Originally based on the NCSA HTTPd server, development of Apache began
+in early 1995 after work on the NCSA code stalled. Apache played a
+key role in the initial growth of the World Wide Web,{[}4{]} quickly
+overtaking NCSA HTTPd as the dominant HTTP server, and has remained
+most popular since April 1996. In 2009, it became the first web server
+software to serve more than 100 million websites.{[}5{]}
+
+Version used.
+
+
+\subsubsection{Geany}
+
+Geany (IPA:\textyogh e\textlengthmark ni\textlengthmark ) is a lightweight
+cross-platform GUI based text editor{[}2{]} using Scintilla and GTK+,
+including basic Integrated Development Environment (IDE) features.
+It is designed to have short load times, with limited dependency on
+separate packages or external libraries. It is available for a wide
+range of operating systems, such as BSD, Linux, Mac OS X,{[}3{]} Solaris
+and Windows. Among the supported programming languages and markup
+languages are C, C++, C\#, Java, JavaScript, PHP, HTML, \LaTeX{},
+CSS, Python, Perl, Ruby, Pascal, Haskell, Erlang, Vala and many others.{[}4{]}
+
+Version used.
+
+
+\subsubsection{SmartGit}
+
+SmartGit is a Git client with support for GitHub Pull Requests+Comments,
+SVN and Mercurial.
+
+It runs on Mac OS X, Windows and Linux. 
+
+Version used.
+
+
+\subsubsection{Firefox Developer Edition}
+
+Firefox Developer Edition is a version of Firefox tailored for developers,
+featuring the latest Firefox features and experimental developer tools.
+Firefox Developer Edition provides easy accessibility for a wide array
+of developer tools which help in making debugging easy and help in
+faster and more professional development. Tools include Valence, WebIDE,
+Responsive Design Mode \textendash{} see how your website or Web app
+will look on different screen sizes without changing the size of your
+browser window. Page Inspector\textendash{} examine the HTML and CSS
+of any Web page and easily modify the structure and layout of a page.
+Web Console \textendash{} see logged information associated with a
+Web page and use Web Console and interact with a Web page using JavaScript.
+JavaScript Debugger \textendash{} step through JavaScript code and
+examine or modify its state to help track down bugs. Network Monitor
+\textendash{} see all the network requests your browser makes, how
+long each request takes and details of each request. Style Editor
+\textendash{} view and edit CSS styles associated with a Web page,
+create new ones and apply existing CSS stylesheets to any page. Web
+Audio Editor \textendash{} inspect and interact with Web Audio API
+in real time to ensure that all audio nodes are connected in the way
+you expect. 
+
+Version used.
+
+
+\subsubsection{Firebug}
+
+Firebug is a free and open-source web browser extension for Mozilla
+Firefox that facilitates the live debugging, editing, and monitoring
+of any website's CSS, HTML, DOM, XHR, and JavaScript.
+
+Firebug is licensed under the BSD license{[}3{]} and was initially
+written in January 2006 by Joe Hewitt, one of the original Firefox
+creators.{[}6{]} The Firebug Working Group oversees the open source
+development and extension of Firebug. It has two major implementations:
+an extension for Mozilla Firefox and a bookmarklet implementation
+called Firebug Lite{[}7{]} which can be used with Google Chrome.{[}8{]}
+
+In addition to debugging web pages, Firebug is a useful tool for web
+security testing{[}9{]} and web page performance analysis.{[}10{]}
+
+Version used.
+
+
+\subsubsection{JSHint}
+
+JSHint is a static code analysis tool used in software development
+for checking if JavaScript source code complies with coding rules.{[}1{]}
+It was forked from Douglas Crockford's JSLint project, as it was felt
+that the original did not allow enough customization options. There
+is also an internet version available at its official website in which
+users can paste code to run the application online.{[}1{]} A command-line
+version of JSHint, distributed as a Node.JS module, makes it possible
+to automate one's \textquotedbl{}linting\textquotedbl{} process and
+integrate JSHint into the website's development workflow.{[}2{]}
+
+Used through Geany and Firefox Developer Edition. Versions used.
 
 
 \section{Implementation}
@@ -2214,7 +2680,7 @@ en lugar de buscar y detectar las correspondientes dependencias.
 Same tests as before but over production.
 
 
-\chapter{Conclusions and future work}
+\chapter{Conclusions and future work\label{chap:Conclusions-and-future}}
 
 In this work we have shortly described the contributions that we have
 given towards being able to use the HTTP protocol in the context of
@@ -2226,9 +2692,15 @@ performance distributed computing that modern HEP experiments need.
 
 \section{Conclusions}
 
-Summary. You learn a lot seeing an external user with your product.
+Summary. You learn a lot watching someone external using with your
+product.
 
 The work on DPMbox has been really exciting. 
+
+Our current implementation is ready for production, and it is already
+available in EPEL 5 and 6, where we aim to have frequent updates with
+fixes and new functionalities, while keeping a high level of interaction
+with our users. 
 
 Objetivos alcanzados y lecciones aprendidas.
 
@@ -2247,7 +2719,7 @@ future development... Future functionality can be varied:
 \item Etc... 
 \end{itemize}
 
-\chapter{Acknowledgements}
+\chapter{Acknowledgements\label{chap:Acknowledgements}}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -2277,13 +2749,13 @@ Family.
 
 Image: \href{file:http://linuxsoft.cern.ch/cern/slc6X/iso/SLC_6.6_x86_64_dvd.iso}{linuxsoft.cern.ch/cern/slc6X/iso/SLC\_{}6.6\_{}x86\_{}64\_{}dvd.iso}
 \begin{itemize}
-\item Instalar nuevo sistema
-\item Seguir las instrucciones del instalador
-\item Elegir Basic Server / Customize Later
-\item Esperar \Clocklogo{}
-\item Reiniciará, y actualizará
-\item Recomiendo redirigir puerto 2222 local al puerto 22 de la máquina
-virtual (para tener SSH)
+\item Install new system
+\item Follow the installer instructions
+\item Choose Basic Server / Customize Later
+\item Wait \Clocklogo{}
+\item Reboot, it will then update
+\item It's a good idea to redirect local port 2222 to the port 22 of the
+virtual machine (so you get SSH connection)
 \end{itemize}
 
 \subsection{Installing DPM manually}
@@ -2294,20 +2766,22 @@ necesitas el repo del continuous build
 
 \subsubsection{Install DPM}
 
-\emph{Repository}
-
-wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo
--P /etc/yum.repos.d
-
-\emph{Packages}
-
-yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql
-dpm-name-server-mysql dpm
-
+Repository
+\begin{verbatim}
+wget http://svn.cern.ch/guest/lcgdm/extras/build/repos/lcgdm-cbuilds-el6.repo -P /etc/yum.repos.d
+\end{verbatim}
+\selectlanguage{english}%
+Packages
+\begin{verbatim}
+yum install lcgdm-dav-server dmlite-plugins-adapter dpm-server-mysql dpm-name-server-mysql dpm
+\end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Install MySQL}
 \begin{verbatim}
-# yum install mysql-server - chkconfig mysqld on - service mysqld start
+yum install mysql-server
+chkconfig mysqld on
+service mysqld start
 \end{verbatim}
 \selectlanguage{english}%
 
@@ -2315,43 +2789,44 @@ dpm-name-server-mysql dpm
 \begin{verbatim}
 mysql < /usr/share/lcgdm/create_dpns_tables_mysql.sql 
 mysql < /usr/share/lcgdm/create_dpm_tables_mysql.sql 
-mysql grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr'; grant all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
+mysql 
+	grant all on cns_db.* to dpmmgr@localhost identified by 'dpmmgr';
+	grant all on dpm_db.* to dpmmgr@localhost identified by 'dpmmgr';
 \end{verbatim}
 \selectlanguage{english}%
 
 \subsubsection{Generate a grid security certificate}
 \begin{verbatim}
-# cd /etc/grid-security
-# openssl genrsa -out hostkey.pem 1024 chmod 0400 hostkey.pem
-# openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname -f`" 
-\end{verbatim}
-\selectlanguage{english}%
-hostname -f debe coincidir con el nombre de la maquina.dominio tal
-como lo configuraste! Si no, ponlo a mano
-\begin{verbatim}
-# openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pem 
-# mkdir dpmmgr
-# cp hostkey.pem dpmmgr/dpmkey.pem 
-# cp hostcert.pem dpmmgr/dpmcert.pem 
-# chown dpmmgr.dpmmgr dpmmgr/*
+cd /etc/grid-security
+openssl genrsa -out hostkey.pem 1024 
+chmod 0400 hostkey.pem
+openssl req -new -key hostkey.pem -out hostreq.csr -subj "/DC=es/CN=`hostname -f`" 
+openssl x509 -req -days 365 -in hostreq.csr -signkey hostkey.pem -out hostcert.pem 
+mkdir dpmmgr
+cp hostkey.pem dpmmgr/dpmkey.pem 
+cp hostcert.pem dpmmgr/dpmcert.pem 
+chown dpmmgr.dpmmgr dpmmgr/*
 \end{verbatim}
 \selectlanguage{english}%
 
 \subsubsection{Trust this new certificate as CA}
 \begin{verbatim}
-# mkdir /etc/grid-security/certificates cd /etc/grid-security/certificates cp ../hostcert.pem myca.pem ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
+mkdir /etc/grid-security/certificates 
+cd /etc/grid-security/certificates 
+cp ../hostcert.pem myca.pem 
+ln -s myca.pem $( openssl x509 -hash -noout -in myca.pem )".0"
 \end{verbatim}
 \selectlanguage{english}%
 
 \subsubsection{Trick the DNS tables}
 
-En /etc/hosts, añade tu host y host.domain al final de la lista para
-127.0.0.1 y ::1
+En /etc/hosts, add your host and host.domain to the end of the list
+for 127.0.0.1 y ::1
 
 
-\subsubsection{Configurate DPM y DPNS}
+\subsubsection{Configure DPM y DPNS}
 
-Modificate /etc/sysconfig/dpm DPNS\_HOST=`hostname` 
+Change /etc/sysconfig/dpm DPNS\_HOST=`hostname` 
 
 - Create /etc/NSCONFIG -> dpmmgr/dpmmgr@localhost 
 
@@ -2369,15 +2844,15 @@ RFIOD RTRUST host.domain
 RFIOD XTRUST host.domain
 RFIOD FTRUST host.domain
 
-# export DPNS_HOST=localhost
-# export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
+export DPNS_HOST=localhost
+export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
 \end{verbatim}
 \selectlanguage{english}%
 
 \subsubsection{Validate}
 \begin{verbatim}
-# dpns-ls
-# dpm-qryconf
+dpns-ls
+dpm-qryconf
 \end{verbatim}
 \selectlanguage{english}%
 Si no fallan, va bien, aunque no veas nada
@@ -2385,44 +2860,56 @@ Si no fallan, va bien, aunque no veas nada
 
 \subsubsection{Load on startup}
 \begin{verbatim}
-# chkconfig dpnsdaemon on chkconfig dpm on
+chkconfig dpnsdaemon on 
+chkconfig dpm on
 \end{verbatim}
 \selectlanguage{english}%
 
 \subsubsection{Add a base}
 
-\emph{Create directory}
+Create directory
 \begin{verbatim}
 dpns-mkdir -p /dpm/domain/home/public 
 dpns-chmod 0777 /dpm/domain/home/public
 \end{verbatim}
 \selectlanguage{english}%
-\emph{Create a place where files can be hosted }
-
-dpm-addpool --poolname default --def\_filesize 100M mkdir /storage
-chown dpmmgr.dpmmgr /storage dpm-addfs --poolname default --server
-host.domain --fs /storage/ dpm-qryconf (y verás que ahora aparece
-algo) 
-
+Create a place where files can be hosted
+\begin{verbatim}
+dpm-addpool --poolname default --def_filesize 100M 
+mkdir /storage 
+chown dpmmgr.dpmmgr /storage 
+dpm-addfs --poolname default --server host.domain --fs /storage/ 
+dpm-qryconf
+\end{verbatim}
+\selectlanguage{english}%
 
 \subsubsection{Configurate DAV}
-
-cd /etc/httpd/conf/ Modificar httpd.conf User dpmmgr Group dpmmgr
-Elimina o comenta las líneas LoadModule dav\_module modules/mod\_dav.so
-LoadModule dav\_fs\_module modules/mod\_dav\_fs.so cd /etc/httpd/conf.d/
-rm -f ssl.conf welcome.conf zgridsite.conf En zlcgdm-dav.conf SSLVerifyClient
-require => SSLVerifyClient optional NSSecureRedirect Off Añade Write
-to DiskFlags y NSFlags NSRedirectPort 8080 4443 (puertos expuestos
-al exterior) service httpd restart
-
+\begin{verbatim}
+cd /etc/httpd/conf/ 
+	Modificar httpd.conf 
+	User dpmmgr 
+	Group dpmmgr 
+	Elimina o comenta las líneas 
+		LoadModule dav_module modules/mod_dav.so 
+		LoadModule dav_fs_module modules/mod_dav_fs.so 
+cd /etc/httpd/conf.d/ 
+	rm -f ssl.conf welcome.conf zgridsite.conf 
+	En zlcgdm-dav.conf 
+		SSLVerifyClient require => SSLVerifyClient optional 
+		NSSecureRedirect Off 
+		Añade Write to DiskFlags y NSFlags 
+		NSRedirectPort 8080 4443 (puertos expuestos al exterior) service httpd restart
+\end{verbatim}
+\selectlanguage{english}%
 Añade una redireccion de 443 a 4443, y de 80 a 8080 en VirtualBox. 
 
 Configura el firewall para el puerto 443 y 80, o desactivalo (service
 iptables stop / chkconfig iptables off).
 
-Deactivate selinux.
+Deactivate selinux
 \begin{verbatim}
-setenforce 0 vim /etc/selinux/config SELINUX=permissive
+setenforce 0 
+vim /etc/selinux/config SELINUX=permissive
 \end{verbatim}
 \selectlanguage{english}%
 Accesing https://localhost:8080/dpm/ something should appears now. 
@@ -2442,7 +2929,7 @@ For more information, refer to \textquotedbl{}Managing Software with
 yum\textquotedbl{}, available at \href{http://docs.fedoraproject.org/yum/}{http://docs.fedoraproject.org/yum/}
 
 
-\chapter{Developer manual}
+\chapter{Developer manual\label{chap:Developer-manual}}
 
 
 \section{DPM server environment}
@@ -2461,7 +2948,7 @@ Also you can download last DPMbox version from its code repository
 address~\cite{11_valencia_calvellido_2015}. Be aware that you should
 not touch the server and root parameters in the config.js file as
 they will be obtained automatically from the location (those lines
-on config.js will be commented out). 
+on config.js will be already set). 
 
 
 \section{WebDAV server environment}
@@ -2848,7 +3335,7 @@ its developer recommendations and advices~\cite{8_w2ui_2015}.
 And you are all set, happy coding!
 
 
-\chapter{User manual}
+\chapter{User manual\label{chap:User-manual}}
 
 \renewcommand{\textflush}{flushepinormal}\setlength\epigraphwidth{.6\textwidth}\setlength\afterepigraphskip{2\baselineskip}\setlength{\epigraphrule}{0pt}\epigraphhead[40]{\epigraph{\emph{``When a device as simple as a door has to come with an instruction manual \textemdash even a one-word manual\textemdash\ then it is a failure, poorly designed.''}}{--- Donald Norman, \emph{The Design of Everyday Things}~\cite{Norman02}}}
 
@@ -2879,12 +3366,11 @@ DPMbox functionality include:
 \item Get metalink
 \end{itemize}
 \begin{figure}[H]
+\label{fig:dpmbox_functionality}
+
 \includegraphics[width=1\textwidth]{img/DPMbox-screenshot_comments}
 
 \protect\caption{DPMbox main functionality}
-
-
-\label{fig:dpmbox_functionality}
 \end{figure}
 
 
@@ -2902,12 +3388,11 @@ If the server is already updated you will be presented in your browser
 with a brand new interface that will look like figure~\ref{fig:dpmbox_screenshot}:
 
 \begin{figure}[H]
+\label{fig:dpmbox_screenshot}
+
 \includegraphics[width=1\textwidth]{img/howtouse_1}
 
 \protect\caption{DPMbox screenshot}
-
-
-\label{fig:dpmbox_screenshot}
 \end{figure}
 
 
@@ -2948,7 +3433,7 @@ Clicking on the + icon will read the collection.
 
 
 
-\addchap{GNU Free Documentation License}
+\addchap{GNU Free Documentation License\label{chap:GNU-Free-Documentation}}
 
 \begin{center}
        Version 1.3, 3 November 2008
