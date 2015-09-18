@@ -133,8 +133,9 @@ function unescapeHtml(escapedStr) {
             treeJSONparent: function(dat, datatype) {
                 var davTree = [];
                 $.dpm(dat).seekToNode('response').eachNode(function(node_response) {
-                    if ($.dpm(node_response).isCollectionDPM())
+                    if ($.dpm(node_response).isCollectionDPM()) {
                         davTree.push({'id': w2utils.base64encode($.dpm(node_response).seekToNode('href').nodeText()), 'text': escapeHtml((decodeURI($.dpm(node_response).seekToNode('href').nodeText())).split('/').reverse()[1]), 'path': encodeURI($.dpm(node_response).seekToNode('href').nodeText()), 'icon': 'fa fa-folder-o'});
+                    }
                 });
                 //The WebDAV/DPM server responds with the root collection first. Now we pop that first collection off the list and make it parent of the others collections
                 var davRoot = davTree.shift();

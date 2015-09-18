@@ -725,7 +725,7 @@
                     var is_collection = false;
                     if (lastNodeMatch.length > 0) {
                         this.seekToNode('iscollection');
-                        is_collection = (resource.textContent === 1);
+                        is_collection = (resource.textContent == 1);
                     }
                     return is_collection;
                 };
