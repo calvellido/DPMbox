@@ -392,16 +392,6 @@
     /* Sidebar definition
      */
     function setSidebar() {
-
-        window.onpopstate = function(event) {
-            /* It would be interesting to manipulate the history (as war winners do! :P)
-             * coordinated with the sidebar but it's not something simple,
-             * so by now we can live reloading the whole DPMbox to the
-             * location previously visited (not bad effect at all IMO)
-             */
-            window.location = document.location;
-        };
-
         //We build the upper tree just parsing the location
         var upper_tree = uppertreeConstruct(config.server + location.pathname);
 
