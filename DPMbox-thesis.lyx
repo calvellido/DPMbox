@@ -98,6 +98,8 @@
 %colours
 \definecolor{gray}{RGB}{50, 50, 50}
 \definecolor{lightgray}{RGB}{102, 102, 102}
+%for the long lines of code (mostly URLs)
+%\usepackage{seqsplit}
 \end_preamble
 \options intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove
 \use_default_options true
@@ -190,7 +192,6 @@ logicalmkup
 \papersides 2
 \paperpagestyle default
 \listings_params "basicstyle={\ttfamily},captionpos=b,language=C,keywordstyle={\color{blue}},commentstyle={\color{lightgray}\itshape},emphstyle={\color{gray}},breaklines=true,basicstyle={\ttfamily},stringstyle={\color{gray}},identifierstyle={\color{gray}}"
-\bullet 0 0 9 -1
 \bullet 1 0 10 -1
 \tracking_changes false
 \output_changes false
@@ -1345,9 +1346,13 @@ GS General Infrastructure Services
 IT Information Technology
 \end_layout
 
+\begin_layout --Separator--
+
+\end_layout
+
 \begin_layout Standard
 Depending on the time, the LHC and its experiments at CERN can generate
- around 30 TeraByte of data per day.
+ around 30 TeraBytes of data per day.
  All this data has to be stored to be lately processed and analyzed by different
  CERN partners who need to access them from different parts of the world.
  And here is where Grid Computing comes on the scene.
@@ -1752,30 +1757,30 @@ DPM current usage
 Some of the most important supported features are: 
 \end_layout
 
-\begin_layout Standard
-• Provide HTTP multi-stream transfers for high performance wide area, access
+\begin_layout Itemize
+Provide HTTP multi-stream transfers for high performance wide area, access
  matching it with the strict requirement of DPM about coordination of accesses.
  
 \end_layout
 
-\begin_layout Standard
-• Support for third party copies.
+\begin_layout Itemize
+Support for third party copies.
  
 \end_layout
 
-\begin_layout Standard
-• Support for X.509 authentication with proxy certificates and VOMS extensions
+\begin_layout Itemize
+Support for X.509 authentication with proxy certificates and VOMS extensions
  
 \end_layout
 
-\begin_layout Standard
-• Support for user credential delegations.
+\begin_layout Itemize
+Support for user credential delegations.
  
 \end_layout
 
-\begin_layout Standard
-• Support for modern configuration and monitoring solutions based on the
- industry standards Puppet and Nagios.
+\begin_layout Itemize
+Support for modern configuration and monitoring solutions based on the industry
+ standards Puppet and Nagios.
 \end_layout
 
 \begin_layout Subsection
@@ -2335,9 +2340,8 @@ name "chap:State-of-the"
 \end_layout
 
 \begin_layout Standard
-As said before.
- right now there is already web access implemented in the Disk Pool Manager
- infrastructure.
+As said before, right now there is already web access implemented in the
+ Disk Pool Manager infrastructure.
  This has been developed as part of the HTTP/WebDAV frontend and is built
  getting advantage of the Apache WebDAV modules, 
 \begin_inset Flex Code
@@ -2409,6 +2413,10 @@ Metadata Users can create and retrieve resources, and also modify its associated
  properties, as owner, description, permissions and any other information
  that can be expressed as text or XML.
  
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
@@ -2554,25 +2562,12 @@ status open
 
 
 \backslash
-ac{LCG}
-\end_layout
-
-\end_inset
-
- File Catalog (
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 ac{LFC}
 \end_layout
 
 \end_inset
 
-) are two grid components with more than 240 endpoints available.
+ are two grid components with more than 240 endpoints available.
  
 \end_layout
 
@@ -2725,7 +2720,7 @@ WebDAV give in addition, metadata handling.
 \begin_layout Standard
 With support to these standards users are allowed to access their data easily
  and transparently, from any machine, through any platform, and using clients
- they already know how to use - for instance, web browsers.
+ they already know how to use, for instance, web browsers.
  
 \end_layout
 
@@ -3083,7 +3078,7 @@ WebDAV clients
 \begin_layout Standard
 For performing namespace operations, such as creating directories, renaming
  or fetching properties, WebDAV must be used.
- We also present a comparison between the most popular WebDAV clients on
+ We present a comparison between the most popular WebDAV clients on
 \begin_inset space ~
 \end_inset
 
@@ -3951,7 +3946,7 @@ _group names_
 \end_inset
 
 .
- Apart from this DPM's authorization follows the POSIX filesystem authorization
+ Apart from this, DPM authorization follows the POSIX filesystem authorization
  semantics.
 \end_layout
 
@@ -4082,7 +4077,7 @@ y of its systems.
 \end_layout
 
 \begin_layout Itemize
-Disk Pool Manager investigation and learning through its documentation.
+Disk Pool Manager investigate and learn about through its documentation.
 \end_layout
 
 \begin_layout Itemize
@@ -4090,14 +4085,14 @@ Study different approaches and decide which one is the better option.
 \end_layout
 
 \begin_layout Itemize
-One way or another the easiest way to approach DPM is through the WebDAV
- interface, so master the concepts, verbs and particularities of this protocol
- is needed.
+Master the concepts, verbs and particularities of the WebDAV protocol, as
+ it looks as the easiest way to approach DPM.
+ 
 \end_layout
 
 \begin_layout Itemize
-Get everything ready for the first CERN visit to make the most of the time
- I'll be there.
+Get everything ready for the first CERN visit, trying to assure to make
+ the most of the time I'll be there.
 \end_layout
 
 \begin_layout Subsection
@@ -4105,26 +4100,25 @@ Second stage, connection library
 \end_layout
 
 \begin_layout Itemize
-Since a development based on JavaScript was chosen, deep learning.
+Deep learning about JavaScript, since a development based on this language
+ was chosen.
 \end_layout
 
 \begin_layout Itemize
-AJAX calls.
- The development will be based on this type of communication with the WebDAV
- gateway.
+Study AJAX calls, the way of communicating with the WebDAV gateway.
 \end_layout
 
 \begin_layout Itemize
 Start to develop a WebDAV connection library.
  This follows a minimal viable product approach, starting with a simple
  call just to read the information about a WebDAV server, then read its
- contents...
+ contents then...
 \end_layout
 
 \begin_layout Itemize
-Naples DPM workshop preparation.
- In recent times.
- I was invited to contribute to this year's event to present DPMbox.
+Prepare for the Naples DPM workshop.
+ I was invited to contribute to this annual DPM group meeting with a small
+ presentation about DPMbox.
  
 \end_layout
 
@@ -4137,6 +4131,7 @@ Third stage, user interface
 \end_layout
 
 \begin_layout Itemize
+Begin an intensive 
 \begin_inset ERT
 status open
 
@@ -4153,23 +4148,20 @@ ac{UX}
 \end_layout
 
 \begin_layout Itemize
-Decide a final design between some different approaches.
+Decide the final design between some different approaches.
 \end_layout
 
 \begin_layout Itemize
-w2ui investigation, since jQuery UI and other possibilities were discarded.
+Investigate w2ui, test it a lot.
+ A jQuery UI based interface and other possibilities were discarded.
 \end_layout
 
 \begin_layout Itemize
-Interface development.
+Transform the sketch prototype into the actual interface.
 \end_layout
 
 \begin_layout Subsection
 Fourth stage, integration
-\end_layout
-
-\begin_layout Itemize
-Second working prototype.
 \end_layout
 
 \begin_layout Itemize
@@ -4178,7 +4170,15 @@ Extending the interface and the WebDAV connection library integrating it
 \end_layout
 
 \begin_layout Itemize
-Testing.
+Test the integration between the library and the interface.
+\end_layout
+
+\begin_layout Itemize
+Get everything ready for the second and final visit to CERN.
+\end_layout
+
+\begin_layout Itemize
+Build the second working prototype.
 \end_layout
 
 \begin_layout Subsection
@@ -4186,12 +4186,21 @@ Fifth stage, deployment
 \end_layout
 
 \begin_layout Itemize
-Heavy testing.
+Complete a series of full tests.
  
 \end_layout
 
 \begin_layout Itemize
-On site deployment.
+Deploy DPMbox on site.
+\end_layout
+
+\begin_layout Itemize
+Prepare the project's participation in the IX CUSL (Concurso Universitario
+ de Software Libre) final phase.
+\end_layout
+
+\begin_layout Itemize
+Address different issues and comments received from external feedback.
 \end_layout
 
 \begin_layout Standard
@@ -4382,6 +4391,10 @@ GNU/Linux Ubuntu 10.04 and GNU/Linux Mint 17 as OS
 \end_layout
 
 \end_deeper
+\begin_layout --Separator--
+
+\end_layout
+
 \begin_layout Standard
 Then, to have some testing outside the local scope from time to time an
  external cloud server has been hired:
@@ -4413,6 +4426,10 @@ GNU/Linux Ubuntu 14.04 32bits
 \end_layout
 
 \end_deeper
+\begin_layout --Separator--
+
+\end_layout
+
 \begin_layout Standard
 Also, in different development stages DPMbox prototypes have been deployed
  in DPM testing instances in CERN IT-SDC-ID section servers.
@@ -4448,7 +4465,7 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $TotalCost(C)=MaterialCost(Cm)+PersonnelCost(Cp)$
+\begin_inset Formula $TotalCost(C)=MaterialCost(C_{m})+PersonnelCost(C_{p})$
 \end_inset
 
 
@@ -4547,7 +4564,11 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $MaterialCost(Cm)=SoftwareCost(Cs)+HardwareCost(Ch)=0+400+790+44=1,234.8€$
+\begin_inset Formula 
+\[
+MaterialCost(C_{m})=SoftwareCost(C_{s})+HardwareCost(C_{h})=0+400+790+44=1,234.8€
+\]
+
 \end_inset
 
 
@@ -4621,7 +4642,11 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $Staffcost=monthlywage∗personspermonth=1,692.8×8.72=14,761,22€$
+\begin_inset Formula 
+\[
+Staff\,Cost=Monthly\,wage\,\text{×}\,Persons\,per\,month=1,692.8×8.72=14,761,22€
+\]
+
 \end_inset
 
 
@@ -4669,7 +4694,11 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $Personnelcost(Cp)=Staffcost+Additionalcost=14,761.22+900+900=16,561.22€$
+\begin_inset Formula 
+\[
+Personnel\,Cost(C_{p})=Staff\,Cost+Additional\,Cost=14,761.22+900+900=16,561.22€
+\]
+
 \end_inset
 
 
@@ -4716,7 +4745,11 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $C=Cm+Cp=1,234.8+16,561.22=17,796,02€$
+\begin_inset Formula 
+\[
+C=C_{m}+C_{p}=1,234.8+16,561.22=17,796,02€
+\]
+
 \end_inset
 
 
@@ -4751,7 +4784,7 @@ A risk is defined as an uncertain event which should it occur, will have
  threats, identifying, studying and eliminating sources of risk before they
  threaten the project's success.
  Based on this, we list a number of risks that may affect DPMbox and should
- be adressed:
+ be addressed:
 \end_layout
 
 \begin_layout Itemize
@@ -4764,8 +4797,7 @@ The development team hasn't been able to meet or know directly the needs
 \end_layout
 
 \begin_deeper
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 
 \family roman
 \series medium
@@ -4784,8 +4816,7 @@ Impact: All phases could be affected, because the problem lie in the of
  vain.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 
 \family roman
 \series medium
@@ -4802,8 +4833,7 @@ Probability: The probability of occurrence will depend on the needs of the
  public to be targeted and the quality and reliability of software obtained.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 
 \family roman
 \series medium
@@ -4821,8 +4851,7 @@ Priority: Avoiding this risk is a top priority, as it could mean having
  
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 
 \family roman
 \series medium
@@ -4851,26 +4880,22 @@ Late delivery due to lack of knowledge about tools, languages, or even more
 \end_layout
 
 \begin_deeper
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 Impact: This risk can affect all phases, because in all of them the developer
  requires the use of the tools and a knowledge on the system.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 Probability: The probability of occurrence is high since the developer does
  not have any previous experience with the system.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 Priority: The priority will be lower as the project progresses, the learning
  curve is expected to be steep.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Itemize
 Action
 \begin_inset space ~
 \end_inset
@@ -5011,7 +5036,7 @@ It has a very small size, 79KB (not including external libraries).
 \end_layout
 
 \begin_layout Standard
-The main purpose of DPMbox is supporting the Disk Pool Manager system, however,
+The main purpose of DPMbox is to support the Disk Pool Manager system, however,
  it follows the standard WebDAV RFC 4918
 \begin_inset space ~
 \end_inset
@@ -5093,6 +5118,132 @@ end{centering}
 
 \begin_layout Plain Layout
 DPMbox in action
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Repositories
+\end_layout
+
+\begin_layout Standard
+DPMbox interface is integrated into version 0.16 of 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+lcgdm-dav
+\end_layout
+
+\end_inset
+
+ package.
+ After going through various testing stages is already, as of September
+ 2015, available to download and install from repositories for Fedora 22
+ and Fedora 23.
+ It's still on testing repositories for EL-5, EL-6 and EL-7.
+ By the way, EPEL (Extra Packages for Enterprise Linux) is a volunteer-based
+ community effort from the Fedora project to create a repository of high-quality
+ add-on packages that complement the Fedora-based Red Hat Enterprise Linux
+ (RHEL) and its compatible spinoffs, such as CentOS and Scientific Linux.
+\end_layout
+
+\begin_layout Standard
+The l
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+cgdm-dav
+\end_layout
+
+\end_inset
+
+ package status on the repositories can be checked on
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:lcgdm-dav_status"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:lcgdm-dav_status"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/lcgdm-dav_status.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+lcgdm-dav package status
 \end_layout
 
 \end_inset
@@ -5269,7 +5420,7 @@ System objectives
 The main objectives of DPMbox, from a general point of view, are listed
  below.
  These objectives summarize in a very roughly way the functionality of the
- project.:
+ project:
 \end_layout
 
 \begin_layout Standard
@@ -5517,10 +5668,9 @@ A requirement is a capability that a software product must possess or something
  a product must do in order to ultimately satisfy a user need.
  Requirements form the basis for any software development project, as they
  drive all activities that follow.
- As a result, it is very important to get requirements right – otherwise,
+ As a result, it is very important to get requirements right, otherwise,
  the entire project can fail.
- In fact, poor requirements are among the top 5 reasons for project failure
- in survey after survey by major research firms like The Standish Group.
+ In fact, poor requirements are among the top reasons for project failures.
 \end_layout
 
 \begin_layout Subsection
@@ -6019,7 +6169,7 @@ The information requirements detail data that the system uses during the
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -6041,7 +6191,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+File
 \end_layout
 
 \end_inset
@@ -6052,7 +6202,7 @@ Access a WebDAV server
 \begin_inset Text
 
 \begin_layout Plain Layout
-Description
+Required information
 \end_layout
 
 \end_inset
@@ -6060,8 +6210,20 @@ Description
 <cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+\begin_layout Itemize
+Filename
+\end_layout
+
+\begin_layout Itemize
+Size
+\end_layout
+
+\begin_layout Itemize
+Modification date
+\end_layout
+
+\begin_layout Itemize
+Metalink
 \end_layout
 
 \end_inset
@@ -6079,83 +6241,6 @@ The system must be able to access to a WebDAV server...
 
 \begin_layout Plain Layout
 IRQ-1
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="2">
-<features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top" width="15text%">
-<column alignment="left" valignment="top" width="80text%">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Access a WebDAV server
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Description
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-IRQ-2
 \end_layout
 
 \end_inset
@@ -6195,7 +6280,7 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+Collection
 \end_layout
 
 \end_inset
@@ -6206,7 +6291,7 @@ Access a WebDAV server
 \begin_inset Text
 
 \begin_layout Plain Layout
-Description
+Required information
 \end_layout
 
 \end_inset
@@ -6214,8 +6299,20 @@ Description
 <cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+\begin_layout Itemize
+Name
+\end_layout
+
+\begin_layout Itemize
+Path
+\end_layout
+
+\begin_layout Itemize
+Children collections
+\end_layout
+
+\begin_layout Itemize
+Files contained
 \end_layout
 
 \end_inset
@@ -6232,7 +6329,7 @@ The system must be able to access to a WebDAV server...
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-IRQ-3
+IRQ-2
 \end_layout
 
 \end_inset
@@ -6306,7 +6403,7 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+The system must be able to load and perform operations in a reasonable time.
 \end_layout
 
 \end_inset
@@ -6367,7 +6464,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+Protected from attacks
 \end_layout
 
 \end_inset
@@ -6387,7 +6484,8 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+DPMbox should react accordingly to possible attacks compromising the system's
+ security.
 \end_layout
 
 \end_inset
@@ -6468,7 +6566,7 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-WebDAV protocol must be used
+To connect to the DPM server the WebDAV protocol must be used.
 \end_layout
 
 \end_inset
@@ -6529,7 +6627,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+Ease to maintain
 \end_layout
 
 \end_inset
@@ -6549,7 +6647,8 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+The system, and specially its internal code, should be easy to read and
+ understand offering an easy maintenance.
 \end_layout
 
 \end_inset
@@ -6610,7 +6709,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+Possibility to extend
 \end_layout
 
 \end_inset
@@ -6630,7 +6729,9 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+The system should be constructed in a way that future functionality can
+ be added with no harm.
+ 
 \end_layout
 
 \end_inset
@@ -6701,7 +6802,7 @@ name "tab:portability"
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access from different systems
+Accessible from different systems
 \end_layout
 
 \end_inset
@@ -6757,7 +6858,19 @@ Interface
 \end_layout
 
 \begin_layout Standard
-Standards compliance.
+The interface requirements are linked with the concepts and standards described
+ on section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:User-interface"
+
+\end_inset
+
+, usability, accessibility and user guidance.
 \end_layout
 
 \begin_layout Subsubsection
@@ -6791,7 +6904,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Access a WebDAV server
+A usable interface
 \end_layout
 
 \end_inset
@@ -6811,7 +6924,8 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-The system must be able to access to a WebDAV server...
+The system must comply with defined standards on the topics of usability,
+ accessibility and user guidance.
 \end_layout
 
 \end_inset
@@ -6846,40 +6960,16 @@ Solution alternatives
 \end_layout
 
 \begin_layout Standard
-Frameworks para el desarrollo de aplicaciones web Django: Popular framework
- con Python como lenguaje base.
- Posee una amplia variedad de funcionalidades incorporadas y al tener Python
- como base permite el desarrollo rápido de la aplicación por ser un lenguaje
- sencillo tanto en cuanto a sintaxis como a semántica.
- Se optó nalmente por este framework por tener el desarrollador principal
- experiencia con Python y no con los lenguajes de los dos siguientes frameworks.
- Rails: Framework de aplicaciones web de código abierto escrito en el lenguaje
- de progra- mación Ruby, siguiendo el paradigma de la arquitectura Modelo
- Vista Controlador.
- Cada día alcanza índices más elevados de popularidad.
- Symfony: Framework para el desarrollo web con PHP.
- Posee una comunidad bastante amplia debido a su antigüedad.
- También sigue el Modelo Vista Controlador.
- 
-\end_layout
-
-\begin_layout Standard
 Here we talk about technological alternatives that could have met the needs
  arised from the system requirements, detailing the decisions taken.
  
 \end_layout
 
 \begin_layout Standard
-Giving the particularities of the system.
- 
-\end_layout
-
-\begin_layout Standard
-In this section, we look at the strengths and weaknesses of traditional
- web UIs.
- We see that JavaScript web UIs address these weaknesses but raise their
- own issues, which, we assert, can be addressed within the paradigm.
- 
+Giving the particularities of the system we look at the strengths and weaknesses
+ of traditional web UIs and we see that JavaScript web UIs address these
+ weaknesses but raise their own issues, which, we assert, can be addressed
+ within the paradigm
 \begin_inset space ~
 \end_inset
 
@@ -6890,7 +6980,7 @@ key "1742-6596-396-5-052069"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsection
@@ -6898,16 +6988,12 @@ Traditional web user interfaces
 \end_layout
 
 \begin_layout Standard
-The very first web pages were hypertext based [5], where links in one page
- will load a different related page.
+The very first web pages were hypertext based, where links in one page will
+ load a different related page.
  Traditional web UIs follow this paradigm but the content is dynamically
  generated based on the parameters attached to a given link.
  Key characteristics of such UIs are multi-page interface, full-page load
  for each user interaction, and server-side view generation.
- Figure 1 shows a typical user interaction with a traditional web UI, highlighti
-ng these characteristics (the technologies referenced in the figure are
- those used within Experiment Dashboard applications in particular).
- 
 \end_layout
 
 \begin_layout Standard
@@ -6919,11 +7005,6 @@ Cross-browser compatibility
 \end_layout
 
 \begin_layout Itemize
-Modularity for team working (each page naturally corresponds to a feature)
- 
-\end_layout
-
-\begin_layout Itemize
 Bookmarkable URLs 
 \end_layout
 
@@ -6932,7 +7013,11 @@ Search-engine friendly
 \end_layout
 
 \begin_layout Itemize
-Accessibility friendly 
+Accessibility friendly
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
@@ -6941,24 +7026,22 @@ The strengths are mostly due to the UI being essentially a set of linked
  The flip side of these strengths is the following weaknesses: 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Low interactivity
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Slow loading 
 \end_layout
 
-\begin_layout Standard
-Low interactivity prevents users from easily customising data visualisation.
- Slow loading is due to a full-page load for each user interaction and the
- need for a server-side call even for a new view of the same data.
- 
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
-The weaknesses of traditional web UIs are not simply inconvenient but, in
- a real way, hinder novel analysis of data.
+Low interactivity prevents users from easily customizing data visualization.
+ Slow loading is due to a full-page load for each user interaction and the
+ need for a server-side call even for a new view of the same data.
  We note that these weaknesses are largely inherent and cannot be fully
  addressed within the paradigm of traditional web UIs, which brings us to
  consider JavaScript web UIs.
@@ -6976,9 +7059,6 @@ Modern web UIs can be highly interactive and provide a user experience akin
  we focus our attention on web UIs built using JavaScript and AJAX.
  Key characteristics of such UIs are single-page interface, data loaded
  on-demand via AJAX, and client-side view generation.
- Figure 3 shows a typical user interaction with a JavaScript web UI, highlightin
-g these characteristics (the technologies referenced in the figure are those
- used within Experiment Dashboard applications in particular).
  
 \end_layout
 
@@ -6988,17 +7068,19 @@ The key strengths of JavaScript web UIs, with respect to traditional web
 \end_layout
 
 \begin_layout Itemize
-High interactivity.
- 
+High interactivity 
 \end_layout
 
 \begin_layout Itemize
-Fast-loading.
- 
+Fast-loading
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
-High interactivity allows the user to easily customise data visualisation.
+High interactivity allows the user to easily customize data visualization.
  Fast loading is due to data being loaded on demand and the ability to generated
  new views of the same data on the client-side avoiding a server-side call.
  The flip side of these strengths is the following weaknesses: 
@@ -7013,11 +7095,6 @@ Slow client-side rendering
 \end_layout
 
 \begin_layout Itemize
-Lack of modularity for team working (single page contains all features)
- 
-\end_layout
-
-\begin_layout Itemize
 Non-bookmarkable URLs 
 \end_layout
 
@@ -7026,15 +7103,16 @@ Not search-engine friendly
 \end_layout
 
 \begin_layout Itemize
-Not accessibility friendly 
+Not accessibility friendly
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
 Comparing the above strengths and weaknesses with those of traditional web
  UIs, it is immediately apparent that they are the converse of each other.
- However, just as the corresponding weaknesses of traditional web UIs are
- not simply inconvenient, the strengths of JavaScript web UIs are not simply
- convenient but, in a real way, facilitate novel analysis of the data.
  It is therefore worth attempting to address the weaknesses of JavaScript
  web UIs, and we show in the next subsection that, unlike those of traditional
  web UIs, they can be addressed within the paradigm.
@@ -7051,7 +7129,7 @@ Several of the issues of JavaScript web UIs, identified in the previous
  and JavaScript libraries.
  Browser incompatibilities have largely been eliminated by improved standards
  compliance by the current releases of the major web browsers.
- This is attested by the results of the Web Standards Project Acid3 tests
+ This is attested by the results of the web standards project Acid3 tests,
  that check web browser compliance with elements of various web standards,
  particularly the Document Object Model (DOM) and JavaScript.
  Furthermore, JavaScript libraries, such as jQuery, provide abstraction
@@ -7065,11 +7143,11 @@ Several of the issues of JavaScript web UIs, identified in the previous
 \begin_layout Standard
 Resolving the remaining issues requires explicit effort on the part of the
  UI developer.
- Lack of modularity, for team working or sustainable development, can be
- resolved by using a client-side MVC framework and a view object per a feature.
+ Sustainable development, for example, can be resolved by using a client-side
+ MVC framework.
  URLs can be made bookmarkable by explicit URL hash management using JavaScript
  library plugins.
- Search-engine optimisation and accessibility can be addressed in similar
+ Search-engine optimization and accessibility can be addressed in similar
  ways.
  
 \end_layout
@@ -7077,49 +7155,14 @@ Resolving the remaining issues requires explicit effort on the part of the
 \begin_layout Standard
 Although some explicit effort is required to resolve the issues of JavaScript
  UIs, all the issues can be resolved within the paradigm.
- An approach that can be used to achieve this is presented in the next section.
- 
 \end_layout
 
 \begin_layout Subsection
-Conclusion
+Graphical interface library
 \end_layout
 
 \begin_layout Standard
-We have seen that whilst JavaScript web UIs can provide a much more interactive
- and responsive user experience than traditional web UIs, they raise their
- own issues.
- Some of these issues, such as browser incompatibilities and slow client-side
- rendering, are largely resolved by recent improvements in browsers and
- JavaScript libraries.
- Other issues, such as lack of modularity and non-bookmarkable URLs, have
- to be explicitly addressed by the developer.
- We presented an approach, based on a client-side MVC framework and decoupling
- the data source behind a well-defined web API, that addresses these issues
- and so facilitates the rapid development of functionally rich yet sustainable
- web UIs.
- We showed how the approach can be extended by supplementing the MVC framework
- with pre-defined view plug-ins to create configurable UIs.
- Examples were presented showing how these configurable UIs have been successful
-ly adapted to many data sources and use cases, which proves the effectiveness
- of the approach presented in this paper.
- 
-\end_layout
-
-\begin_layout Standard
-Despite the proven success of the approach and configurable UIs, a number
- of areas may be improved in future work including standardisation on a
- common MVC framework, search engine and accessibility support, automated
- testing, documentation and optimisation.
- 
-\end_layout
-
-\begin_layout Subsection
-Graphical interface
-\end_layout
-
-\begin_layout Standard
-Setting the interface design, different frameworks and approaches were tested,
+To set the interface design, different frameworks and approaches were tested,
  jQuery UI, the graphical library from the creators from jQuery, was the
  first option.
  This library is a mature collection of GUI widgets, animated visual effects,
@@ -7133,59 +7176,50 @@ Setting the interface design, different frameworks and approaches were tested,
 \end_layout
 
 \begin_layout Standard
-jQuery UI was selected because is widely known library this interface will
- be hopefully easy to understand and maintain, and could also be easily
- adapted for other uses or modified for extended support in the future.Even
- a small prototype was developed using this, but .
- In a deeper research I stumble upon w2ui, and as a framework for developing
- a file browser interface, w2ui suits way better the needs of DPMbox.
-\end_layout
-
-\begin_layout Standard
-I was thinking initially in jQuery UI as a good partner in the interface
- creation, using some other components when needed, for example zTree for
- the directory folder management.
- jQuery UI is very useful but for a complete user interface creation I was
- gonna have to build everything almost from scratch (toolbars, menus, file
- listings…) and a library like zTree is extremely powerful but it’s also
- like a big dinosaur with a bunch of files to load and manage.
- Thinking about these issues I stumbled upon w2ui, an awesome JavaScript
- UI library that offers practically all what I was looking for.
- By its own description: “w2ui is a modern, intuitive JavaScript UI library
- for building rich data-driven web application”
-\end_layout
-
-\begin_layout Standard
-With this change of libraries is possible that a bit of scope or control
- was lost but using w2ui I stuck with not reinventing the wheel and KISS
- design principles, making things easier to understand, maintain and even
- expand.
- This being said, no worries because all the initially designed and proposed
- elements are present in this final interface, and since they fit so well
- I have used almost all w2ui components to build the DPMbox interface.
- Upon a layout divided in a top panel and three horizontal ones under it
- you can find the sidebar managing the directory tree, a grid in the center
- showing the files including a toolbar, and then in the right panel there
- is the directory information.
+jQuery UI was selected because is a widely known library, and so, the DPMbox
+ interface will be easy to understand and maintain, and could also be easily
+ adapted to other uses or modified for extended support in the future.
+ Even a small prototype was developed using this, but in a deeper research
+ exploring alternatives, I stumble upon w2ui, a “modern, intuitive JavaScript
+ UI library for building rich data-driven web application”.
  
 \end_layout
 
 \begin_layout Standard
-I still have to check intesively and get deeper into the very deep collections
- problem but for now the tree it’s only built on demand and the grid panel
- only load the files information when you actually scroll down to look for
- them.
+Using jQuery UI it would has been needed to use some other components to
+ implement certain interface components, for example zTree for the directory
+ folder management.
+ jQuery UI is very useful but for a complete user interface creation we
+ were going to have to build everything almost from scratch (toolbars, menus,
+ file listings…) and a library like zTree is extremely powerful but it’s
+ also like a big dinosaur with a bunch of files to load and manage.
+ 
 \end_layout
 
 \begin_layout Standard
-The user interface is built upon w2ui, a very useful JavaScript UI library
- that offers practically all that was needed for DPMbox.
- 
+With this decision is possible that a bit of scope or control was lost but
+ using w2ui we stuck with not reinventing the wheel and KISS (Keep It Simple,
+ Stupid) design principles, making things easier to understand, maintain
+ and even expand.
+ Indeed w2ui, as a framework to develop a file browser interface, suits
+ way better the needs of DPMbox.
+ You can read more about its features on section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sub:Program-languages-and"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 All the initially designed and proposed elements are present in the final
- interface.
+ interface designed with w2ui.
  Upon a layout divided in a top panel and three horizontal ones under it,
  you can find the sidebar managing the directory tree, a grid in the center
  showing the files and including a toolbar, and then in the right panel
@@ -7193,33 +7227,47 @@ All the initially designed and proposed elements are present in the final
  
 \end_layout
 
-\begin_layout Standard
-As stated before, DPMbox have some filters/parsers (jQuery.dpmFilters.js)
- that adapt the data received from the server in a way that the w2ui interface
- can use it (that are basically JSON formats).
- 
+\begin_layout Subsubsection
+Further alternatives
 \end_layout
 
-\begin_layout Standard
------
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+MochaUI Based on MooTools, a different JavaScript library, the connection
+ between these may not lead to best performance.
 \end_layout
 
-\begin_layout Standard
-For this frontend development some setbacks will be taken into consideration.
- These two are interconnected:
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+YUI
+\begin_inset space ~
+\end_inset
+
+Library Discontinued by the end of 2014.
 \end_layout
 
-\begin_layout Standard
-Very deep collections or cases with hundreds of files inside a directory
- could be problematic to load, so a lazy loading technique will be used,
- and in an asynchronous way.
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Knockoutjs Really small size, just 20KB, but also offering limited options.
 \end_layout
 
-\begin_layout Standard
-And just not only for loading, also for the user experience this high number
- of data nodes inside a collection could be troublesome.
- Then it will be mandatory to use pagination when a certain number of nodes
- are read.
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Kendo
+\begin_inset space ~
+\end_inset
+
+UI Not free license.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Ember,
+\begin_inset space ~
+\end_inset
+
+Dojo Both powerful and beautifully designed, but not suitable if we want
+ to have a small size interface.
 \end_layout
 
 \begin_layout Section
@@ -7234,22 +7282,21 @@ This section covers the analysis of the information system to be developed,
 
 \begin_layout Itemize
 The use cases that describe the steps in the usual processes of the project.
- 
 \end_layout
 
 \begin_layout Itemize
 The conceptual data model used in the application, based on the information
  requirements.
- 
 \end_layout
 
 \begin_layout Itemize
-The behavioural model, with some sequence diagrams depicting the events
- that external actors generate, their order, and possible inter-system events.
+The behavioural model is also presented, with some sequence diagrams depicting
+ the events that external actors generate, their order, and possible inter-syste
+m events, 
 \end_layout
 
 \begin_layout Itemize
-The UI model, with some navigation interfaces presented.
+And finally the UI model, with some navigation interfaces depicted.
 \end_layout
 
 \begin_layout Subsection
@@ -7428,7 +7475,7 @@ Description
 \begin_inset Text
 
 \begin_layout Plain Layout
-A user the system is able to check on its security scheme., it's somehow
+A user the system is able to check on its security scheme, it's somehow
  
 \begin_inset Flex Emph
 status open
@@ -7606,7 +7653,7 @@ A user clicks on a specific directory.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks and accepts the petition.
+DPM server checks and accepts the request.
 \end_layout
 
 \end_inset
@@ -7731,7 +7778,7 @@ The user writes a collection name.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks the name and accepts the petition.
+DPM server checks the name and accepts the request.
 \end_layout
 
 \end_inset
@@ -7751,11 +7798,15 @@ Alternative flow
 \begin_inset Text
 
 \begin_layout Description
+2a The user cancels the operation.
+\end_layout
+
+\begin_layout Description
 3a The user is not allowed to perform that operation.
 \end_layout
 
 \begin_layout Description
-3b The name couldn't be used.
+3b The given name is not valid.
 \end_layout
 
 \end_inset
@@ -7852,7 +7903,7 @@ Main scenario
 \begin_inset Text
 
 \begin_layout Enumerate
-An user clicks on delete directory button.
+A user clicks on delete directory button.
 \end_layout
 
 \begin_layout Enumerate
@@ -7860,7 +7911,7 @@ The user confirms the deletion.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks and accepts the petition.
+DPM server checks and accepts the request.
 \end_layout
 
 \end_inset
@@ -7880,7 +7931,11 @@ Alternative flow
 \begin_inset Text
 
 \begin_layout Description
-3b The user is not allowed to perform that operation.
+2a The user cancels the operation.
+\end_layout
+
+\begin_layout Description
+3a The user is not allowed to perform that operation.
 \end_layout
 
 \end_inset
@@ -7985,7 +8040,7 @@ The user selects the location to save the file.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks and accepts the petition.
+DPM server checks and accepts the request.
 \end_layout
 
 \end_inset
@@ -8003,6 +8058,10 @@ Alternative flow
 </cell>
 <cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
+
+\begin_layout Description
+2a The user cancels the operation.
+\end_layout
 
 \begin_layout Description
 3a The user is not allowed to perform that operation.
@@ -8110,7 +8169,7 @@ The user selects the file(s) to upload.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks and accepts the petition.
+DPM server checks and accepts the request.
 \end_layout
 
 \end_inset
@@ -8128,6 +8187,10 @@ Alternative flow
 </cell>
 <cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
+
+\begin_layout Description
+2a The user cancels the operation.
+\end_layout
 
 \begin_layout Description
 3a The user is not allowed to perform that operation.
@@ -8227,7 +8290,7 @@ Main scenario
 \begin_inset Text
 
 \begin_layout Enumerate
-An authorized user clicks on delete button.
+A user clicks on delete button.
 \end_layout
 
 \begin_layout Enumerate
@@ -8235,7 +8298,7 @@ The user confirms the deletion.
 \end_layout
 
 \begin_layout Enumerate
-DPM server checks and accepts the petition.
+DPM server checks and accepts the request.
 \end_layout
 
 \end_inset
@@ -8254,8 +8317,13 @@ Alternative flow
 <cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
+\begin_layout Description
+2a The user cancels the operation.
+ 
+\end_layout
 
+\begin_layout Description
+3a The user is not allowed to perform that operation.
 \end_layout
 
 \end_inset
@@ -8274,12 +8342,403 @@ Domain data conceptual model
 
 \begin_layout Standard
 This model is drawn from the information requirements.
- A conceptual UML class diagram is developed, identifying classes, attributes,
- relationships, additional restrictions and derivation rules, if any.
+ A conceptual UML class diagram, in figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:conceptualdatamodel"
+
+\end_inset
+
+, is developed, identifying classes, attributes, relationships, additional
+ restrictions and derivation rules, if any.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Files
 \end_layout
 
 \begin_layout Standard
-files and collections...
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Attribute
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Filename
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The name of the file (including extension).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Size
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The file size, in KB.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modification date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The last date the file has been altered.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Metalink
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The metalink information (actual hosting server, alternate locations...)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Collections
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top" width="15text%">
+<column alignment="left" valignment="top" width="80text%">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Attribute
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The name of the collection in the system.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Path
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The router of the collection, starting from the server root.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Children collections
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The list of collections within another one.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Files contained
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The list of files inside that directory.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Expanded
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+It indicates if the collection node is expanded in the tree or not.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+First parent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tells if the node is the top element on the route.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{centering}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:conceptualdatamodel"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename img/ConceptualDataModel.png
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{centering}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Domain data conceptual model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -8298,9 +8757,10 @@ Create a collection
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8331,7 +8791,7 @@ name "fig:seqcreatecoll"
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/SeqDiagram_CreateCollection.png
-	width 100text%
+	width 60text%
 
 \end_inset
 
@@ -8375,15 +8835,44 @@ Sequence diagram, create collection
 
 \end_layout
 
+\begin_layout Enumerate
+A user clicks on new directory button.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox shows a text box asking for a name.
+\end_layout
+
+\begin_layout Enumerate
+The user writes a collection name.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox validates the name.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox send the new collection request to the server.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and responds to the request.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox present the information to the user.
+\end_layout
+
 \begin_layout Subsubsection
 Download file
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8414,7 +8903,7 @@ name "fig:seqdnlfile"
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/SeqDiagram_DownloadFile.png
-	width 100text%
+	width 60text%
 
 \end_inset
 
@@ -8454,15 +8943,36 @@ Sequence diagram, download file
 
 \end_layout
 
+\begin_layout Enumerate
+A user clicks on download button.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox send the download request to the server.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and responds to the request.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox present the file to the user.
+\end_layout
+
+\begin_layout Enumerate
+The user selects the location to save the file.
+\end_layout
+
 \begin_layout Subsubsection
 Delete file
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8493,7 +9003,7 @@ name "fig:seqdeletefile"
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/SeqDiagram_DeleteFile.png
-	width 100text%
+	width 60text%
 
 \end_inset
 
@@ -8533,6 +9043,30 @@ Sequence diagram, delete file
 
 \end_layout
 
+\begin_layout Enumerate
+A user clicks on delete button.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox shows the confirm deletion message.
+\end_layout
+
+\begin_layout Enumerate
+The user confirms the deletion.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox send the deletion request to the server.
+\end_layout
+
+\begin_layout Enumerate
+DPM server checks and responds to the request.
+\end_layout
+
+\begin_layout Enumerate
+DPMbox present the information to the user.
+\end_layout
+
 \begin_layout Subsection
 User interface model
 \end_layout
@@ -8547,7 +9081,26 @@ Navigation model
 \end_layout
 
 \begin_layout Standard
+In the navigation model we can see that the main operation in DPMbox is
+ 
+\begin_inset Flex Emph
+status open
+
+\begin_layout Plain Layout
+read collection
+\end_layout
+
+\end_inset
+
+, this is so because after almost every other operation the collection state
+ is altered, so the content must be checked again.
+ This only not happens with the download functionality, since the contents
+ in the collection doesn't change after this operation.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -8581,7 +9134,7 @@ name "fig:navmodel"
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/NavigationDiagram.png
-	width 40text%
+	width 30text%
 
 \end_inset
 
@@ -8665,9 +9218,10 @@ reference "fig:intschemeerror"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8740,9 +9294,10 @@ Interface design, main scheme
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8815,9 +9370,10 @@ Interface design, action required
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -8905,7 +9461,7 @@ name "sec:System-design"
 
 \begin_layout Standard
 DPMbox design has followed a minimal viable product approach, being started
- as WebDAV connection interface and then being adapted to DPM specifications.
+ as a WebDAV connection interface and then being adapted to DPM specifications.
  It's been constructed modularly and could be basically divided in two parts:
  the web user interface and the JavaScript API that communicates with the
  server.
@@ -9074,7 +9630,7 @@ The purpose of multitier architectures is to insulate the different layers
 \end_layout
 
 \begin_layout Standard
-Web applications especially have another advantage.
+Web applications specially have another advantage.
  If you make updates to the GUI client or the application logic running
  on the server, all clients get the latest updates the next time they access
  the application.
@@ -9099,15 +9655,16 @@ reference "fig:logicscheme"
 \end_inset
 
 .
- The DPMbox layer doesn't know any operating details of the DPM layer.
- They just connect trough a common interface, in this case a WebDAV interface.
+ The DPMbox layer doesn't know any operating details of the DPM layer, they
+ just connect trough a common interface, in this case a WebDAV interface.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
@@ -9205,6 +9762,7 @@ reference "fig:physarch"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -9327,19 +9885,6 @@ reference "tab:portability"
  provides access and supports the latest web standards.
 \end_layout
 
-\begin_layout Standard
-The library is responsible af all communication between DPMbox and the DPM
- server through its WebDAV interface.
- So basically it acts as an API exposing the needed WebDAV methods, lying
- on the JavaScript XMLHttpRequest object through the jQuery Ajax method.
-\end_layout
-
-\begin_layout Standard
-Besides taking care of global data as XML headers or defining some additional
- functions, what the library offers is (method with correspoding WebDAV
- call in brackets): 
-\end_layout
-
 \begin_layout Subsection
 DPMbox WebDAV communication
 \end_layout
@@ -9370,8 +9915,8 @@ ac{XHR}
 \end_layout
 
 \begin_layout Standard
-What the library offers is (method with correspoding WebDAV call in brackets):
- 
+What the library offers is (method with its corresponding WebDAV call in
+ brackets): 
 \end_layout
 
 \begin_layout Subsubsection
@@ -9464,7 +10009,7 @@ removeProperty (PROPPATCH)
 
 \begin_layout Standard
 Besides the main verbs, the library takes care of global data as XML headers
- and defines some additional methods:
+ and defines some additional methods.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9475,19 +10020,46 @@ Additional methods
 isCollection: Returns whether an element is a collection or not by looking
  for a collection XML tag inside a resourcetype property.
  For a DPM server there’s no need to use it since a DPM response includes
- a specific property iscollection to check this, but the method is needed
- for standard WebDAV server support.
+ a specific property 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+iscollection
+\end_layout
+
+\end_inset
+
+ to check this, but the method is needed for standard WebDAV server support.
 \end_layout
 
 \begin_layout Description
-getNodesByTag: Works exactly like the standard getElementsByTagName, however
- introduces the ability to filter those results by namespace, which is important
- for handling WebDAV results.
+getNodesByTag: Works exactly like the standard 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+getElementsByTagName
+\end_layout
+
+\end_inset
+
+, however introduces the ability to filter those results by namespace, which
+ is important for handling WebDAV results.
 \end_layout
 
 \begin_layout Description
-seekToNode: Sets resource variable to first node matched via getNodesByTag,
- and returns this, allowing further processing.
+seekToNode: Sets resource variable to first node matched via 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+getNodesByTag
+\end_layout
+
+\end_inset
+
+, and returns this, allowing further processing.
 \end_layout
 
 \begin_layout Description
@@ -9503,8 +10075,18 @@ nodeName: Returns the name of a node (the tag name, essentially).
 \end_layout
 
 \begin_layout Description
-extendbeforesend: jQuery ajax option beforeSend may be set to a function
- reference, and this function will fire prior to the request being sent.
+extendbeforesend: jQuery.ajax option 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+beforeSend
+\end_layout
+
+\end_inset
+
+ may be set to a function reference, and this function will fire prior to
+ the request being sent.
  It gets the XHR object, so this is the point you will want to do things
  like set headers, for example.
 \end_layout
@@ -9519,8 +10101,17 @@ prepare: Prepares the WebDAV call.
  This matters to jQuery in that the success method of a jQuery.ajax options
  object won’t fire if the reponse could not be parsed (although the complete
  method will).
- Is needed to be aware of what dataType of your ajax response will be, and
- set it appropriately.
+ Is needed to be aware of what 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+dataType
+\end_layout
+
+\end_inset
+
+ of your AJAX response will be, and set it appropriately.
 \end_layout
 
 \begin_layout Subsection
@@ -9539,11 +10130,19 @@ In the DPM architecture one entity handles the namespace with the metadata,
  validating the transaction:
 \end_layout
 
-\begin_layout Verbatim
-http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489.0?sfn=%2Fd
-pm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d%2FXHR.js.zip&dpmtoke
-n=dbf5fcbe-7c31-4849-aa57-b07c6b474f5e&token=ojkU%2FdgyPqTYEvu4TfZAyueVDqQ%3D%40
-1425288602%401
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489.0?sfn=/dpm
+/cern.ch/home/dteam/aalvarez/public/collection_d/XHR.js.zip&dpmtoken=dbf5fcbe-7c31-
+4849-aa57-b07c6b474f5e&token=ojkU/dgyPqTYEvu4TfZAyueVDqQ%3D%401425288602%401
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9579,7 +10178,7 @@ name "fig:redirection"
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename img/redirection.png
-	width 25text%
+	width 40text%
 
 \end_inset
 
@@ -9632,16 +10231,25 @@ User agents commonly apply same-origin restrictions to network requests.
  or we’ll face a lot of error messages like this:
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the
  remote resource at http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/publ
 ic/test5.file.
  (Reason: CORS header 'Access-Control-Allow-Origin' missing).
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 You can check a bit of history of XHR and CORS and why is this happening
- here [2].
+ here in [2].
 \end_layout
 
 \begin_layout Standard
@@ -9696,7 +10304,7 @@ Apply the network error steps acting as if the algorithm that invoked the
 \end_layout
 
 \begin_layout Standard
-So with ths configuration it would be impossible to get any information
+So with this configuration it would be impossible to get any information
  of the response, not any header at a JavaScript level, specifically the
  Location header.
  Finally, the solution given was manage the uploads though a first empty
@@ -9711,7 +10319,7 @@ After this we have to add this new header information to our server CORS
  security settings and add it to the directive Access-Control-Expose-Headers.
  There’s a lot of tutorials for different servers CORS configuration, for
  example you can check this one for Apache [2].
- But in the end, in the server side we would need to configurate it as to
+ But in the end, in the server side we would need to configure it as to
  response with this headers:
 \end_layout
 
@@ -9759,6 +10367,13 @@ Access-Control-Expose-Headers: DAV, content-length, Allow, Location
 
 \begin_layout Subsection
 User interface
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:User-interface"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9792,6 +10407,10 @@ When a device as simple as a door has to come with an instruction manual—even
 
 \end_layout
 
+\begin_layout --Separator--
+
+\end_layout
+
 \begin_layout Standard
 As one of the main objectives of DPMbox was to attract new users to the
  system, the user interface design must be very easy to user appealing to
@@ -9819,7 +10438,11 @@ Reduce Users' Memory Load
 \end_layout
 
 \begin_layout Itemize
-Make the Interface Consistent 
+Make the Interface Consistent
+\end_layout
+
+\begin_layout --Separator--
+
 \end_layout
 
 \begin_layout Standard
@@ -9827,10 +10450,19 @@ A way to accomplish this goals is to make the GUI quite similar to the common
  file browsers that most people are used to.
 \end_layout
 
-\begin_layout Description
-Usability is the extent to which a product can be used by specified users
- to achieve specified goals with effectiveness, efficiency and satisfaction
- in a specified context of use.
+\begin_layout Standard
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Usability
+\end_layout
+
+\end_inset
+
+ is the extent to which a product can be used by specified users to achieve
+ specified goals with effectiveness, efficiency and satisfaction in a specified
+ context of use.
 \end_layout
 
 \begin_layout Standard
@@ -9867,8 +10499,21 @@ The extent to which the user finds the overall system acceptable (satisfaction).
  
 \end_layout
 
-\begin_layout Description
-Accessibility of a system describes its ease of reach, use and understanding.
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+Accessibility
+\end_layout
+
+\end_inset
+
+ of a system describes its ease of reach, use and understanding.
  In terms of user experience design it can also be related to the overall
  comprehensibility of the information and features.
  It contributes to shorten the learning curve attached with the system.
@@ -9935,12 +10580,25 @@ able, and recognizable.
  
 \end_layout
 
-\begin_layout Description
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
 User
 \begin_inset space ~
 \end_inset
 
-guidance appears in Part 13 of the ISO 9241
+guidance
+\end_layout
+
+\end_inset
+
+ appears in Part 13 of the ISO 9241
 \begin_inset space ~
 \end_inset
 
@@ -10287,6 +10945,32 @@ W2UI is a small JavaScript UI library with a complete set of widgets that
  covers a wide range of interface design elements: layout, grid, sidebar,
  toolbar, tabs, fields, popup and other utilities.
  It has been created by Vitali Malinouski and it's licensed under MIT license.
+ Some of its features are:
+\end_layout
+
+\begin_layout Itemize
+Complete w2ui library is only 69kb (minified and gziped) and provides extremely
+ fast load and execution.
+ It is 9 times smaller then ExtJS and 7 times smaller then Kendo UI.
+ It is just a bit over the size of jQuery.
+\end_layout
+
+\begin_layout Itemize
+It’s really easy to use with simple and standard API methods, JSON friendly,
+ and it has a stable and good support from its main developer.
+\end_layout
+
+\begin_layout Itemize
+It has no dependencies except jQuery, is all-in-one solution.
+ It contains all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
+ popup, field controls and forms.
+ No need to put together a collection of mismatched plugins or more libraries.
+\end_layout
+
+\begin_layout Itemize
+The library heavily uses HTML5 and CSS3 and yet supports all major modern
+ browsers.
+ Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are among supported browsers.
 \end_layout
 
 \begin_layout Standard
@@ -11376,44 +12060,13 @@ w2ui-1.4.2.js
 \end_layout
 
 \begin_layout Standard
-The main w2ui file.
- It weights just 69KB.
- 
-\end_layout
-
-\begin_layout Standard
-w2ui features are:
-\end_layout
-
-\begin_layout Itemize
-Complete w2ui library is only 69kb (minified and gziped) and provides extremely
- fast load and execution.
- It is 9 times smaller then ExtJS and 7 times smaller then Kendo UI.
- It is just a bit over the size of jQuery.
-\end_layout
-
-\begin_layout Itemize
-It’s really easy to use with simple and standard API methods, JSON friendly,
- and it has a stable and good support from its main developer.
-\end_layout
-
-\begin_layout Itemize
-It has no dependencies except jQuery, is all-in-one solution.
- It contains all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
- popup, field controls and forms.
- No need to put together a collection of mismatched plugins or more libraries.
-\end_layout
-
-\begin_layout Itemize
-The library heavily uses HTML5 and CSS3 and yet supports all major modern
- browsers.
- Latest Chrome, FireFox 7+, Safari 5+ and IE 9+ are among supported browsers.
+The main w2ui file, it hasn't been altered.
 \end_layout
 
 \begin_layout Section
 Testing and validation
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Para la prueba de Abreforjas se ha seguido una estrategia de pruebas manual,
@@ -11461,24 +12114,118 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  deserunt mollit anim id est laborum.
 \end_layout
 
+\begin_layout Standard
+Avoid code injection.
+\end_layout
+
+\begin_layout Standard
+It is well known that the Web technology has a dangerous feature: it allows
+ data and code to be mixed together, i.e., when a string containing both data
+ and code is processed by the web technology, the code can be identified
+ and sent to the JavaScript engine for execution.
+ This feature is made by design, so JavaScript code can be embedded freely
+ inside HTML pages.
+ Unfortunately, the consequence of this feature is that if developers just
+ want to process data but use the wrong APIs, the code in the mixture can
+ be automatically and mistakenly triggered.
+ If such a data-and-code mixture comes from an untrustworthy place, malicious
+ code can be injected and executed inside the app.
+ This is the JavaScript code injection attack.
+ A special type of this attack is called Cross-Site Scripting (XSS), which,
+ according to the OWASP top-ten list [6], is currently the third most common
+ security risk in web applications.
+\end_layout
+
+\begin_layout Standard
+t is well known that the Web technology has a dangerous feature: it allows
+ data and code to be mixed together, i.e., when a string containing both data
+ and code is processed by the web technology, the code can be identified
+ and sent to the JavaScript engine for execution.
+ This feature is made by design, so JavaScript code can be embedded freely
+ inside HTML pages.
+ Unfortunately, the consequence of this feature is that if developers just
+ want to process data but use the wrong APIs, the code in the mixture can
+ be automatically and mistakenly triggered.
+ If such a data-and-code mixture comes from an untrustworthy place, malicious
+ code can be injected and executed inside the app.
+ This is the JavaScript code injection attack.
+ A special type of this attack is called Cross-Site Scripting (XSS), which,
+ according to the OWASP top-ten list [6], is currently the third most common
+ security risk in web applications
+\end_layout
+
+\begin_layout Standard
+To prevent code injection problems, utilize secure input and output handling,
+ such as: Using API which if used properly are secure against all input
+ characters.
+ Parameterized queries (also known as "Compiled queries", "prepared statements",
+ "bound variables") allows for moving user data out of string to be interpreted.
+ Additionally Criteria API[4] and similar API's move away from the concept
+ of command strings to be created and interpreted.
+ Enforcing language separation via a static type system.[5] Input validation,
+ such as Whitelisting only accepting known good values Input encoding, e.g.
+ escaping dangerous characters.
+ For instance, in PHP, using the htmlspecialchars() function (converts HTML
+ tags to their ISO-8859-1 equivalents) and/or strip_tags() function (completely
+ removes HTML tags) for safe output of text in HTML, and mysql_real_escape_strin
+g() to isolate data which will be included in an SQL request, to protect
+ against SQL Injection.
+ Output encoding, i.e.
+ preventing HTML Injection (XSS) attacks against web site visitors Modular
+ shell disassociation from kernel The solutions listed above deal primarily
+ with web-based injection of HTML or script code into a server-side application.
+ Other approaches must be taken, however, when dealing with injection of
+ user code on the user machine, resulting in privilege elevation attacks.
+ Some approaches that are used to detect and isolate managed and unmanaged
+ code injections are: Runtime image hash validation - capture a hash of
+ a part or complete image of the executable loaded into memory, and compare
+ it with stored and expected hash.
+ NX bit - all user data is stored in a special memory sections that are
+ marked as non-executable.
+ The processor is made aware that no code exists in that part of memory,
+ and refuses to execute anything found in there.
+ 
+\end_layout
+
 \begin_layout Subsection
 Unity testing
 \end_layout
 
+\begin_layout Standard
+test.js
+\end_layout
+
+\begin_layout Standard
+Esta pruebas se realizaron junto a la fase de implementación, conforme se
+ implementaban nuevos módu- los necesarios para la aplicación se realizaban
+ pruebas individuales sobre estos módulos.
+ De esta forma se buscaban todos los caminos posibles que podría dar cada
+ módulo, teniendo en cuenta aquellos que fueran más predispuesto a fallos.
+ De esta forma todas las sentencias se ejecutaban como mínimo una vez y
+ los posibles fallos se encontra- ban de una forma más sencilla.
+ Por lo que también eran más fácil localizar donde estaba el problema y
+ afrontar la solución de este.
+ 
+\end_layout
+
 \begin_layout Subsection
-Functional testing
+Integration testing
 \end_layout
 
 \begin_layout Standard
 (Functional requirements).
 \end_layout
 
-\begin_layout Subsection
-Non-functional testing 
+\begin_layout Standard
+(Non-functional requirements).
 \end_layout
 
 \begin_layout Standard
-(Non-functional requirements).
+Integration between library and interface.
+\end_layout
+
+\begin_layout Standard
+Selenium Webdriver.
 \end_layout
 
 \begin_layout Subsection
@@ -11487,6 +12234,17 @@ Acceptance tests
 
 \begin_layout Standard
 Same tests as before but over production.
+\end_layout
+
+\begin_layout Standard
+Las pruebas de aceptación tienen como objetivo verificar que la aplicación
+ se encuen- tra estable para un paso a producción.
+ Las pruebas de aceptación para este sistema se componen de todos los test
+ unitarios, más los test de integración más pruebas manuales que se realizan
+ simulando la interacción de un usuario.
+ Todo esto hace que el sistema disponga de más de 100 test para comprobar
+ de forma automática que todo se encuentra correcto.
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -11498,10 +12256,72 @@ name "chap:Conclusions-and-future"
 \end_inset
 
  
-\begin_inset Note Note
-status collapsed
+\end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+In this chapter we present what we think that are the main contributions
+ of this work and some conclusions and achievements about what has been
+ done.
+ Also we sketch a few ideas about the future of DPMbox and how to improve
+ it.
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+Despite the relevance conceptual modeling has in the software development
+ process and, spe- cially, the design of good conceptual schemas, we have
+ seen current modeling tools do not provide enough assistance.
+ Modeling tools are more focused on automating the development process by
+ means of, for example, code generation, than on improving conceptual models
+ itself.
+ We have also seen that there are several tools that implement features
+ which are of our interest.
+ The main contribution of this master's thesis is the denition of an architectur
+e for our CMA along with the implementation of a running prototype.
+ The proposed architecture allows the integration in current modeling tools
+ of these features.
+\end_layout
+
+\begin_layout Standard
+Our approach involved adapting the CMA to a Platform Tool, which provided
+ many advan- tages.
+ First of all, it added an abstraction layer by which new features can be
+ included in the Platform Tool.
+ Hence, a method engineer could program a new feature for the CMA and all
+ the Platform Tools to which the CMA is adapted would benet.
+ Furthermore, the architecture did not set any boundaries to how new features
+ should be.
+ Furthermore, our proposal entailed a exibility that permited a method engineer
+ to fully program new features inside the CMA, or to call external services
+ instead.
+ And last, but not least, the architecture was capable to efficiently manage
+ Tasks.
+ The usage of Structural Events, whose types were related to Task Types,
+ allowed the CMA to control Tasks' behave efficiently, because for every
+ single change in the model, only those potentially a ected Tasks were considere
+d.
+\end_layout
+
+\begin_layout Standard
+In this thesis we also have shown an evaluation of the architecture by implement
+ing a running prototype.
+ On the one hand, we implemented the prototype itself.
+ This prototype consisted of a Platform Tool which, in our case, was a custom
+ modeling tool created for test purposes, and the CMA, which implemented
+ the architecture we dened and which was adapted to the Platform Tool.
+ By this implementation, we acquired useful information on how to deal with
+ the adaptation of the CMA to a Platform Tool and how to create a plugin
+ system to load new features, among others.
+ On the other hand, in order to have a running prototype, we had to implement
+ a few new features.
+ We presented some examples of new features that could be added to our CMA.
+ We showed the work a method engineer would have to do to extend the.
+\end_layout
+
+\begin_layout Standard
 In this work we have shortly described the contributions that we have given
  towards being able to use the HTTP protocol in the context of High Energy
  Physics distributed data access.
@@ -11511,13 +12331,30 @@ In this work we have shortly described the contributions that we have given
  experiments need.
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+On a personal level this has been an exciting journey for me.
+ You learn a lot watching someone external using with your product.
 \end_layout
 
 \begin_layout Standard
-In this work we...
+The work on DPMbox has been really exciting.
+ 
+\end_layout
+
+\begin_layout Standard
+Our current implementation is ready for production, and it is already available
+ in EPEL 5 and 6, where we aim to have frequent updates with fixes and new
+ functionalities, while keeping a high level of interaction with our users.
+ 
+\end_layout
+
+\begin_layout Standard
+Objetivos alcanzados y lecciones aprendidas.
+\end_layout
+
+\begin_layout Standard
+DPMbox can be used to other.
+ To have a simple but effective WebDAV interface.
 \end_layout
 
 \begin_layout Section
@@ -11534,7 +12371,7 @@ As a free software project, DPMbox has been since the beginning an active
 
 
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand vpageref
 reference "fig:gantt"
 
 \end_inset
@@ -11611,10 +12448,9 @@ IX CUSL logo
 \begin_layout Standard
 The CUSL is a contest of free software/hardware development and free technical
  documentation.
- It is an initiative somewhat similar to the Google Summer of Code (http://www.go
-ogle-melange.com/), but specifically aimed to the spanish university and
- high school students, and organized by a group of free software university
- offices.
+ It is an initiative somewhat similar to the Google Summer of Code, but
+ specifically aimed to the spanish university and high school students,
+ and organized by a group of free software university offices.
  Its main objective is to encourage the creation and contribute to the consolida
 tion of the free software community at university.
  After nine editions, more than 700 projects and a thousand students have
@@ -11626,159 +12462,29 @@ tion of the free software community at university.
 This year the closing event, where finalist participants showcases their
  projects, was held in Zaragoza on May 7th and 8th.
  And finally, after all the competition process, in its ninth edition DPMbox
- was awarded with a first prize, being considered the Best Web Project (http://w
-ww.concursosoftwarelibre.org/1415/node/34) by the evaluation committee (http://www.
-concursosoftwarelibre.org/1415/comite).
-\end_layout
-
-\begin_layout Section
-Repositories
-\end_layout
-
-\begin_layout Standard
-DPMbox interface is integrated into version 0.16 of 
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-lcgdm-dav
-\end_layout
-
-\end_inset
-
- package.
- After going through various testing stages is already, as of Septemer 2015,
- available to download and install from repositories for Fedora 23 and Fedora
- 23.
- It's still on testing repositories for EL-5, EL-6 and EL-7.
- By the way, EPEL (Extra Packages for Enterprise Linux) is a volunteer-based
- community effort from the Fedora project to create a repository of high-quality
- add-on packages that complement the Fedora-based Red Hat Enterprise Linux
- (RHEL) and its compatible spinoffs, such as CentOS and Scientific Linux.
-\end_layout
-
-\begin_layout Standard
-The l
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-cgdm-dav
-\end_layout
-
-\end_inset
-
- package status on the repositories can be checked on
+ was awarded with a first prize, being considered the Best Web Project
 \begin_inset space ~
 \end_inset
 
 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:lcgdm-dav_status"
+\begin_inset CommandInset citation
+LatexCommand cite
+key "1_concursosoftwarelibre.org_2015"
+
+\end_inset
+
+ by the evaluation committee
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2_concursosoftwarelibre.org_2015"
 
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{centering}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:lcgdm-dav_status"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename img/lcgdm-dav_status.png
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{centering}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-lcgdm-dav package status
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Conclusions
-\end_layout
-
-\begin_layout Standard
-You learn a lot watching someone external using with your product.
-\end_layout
-
-\begin_layout Standard
-The work on DPMbox has been really exciting.
- 
-\end_layout
-
-\begin_layout Standard
-Our current implementation is ready for production, and it is already available
- in EPEL 5 and 6, where we aim to have frequent updates with fixes and new
- functionalities, while keeping a high level of interaction with our users.
- 
-\end_layout
-
-\begin_layout Standard
-Objetivos alcanzados y lecciones aprendidas.
 \end_layout
 
 \begin_layout Section
@@ -11786,14 +12492,54 @@ Future work
 \end_layout
 
 \begin_layout Standard
-As an free/libre open source software (FLOSS) development, licensed by the
- Apache license, the future development...
- Future functionality can be varied.
- Accomplish: 
+This 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ac{TFG}
+\end_layout
+
+\end_inset
+
+ ends but the DPMbox development continues.
+ As a free/libre open source software development, licensed by the Apache
+ license, the future development might be interesting, and I will keep contribut
+ing to it.
+ 
+\end_layout
+
+\begin_layout Standard
+In terms of improvements and bugs, after receiving some external feedback
+ from the DPM team, there is already a number of issues opened on the DPMbox
+ repository (
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/calvellido/DPMbox/issues"
+
+\end_inset
+
+).
+ The list of things to be addressed includes: 
 \end_layout
 
 \begin_layout Itemize
 Renaming, for files and collections.
+ For files, this should be feasible through a 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+MOVE
+\end_layout
+
+\end_inset
+
+ into the same location.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -11808,7 +12554,7 @@ Offer more information about the files.
 
 \begin_layout Itemize
 Implement a better system for uploads, and also for downloads.
- Sort of an upload/download manager.
+ Sort of an upload/download manager including, for example, a progress bar.
 \end_layout
 
 \begin_layout Itemize
@@ -11819,12 +12565,6 @@ Improve the error message popups to the final user, trying to show more
 \begin_layout Itemize
 Give the user some configuration options (as sizes or data fields), going
  towards a more customizable interface.
-\end_layout
-
-\begin_layout Itemize
-The ability to drag & drop a file from your local file system.
- With latest HTML5 standards and browser features this shouldn't be something
- complicated to implement.
 \end_layout
 
 \begin_layout Itemize
@@ -11844,13 +12584,31 @@ lcgdm-dav
 \end_layout
 
 \begin_layout Itemize
-Not necessary for DPM, but it would be interesting to implement versioning
- and locks support.
+Add a huge directory alert.
+ In the DPM network some directories might contain an enormously number
+ of files (like millions), so it would be good to warn the user before opening
+ a collection like this.
+ 
+\end_layout
+
+\begin_layout Standard
+And also, though not being something particularly necessary for DPM, it
+ would be interesting to:
+\end_layout
+
+\begin_layout Itemize
+Implement versioning and locks support.
  Offer the possibility to access files versions or even revert to the previous
  version, and delete them.
- It could be interesting to see which file is locked for editing by other
- users.
+ It could be a good addition the possibility to see which file is locked
+ for editing by other users.
  
+\end_layout
+
+\begin_layout Itemize
+Add the functionality to drag & drop a file from your local file system.
+ With latest HTML5 standards and browser features this shouldn't be something
+ complicated to implement.
 \end_layout
 
 \begin_layout Chapter
@@ -11865,30 +12623,33 @@ name "chap:Acknowledgements"
 \end_layout
 
 \begin_layout Standard
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
- tempor incididunt ut labore et dolore magna aliqua.
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
- ut aliquip ex ea commodo consequat.
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
- eu fugiat nulla pariatur.
- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
- deserunt mollit anim id est laborum.
+This work couldn't exist without the free software community.
+ I am thankful for the contributors who dedicate their time and efforts
+ to enable people from around the world to use, study, share and improve
+ free software, thanks to all the people out there who believe that things
+ can be done other way.
 \end_layout
 
 \begin_layout Standard
-Agradecimientos! Thanks to the IT-SDC-ID section and DPM team for all the
- help.
- Alejandro Álvarez Ayllón.
- Manuel Palomo Duarte.
+I want to say thanks to all the people involved at CUSL, for their work
+ and for ().
+ I also want to say thanks to the CERN IT-SDC-ID section and DPM team for
+ the help and the feedback.
 \end_layout
 
 \begin_layout Standard
-Free software.
- CUSL team.
+I want to say thanks to my supervisors, Manuel Palomo Duarte and Alejandro
+ Álvarez Ayllón, for helping and advising me all this time and for giving
+ me this unforgettable opportunity.
 \end_layout
 
 \begin_layout Standard
-Family.
+And last but foremost: 
+\end_layout
+
+\begin_layout Standard
+Gracias a mi familia por apoyarme siempre en la persecución de mis sueños.
+ 
 \end_layout
 
 \begin_layout Standard
