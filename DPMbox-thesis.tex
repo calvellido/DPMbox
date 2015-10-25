@@ -3,7 +3,7 @@
 \documentclass[11pt,english,intoc,bibtotoc,idxtotoc,BCOR0mm,tablecaptionabove]{scrbook}
 \renewcommand{\ttdefault}{txtt}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{luainputenc}
+\usepackage[latin9]{inputenc}
 \usepackage[a4paper]{geometry}
 \geometry{verbose,lmargin=3.5cm,rmargin=2.5cm}
 \setlength{\parskip}{\medskipamount}
@@ -14,6 +14,8 @@
 \usepackage{varioref}
 \usepackage{prettyref}
 \usepackage{float}
+\usepackage{textcomp}
+\usepackage{marvosym}
 \usepackage{amstext}
 \usepackage{graphicx}
 \usepackage[unicode=true,
@@ -29,6 +31,8 @@
 \makeatletter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+\newcommand*\LyXZeroWidthSpace{\hspace{0pt}}
 \newcommand{\lyxmathsym}[1]{\ifmmode\begingroup\def\b@ld{bold}
   \text{\ifx\math@version\b@ld\bfseries\fi#1}\endgroup\else#1\fi}
 
@@ -171,13 +175,13 @@ identifierstyle={\color{gray}}}
   \begin{changemargin}{3em}{3em}
     \centering
 
-    {\LARGE \textsc{\nohyphens{Escuela Superior de IngenierÃ­a}}}
+    {\LARGE \textsc{\nohyphens{Escuela Superior de Ingeniería}}}
     
     \bigskip
     \bigskip
     \bigskip
 
-    {\LARGE \nohyphens{Grado en IngenierÃ­a InformÃ¡tica}}
+    {\LARGE \nohyphens{Grado en Ingeniería Informática}}
 
     \bigskip
     \bigskip
@@ -210,7 +214,7 @@ identifierstyle={\color{gray}}}
     \bigskip
     \bigskip 
     \bigskip 
-    {\LARGE CÃ¡diz, September 2015}
+    {\LARGE Cádiz, September 2015}
 
 \end{titlepage}
 \newpage{\pagestyle{empty}\cleardoublepage}  
@@ -226,12 +230,12 @@ identifierstyle={\color{gray}}}
   \begin{changemargin}{3em}{3em}
 
     \begin{center}
-      {\LARGE \textsc{\nohyphens{Escuela Superior de IngenierÃ­a}}}
+      {\LARGE \textsc{\nohyphens{Escuela Superior de Ingeniería}}}
       
       \bigskip
       \bigskip
       
-      {\LARGE \nohyphens{Grado en IngenierÃ­a InformÃ¡tica}}
+      {\LARGE \nohyphens{Grado en Ingeniería Informática}}
       
       \bigskip
       \bigskip
@@ -259,9 +263,9 @@ identifierstyle={\color{gray}}}
   \begin{flushleft}
     \Large
 
-    \textsc{Department}: \nohyphens{IngenierÃ­a InformÃ¡tica} \\
+    \textsc{Department}: \nohyphens{Ingeniería Informática} \\
     \textsc{Supervisor}: \nohyphens{Manuel Palomo Duarte} \\
-	\textsc{Co-Supervisor}: \nohyphens{Alejandro Ãlvarez-AyllÃ³n} \\
+	\textsc{Co-Supervisor}: \nohyphens{Alejandro Álvarez-Ayllón} \\
     \textsc{Author}: \nohyphens{Juan Valencia Calvellido} \\
   \end{flushleft}
   
@@ -271,7 +275,7 @@ identifierstyle={\color{gray}}}
   
   \begin{flushright}
     \large
-	CÃ¡diz, September 2015
+	Cádiz, September 2015
 	
 
     \bigskip    
@@ -295,9 +299,9 @@ identifierstyle={\color{gray}}}
 
 \section*{License}
 
-Copyright Â© 2015 Juan Valencia Calvellido.
+Copyright © 2015 Juan Valencia Calvellido.
 
-Revision number: 1.0 RC
+Revision number: 1.0
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
@@ -311,13 +315,55 @@ Documentation License.
 
 \section*{Abstract}
 
-DPMbox is a project for a friendly web interface for Disk Pool Manager
-(DPM), the most widely adopted storage management system in the Worldwide
-LHC Computing Grid infrastructure. 
+Disk Pool Manager (DPM) is a lightweight storage management system
+for grid sites. It has been developed in CERN (European Organization
+for Nuclear Research), and it is the most widely adopted solution
+in the Worldwide LHC Computing Grid infrastructure. 
 
-It's been built getting advantage of the WebDAV protocol, recently
-implemented as a new DPM front-end by the CERN IT-SDC-ID section,
-and it uses JavaScript as its core development language.
+Attracting less technical users has been an objective for the last
+years, thus, as an effort to move towards standard protocols that
+removes the need of special tools, DPM started offering a WebDAV (an
+extension of the HTTP protocol) interface, facilitating the access
+through commonly available tools, i.e. web browsers or WebDAV clients.
+However, this interface only provides basic functionality, especially
+when accessed from a web browser, making it still necessary to use
+some specific tools. DPMbox is a project for a friendly web interface
+that allows both technical and nontechnical users to manage their
+data from and into the grid by accessing it trough their web browsers. 
+
+The project has been built getting advantage of the implemented WebDAV
+front-end, and as a web development it uses standard and mature web
+technologies like HTML, CSS and JavaScript/ECMAScript as its core
+language. As a collaboration with CERN, the development has been focused
+on the functionality required by the DPM, but one of the objectives
+is to make DPMbox easily expandable and flexible, enabling its use
+with other systems that offer the WebDAV protocol. \\
+
+
+\emph{Disk Pool Manager (DPM) es un sistema de gestión de almacenamiento
+que se usa dentro del Worldwide LHC Computing Grid. Ha sido desarrollado
+en el CERN y actualmente es el más usado dentro de esta infraestructura
+de computación distribuida.}
+
+\emph{Avanzando hacia el uso de estándares que faciliten el uso de DPM,
+recientemente se implementó una interfaz WebDAV (una extensión del
+protocolo HTTP) para este sistema. A pesar de ello esta interfaz aún
+ofrece una funcionalidad básica, sobre todo accediendo desde un navegador
+web, lo que hace que siga siendo necesario usar algunas herramientas
+especiales. El objetivo de DPMbox es ofrecer una interfaz realmente
+amigable, intuitiva y que pueda usarse con herramientas ya conocidas
+por los usuarios, como es el caso de un navegador web, atrayendo así
+a usuarios menos técnicos de la comunidad científica. }
+
+\emph{El proyecto basa su construcción en la interfaz WebDAV implementada
+y hace uso de tecnologías maduras y estándar que permiten este desarrollo
+como JavaScript/ECMAScript a través de jQuery u otras librerías de
+apoyo, así como HTML y CSS. Al realizarse como colaboración con el
+CERN el desarrollo se centra en las funcionalidades requeridas por
+el sistema DPM. Aún así, uno de los objetivos es que habiendo cumplido
+los requisitos iniciales, el sistema sea extensible y facilmente adaptable,
+haciendo posible su uso con otros sistemas que ofrezcan el protocolo
+WebDAV de manera general.}
 
 
 \section*{Tags}
@@ -339,27 +385,31 @@ DPM Disk Pool Manager CERN LHC Grid WebDAV Interface JavaScript ECMAScript
 
 \chapter{Introduction\label{chap:Introduction}}
 
-This work is the outcome of a one year long relationship with CERN,
+This work is the outcome of a one year long relationship between \ac{CERN},
 specifically with its IT-SDC-ID (Information Technology, Support for
-Distributed Computing, Information and Data) section to develop my
-\ac{TFG}~in one of the projects that this department is working
-on. 
+Distributed Computing, Information and Data) section and me, as \emph{Grado en Ingeniería Informática}
+(BSc Computer Science) student, to develop my \ac{TFG}~in one of
+the projects that this department is working on. 
 
-CERN is the largest laboratory for particle physics research in the
-world. It is located near Geneva, on the French-Swiss border. It was
-founded in 1954 and currently it has 20 member states and 2,500 employees
-on its payroll, but in addition to its staff, CERN host daily up to
-10,000 people including temporary staff, students, universities, etc. 
+
+\section{Motivation\label{sec:Motivation}}
+
+\ac{CERN} is the largest laboratory for particle physics research
+in the world. It is located near Geneva, on the French-Swiss border.
+It was founded in 1954 and currently it has 20 member states and 2,500
+employees on its payroll, but in addition to its staff, \ac{CERN}
+host daily up to 10,000 people including temporary staff, students,
+universities, etc. 
 
 In recent times it has become well known mostly due to the \ac{LHC}
 and the famous Higgs Boson~\cite{Ellis_1458922}. Moreover, there
-are other experiments being conducted by CERN, not only on physics
+are other experiments being conducted by \ac{CERN}, not only on physics
 discipline. For example, the World Wide Web (WWW) was created by Tim
-Berners-Lee in 1990 while he was working there, and CERN has played
-a major role in the development of the free software movement since
-then. They put the World Wide Web software in the public domain, and
-in the next release it was made available with an open license as
-a more sure way to maximize its dissemination~\cite{3_bizer_heath_berners-lee_2009}.
+Berners-Lee in 1990 while he was working there, and \ac{CERN} has
+played a major role in the development of the free software movement
+since then. They put the World Wide Web software in the public domain,
+and in the next release it was made available with an open license
+as a more sure way to maximize its dissemination~\cite{3_bizer_heath_berners-lee_2009}.
 
 It is structured in a hierarchical Department/Group/Section organization,
 being the departments these eight:
@@ -378,7 +428,7 @@ being the departments these eight:
 Depending on the time, more than 100 TB of data could be transferred
 per day on the \ac{WLCG} by the \ac{LHC} experiments~\cite{1742-6596-331-7-072001}.
 All this data has to be stored to be lately processed and analyzed
-by different CERN partners who need to access them from different
+by different \ac{CERN} partners who need to access them from different
 parts of the world. And here is where Grid Computing comes on the
 scene. The idea behind this concept is to have a grid as the electricity
 grid. No matter where the electricity comes from, what really matters
@@ -390,7 +440,7 @@ end-user analysis). This can be seen on~\ref{fig:cern_tiers}.
 \begin{figure}
 \begin{centering}\label{fig:cern_tiers}
 
-\includegraphics[width=0.5\textwidth]{img/CERNtiers}
+\includegraphics[width=0.63\textwidth]{img/CERNtiers}
 
 \end{centering}
 
@@ -410,7 +460,7 @@ all coordinated by CERN~\cite{1_wlcg.web.cern.ch_2015}.
 \begin{figure}
 \begin{centering}\label{fig:cernexperiments}
 
-\includegraphics[width=1\textwidth]{img/CERNexperiments}
+\includegraphics[width=1\textwidth]{img/accelerator}
 
 \end{centering}
 
@@ -429,19 +479,19 @@ different implementations and varying capabilities~\cite{SRM_2013_6829}.
 
 The storage components used in the grid belong to the category of
 software systems whose goal is to cluster storage resources and make
-them available to data processing clients as if they were a unique
-system. These products work by managing and distributing data across
-mountpoints that are spread through many servers. Clients that want
-to access the repository are redirected to the best machine according
-to various criteria, typically given by some clustering algorithm.
-There are different clustering techniques using various technologies
-and the goal of such systems is always to hide to the users the complexity
-linked to the â€œwhere is my file problemâ€. The central systems that
-schedule analysis jobs to be submitted, or the users themselves do
-not need to deal with details that are internal to the site (e.g.
-the names of the mount points, which can change); they need to interact
-with a coherent storage service that is offered and administered by
-the site~\cite{1742-6596-513-3-032034}.
+them available to data processing clients as an unique logical system.
+These products collaborate by managing and distributing data across
+mount points that are spread through many servers. Clients that want
+to access the repository are redirected to the most suitable server
+according to various criteria, typically given by some clustering
+algorithm. There are different clustering techniques using various
+technologies and the goal of such systems is always to hide to the
+users the complexity linked to the \textquotedblleft where is my file
+problem\textquotedblright . The central systems that schedule analysis
+jobs to be submitted, or the users themselves do not need to deal
+with details that are internal to the site (e.g. the names of the
+mount points, which can change); they need to interact with a coherent
+storage service that is offered and administered by the site~\cite{1742-6596-513-3-032034}.
 
 Some of the different solutions employed in the WLCG are:
 \begin{itemize}
@@ -453,36 +503,33 @@ disk array storage systems
 system to a tier model.
 \item StoRM: Takes advantage of the underlying file-systems to implement
 the features offered by the SRM interface.
-\item DPM (Disk Pool Manager): Disk-based, maximum 10TB per node. 
+\item \ac{DPM}: Disk-based, maximum 10TB per node. 
 \end{itemize}
-
-\section{Motivation\label{sec:Motivation}}
-
 
 \subsection{Disk Pool Manager}
 
-After this small presentation about CERN, we are in position to talk
-about Disk Pool Manager. DPM is a lightweight storage solution for
-grid sites, focusing on disk-based systems. It offers a simple way
-to create an storage node on the network and offers compatibility
-with relevant protocols (SRM, gridFTP, RFIO), for both file management
-and access. It is focused on smaller sites (including simple installation
-and configuration as well as easy maintenance), but also provides
-all the needed functionality for a storage system on network/grid
-(support for multiple server nodes, different namespaces or multiple
-replicas in disk pools)~\cite{2_manzi_2015}. It is currently installed
-in 165 different sites, with more than 190 instances running as of
-September 2015, you can check this in figure~\ref{fig:currentusage}
+After this small presentation about \ac{CERN}, we are in position
+to talk about the Disk Pool Manager~\cite{6_svnweb.cern.ch_2015}.
+\ac{DPM} is a lightweight storage solution for grid sites, focusing
+on disk-based systems. It offers a simple way to create an storage
+node on the network and offers compatibility with relevant protocols
+(SRM, gridFTP, RFIO), for both file management and access. It is focused
+on smaller sites (including simple installation and configuration
+as well as easy maintenance), but also provides all the needed functionality
+for a storage system on network/grid (support for multiple server
+nodes, different namespaces or multiple replicas in disk pools)~\cite{2_manzi_2015}.
+It is currently installed in 165 different sites, with more than 190
+instances running as of September 2015, you can check this in figure~\ref{fig:currentusage}
 and in~\cite{WLCG_stats}. 
 
 \begin{figure}
 \begin{centering}\label{fig:currentusage}
 
-\includegraphics[width=1\textwidth]{img/DPMuse}
+\includegraphics[width=0.67\textwidth]{img/DPMuse}
 
 \end{centering}
 
-\protect\caption{DPM current usage}
+\protect\caption{DPM current usage screenshot}
 \end{figure}
 
 
@@ -501,15 +548,15 @@ the industry standards Puppet and Nagios.
 \subsection{Current goals}
 
 The WLCG data transfer services have been one of the keys to the success
-of the management of the huge volumes of LHC data, and bringing those
-services and underlying infrastructure up to scale was the subject
-of many of the large scale data challenges prior to the LHC switch
-on. In recent years, the overall goal has been to leverage standards
-and standard practices, and use them to contribute the components
-that are needed to fulfill the complex problem of data access in High
-Energy Physics while using technologies and toolsets that are attractive
-also for non-\ac{HEP} communities, making long term sustainability
-a closer goal. 
+of the management of the huge volumes of \ac{LHC} data, and bringing
+those services and underlying infrastructure up to scale was the subject
+of many of the large scale data challenges prior to the \ac{LHC}
+switch on. In recent years, the overall goal has been to leverage
+standards and commonly accepted practices, and use them to contribute
+the components that are needed to fulfill the complex problem of data
+access in High Energy Physics while using technologies and toolsets
+that are attractive also for non-\ac{HEP} communities, making long
+term sustainability a closer goal~\cite{1742-6596-396-3-032015}. 
 
 This is happening because, so far, all the bulk data movement has
 relied on the gridFTP protocol. While it has been proven successful,
@@ -529,7 +576,7 @@ data management systems, called dmlite. There has been work invested
 in implementing HTTP as an alternative to gridFTP. Therefore, a few
 years ago, moving towards the adoption of standards to facilitate
 its use and trying to eliminate the need for special tools, a WebDAV
-interface (an extensiÃ³n of the HTTP protocol) was implemented in Disk
+interface (an extension of the HTTP protocol) was implemented in Disk
 Pool Manager~\cite{1742-6596-396-5-052006}. The main goal was to
 facilitate the access to the storage network through common programs,
 i.e. web browsers or WebDAV clients. 
@@ -537,38 +584,38 @@ i.e. web browsers or WebDAV clients.
 However, this implementation is based on a primitive read-only interface
 when accessed through a web browser, which limits the use cases to
 simple directory browsing and file downloads. This makes still necessary
-to use special tools for certain operations such as file uploads. 
+to use specific tools for certain operations such as file uploads. 
 
 
 \section{Objectives and scope\label{sec:Objectives-and-scope}}
 
-Taking advantage of this WebDAV interface, the general goal of DPMbox
-project is to offer a truly friendly interface that concentrates all
-possible functionality in one tool that can be used with programs
+Taking advantage of this WebDAV interface, the general goal of the
+DPMbox project is to offer a truly friendly interface that concentrates
+all possible functionality in one tool that can be used with programs
 known by users, namely web browsers. The purpose is not to create
 a cloud storage system copycat, but to get advantage of the features
-that DPM system already offers (performance, different accessing protocols,
-data replication, etc.) adding the ease of use of the increasingly
+that \ac{DPM} system already offers (performance, different accessing
+protocols, data replication, etc.) adding the ease of use of the increasingly
 widespread cloud storage systems like Dropbox, OneDrive or Google
 Drive.
 
-More specifically the system must allow users to browse and access
-their data stored in DPM grid elements that provide the HTTP protocol
-in a manner that is straight forward for unexperienced users. The
-focus will be held mainly on usability and ease of use but other requirements
-must also be taken into consideration, including, obviously, security
-constraints. 
+More specifically the system must allow users to manage their data
+stored in DPM grid elements in a manner that is straight forward for
+unexperienced users. The focus will be held mainly on usability and
+ease of use, according to navigation standards found on file browsers
+and cloud storage systems, but other requirements must also be taken
+into consideration, including, obviously, security constraints. 
 
 The development will focus on the functionality required by the IT-SDC-ID
-section, pursuing effectiveness on DPM infrastructure. But one of
-the future goals is that, after fulfilling these requirements, DPMbox
-can be adapted easily to another contexts, enabling its general use
-with any other system implementing a WebDAV protocol.
+section, pursuing effectiveness on the DPM infrastructure. But one
+of the future goals is that, after fulfilling these requirements,
+DPMbox will be easy to adapt to another contexts, enabling its general
+use with any other system implementing a WebDAV protocol.
 
 As a web development the project will use standard web technologies
 as HTML5~\cite{2_w3.org_2015}, CSS3~\cite{3_w3.org_2015} or JavaScript~\cite{4_mozilla_developer_network_2015}
-and like all software involved in DPM, the project will be developed
-under the Apache License version 2.0~\cite{5_apache.org_2015}.
+and like all software involved in DPM, the project is developed under
+the Apache License version 2.0~\cite{5_apache.org_2015}.
 
 
 \section{Glossary}
@@ -580,8 +627,10 @@ under the Apache License version 2.0~\cite{5_apache.org_2015}.
   \acro{AC}{Attribute Cetificate}
   \acro{ACL}{Access Control Lists}
   \acro{CERN}{European Organization for Nuclear Research}
+  \acro{CORS}{Cross-Origin Resource Sharing}
   \acro{DAV}{Distributed Authoring and Versioning}
   \acro{DN}{Distinguished Name}
+  \acro{DOM}{Document Object Model}
   \acro{DPM}{Disk Pool Manager}
   \acro{EGI}{European Grid Infrastructure}
   \acro{FQAN}{Fully Qualified Attribute Name}
@@ -596,8 +645,8 @@ under the Apache License version 2.0~\cite{5_apache.org_2015}.
   \acro{SE}{Storage Element}
   \acro{SFN}{Storage File Name}
   \acro{SRM}{Storage Resource Manager}
-  \acro{TFG}{Trabajo Fin de Grado - Degree Thesis}
-  \acro{UCA}{Universidad de CÃ¡diz}
+  \acro{TFG}{\emph{Trabajo Fin de Grado} - Degree Thesis}
+  \acro{UCA}{\emph{Universidad de Cádiz}}
   \acro{UX}{User eXperience}
   \acro{VOMS}{Virtual Organization Membership Service}
   \acro{WLCG}{Worldwide LHC Computing Grid}
@@ -640,19 +689,19 @@ certificates, and a certification path validation algorithm~\cite{rfc3820}.
 \section{Document organization\label{sec:Document-organization}}
 
 In this \emph{Introduction} you can read about the project motivation
-and some descriptions about how the CERN works, giving some context
-to the project. This is naturally followed by the \emph{State of the Art},
+and some descriptions about how the \ac{CERN} works, giving some
+context to the project. This is naturally followed by the \emph{State of the Art},
 so the reader can completely envision the current system and environment
 state. 
 
 After that comes the \emph{Schedule}, all the organization and planning
-stuff can be found there. 
+issues can be found there. 
 
-Then, in the \emph{Project general description} you can read about
-what has been developed in a non-technical way, before getting into
-detail in the next section, \emph{Project development}, where all
-things about how DPMbox has been built are shown: system analysis,
-design, implementation and testing.
+Then, in the \emph{Project general description} a summary of the
+project is available, before getting into detail in the next section,
+\emph{Project development}, where all things about how DPMbox has
+been built are shown: system analysis, design, implementation and
+testing.
 
 Next come \emph{Conclusions} and \emph{Acknowledgements}, where
 we explain the final thoughts that have been reached after completing
@@ -665,12 +714,13 @@ and also the \emph{License} under which this document is published.
 
 \chapter{State of the art\label{chap:State-of-the}}
 
-As said before, right now there is already web access implemented
-in the Disk Pool Manager infrastructure. This has been developed as
-part of the HTTP/WebDAV front-end and is built getting advantage of
-the Apache WebDAV module, \code{mod\_dav}, and the proxy support
-module, \code{mod\_gridsite}. To get a deeper understanding of how
-it works a paper from his authors, Ãlvarez AyllÃ³n et al., can be checked~\cite{1742-6596-396-5-052006}.
+As previously commented, at the moment \ac{CERN} already has web
+access implemented in the Disk Pool Manager infrastructure. This has
+been developed as part of the HTTP/WebDAV front-end and is built getting
+advantage of the Apache WebDAV module, \code{mod\_dav}, and the proxy
+support module, \code{mod\_gridsite}. To get a deeper understanding
+of how it works a paper from his authors, Álvarez Ayllón et al., can
+be checked~\cite{1742-6596-396-5-052006}.
 
 The Hypertext Transfer Protocol (HTTP)\textsuperscript{}is a well
 known and widely implemented standard protocol based on a client-server
@@ -686,22 +736,23 @@ through the web.
 trough the web.
 \item [{Metadata}] Users can create and retrieve resources, and also modify
 its associated properties, as owner, description, permissions and
-any other information that can be expressed as text or XML. 
+any other information that can be expressed as text or \ac{XML}. 
 \end{description}
 
 
 For this goal it defines some new additional methods to the traditional
-ones (POST, GET, PUT) like PROPFIND, MKCOLâ€¦ It uses XML to encode
-the answers, as the list of properties of a file, or the content of
-a folder. Complete specification can be read in~\cite{RFC4918}. 
+ones (POST, GET, PUT) like PROPFIND, MKCOL\dots{} \ac{XML} is the
+language used to encode the answers, as the list of properties of
+a file, or the content of a folder. Complete specification can be
+read in~\cite{RFC4918,RFC5689}. 
 
 In the current web visualization you can explore a collection, download
-the data and navigate through a collection. But is not possible to
-upload data, there is no interaction. A reason for this is that HTML
-forms donâ€™t support more HTTP verbs/methods than just GET and POST,
-and no PUT. So until now for this cases the use of CURL or a proper
-WebDAV client is needed. The current view accessing a DPM server through
-a web browser is depicted in~\ref{fig:webdavaccess}.
+the data and navigate through a collection. But it is not possible
+to upload data, there is no interaction. A reason for this is that
+HTML forms don\textquoteright t support more HTTP verbs/methods than
+just GET and POST, and no PUT. So until now for this cases the use
+of CURL or a proper WebDAV client is needed. The current view accessing
+a \ac{DPM} server through a web browser is depicted in~\ref{fig:webdavaccess}.
 
 \begin{figure}
 \begin{centering}
@@ -760,14 +811,15 @@ browsers.
 
 \subsection{HTTP clients}
 
-A DAV server can be accessed safely using plain HTTP, which allows
-using regular web browsers (Mozilla Firefox, Google Chrome, Opera...)
-to explore a DAV endpoint an retrieve files. However, web browsers
-donâ€™t usually allow uploading files directly - without using a web
-form - so for that purpose CURL can be used. CURL is a command line
-interface able to interact with several protocols, being HTTP one
-of them. We compare the support of some key features of two of the
-most frequent tools used to access a web server in table \ref{tab:http_clients}. 
+A \ac{DAV} server can be accessed safely using plain HTTP, which
+allows using regular web browsers (Mozilla Firefox, Google Chrome,
+Opera...) to explore a \ac{DAV} endpoint an retrieve files. However,
+web browsers don\textquoteright t usually allow uploading files directly
+- without using a web form - so for that purpose CURL can be used.
+CURL is a command line interface able to interact with several protocols,
+being HTTP one of them. We compare the support of some key features
+of two of the most frequent tools used to access a web server in table
+\ref{tab:http_clients}. 
 
 \begin{table}[h]
 \label{tab:http_clients}
@@ -794,7 +846,7 @@ Web browser & Any & Yes & No & Yes & Only IE & Yes & No\tabularnewline[\doubleru
 
 \subsection{WebDAV clients}
 
-Yo perform namespace operations, such as creating directories, renaming
+To perform namespace operations, such as creating directories, renaming
 or fetching properties, WebDAV must be used. We present a comparison
 between the most popular WebDAV clients on~\ref{tab:webdav_clients}. 
 
@@ -808,7 +860,7 @@ Cadaver & {*}nix & No & Yes & Yes & No & No\tabularnewline
 Davlib & OS X & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
 Shared folder & Windows & Yes & Yes & Yes & Yes & Not on Win7\tabularnewline[\doublerulesep]
 DavFS2 & {*}nix & N/A & Yes & Yes & No & No\tabularnewline[\doublerulesep]
-gvfs â‰¥ 1.12.1 & Gnome 3 & Yes & No & No & No & Not on PUT\tabularnewline[\doublerulesep]
+gvfs \ensuremath{\ge} 1.12.1 & Gnome 3 & Yes & No & No & No & Not on PUT\tabularnewline[\doublerulesep]
 Dolphin & KDE & Yes & No & No & No & Yes\tabularnewline[\doublerulesep]
 Cyberduck & Win, OS X & Yes & No & No & No & Yes\textsuperscript{1}\tabularnewline[\doublerulesep]
 libneon & {*}nix & N/A & N/A & Yes & No & No\tabularnewline[\doublerulesep]
@@ -847,7 +899,7 @@ around the grid~\cite{AlfieriCCdFGLS03}.
 
 Once the clients are authenticated, the X.509 certificate \ac{DN}
 is used as a \code{\_user name\_} and the \ac{VOMS} \ac{FQAN} are
-used as \code{\_group names\_}. Apart from this, DPM authorization
+used as \code{\_group names\_}. Apart from this, \ac{DPM} authorization
 follows the POSIX filesystem authorization semantics, and it supports
 (and, indeed, requires) \ac{ACL} on its namespace..
 
@@ -864,9 +916,9 @@ the stages the project has gone through and its planning.
 The ISO/IEC 12207-1~\cite{ISO12207} standard defines the life cycle
 model as a 
 \begin{quote}
-â€œ\emph{framework of processes and activities concerned with the life cycle
+\textquotedblleft \emph{framework of processes and activities concerned with the life cycle
 that may be organized into stages, which also acts as a common reference
-for communication and understanding}â€
+for communication and understanding}\textquotedblright{}
 \end{quote}
 
 
@@ -899,23 +951,24 @@ has been reached.
 \section{Stages}
 
 Here you can read a small brief about the features that particularize
-each of the stages that DPMbox has gone through. CERN network access
-has been granted for a year, so the development must be adjusted to
-that access to allow the needs of on-site deployment, information
+each of the stages that DPMbox has gone through. \ac{CERN} network
+access has been granted for a year, so the development must be adjusted
+to that access to allow the needs of on-site deployment, information
 obtainment... You can get the big picture at a glance having a look
-at the Gantt chart, figure~\vref{fig:gantt}.
+at the Gantt chart, figure~\vref{fig:gantt}. A tentative development
+roadmap it is also available on the DPMbox blog~\cite{10_valencia_calvellido_2015}.
 
 
 \subsection{First stage, first approach}
 \begin{itemize}
-\item Get familiar with the CERN network, the IT-SDC-ID section and all
-the terminology of its systems.
+\item Get familiar with the \ac{CERN} network, the IT-SDC-ID section and
+all the terminology of its systems.
 \item Disk Pool Manager investigate and learn about through its documentation.
 \item Study different approaches and decide which one is the better option.
 \item Master the concepts, verbs and particularities of the WebDAV protocol,
-as it looks as the easiest way to approach DPM. 
-\item Get everything ready for the first CERN visit, trying to assure to
-make the most of the time I'll be there.
+as it looks as the easiest way to approach the DPM. 
+\item Get everything ready for the first \ac{CERN} visit, trying to assure
+to make the most of the time I will be there.
 \end{itemize}
 
 \subsection{Second stage, connection library}
@@ -926,8 +979,9 @@ language was chosen.
 \item Start to develop a WebDAV connection library. This follows a minimal
 viable product approach, starting with a simple call just to read
 the information about a WebDAV server, then read its contents then...
-\item Prepare for the Naples DPM workshop. I was invited to contribute to
-this annual DPM group meeting with a small presentation about DPMbox. 
+\item Prepare for the Naples \ac{DPM} workshop. I was invited to contribute
+to this annual \ac{DPM} group meeting with a small presentation about
+DPMbox~\cite{DPMworkshop}. 
 \item Build of first working prototype.
 \end{itemize}
 
@@ -945,7 +999,7 @@ possibilities were discarded.
 \item Extending the interface and the WebDAV connection library integrating
 it into the Disk Pool Manager software stack.
 \item Test the integration between the library and the interface.
-\item Get everything ready for the second and final visit to CERN.
+\item Get everything ready for the second and final visit to \ac{CERN}.
 \item Build the second working prototype.
 \end{itemize}
 
@@ -977,8 +1031,8 @@ The project has been developed entirely by the writer, student of
 \emph{Universidad de Cadiz}, carrying out the work of analysis, design
 and development, including also visual interface design. The project
 development has been reviewed and guided by supervisors Alejandro
-Ãlvarez AyllÃ³n, current employee at CERN IT-SDC-ID section, and Manuel
-Palomo Duarte, PhD Computer Science in \emph{Universidad de CÃ¡diz}.
+Álvarez Ayllón, current employee at \ac{CERN} IT-SDC-ID section,
+and Manuel Palomo Duarte, PhD Computer Science in \emph{Universidad de Cádiz}.
 
 
 \section{Non-Human resources\label{sec:Non-Human-resources}}
@@ -1021,9 +1075,9 @@ an external cloud server has been hired:
 
 
 Also, in different development stages DPMbox prototypes have been
-deployed in DPM testing instances in CERN IT-SDC-ID section servers.
-The configuration of these machines could be varied, with most of
-them using Scientific Linux 6 as it OS.
+deployed in \ac{DPM} testing instances in CERN IT-SDC-ID section
+servers. The configuration of these machines could be varied, with
+most of them using Scientific Linux 6 as it OS.
 
 
 \section{Costs}
@@ -1043,18 +1097,18 @@ software (C\textsubscript{s}) and hardware (C\textsubscript{h}).
 As seen on previous section the infrastructure requirements for the
 development have been humble, basically the project has only need
 a single PC computer with GNU/Linux and internet connection (about
-400â‚¬ for a 10 month long contract). The tools and libraries used were
+400¤ for a 10 month long contract). The tools and libraries used were
 all free to use in this context, therefore neither requires cost.
 The price of the personal computer used in the development was 790
-â‚¬. Also the monthly rate of the Digital Ocean server is \$5 (though
+¤. Also the monthly rate of the Digital Ocean server is \$5 (though
 this was really hired through GitHub Education developer pack~\cite{github_education_2015}).
-The â‚¬/\$ exchange rate as of September 1st 2015 makes that 4.4â‚¬, so
-the use of a Digital Ocean droplet for ten months will cost 44â‚¬.
+The ¤/\$ exchange rate as of September 1st 2015 makes that 4.4¤, so
+the use of a Digital Ocean droplet for ten months will cost 44¤.
 
 \begin{centering}\bigskip
 
 \[
-MaterialCost(C_{m})=SoftwareCost(C_{s})+HardwareCost(C_{h})=0+400+790+44=1,234.8\lyxmathsym{â‚¬}
+MaterialCost(C_{m})=SoftwareCost(C_{s})+HardwareCost(C_{h})=0+400+790+44=1,234.8\lyxmathsym{¤}
 \]
 
 
@@ -1069,30 +1123,30 @@ been 5 hours per day.
 
 To calculate the staff wage we are taking three different documents:~\cite{salaries1_BOCM,salaries2_MichaelPage,salaries3_UCA}
 (all of them in spanish and centered on spanish job positions since
-the cost of developing with CERN based salaries would be very different).
-The first one gives us a 1,850.12â‚¬ monthly wage for a group 1 worker
-(University degree engineers and so), second one stands that a Systems
-Analyst position has an average salary of 1,875â‚¬, and in the last
-one we read that a Computer Engineer has a salary of 1,353.22â‚¬ per
-month. With the data from this documents we have estimated a salary
-that would be: 1,692.8â‚¬
+the cost of developing with \ac{CERN} based salaries would be very
+different). The first one gives us a 1,850.12¤ monthly wage for a
+group 1 worker (University degree engineers and so), second one stands
+that a Systems Analyst position has an average salary of 1,875¤, and
+in the last one we read that a Computer Engineer has a salary of 1,353.22¤
+per month. With the data from this documents we have estimated a salary
+that would be: 1,692.8¤
 
 \begin{centering}\bigskip
 
 \[
-Staff\,Cost=Monthly\,wage\,\text{Ã—}\,Persons\,per\,month=1,692.8\times8.72=14,761,22\lyxmathsym{â‚¬}
+Staff\,Cost=Monthly\,wage\,\text{\texttimes}\,Persons\,per\,month=1,692.8\times8.72=14,761,22\lyxmathsym{¤}
 \]
 
 
 \end{centering}\bigskip
 
-Also, the CERN visits have had a cost of 900â‚¬ each (including travels,
-accommodation and subsistence allowance).
+Also, the \ac{CERN} visits have had a cost of 900¤ each (including
+travels, accommodation and subsistence allowance).
 
 \begin{centering}\bigskip
 
 \[
-Personnel\,Cost(C_{p})=Staff\,Cost+Additional\,Cost=14,761.22+900+900=16,561.22\lyxmathsym{â‚¬}
+Personnel\,Cost(C_{p})=Staff\,Cost+Additional\,Cost=14,761.22+900+900=16,561.22\lyxmathsym{¤}
 \]
 
 
@@ -1104,7 +1158,7 @@ project:
 \begin{centering}\bigskip
 
 \[
-C=C_{m}+C_{p}=1,234.8+16,561.22=17,796,02\lyxmathsym{â‚¬}
+C=C_{m}+C_{p}=1,234.8+16,561.22=17,796,02\lyxmathsym{¤}
 \]
 
 
@@ -1120,7 +1174,7 @@ studying and eliminating sources of risk before they threaten the
 project's success. Based on this, we list a number of risks that may
 affect DPMbox and should be addressed:
 \begin{itemize}
-\item The development team hasn't been able to meet or know directly the
+\item The development team has not been able to meet or know directly the
 needs of any final user. The aim is to develop a generalized software,
 based on our assumptions as developers. There is a risk that the system
 is not accepted in general terms by potential users.
@@ -1135,11 +1189,12 @@ obtained.
 \item Priority: Avoiding this risk is a top priority, as it could mean having
 worked for months in features not needed, or viceversa. 
 \item Action~plan: To prevent this from happening, some working prototypes
-are planned. They can be shown to some acquainted DPM users, that
-way we can know their point of view.
+are planned. They can be shown to some acquainted \ac{DPM} users,
+that way we can know their point of view.
 \end{itemize}
 \item Late delivery due to lack of knowledge about tools, languages, or
-even more likely the â€‹â€‹DPM system characteristics.
+even more likely the \LyXZeroWidthSpace \LyXZeroWidthSpace \ac{DPM}
+system characteristics.
 
 \begin{itemize}
 \item Impact: This risk can affect all phases, because in all of them the
@@ -1149,8 +1204,8 @@ does not have any previous experience with the system.
 \item Priority: The priority will be lower as the project progresses, the
 learning curve is expected to be steep.
 \item Action~plan: It would be ideal to know the different tools and having
-ever used such a system like DPM, but this time is not possible to
-avoid the risk. However, we will try to do a good learning process
+ever used such a system like the DPM, but this time is not possible
+to avoid the risk. However, we will try to do a good learning process
 for each tool, language, and also the system.
 \end{itemize}
 \end{itemize}
@@ -1177,13 +1232,13 @@ allowing access to data using commonly used grid protocols over the
 developed in JavaScript. 
 
 Its look and feel is similar to desktop file explorers, so a new user
-wonâ€™t spend lots of time to adapt to its behaviour. In terms of it
-functionality, it's possible to perform various operations, including
-(multiple) file upload, (multiple) file download, (multiple) delete
-of files and collections. Besides that you can also perform searches
-based on various file properties inside a directory and sort the content
-by those same properties. Its panels are slightly responsive for a
-fast adjustment to your screen, and besides that, it has a flexible
+won\textquoteright t spend lots of time to adapt to its behaviour.
+In terms of it functionality, it is possible to perform various operations,
+including (multiple) file upload, (multiple) file download, (multiple)
+delete of files and collections. Besides that you can also perform
+searches based on various file properties inside a directory and sort
+the content by those same properties. Its panels are slightly responsive
+for a fast adjustment to your screen, and besides that, it has a flexible
 layout, that you can adapt to suit your needs.
 
 It has a very small size, 79KB (not including external libraries).
@@ -1191,10 +1246,10 @@ With all its libraries included (jQuery, w2ui) the load size could
 be less than 200KB (all files minified).
 
 The main purpose of DPMbox is to support the Disk Pool Manager system,
-however, it follows the standard WebDAV RFC 4918~\cite{RFC4918}
-aiming to be compatible with any WebDAV server. It has has been developed
-modularly, and its internal library could be used to develop other
-new applications.
+however, it has been built following the WebDAV standards RFC 4918~\cite{RFC4918}
+and RFC 5689~\cite{RFC5689}, aiming to be compatible with any WebDAV
+server. It has has been developed modularly, and its internal library
+could be used to develop other new applications.
 
 Chrome/Chromium, FireFox 7+, Safari 5+ and IE 9+ are among supported
 browsers.
@@ -1216,7 +1271,7 @@ browsers.
 DPMbox interface is integrated into version 0.16 of \code{lcgdm-dav}
 package. After going through various testing stages is already, as
 of September 2015, available to download and install from repositories
-for Fedora 22 and Fedora 23. It's still on testing repositories for
+for Fedora 22 and Fedora 23. It is still on testing repositories for
 EL-5, EL-6 and EL-7. By the way, EPEL (Extra Packages for Enterprise
 Linux) is a volunteer-based community effort from the Fedora project
 to create a repository of high-quality add-on packages that complement
@@ -1254,27 +1309,41 @@ on how to use or test services.
 
 Currently, the majority of users of the \ac{WLCG} come from the \ac{HEP}
 community for which the \ac{WLCG} is a necessity to analyze the data
-generated by the \ac{LHC} experiment at CERN in Geneva. However,
+generated by the \ac{LHC} experiment at \ac{CERN} in Geneva. However,
 a growing number of \ac{WLCG} users come from many other scientific
 disciplines, such as the biomedical field, earth science, astrophysics,
 fusion science, etc.
 
 Generally speaking, we can consider our target user a not necessarily
-high level at technical user, but acquainted at file browser interfaces
-or even cloud storing services. And anyway, as you can see, the potential
-DPMbox user profile, being mostly science researchers, could be quite
-heterogeneous. Furthermore one of the objectives is to attract new
-users to this interface, particularly the non-\ac{HEP} users, so,
-audacious it may sound, we are aiming to design a, universally appealing
-interface, or at least the design won't be focused on a specific niche
-audience. 
+high level at technical tasks user, but acquainted at file browser
+interfaces or even cloud storing services. And anyway, as you can
+see, the potential DPMbox user profile, being mostly science researchers,
+could be quite heterogeneous. Furthermore one of the objectives is
+to attract new users to this interface, particularly the non-\ac{HEP}
+users, so, audacious it may sound, we are aiming to design a, universally
+appealing interface, or at least the design will not be focused on
+a specific niche audience. 
 
 
 \chapter{Project development\label{chap:Project-development}}
 
-In this chapter are described all the details related with how DPMbox
-has been constructed: objectives, requirements, solution alternatives,
-system analysis, design, implementation and testing.
+Like traditional computer programs, modern web applications are fully-fledged,
+complex software systems, and in order to be successful their development
+must be thorough and systematic. Current web developers need to examine
+and re-use the body of knowledge found within software engineering
+and demonstrates how to use that knowledge within the web environment.
+
+Web engineering is the application of systematic and quantifiable
+approaches (concepts, methods, techniques, tools) to cost-effective
+requirements analysis, design, implementation, testing, operation,
+and maintenance of high-quality web applications. Web engineering
+is also the scientific discipline concerned with the study of these
+approaches~\cite{wediscipline}.
+
+Following a web engineering approach, in this chapter are described
+all the details related with how DPMbox has been constructed: objectives,
+requirements, solution alternatives, system analysis, design, implementation
+and testing.
 
 
 \section{System objectives\label{sec:System-objectives}}
@@ -1574,7 +1643,7 @@ can be added with no harm. \tabularnewline
 \hline 
  & Accessible from different systems\tabularnewline
 \hline 
-Description & The use of DPMbox can't be restricted to particular operating systems
+Description & The use of DPMbox cannot be restricted to particular operating systems
 and/or web browsers.\tabularnewline
 \hline 
 \end{tabular}
@@ -1701,12 +1770,12 @@ and JavaScript libraries. Browser incompatibilities have largely been
 eliminated by improved standards compliance by the current releases
 of the major web browsers. This is attested by the results of the
 web standards project Acid3 tests, that check web browser compliance
-with elements of various web standards, particularly the Document
-Object Model (DOM) and JavaScript. Furthermore, JavaScript libraries,
-such as jQuery, provide abstraction layers that cover most of the
-remaining corner case browser incompatibilities. Faster hardware and
-browsers mean that slow client-side rendering is no longer a major
-issue and can often be resolved with basic tuning of UI code. 
+with elements of various web standards, particularly the \ac{DOM}
+and JavaScript. Furthermore, JavaScript libraries, such as jQuery,
+provide abstraction layers that cover most of the remaining corner
+case browser incompatibilities. Faster hardware and browsers mean
+that slow client-side rendering is no longer a major issue and can
+often be resolved with basic tuning of UI code. 
 
 Resolving the remaining issues requires explicit effort on the part
 of the UI developer. Sustainable development, for example, can be
@@ -1736,16 +1805,16 @@ the DPMbox interface will be easy to understand and maintain, and
 could also be easily adapted to other uses or modified for extended
 support in the future. Even a small prototype was developed using
 this, but in a deeper research exploring alternatives, I stumble upon
-w2ui, a â€œmodern, intuitive JavaScript UI library for building rich
-data-driven web applicationâ€. 
+w2ui, a \textquotedblleft modern, intuitive JavaScript UI library
+for building rich data-driven web application\textquotedblright . 
 
 Using jQuery UI it would has been needed to use some other components
 to implement certain interface components, for example zTree for the
 directory folder management. jQuery UI is very useful but for a complete
 user interface creation we were going to have to build everything
-almost from scratch (toolbars, menus, file listingsâ€¦) and a library
-like zTree is extremely powerful but itâ€™s also like a big dinosaur
-with a bunch of files to load and manage. 
+almost from scratch (toolbars, menus, file listings\dots ) and a library
+like zTree is extremely powerful but it\textquoteright s also like
+a big dinosaur with a bunch of files to load and manage. 
 
 With this decision is possible that a bit of scope or control was
 lost but using w2ui we stuck with not reinventing the wheel and KISS
@@ -1812,7 +1881,7 @@ As you can see, we talk about user and anonymous user. We consider
 a user, the one that the system know about and can check its permissions
 accordingly. But the system also allows you to explore or perform
 other operations (depending on the way security directives are set)
-even if it knows nothing about you, that's an anonymous user.
+even if it knows nothing about you, that is an anonymous user.
 
 \begin{figure}[h]
 \begin{centering}
@@ -1834,7 +1903,7 @@ even if it knows nothing about you, that's an anonymous user.
 \hline 
  & User\tabularnewline
 \hline 
-Description & A user the system is able to check on its security scheme, it's somehow
+Description & A user the system is able to check on its security scheme, it is somehow
 \emph{registered } on the system.\tabularnewline
 \hline 
 \end{tabular}
@@ -2045,7 +2114,7 @@ First parent & Tells if the node is the top element on the route.\tabularnewline
 \hline 
 \end{tabular}
 
-\begin{figure}
+\begin{figure}[H]
 \begin{centering}\label{fig:conceptualdatamodel}
 
 \includegraphics[width=0.8\textwidth]{img/ConceptualDataModel}
@@ -2066,7 +2135,7 @@ of the the whole system:
 
 \subsubsection{Create a collection}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:seqcreatecoll}
@@ -2092,7 +2161,7 @@ of the the whole system:
 
 \subsubsection{Download file}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:seqdnlfile}
@@ -2114,7 +2183,7 @@ of the the whole system:
 
 \subsubsection{Delete file}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:seqdeletefile}
@@ -2146,15 +2215,16 @@ through the user interface.
 In the navigation model we can see that the main operation in DPMbox
 is \emph{read collection}, this is so because after almost every
 other operation the collection state is altered, so the content must
-be checked again. This only not happens with the download functionality,
-since the contents in the collection doesn't change after this operation.
+be checked again. The only exception to this is with the download
+functionality, since the contents in the collection does not change
+after this operation.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:navmodel}
 
-\includegraphics[width=0.4\textwidth]{img/NavigationDiagram}
+\includegraphics[width=0.6\textwidth]{img/NavigationDiagram}
 
 \end{centering}
 
@@ -2170,12 +2240,14 @@ the prototypes shown on figures~\prettyref{fig:intschememain} (main
 screen),~\prettyref{fig:intschemeaction} (action required screen)
 and~\prettyref{fig:intschemeerror} (error detected screen).
 
-\begin{figure}[h]
+\newpage{}
+
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:intschememain}
 
-\includegraphics[width=1\textwidth]{img/design_scheme}
+\includegraphics[width=0.9\textwidth]{img/design_scheme}
 
 \end{centering}
 
@@ -2183,12 +2255,12 @@ and~\prettyref{fig:intschemeerror} (error detected screen).
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:intschemeaction}
 
-\includegraphics[width=1\textwidth]{img/design_action}
+\includegraphics[width=0.9\textwidth]{img/design_action}
 
 \end{centering}
 
@@ -2196,12 +2268,12 @@ and~\prettyref{fig:intschemeerror} (error detected screen).
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \begin{centering}
 
 \label{fig:intschemeerror}
 
-\includegraphics[width=1\textwidth]{img/design_error}
+\includegraphics[width=0.9\textwidth]{img/design_error}
 
 \end{centering}
 
@@ -2209,14 +2281,16 @@ and~\prettyref{fig:intschemeerror} (error detected screen).
 \end{figure}
 
 
+\newpage{}
+
 
 \section{System design~\label{sec:System-design}}
 
 DPMbox design has followed a minimal viable product approach, being
 started as a WebDAV connection interface and then being adapted to
-DPM specifications. It's been constructed modularly and could be basically
-divided in two parts: the web user interface and the JavaScript API
-that communicates with the server. 
+\ac{DPM} specifications. It has been constructed modularly and could
+be basically divided in two parts: the web user interface and the
+JavaScript API that communicates with the server. 
 
 
 \subsection{Logic architecture}
@@ -2224,33 +2298,33 @@ that communicates with the server.
 Schuldt in~\cite{reference_db_Schuldt09a} defines a multi-tier architecture
 as 
 \begin{quotation}
-\emph{â€œA software architecture in which different software components, organized
-in tiers (layers), provide dedicated functionality. The most common
-occurrence of a multi-tier architecture is a three-tier architecture
-consisting of a data management tier (mostly encompassing one or several
-data- base servers), an application tier (business logic) and a client
-tier (interface functionality). Novel deployments come with additional
-tiers. Web information systems, for instance, encompass a dedicated
-tier (web tier) between client and application layer. Conceptually,
-a multi-tier architecture results from a repeated application of the
-client/server paradigm. A component in one of the middle tiers is
-client to the next lower tier and at the same time acts as server
-to the next higher tier.â€}
+\emph{\textquotedblleft A software architecture in which different software
+components, organized in tiers (layers), provide dedicated functionality.
+The most common occurrence of a multi-tier architecture is a three-tier
+architecture consisting of a data management tier (mostly encompassing
+one or several data- base servers), an application tier (business
+logic) and a client tier (interface functionality). Novel deployments
+come with additional tiers. Web information systems, for instance,
+encompass a dedicated tier (web tier) between client and application
+layer. Conceptually, a multi-tier architecture results from a repeated
+application of the client/server paradigm. A component in one of the
+middle tiers is client to the next lower tier and at the same time
+acts as server to the next higher tier.\textquotedblright{}}
 \end{quotation}
 
 
-A three tier architecture is a very common architecture. It's typically
+A three tier architecture is a very common architecture. It is typically
 split into a presentation or GUI tier, an application logic tier,
-and a data tier. An example can be seen on figure
+and a data tier. An example can be seen on figure~\ref{fig:three-tier}.
 
 \begin{figure}
-\begin{centering}
+\begin{centering}\label{fig:three-tier}
 
 \includegraphics[width=1\textwidth]{img/Three-tier_application}
 
 \end{centering}
 
-\protect\caption{Visual overview of a Three-tiered application}
+\protect\caption{Visual overview of a three-tiered application}
 \end{figure}
 
 
@@ -2270,8 +2344,8 @@ can typically store data safely, perform transactions or search through
 large amounts of data quickly. 
 
 The purpose of multitier architectures is to insulate the different
-layers of the application from each other. The GUI client doesn't
-know how the server is working internally, and the server doesn't
+layers of the application from each other. The GUI client does not
+know how the server is working internally, and the server does not
 know how the database server works internally. They just communicate
 via standard interfaces.
 
@@ -2281,12 +2355,12 @@ all clients get the latest updates the next time they access the application.
 The browser downloads the updated client, and the updated client accesses
 the updated server. 
 
-DPMbox is integrated into the DPM software stack. Thus, it must be
-analyzed in that context, showing us that it is just another layer
+DPMbox is integrated into the \ac{DPM} software stack. Thus, it must
+be analyzed in that context, showing us that it is just another layer
 of the whole system. This can be seen on~\ref{fig:logicscheme}.
-The DPMbox layer doesn't know any operating details of the DPM layer,
-they just connect trough a common interface, in this case a WebDAV
-interface.
+The DPMbox layer does not know any operating details of the \ac{DPM}
+layer, they just connect trough a common interface, in this case a
+WebDAV interface.
 
 \begin{figure}[h]
 \begin{centering}
@@ -2306,9 +2380,9 @@ interface.
 
 In this section, we describe the major hardware components that are
 present in the physical architecture of our system. Again, for the
-physical view, DPMbox can't be detached from the DPM architecture.
-Physically a DPM server can be a group of machines or even just one,
-but in a global view the physical architecture is a typical client-server
+physical view, DPMbox cannot be detached from the \ac{DPM} architecture.
+Physically a \ac{DPM} server can be a group of machines or even just
+one, but in a global view the physical architecture is a typical client-server
 model. This is represented in figure~\ref{fig:physarch}.
 
 \begin{figure}[h]
@@ -2326,7 +2400,7 @@ model. This is represented in figure~\ref{fig:physarch}.
 \subsubsection{DPM server}
 
 Apart from the special case of a purely test setup, is recommended
-that a DPM server provides (at least):
+that a \ac{DPM} server provides (at least):
 \begin{itemize}
 \item 2Ghz processor with 512MB of memory (not a hard requirement) 
 \item Dual power supply 
@@ -2347,11 +2421,11 @@ the latest web standards.
 
 \subsection{DPMbox WebDAV communication}
 
-Taking the former DPM HTTP/WebDAV frontend implementation, the first
-step in the development process was to build an API with JavaScript
+Taking the former \ac{DPM} HTTP/WebDAV frontend implementation, the
+first step in the development process was to build an API with JavaScript
 that can interact with it. That API uses AJAX calls to perform the
 HTTP/WebDAV requests and receives the data in an \ac{XHR} object.
-This way it's possible to expose WebDAV standard methods like PROPFIND
+This way it is possible to expose WebDAV standard methods like PROPFIND
 or MKCOL and use the information provided by them in an HTML or any
 other type of document through JavaScript and jQuery. 
 
@@ -2385,10 +2459,11 @@ headers and defines some additional methods.
 \subsubsection{Additional methods}
 \begin{description}
 \item [{isCollection:}] Returns whether an element is a collection or not
-by looking for a collection XML tag inside a resourcetype property.
-For a DPM server thereâ€™s no need to use it since a DPM response includes
-a specific property \code{iscollection} to check this, but the method
-is needed for standard WebDAV server support.
+by looking for a collection \ac{XML} tag inside a \code{resourcetype}
+property. For a DPM server there\textquoteright s no need to use it
+since a DPM response includes a specific property \code{iscollection}
+to check this, but the method is needed for standard WebDAV server
+support.
 \item [{getNodesByTag:}] Works exactly like the standard \code{getElementsByTagName},
 however introduces the ability to filter those results by namespace,
 which is important for handling WebDAV results.
@@ -2399,30 +2474,30 @@ which is important for handling WebDAV results.
 \item [{nodeName:}] Returns the name of a node (the tag name, essentially).
 \item [{extendbeforesend:}] jQuery.ajax option \code{beforeSend} may be
 set to a function reference, and this function will fire prior to
-the request being sent. It gets the XHR object, so this is the point
-you will want to do things like set headers, for example.
+the request being sent. It gets the \ac{XHR} object, so this is the
+point you will want to do things like set headers, for example.
 \item [{prepare:}] Prepares the WebDAV call. Here we want to ensure integrity
 of call object, verify WebDAV method requested, set any authorization
-information (if necesssary), and return the modified call object.
-WebDAV servers usually respond in XML but some WebDAV methods will
+information (if necessary), and return the modified call object. WebDAV
+servers usually respond in \ac{XML} but some WebDAV methods will
 not return anything at all, or return an empty response. This matters
 to jQuery in that the success method of a jQuery.ajax options object
-wonâ€™t fire if the reponse could not be parsed (although the complete
-method will). Is needed to be aware of what \code{dataType} of your
-AJAX response will be, and set it appropriately.
+won\textquoteright t fire if the response could not be parsed (although
+the complete method will). Is needed to be aware of what \code{dataType}
+of your AJAX response will be, and set it appropriately.
 \end{description}
 
 \subsection{Files upload and redirection}
 
-In the DPM architecture one entity handles the namespace with the
-metadata, and other ones store the files with the actual data. This
-means that any request must go through a server hosting the namespace
+In the \ac{DPM} architecture one entity handles the namespace with
+the metadata, and other ones store the files with the actual data.
+This means that any request must go through a server hosting the namespace
 first, and then redirect to the disk node storing the physical file.
-We execute a PUT call and the file wonâ€™t be yet uploaded but DPM will
-answer back, then our web application has to try a second time. The
-URL needed to actually do the PUT would look like this, you can see
-the specific DPM node where the file will be uploaded, including a
-token validating the transaction:
+We execute a PUT call and the file won\textquoteright t be yet uploaded
+but \ac{DPM} will answer back, then our web application has to try
+a second time. The URL needed to actually do the PUT would look like
+this, you can see the specific \ac{DPM} node where the file will
+be uploaded, including a token validating the transaction:
 \begin{verbatim}
 http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489
 .0?sfn=%2Fdpm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d
@@ -2444,20 +2519,20 @@ User agents commonly apply same-origin restrictions to network requests.
 These restrictions prevent a client-side Web application as DPMbox
 running from one origin from obtaining data retrieved from another
 origin, and also limit unsafe HTTP requests that can be automatically
-launched toward destinations that differ from the running applicationâ€™s
+launched toward destinations that differ from the running application\textquoteright s
 origin. In user agents that follow this pattern, network requests
 typically include user credentials with cross-origin requests, including
 HTTP authentication and cookie information. As DPMbox relies heavily
-on XHR (XML Http Request) calls this has to be handled carefully.
+on \ac{XHR} calls this has to be handled carefully.
 
-You can check a bit of history of XHR and CORS (Cross-Origin Resource
-Sharing) and why this is happening on~\cite{1_cruz_2015}.
+You can check a bit of history of \ac{XHR} and \ac{CORS} and why
+this is happening on~\cite{1_cruz_2015}.
 
-In early stages of the development, the DPM initial behaviour was
-to answer with a 302 code indicating redirection, and then the browser
-will try transparently to reach that new location. That would work
-it out, but the thing is that 30x responses are treated as error by
-CORS specification~\cite{W3C:CORS}:
+In early stages of the development, the \ac{DPM} initial behaviour
+was to answer with a 302 code indicating redirection, and then the
+browser will try transparently to reach that new location. That would
+work it out, but the thing is that 30x responses are treated as error
+by \ac{CORS} specification~\cite{W3C:CORS}:
 \begin{quote}
 \emph{This is the actual request. Apply the make a request steps and observe
 the request rules below while making the request.\\
@@ -2465,7 +2540,7 @@ the request rules below while making the request.\\
 If the response has an HTTP status code of 301, 302, 303, 307, or
 308 Apply the cache and network error steps.\\
 \\
-(â€¦)\\
+(\dots )\\
 \\
 Whenever the network error steps are applied, terminate the algorithm
 that invoked this set of steps and set the cross-origin request status
@@ -2489,13 +2564,13 @@ of the response, not any header at a JavaScript level, specifically
 the \code{Location} header. Finally, the solution given was manage
 the uploads though a first empty PUT including a header \code{X-No-Redirect}
 and the server will answer with a \code{202 Accepted} response. We
-can extract any header from this type of response as itâ€™s not treated
-as error for XHR CORS requests.
+can extract any header from this type of response as it is not treated
+as error for \ac{XHR} \ac{CORS} requests.
 
 After that we have to include this header information to our server
-CORS security settings and add it to the directive \code{Access-Control-Expose-Headers.}
-In short, it's necessary to configure the DPM server to response with
-the headers included on~\prettyref{lis:Access-Control-Configuration-1}.
+\ac{CORS} security settings and add it to the directive \code{Access-Control-Expose-Headers.}
+In short, it is necessary to configure the \ac{DPM} server to response
+with the headers included on~\prettyref{lis:Access-Control-Configuration-1}.
 \begin{verse}
 \begin{lstlisting}[caption={Access-Control Configuration},label={lis:Access-Control-Configuration-1},float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
 Access-Control-Allow-Origin: UrlWhereDPMboxIsHosted.host 
@@ -2511,9 +2586,9 @@ Access-Control-Expose-Headers: DAV, content-length, Allow, Location
 
 As said by Donal Norman~\cite{Norman02}:
 \begin{quote}
-â€œ\emph{When a device as simple as a door has to come with an instruction
-manualâ€”even a one-word manualâ€”then it is a failure, poorly designed.
-.}
+\textquotedblleft \emph{When a device as simple as a door has to come with an instruction
+manual\textemdash even a one-word manual\textemdash then it is a failure,
+poorly designed. .}
 \end{quote}
 
 
@@ -2558,19 +2633,20 @@ The information presentation is described in Part 12 of the ISO 9241~\cite{iso92
 standard for the organization of information (arrangement, alignment,
 grouping, labels, location), for the display of graphical objects,
 and for the coding of information (abbreviation, color, size, shape,
-visual cues) by seven attributes. The â€œattributes of presented informationâ€
-represent the static aspects of the interface and can be generally
-regarded as the â€œlookâ€ of the interface. The attributes are detailed
-in the recommendations given in the standard. Each of the recommendations
-supports one or more of the seven attributes. The seven presentation
-attributes are: 
+visual cues) by seven attributes. The \textquotedblleft attributes
+of presented information\textquotedblright{} represent the static
+aspects of the interface and can be generally regarded as the \textquotedblleft look\textquotedblright{}
+of the interface. The attributes are detailed in the recommendations
+given in the standard. Each of the recommendations supports one or
+more of the seven attributes. The seven presentation attributes are: 
 \begin{itemize}
 \item Clarity: the information content is conveyed quickly and accurately. 
 \item Discriminability: the displayed information can be distinguished accurately. 
 \item Conciseness: users are not overloaded with extraneous information. 
-\item Consistency: a unique design, conformity with userâ€™s expectation. 
-\item Detectability: the userâ€™s attention is directed towards information
-required. 
+\item Consistency: a unique design, conformity with user\textquoteright s
+expectation. 
+\item Detectability: the user\textquoteright s attention is directed towards
+information required. 
 \item Legibility: information is easy to read. 
 \item Comprehensibility: the meaning is clearly understandable, unambiguous,
 interpretable, and recognizable. 
@@ -2584,10 +2660,11 @@ context of use. User guidance can be given by the following five means:
 \begin{itemize}
 \item Prompts indicating explicitly (specific prompts) or implicitly (generic
 prompts) that the system is available for input. 
-\item Feedback informing about the userâ€™s input timely, perceptible, and
-non-intrusive. 
+\item Feedback informing about the user\textquoteright s input timely, perceptible,
+and non-intrusive. 
 \item Status information indicating the continuing state of the application,
-the systemâ€™s hardware and software components, and the userâ€™s activities. 
+the system\textquoteright s hardware and software components, and
+the user\textquoteright s activities. 
 \item Error management including error prevention, error correction, user
 support for error management, and error messages. 
 \item On-line help for system-initiated and user initiated requests with
@@ -2627,7 +2704,7 @@ initially designed and developed by Linus Torvalds for Linux kernel
 development in 2005, and has since become one of the most widely adopted
 version control systems for software development.
 
-The DPMbox repository can be checked (and forged!) on~\cite{11_valencia_calvellido_2015}.
+The DPMbox source code repository can be checked (and forged!) on~\cite{11_valencia_calvellido_2015}.
 
 
 \subsection{Program languages and technologies\label{sub:Program-languages-and}}
@@ -2637,14 +2714,15 @@ The DPMbox repository can be checked (and forged!) on~\cite{11_valencia_calvelli
 
 HTML (Hyper Text Markup Language) is the text markup language normally
 used in World Wide Web (WWW). It was created by Tim Berners-Lee (former
-CERN researcher) in 1986 from two existing tools: the concept of hypertext
-and SGML. HTML allows you to define both the structure and location
-of the items displayed on a Web page and the relations between the
-different components of a Web site by using hyperlinks. The interpretation
-of HTML documents is performed by Web browsers such as Mozilla Firefox
-or Google Chrome and others. The interpretation may make the final
-presentation vary in small details. Therefore the development of HTML
-is adjusted to the maximum to the standards set by the W3C~\cite{2_w3.org_2015}.
+\ac{CERN} researcher) in 1986 from two existing tools: the concept
+of hypertext and SGML. HTML allows you to define both the structure
+and location of the items displayed on a Web page and the relations
+between the different components of a Web site by using hyperlinks.
+The interpretation of HTML documents is performed by Web browsers
+such as Mozilla Firefox or Google Chrome and others. The interpretation
+may make the final presentation vary in small details. Therefore the
+development of HTML is adjusted to the maximum to the standards set
+by the W3C~\cite{2_w3.org_2015}.
 
 
 \subsubsection{CSS}
@@ -2666,14 +2744,17 @@ needs of DPMbox.
 JavaScript is a high level, dynamic, untyped, and interpreted programming
 language. It has been standardized in the ECMAScript language specification~\cite{EcmaScript}.
 Alongside HTML and CSS, it is one of the three essential technologies
-of World Wide Web content production; the majority of websites employ
+of World Wide Web content production. The majority of websites employ
 it and it is supported by all modern web browsers without plug-ins.
 JavaScript is prototype-based with first-class functions, making it
 a multi-paradigm language, supporting object-oriented, imperative,
-and functional programming styles. It has an API for working with
-text, arrays, dates and regular expressions, but does not include
-any I/O, such as networking, storage or graphics facilities, relying
-for these upon the host environment in which it is embedded~\cite{4_mozilla_developer_network_2015}.
+and functional programming styles. For this development a certain
+number of recommendations from Douglas Crockford's \textquotedblleft The
+Good Parts\textquotedblright{} has been followed~\cite{books/daglib/0020447}.
+JavaScript has an API for working with text, arrays, dates and regular
+expressions, but does not include any I/O, such as networking, storage
+or graphics facilities, relying for these upon the host environment
+in which it is embedded~\cite{4_mozilla_developer_network_2015}.
 
 ECMAScript 6 includes interesting syntax and structural improvements
 but it was in process of approval while DPMbox was being developed,
@@ -2696,15 +2777,16 @@ Version used in DPMbox development is version 2.1.3.
 W2UI is a small JavaScript UI library with a complete set of widgets
 that covers a wide range of interface design elements: layout, grid,
 sidebar, toolbar, tabs, fields, popup and other utilities. It has
-been created by Vitali Malinouski and it's licensed under MIT license.
+been created by Vitali Malinouski and it is licensed under MIT license.
 Some of its features are:
 \begin{itemize}
 \item Complete w2ui library is only 69kb (minified and gziped) and provides
 extremely fast load and execution. It is 9 times smaller then ExtJS
 and 7 times smaller then Kendo UI. It is just a bit over the size
 of jQuery.
-\item Itâ€™s really easy to use with simple and standard API methods, JSON
-friendly, and it has a stable and good support from its main developer.
+\item It\textquoteright s really easy to use with simple and standard API
+methods, JSON friendly, and it has a stable and good support from
+its main developer.
 \item It has no dependencies except jQuery, is all-in-one solution. It contains
 all most common UI widgets: layout, grid, sidebar, tabs, toolbar,
 popup, field controls and forms. No need to put together a collection
@@ -2730,7 +2812,7 @@ XML content.
 \subsubsection{JSON}
 
 JSON (JavaScript Object Notation) is an open standard format that
-uses human-readable text to transmit data objects consisting of attributeâ€“value
+uses human-readable text to transmit data objects consisting of attribute\textendash value
 pairs. It is the primary data format used for asynchronous browser/server
 communication (AJAJ), largely replacing XML (used by AJAX).
 
@@ -2790,15 +2872,15 @@ Version used has been version 35.0a2.
 
 Firebug is a free and open-source web browser extension for Mozilla
 Firefox that facilitates the live debugging, editing, and monitoring
-of any website's CSS, HTML, DOM, XHR, and JavaScript. Firebug is licensed
-under the BSD license and was initially written in January 2006 by
-Joe Hewitt, one of the original Firefox creators. The Firebug Working
-Group oversees the open source development and extension of Firebug.
-It has two major implementations: an extension for Mozilla Firefox
-and a bookmarklet implementation called Firebug Lite which can be
-used with Google Chrome. In addition to debugging web pages, Firebug
-is a useful tool for web security testing and web page performance
-analysis.
+of any website's CSS, HTML, \ac{DOM}, \ac{XHR}, and JavaScript.
+Firebug is licensed under the BSD license and was initially written
+in January 2006 by Joe Hewitt, one of the original Firefox creators.
+The Firebug Working Group oversees the open source development and
+extension of Firebug. It has two major implementations: an extension
+for Mozilla Firefox and a bookmarklet implementation called Firebug
+Lite which can be used with Google Chrome. In addition to debugging
+web pages, Firebug is a useful tool for web security testing and web
+page performance analysis.
 
 Versions used have been verison 1.114b1 and version 2.0.12.
 
@@ -2866,9 +2948,9 @@ This is the \emph{API}, or the library that actually communicates
 with the DPM server dealing with the HTTP/WebDAV frontend. Through
 this library we can use methods of the WebDAV standard like PROPFIND
 or MKCOL in an HTML environment and thus manage the information they
-provide. This API use XMLHttpRequest operations, also known as XHR.
+provide. This API use XMLHttpRequest operations, also known as \ac{XHR}.
 These are basically AJAX calls that perform the HTTP/WebDAV requests
-and receive the data in a JavaScript XHR object. An XMLHttpRequest
+and receive the data in a JavaScript \ac{XHR} object. An XMLHttpRequest
 support GET, POST, PUT, and basically any HTTP method, and is available
 in any browser, even in old ones like Internet Explorer 6 or Firefox
 3.
@@ -2905,11 +2987,12 @@ $.fn.extend($,{
 
 
 \code{cob} is the jQuery AJAX call object, in the prepare function
-the DAV call is built. There itâ€™s needed to ensure integrity of the
-call object, verify the DAV method requested and set any authorization
-information (if necessary). The headers that will include that information
-are set by the \code{SetRequestHeader} AJAX method. After that, the
-\code{send} function does the actual HTTP send through an AJAX request.
+the \ac{DAV} call is built. There it\textquoteright s needed to ensure
+integrity of the call object, verify the \ac{DAV} method requested
+and set any authorization information (if necessary). The headers
+that will include that information are set by the \code{SetRequestHeader}
+AJAX method. After that, the \code{send} function does the actual
+HTTP send through an AJAX request.
 
 To use this API in an HTML document we just call the function needed,
 which as we have seen is basically an AJAX call that we can process
@@ -3030,7 +3113,7 @@ A typical XML response of the server can be analyzed on listing~\prettyref{lis:x
 
 \subsubsection{w2ui-1.4.2.js}
 
-The main w2ui file, it hasn't been altered.
+The main w2ui file, it has not been altered.
 
 
 \section{Testing and validation}
@@ -3093,13 +3176,13 @@ being simulated via appropriate parameter and data inputs.
 
 Given the DPMbox architecture, we have to test the integration between
 the connection library, the filters and the graphical interface. For
-this we have followed an approach called a â€œbig bangâ€ integration,
-where most of the developed modules are coupled together to form a
-complete software system or major part of the system. Thereby we have
-accomplished the integration testing by checking its associated functional
-requirement whenever a new feature was added to the system (uploading
-a file, deleting a collection... and so on), in a full assembled environment
-for this functionality. 
+this we have followed an approach called a \textquotedblleft big bang\textquotedblright{}
+integration, where most of the developed modules are coupled together
+to form a complete software system or major part of the system. Thereby
+we have accomplished the integration testing by checking its associated
+functional requirement whenever a new feature was added to the system
+(uploading a file, deleting a collection... and so on), in a full
+assembled environment for this functionality. 
 
 To perform these tests we have done a lot of manual testing through
 the graphical user interface in its early conceptions, and also for
@@ -3108,7 +3191,7 @@ automating purposes a testing framework was used, whose name is DalekJS.
 DalekJS is an open source UI testing tool written in JavaScript that
 can launch and automate the browser, click and follow links, capture
 screenshots or fill and submit forms. It works on Windows, Linux or
-Mac, it's easy to install, only depending on Node.js, it has an API
+Mac, it is easy to install, only depending on Node.js, it has an API
 as easy to use as jQuery, and it even integrates reporting~\cite{2_dalekjs.com_2015}.
 
 The \emph{de facto} standard Selenium was also considered but finally
@@ -3135,8 +3218,10 @@ PhantomJS~\cite{1_phantomjs.org_2015}.
 module.exports = { 
 	'DPMbox initial read test': function (test) {
 	test 		
-		.open('http://federation.desy.de/fed/dynafeds_demo/') 		.click('a[href="javascript:setNewUI();"]') 		
-		.waitForElement('body') 		.assert.exists('#grid_grid_rec_\\/fed\\/dynafeds_demo\\/ape\\.jpg','the file ape.jpg has been read') 		
+		.open('http://federation.desy.de/fed/dynafeds_demo/') 		
+		.click('a[href="javascript:setNewUI();"]') 		
+		.waitForElement('body') 		
+		.assert.exists('#grid_grid_rec_\\/fed\\/dynafeds_demo\\/ape\\.jpg','the file ape.jpg has been read') 		
 		.done(); 	
 	} 
 }; 
@@ -3182,8 +3267,8 @@ we have to test the non-functional requirements too, like its performance.
 \subsubsection{Security tests}
 
 DPMbox must be a secure system, this is underwritten by the non-functional
-requirement NRQ-2. As the system relies on the DPM security, DPMbox
-responsibility is to be protected from attacks being made through
+requirement NRQ-2. As the system relies on the \ac{DPM} security,
+DPMbox responsibility is to be protected from attacks being made through
 it, e.g. code injection attacks.
 
 It is well known that the web technology has a dangerous feature:
@@ -3198,7 +3283,7 @@ triggered. If such a data-and-code mixture comes from an untrustworthy
 place, malicious code can be injected and executed inside the application.
 A special type of this attack is called Cross-Site Scripting (XSS),
 which, according to the OWASP top-ten list, is currently the third
-most common security risk in web applications (https://www.owasp.org/index.php/Top\_10\_2013-Top\_10).
+most common security risk in web applications~\cite{OWASP:2013}.
 
 To avoid this, all inputs in DPMbox are encoded and sanitized through
 a function getting advantage of the browser's built-in functionality.
@@ -3208,7 +3293,7 @@ it only as data, not as code.
 
 \subsubsection{Cross-browser compatibility}
 
-The non-functional requirement NRQ-6 states that the platform canâ€™t
+The non-functional requirement NRQ-6 states that the platform can\textquoteright t
 be restricted to particular operating systems and/or web browsers,
 so we needed to test that DPMbox is accessible from different platforms.
 
@@ -3233,7 +3318,7 @@ they are running:
 \subsubsection{Code quality}
 
 In terms of maintainability and extensibility, our code has enough
-explanatory comments, follows a clean structure and it's been built
+explanatory comments, follows a clean structure and it has been built
 modularly. Though this is hard to prove conclusively, another cornerstone
 to satisfy these requirements is to rely on a correct code syntax,
 something that can be effectively verified automatically. Hence, the
@@ -3250,8 +3335,8 @@ options~\cite{JSLint_7355524}.
 Acceptance tests are intended to verify that the application is stable
 for the deployment on production environment. To prove that the product
 was ready for the move to production, similar tests to the ones described
-before were performed, but this time on some of the DPM team test
-servers. 
+before were performed, but this time on some of the \ac{DPM} team
+test servers. 
 
 Particularly, the DPM team checked DPMbox behaviour with big collections,
 the directories with 10k and 100k files. The system takes a while
@@ -3259,13 +3344,13 @@ to load, but then goes softly and can cope reasonably well with 100k
 entries, and you can even apply the sorting or the filtering. However
 with this kind of directories, sometimes the memory consumption went
 very very high for some time (up to a gigabyte) and then fell back
-to âˆ¼500MB, something that could be problematic. This can also happen
-with the standard WebDAV/HTTP interface or connecting through a WebDAV
-client, since this is something inherent with this enormously big
-number of files in the collection. Anyhow, a solution for this is
-proposed as future work, DPMbox can detect when the collection has
-a lot of files and alert the user before reading the collection completely
-asking if he wants to continue.
+to \ensuremath{\sim}500MB, something that could be problematic. This
+can also happen with the standard WebDAV/HTTP interface or connecting
+through a WebDAV client, since this is something inherent with this
+enormously big number of files in the collection. Anyhow, a solution
+for this is proposed as future work, DPMbox can detect when the collection
+has a lot of files and alert the user before reading the collection
+completely asking if he wants to continue.
 
 
 \chapter{Conclusions and future work\label{chap:Conclusions-and-future} }
@@ -3280,8 +3365,9 @@ how to improve it.
 
 The main benefit provided with this development is the introduction
 of a new interface for the Disk Pool Manager system. With it the users
-can work with their data stored in DPM grid elements in a manner that
-is straight forward for unexperienced users and convenient for all.
+can work with their data stored in \ac{DPM} grid elements in a manner
+that is straight forward for unexperienced users and convenient for
+all.
 
 DPMbox is a project emerged from a real and specific need and, if
 we check the initial proposal and the system objectives in~\prettyref{sec:Objectives-and-scope}
@@ -3291,7 +3377,7 @@ we can say that the project has achieved those goals.
 DPMbox can connect and interact with a WebDAV server correctly (so
 it can be used to get a simple but effective interface in any WebDAV
 server), it covers all the main functionality in a straight forward
-way, and it's properly integrated into the DPM environment. Being
+way, and it is properly integrated into the DPM environment. Being
 more specific, DPMbox can upload, download or remove files, and create,
 read or delete collections, and since it can accomplish this taking
 care of the non-functional requirements too, we can say that DPMbox
@@ -3305,8 +3391,8 @@ interface by adding new features, or gives the possibility that a
 front-end engineer could envision a different interface proposal integrating
 just the DPMbox communications library.
 
-After its development process this new interface implementation is
-already in use in the Disk Pool Manager, it's available to download
+After its development process, this new interface implementation is
+already in use in the Disk Pool Manager, it is available to download
 and install from repositories for Fedora 22 and Fedora 23, and through
 testing repositories for EL-5, EL-6 and EL-7, and we aim to have regular
 updates with fixes and new functionalities.
@@ -3317,16 +3403,16 @@ updates with fixes and new functionalities.
 Considering that the project itself has met its own objectives, the
 other goals, or as we can say, the transversal objectives of the project,
 has far exceeded my expectations. On a strictly personal level, the
-work on this project has been an exciting journey. It's comforting
+work on this project has been an exciting journey. It is comforting
 to face a project of this nature and even get to know the place where
 the World Wide Web was born. 
 
 In the learning aspect, this project has been a really useful JavaScript
-training ground for me. I can say that I've deepened and strengthened
+training ground for me. I can say that I have deepened and strengthened
 my knowledge in JavaScript and the main web development technologies
 (HTML, CSS), and more specifically in user interface creation, enough
-to face any future front-end development. I've also got a great practice
-handling external libraries and frameworks as well as understanding
+to face any future front-end development. I have also got a great
+practice handling external libraries and frameworks as well as understanding
 its documentation and integrating them into a project. 
 
 And beyond that, the list of things that this project has brought
@@ -3334,15 +3420,15 @@ me is long:
 \begin{itemize}
 \item I got the opportunity to collaborate with an international work team,
 and by extension with the exciting work done in a research center
-like CERN. 
+like \ac{CERN}. 
 \item I have learned to organize and plan a project, and to stick to a schedule.
 \item The project has faced me to make decisions, like the chosen technology
 or the architecture to use. 
-\item I have gained knowledge in how to build an â€‹â€‹architecture, and in
-the use of tools and patterns that are often used for professional
+\item I have gained knowledge in how to build an \LyXZeroWidthSpace \LyXZeroWidthSpace architecture,
+and in the use of tools and patterns that are often used for professional
 development.
-\item I've learned the importance that a well documented and organized source
-code has in its future evolution.
+\item I have learned the importance that a well documented and organized
+source code has in its future evolution.
 \item I have been able to get feedback of other developers and users, and
 to share ideas of the development future direction. It is really thrilling,
 and you learn a lot, watching someone external using your product
@@ -3354,12 +3440,12 @@ need to meet the real requirements of users.
 
 One thing that I probably might need to improve for the future is
 the ability to get a better abstraction of a whole system, especially
-in systems so complex as the DPM and the WLCG. Sometimes the vast
-complexity of the entire system can dissuade you from a detail-less
+in systems so complex as the \ac{DPM} and the \ac{WLCG}. Sometimes
+the vast complexity of the entire system can dissuade you from a detail-less
 vision needed to focus on what really matters for your project.
 
 Summarizing, acquiring a basic competence in all the involved technologies
-was a major challenge, and it hasn't been easy to deal with the various
+was a major challenge, and it has not been easy to deal with the various
 unknown concepts concerning the system's environment. Furthermore,
 some setbacks appeared in different phases along the development process,
 but finally, I am really pleased with the obtained result and the
@@ -3370,9 +3456,12 @@ and professional.
 \section{CUSL awarded}
 
 As a free software project, DPMbox has been since the beginning an
-active partaker in the ninth edition of the â€œConcurso Universitario
-de Software Libreâ€ (CUSL, Free Software University Contest). You can
-check some milestones on the project's Gantt chart~\vpageref{fig:gantt}. 
+active partaker in the ninth edition of the \textquotedblleft Concurso
+Universitario de Software Libre\textquotedblright{} (CUSL, Free Software
+University Contest). You can check some milestones on the project's
+Gantt chart on page~\pageref{fig:gantt}. For its evaluation, the
+development blog~\cite{9_valencia_calvellido_2015} has been covering
+the project evolution.
 
 \begin{figure}
 \begin{centering}
@@ -3411,29 +3500,24 @@ to it.
 One of the most interesting and feasible improvements would be adding
 ROOT files support. ROOT is a modular scientific software framework
 that provides all the functionalities needed to deal with big data
-processing, statistical analysis, visualization and storage {[}1{]}.
-It's developed by CERN and it's used by almost all experiments throughout
-High Energy and Nuclear Physics to write, read and analyze data, but
-it is also used in other applications such as astronomy and data mining.
-ROOT provides a machine-independent compressed binary format, including
-both the data and its description. These files can be structured into
-internal â€˜directoriesâ€™, and the directories may contain other directories.
-{[}2{]}. There's a project called JsROOT that intends to implement
-ROOT graphics for web browsers, and reading of binary files is supported
-{[}3{]}. An example of this in action is shown on~\ref{fig:JsROOT-example}.
+processing, statistical analysis, visualization and storage~\cite{1_root.cern.ch_2015}.
+It is developed by \ac{CERN} and is used by almost all experiments
+throughout High Energy and Nuclear Physics to write, read and analyze
+data, but it is also used in other applications such as astronomy
+and data mining. ROOT provides a machine-independent compressed binary
+format, including both the data and its description. These files can
+be structured into internal \textquoteleft directories\textquoteright ,
+and the directories may contain other directories. There is a project
+called JsROOT that intends to implement ROOT graphics for web browsers,
+and reading of binary files is supported~\cite{1742-6596-396-5-052011}.
+An example of this in action is shown on~\ref{fig:JsROOT-example}.
 Adding ROOT files support to DPMbox might be very useful and it can
 be achieved through this project.
-
----- {[}1{]} ROOT: https://root.cern.ch 
-
----- {[}2{]} ROOT I/O in JavaScript: http://iopscience.iop.org/article/10.1088/1742-6596/396/5/052011/pdf 
-
----- {[}3{]} JSROOT: https://github.com/linev/jsroot
 
 \begin{figure}
 \begin{centering}
 
-\includegraphics[width=0.8\textwidth]{img/JsROOT}
+\includegraphics[width=1\textwidth]{img/JsROOT}
 
 \end{centering}
 
@@ -3473,18 +3557,18 @@ files versions or even revert to a previous version, and delete them.
 It could be a good addition the possibility to see which file is locked
 for editing by other users. 
 \item Add the functionality to drag \& drop a file from your local file
-system. With latest HTML5 standards and browser features this shouldn't
-be something complicated to implement.
+system. With latest HTML5 standards and browser features this should
+not be something complicated to implement.
 \end{itemize}
 
 \chapter{Acknowledgements\label{chap:Acknowledgements}}
 
-First of all, this work couldn't exist without free software and the
-free software community. I am thankful for the contributors who dedicate
-their time and efforts to enable people from around the world to use,
-study, share and improve free software. Cheers for all the advocates
-out there that still think we can make the world a better place through
-this.
+First of all, this work could not exist without free software and
+the free software community. I am thankful for the contributors who
+dedicate their time and efforts to enable people from around the world
+to use, study, share and improve free software. Cheers for all the
+advocates out there that still think the world could be a better place
+through this.
 
 I want to say thanks to all the people involved at CUSL, for their
 work and and the efforts dedicated to maintain such an interesting
@@ -3492,15 +3576,15 @@ initiative through all these years. I also want to say thanks to the
 CERN IT-SDC-ID section and the DPM team for the help and the feedback.
 
 I want to thank my supervisors, Manuel Palomo Duarte and Alejandro
-Ãlvarez AyllÃ³n, for helping and advising me all this time, and for
+Álvarez Ayllón, for helping and advising me all this time, and for
 giving me this unforgettable opportunity to contribute to global knowledge
 (even if it is with this very minimal and humble contribution).
 
 And last but foremost: 
 
 \emph{Gracias, a mis padres en particular, porque por ellos he llegado hasta
-aquÃ­, y a mi familia en general, por apoyarme siempre en la persecuciÃ³n
-de mis sueÃ±os. }
+aquí, y a mi familia en general, por apoyarme siempre en la persecución
+de mis sueños. }
 
 \appendix
 
@@ -3521,10 +3605,10 @@ Image: \href{file:http://linuxsoft.cern.ch/cern/slc6X/iso/SLC_6.6_x86_64_dvd.iso
 \item Install new system
 \item Follow the installer instructions
 \item Choose \emph{Basic Server / Customize Later}
-\item Wait âŒš
+\item Wait \Clocklogo{}
 \item Reboot, then the system will be updated
-\item Please wait again âŒš
-\item It's a good idea to redirect local port 2222 to the port 22 of the
+\item Please wait again \Clocklogo{}
+\item It is a good idea to redirect local port 2222 to the port 22 of the
 virtual machine (so you get SSH connection)
 \end{itemize}
 
@@ -3615,13 +3699,13 @@ groupadd dpmmgr && useradd -g dpmmgr dpmmgr
 \end{verbatim}
 Set in /etc/shift.conf: 
 \begin{verbatim}
-DPMÂ TRUST host.domain
-DPNSÂ TRUST host.domain
-RFIODÂ TRUST host.domain
-RFIODÂ WTRUST host.domain
-RFIODÂ RTRUST host.domain
-RFIODÂ XTRUST host.domain
-RFIODÂ FTRUST host.domain
+DPM TRUST host.domain
+DPNS TRUST host.domain
+RFIOD TRUST host.domain
+RFIOD WTRUST host.domain
+RFIOD RTRUST host.domain
+RFIOD XTRUST host.domain
+RFIOD FTRUST host.domain
 
 export DPNS_HOST=localhost
 export DPM_HOST=localhost - service dpnsdaemon restart - service dpm restart
@@ -3657,13 +3741,13 @@ dpm-addfs --poolname default --server host.domain --fs /storage/
 dpm-qryconf
 \end{verbatim}
 
-\subsubsection{Configurate DAV}
+\subsubsection{Configure DAV}
 \begin{verbatim}
 cd /etc/httpd/conf/ 
 	Modificar httpd.conf 
 	User dpmmgr 
 	Group dpmmgr 
-	Elimina o comenta las lÃ­neas 
+	Elimina o comenta las líneas 
 		LoadModule dav_module modules/mod_dav.so 
 		LoadModule dav_fs_module modules/mod_dav_fs.so 
 cd /etc/httpd/conf.d/ 
@@ -3671,7 +3755,7 @@ cd /etc/httpd/conf.d/
 	En zlcgdm-dav.conf 
 		SSLVerifyClient require => SSLVerifyClient optional 
 		NSSecureRedirect Off 
-		AÃ±ade Write to DiskFlags y NSFlags 
+		Añade Write to DiskFlags y NSFlags 
 		NSRedirectPort 8080 4443 (puertos expuestos al exterior) service httpd restart
 \end{verbatim}
 Configure the firewall to ports 443 and 80 and that should be all. 
@@ -3693,14 +3777,14 @@ something should appear now.
 
 \section{DPMbox installation}
 
-DPMbox it's included on build 0.16.0-1 of \code{lcgdm-dav}, on RPM
+DPMbox is included on build 0.16.0-1 of \code{lcgdm-dav}, on RPM
 repositories, as of September 2015 it is on testing channel for EPEL
 5, 6, 7 and on stable for Fedora 22 and 23. This can be checked on~\prettyref{fig:lcgdm-dav_status} 
 
 This update can be installed with the \textquotedbl{}yum\textquotedbl{}
 update program. Use su -c '\code{yum update lcgdm-dav}' at the command
 line. For more information, refer to \textquotedbl{}Managing Software
-with yum\textquotedbl{}, available at \href{http://docs.fedoraproject.org/yum/}{http://docs.fedoraproject.org/yum/}
+with yum\textquotedbl{}, available at \href{http://docs.fedoraproject.org/yum/}{http://docs.fedoraproject.org/yum/}.
 
 
 \chapter{Developer manual\label{chap:Developer-manual}}
@@ -3708,7 +3792,7 @@ with yum\textquotedbl{}, available at \href{http://docs.fedoraproject.org/yum/}{
 
 \section{DPM server environment}
 
-It's recommended to test DPMbox against a proper DPM machine. You
+It is recommended to test DPMbox against a proper DPM machine. You
 can install a DPM instance following the guide above:~\nameref{chap:Installation-manual}.
 
 When installed DPMbox files will be located on the path:
@@ -3732,7 +3816,7 @@ server. You only need an Apache server and a couple of modules.
 
 Follow your system recommendations to install Apache server. The WebDAV
 modules \code{mod\_dav} and \code{mod\_dav\_fs} are bundled with
-any version of Apache â‰¥ 2.0~\cite{apache_mod_dav}~\cite{apache_mod_dav_fs},
+any version of Apache \ensuremath{\ge} 2.0~\cite{apache_mod_dav}~\cite{apache_mod_dav_fs},
 so enable them, and then indicate Apache where the WebDAV filesystem
 will be hosted on your system. 
 
@@ -3804,11 +3888,11 @@ sudo chown www-data /webdav
 \subsection{Set Up Password Protection}
 
 We can create an authentication procedure for accessing the directory
-content by creating an htpasswd file.
+content by creating an \code{htpasswd} file.
 
-We will place it outside of the content directory so that it will
-not be accessible to users of our system. Create a username within
-the command call and you will be prompted for an associated password:
+We will place it outside of the content directory so it will not be
+accessible to users of our system. Create a username within the command
+call and you will be prompted for an associated password:
 \begin{verbatim}
 sudo htpasswd -c /etc/apache2/webdav.password username
 \end{verbatim}
@@ -3826,7 +3910,7 @@ sudo chmod 640 /etc/apache2/webdav.password
 
 Now, we will have to configure access to our content directory and
 tell Apache to use the WebDAV modules to serve that location. We will
-also have to note the authentication scheme we've created.
+also have to note the authentication scheme we have created.
 
 Edit the main virtual host configuration with root privileges:
 \begin{verbatim}
@@ -3920,7 +4004,7 @@ set up earlier. Afterwards, you should see an empty directory listing:
 \end{figure}
 
 
-We don't currently have any content here, but we'll be able to change
+We don't have currently any content here, but we will be able to change
 that by accessing the same area with a WebDAV client. 
 
 
@@ -3929,7 +4013,7 @@ that by accessing the same area with a WebDAV client.
 There are many WebDAV clients and support for WebDAV access is baked
 into many popular file managers.
 
-For simplicity's sake, we'll use an easy command-line WebDAV client
+For simplicity's sake, we will use an easy command-line WebDAV client
 called \textquotedbl{}cadaver\textquotedbl{} in this guide.
 
 Preferably from another droplet or Linux machine, install cadaver
@@ -3939,14 +4023,14 @@ sudo apt-get install cadaver
 \end{verbatim}
 
 
-Now, let's create a file that we'll upload to the WebDAV directory:
+Now, let's create a file that we will upload to the WebDAV directory:
 \begin{verbatim}
 cd ~ 
 touch testfile
 \end{verbatim}
 
 
-Next, we'll connect using the same location we used to access from
+Next, we will connect using the same location we used to access from
 the browser:
 \begin{verbatim}
 cadaver http://your_IP_address_or_domain/webdav
@@ -3958,7 +4042,7 @@ Username:
 
 You must type the \textquotedbl{}http://\textquotedbl{} portion for
 cadaver to find your server correctly. We will need to authenticate
-again, and then we'll be dropped into a command-line interface.
+again, and then we will be dropped into a command-line interface.
 \begin{verbatim}
 dav:/webdav/>
 \end{verbatim}
@@ -4015,7 +4099,7 @@ exit
 \end{verbatim}
 
 
-Now, if we go back to our web browser, the changes that we've made
+Now, if we go back to our web browser, the changes that we have made
 are visible:
 \begin{verbatim}
 your_IP_address_or_domain/webdav
@@ -4068,15 +4152,15 @@ If you are testing DPMbox with a WebDAV server located beyond your
 own machine, please read this section carefully to make DPMbox work
 properly.
 
-In the DPM architecture one entity handles the namespace with the
-metadata, and other ones store the files with the actual data. This
-means that any request must go through a server hosting the namespace
+In the \ac{DPM} architecture one entity handles the namespace with
+the metadata, and other ones store the files with the actual data.
+This means that any request must go through a server hosting the namespace
 first, and then redirect to the disk node storing the physical file.
-We execute a PUT call and the file wonâ€™t be yet uploaded but DPM will
-answer back, then our web application has to try a second time. The
-URL needed to actually do the PUT would look like this, you can see
-the specific DPM node where the file will be uploaded, including a
-token validating the transaction:
+We execute a PUT call and the file won\textquoteright t be yet uploaded
+but DPM will answer back, then our web application has to try a second
+time. The URL needed to actually do the PUT would look like this,
+you can see the specific DPM node where the file will be uploaded,
+including a token validating the transaction:
 \begin{verbatim}
 http://lxfsra04a04.cern.ch/srv/dpm/01/nogroup/2015-03-02/XHR.js.zip.2900489
 .0?sfn=%2Fdpm%2Fcern.ch%2Fhome%2Fdteam%2Faalvarez%2Fpublic%2Fcollection_d
@@ -4087,22 +4171,22 @@ User agents commonly apply same-origin restrictions to network requests.
 These restrictions prevent a client-side Web application as DPMbox
 running from one origin from obtaining data retrieved from another
 origin, and also limit unsafe HTTP requests that can be automatically
-launched toward destinations that differ from the running applicationâ€™s
+launched toward destinations that differ from the running application\textquoteright s
 origin. In user agents that follow this pattern, network requests
 typically include user credentials with cross-origin requests, including
 HTTP authentication and cookie information. As DPMbox relies heavily
-on XHR calls this has to be handled carefully or youâ€™ll face a lot
-of error messages like this:
+on \ac{XHR} calls this has to be handled carefully or you\textquoteright ll
+face a lot of error messages like this:
 \begin{verbatim}
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the 
 remote resource at http://lxfsra04a04.cern.ch/dpm/cern.ch/home/dteam/aalvarez/
 public/test5.file. (Reason: CORS header 'Access-Control-Allow-Origin' missing).
 \end{verbatim}
-You can check a bit of history of XHR and CORS and why this is happening
-on~\cite{1_cruz_2015}.
+You can check a bit of history of \ac{XHR} and \ac{CORS} and why
+this is happening on~\cite{1_cruz_2015}.
 
-The CORS headers response configuration for an Apache WebDAV server
-that gets connections from DPMbox must look like~\prettyref{lis:CORSconfig}.
+The \ac{CORS} headers response configuration for an Apache WebDAV
+server that gets connections from DPMbox must look like~\prettyref{lis:CORSconfig}.
 \begin{verse}
 \begin{lstlisting}[caption={Access-Control Configuration},label={lis:CORSconfig},float,basicstyle={\footnotesize\ttfamily},columns=fullflexible]
 Access-Control-Allow-Origin: UrlWhereDPMboxIsHosted.host 
@@ -4151,8 +4235,8 @@ someone thinks DPMbox is \emph{broken}.
 The Disk Pool Manager (DPM) is a lightweight grid storage component,
 allowing access to data using commonly used grid protocols. DPMbox
 is its new web-based interface developed in JavaScript. Its look and
-feel is similar to desktop file explorers, so you wonâ€™t spend lots
-of time to adapt to its behaviour.
+feel is similar to desktop file explorers, so you won\textquoteright t
+spend lots of time to adapt to its behaviour.
 
 You can perform various operations with application data including
 (multiple) file upload, (multiple) file download, (multiple) delete
@@ -4197,8 +4281,8 @@ to at least \code{lcgdm-dav} version 0.16. If you are unsure about
 this, please ask your Disk Pool Manager administrator about this.
 
 Besides that, the requirements are reduced to the web browser version
-you are using. It's strictly recommended that you use an updated browser,
-specifically DPMbox will work on (not restricted to):
+you are using. It is strictly recommended that you use an updated
+browser, specifically DPMbox will work on (not restricted to):
 \begin{itemize}
 \item Google Chrome/Chromium, any version higher than v17
 \item Mozilla Firefox, starting on version 7
@@ -4236,9 +4320,9 @@ hasn't been yet read, so it could have more children or not. Clicking
 on the directory name will read the collection information from the
 server, presenting you the files contained on the center panel, and
 expanding the directory tree if there are children inside that route.
-When a directory is read, a + or a âˆ’ icon are added to the left of
-the collection name, by them you can expand and collapse the tree
-hanging from that node.
+When a directory is read, a + or a \textminus{} icon are added to
+the left of the collection name, by them you can expand and collapse
+the tree hanging from that node.
 
 Yoy can see a visual representation of the main functionalities in
 the figures attached: navigation~\ref{fig:howto-navigation}, files
