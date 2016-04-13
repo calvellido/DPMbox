@@ -21,7 +21,7 @@ In the following image you can see an initial sketch design of the DPM user inte
 Beside this I've also developed a small mockup with jQuery UI. Obviously it's not functional yet and it is subject to changes, but it can show a first approach and the actual appearance on a browser. You can check it out on the folowing link: 
 
 {: .imagen_sm}
-[calvellido.es/DPMdemo][dpmdemo]
+[calvellido.es/dpmproposal][dpmdemo]
 
 
 [dpmdemo]: http://www.calvellido.es/dpmproposal
