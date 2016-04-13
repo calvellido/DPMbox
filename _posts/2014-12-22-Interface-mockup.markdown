@@ -24,4 +24,4 @@ Beside this I've also developed a small mockup with jQuery UI. Obviously it's no
 [calvellido.es/DPMdemo][dpmdemo]
 
 
-[dpmdemo]: http://www.calvellido.es/dpmdemo
+[dpmdemo]: http://www.calvellido.es/dpmproposal
